@@ -1,1 +1,1248 @@
-New website!!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoGrow Farms Limited — Technology-Powered Farming for Nigeria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1a3325;
+      --sage:     #3d6b4f;
+      --sage-lt:  #5a8f6c;
+      --amber:    #c47c22;
+      --amber-lt: #e09a42;
+      --cream:    #f4ede0;
+      --parchment:#ece3d0;
+      --earth:    #2a1f14;
+      --text:     #1e2b24;
+      --text-mid: #4d5e55;
+      --white:    #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3.5rem;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(26, 51, 37, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px;
+      border: 2px solid var(--amber);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      position: relative;
+    }
+    .nav-logo-mark::after {
+      content: '';
+      width: 14px; height: 14px;
+      background: var(--amber);
+      border-radius: 50% 50% 50% 0 / 60% 60% 40% 40%;
+      transform: rotate(-30deg);
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.25rem; list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(250,248,244,0.78);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+
+    .nav-cta {
+      background: var(--amber); color: var(--earth) !important;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-weight: 600 !important; color: #1a1206 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; color: var(--earth) !important; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: var(--forest);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 55%, rgba(61,107,79,0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 15% 30%, rgba(196,124,34,0.12) 0%, transparent 55%),
+        linear-gradient(160deg, #0e2118 0%, #1a3325 45%, #142a1e 100%);
+    }
+
+    /* Decorative grid lines */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.07) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    /* Large decorative circle */
+    .hero-circle {
+      position: absolute;
+      width: 680px; height: 680px;
+      border: 1px solid rgba(196,124,34,0.15);
+      border-radius: 50%;
+      right: -120px; top: 50%;
+      transform: translateY(-50%);
+    }
+    .hero-circle::before {
+      content: '';
+      position: absolute; inset: 48px;
+      border: 1px solid rgba(196,124,34,0.1);
+      border-radius: 50%;
+    }
+    .hero-circle::after {
+      content: '';
+      position: absolute; inset: 100px;
+      border: 1px solid rgba(196,124,34,0.08);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1320px; margin: 0 auto;
+      padding: 0 3.5rem; padding-top: 6rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 1.8rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 28px; height: 1px; background: var(--amber);
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 4.5vw, 5rem);
+      font-weight: 600; line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 1.6rem;
+    }
+    .hero-headline em {
+      font-style: italic; color: var(--amber-lt);
+    }
+
+    .hero-sub {
+      font-size: 1.02rem; line-height: 1.75; color: rgba(244,237,224,0.72);
+      font-weight: 300; max-width: 480px;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-proof {
+      font-size: 0.82rem; line-height: 1.7;
+      color: rgba(244,237,224,0.5);
+      font-weight: 300; max-width: 480px;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(90,143,108,0.25);
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; margin-bottom: 2rem;
+    }
+    .btn-primary {
+      background: var(--amber); color: #1a1206;
+      padding: 0.85rem 2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid rgba(244,237,224,0.25); color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(244,237,224,0.6); background: rgba(244,237,224,0.05); }
+
+    /* Hero right panel — stat cards */
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(90,143,108,0.2);
+      border-radius: 4px;
+      padding: 1.6rem 1.4rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .stat-card:hover {
+      background: rgba(90,143,108,0.1);
+      border-color: rgba(90,143,108,0.45);
+    }
+    .stat-card.accent { border-color: rgba(196,124,34,0.3); }
+    .stat-card.accent:hover { border-color: rgba(196,124,34,0.6); background: rgba(196,124,34,0.07); }
+    .stat-card.wide { grid-column: 1/-1; }
+
+    .stat-icon {
+      width: 36px; height: 36px; margin-bottom: 1rem;
+      background: rgba(90,143,108,0.2); border-radius: 50%;
+      display: grid; place-items: center;
+    }
+    .stat-card.accent .stat-icon { background: rgba(196,124,34,0.2); }
+    .stat-icon svg { width: 16px; height: 16px; }
+
+    .stat-label {
+      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--sage-lt); font-weight: 600; margin-bottom: 0.4rem;
+    }
+    .stat-card.accent .stat-label { color: var(--amber-lt); }
+
+    .stat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600; color: var(--white);
+      line-height: 1.3;
+    }
+    .stat-desc {
+      font-size: 0.78rem; color: rgba(244,237,224,0.5); margin-top: 0.4rem; line-height: 1.5;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; }
+
+    .section-inner {
+      max-width: 1320px; margin: 0 auto;
+      padding: 0 3.5rem;
+    }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+    }
+    .section-tag::before { content: '—'; opacity: 0.6; }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      font-weight: 600; line-height: 1.12;
+    }
+
+    /* ─── PILLARS ─── */
+    #pillars {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .pillars-header {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 4.5rem;
+    }
+    .pillars-intro {
+      font-size: 1rem; line-height: 1.8; color: var(--text-mid);
+      font-weight: 300;
+    }
+
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+      background: rgba(61,107,79,0.15);
+      border: 1px solid rgba(61,107,79,0.15);
+    }
+
+    .pillar {
+      background: var(--cream);
+      padding: 2.4rem 1.8rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .pillar:hover { background: var(--forest); }
+    .pillar:hover .pillar-num { color: var(--amber); border-color: var(--amber); }
+    .pillar:hover .pillar-name { color: var(--white); }
+    .pillar:hover .pillar-desc { color: rgba(244,237,224,0.6); }
+
+    .pillar-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--sage); border: 1px solid rgba(61,107,79,0.3);
+      display: inline-block; padding: 0.2rem 0.55rem;
+      border-radius: 2px; margin-bottom: 1.4rem;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .pillar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; line-height: 1.25;
+      color: var(--text); margin-bottom: 0.8rem;
+      transition: color 0.3s;
+    }
+    .pillar-desc {
+      font-size: 0.8rem; line-height: 1.65; color: var(--text-mid);
+      transition: color 0.3s;
+    }
+
+    /* ─── PRODUCE ─── */
+    #produce {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .produce-header {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 4.5rem;
+    }
+    .produce-sub {
+      font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300;
+    }
+
+    .produce-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+
+    .produce-card {
+      position: relative; overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 3/4;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem 1.6rem;
+      cursor: default;
+    }
+
+    .produce-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 4px;
+      transition: transform 0.5s ease;
+    }
+
+    .produce-card:nth-child(1)::before {
+      background: linear-gradient(160deg, #1a4a2e 0%, #2d6e42 100%);
+    }
+    .produce-card:nth-child(2)::before {
+      background: linear-gradient(160deg, #3b2a0e 0%, #6b4f1c 100%);
+    }
+    .produce-card:nth-child(3)::before {
+      background: linear-gradient(160deg, #1e3a28 0%, #2c5c3e 100%);
+    }
+    .produce-card:nth-child(4)::before {
+      background: linear-gradient(160deg, #2e1f0a 0%, #5c3d14 100%);
+    }
+
+    /* Decorative pattern per card */
+    .produce-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0.06;
+      transition: opacity 0.4s;
+    }
+    .produce-card:nth-child(1)::after {
+      background: repeating-linear-gradient(45deg, #fff 0px, #fff 1px, transparent 0px, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .produce-card:nth-child(2)::after {
+      background: radial-gradient(circle at 30% 30%, #fff 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .produce-card:nth-child(3)::after {
+      background: repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 0px, transparent 40%);
+      background-size: 40px 40px;
+    }
+    .produce-card:nth-child(4)::after {
+      background: repeating-linear-gradient(-45deg, #fff 0px, #fff 1px, transparent 0px, transparent 50%);
+      background-size: 20px 20px;
+    }
+
+    .produce-card:hover::after { opacity: 0.12; }
+
+    .produce-card-inner {
+      position: relative; z-index: 2;
+    }
+    .produce-icon {
+      font-size: 2.8rem; margin-bottom: 1rem; display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    }
+    .produce-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .produce-items {
+      list-style: none;
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .produce-items li {
+      font-size: 0.72rem; letter-spacing: 0.05em;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.8);
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+    }
+
+    /* ─── TECHNOLOGY ─── */
+    #technology {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+    }
+
+    .tech-header {
+      text-align: center; margin-bottom: 5rem;
+    }
+    .tech-header .section-heading { color: var(--white); }
+    .tech-header .section-tag { justify-content: center; color: var(--amber); }
+    .tech-lead {
+      font-size: 1.05rem; line-height: 1.8; color: rgba(244,237,224,0.65);
+      font-weight: 300; max-width: 640px; margin: 1.2rem auto 0;
+    }
+
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .tech-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(90,143,108,0.18);
+      border-radius: 4px; padding: 2.2rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .tech-card:hover {
+      border-color: rgba(90,143,108,0.45);
+      background: rgba(90,143,108,0.08);
+      transform: translateY(-3px);
+    }
+    .tech-card.featured {
+      grid-column: span 2;
+      border-color: rgba(196,124,34,0.25);
+      background: rgba(196,124,34,0.05);
+    }
+    .tech-card.featured:hover {
+      border-color: rgba(196,124,34,0.5);
+      background: rgba(196,124,34,0.1);
+    }
+
+    /* Large number decoration */
+    .tech-card-bg-num {
+      position: absolute; top: -1.5rem; right: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem; font-weight: 700;
+      color: rgba(90,143,108,0.07); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .tech-card.featured .tech-card-bg-num { color: rgba(196,124,34,0.07); }
+
+    .tech-card-tag {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--sage-lt); font-weight: 600; margin-bottom: 1rem;
+    }
+    .tech-card.featured .tech-card-tag { color: var(--amber-lt); }
+
+    .tech-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--white);
+      margin-bottom: 0.9rem; line-height: 1.2;
+    }
+    .tech-card.featured .tech-card-title { font-size: 1.9rem; }
+
+    .tech-card-desc {
+      font-size: 0.85rem; line-height: 1.75; color: rgba(244,237,224,0.6);
+    }
+    .tech-features {
+      list-style: none; margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .tech-features li {
+      font-size: 0.72rem; letter-spacing: 0.05em;
+      border: 1px solid rgba(90,143,108,0.3);
+      color: rgba(244,237,224,0.6);
+      padding: 0.25rem 0.7rem; border-radius: 2px;
+    }
+    .tech-card.featured .tech-features li { border-color: rgba(196,124,34,0.3); }
+
+    /* ─── QUALITY ─── */
+    #quality {
+      padding: 7rem 0;
+      background: var(--parchment);
+    }
+
+    .quality-layout {
+      display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: center;
+    }
+
+    .quality-visual {
+      position: relative;
+    }
+    .quality-diagram {
+      width: 100%; aspect-ratio: 1;
+      max-width: 420px;
+    }
+
+    /* SVG chain diagram */
+    .chain-steps {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .chain-step {
+      display: flex; align-items: stretch; gap: 1.2rem;
+    }
+    .chain-line-col {
+      display: flex; flex-direction: column; align-items: center; min-width: 40px;
+    }
+    .chain-dot {
+      width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+    }
+    .chain-line {
+      width: 2px; flex: 1; margin: 0;
+      min-height: 28px;
+    }
+    .chain-content {
+      padding-bottom: 1.6rem; flex: 1;
+    }
+    .chain-step:last-child .chain-content { padding-bottom: 0; }
+    .chain-step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.12em;
+      color: var(--sage); margin-bottom: 0.3rem;
+    }
+    .chain-step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .chain-step-desc {
+      font-size: 0.8rem; line-height: 1.6; color: var(--text-mid);
+    }
+
+    .quality-copy {}
+    .quality-copy .section-heading { margin-bottom: 1.4rem; }
+    .quality-copy p {
+      font-size: 0.95rem; line-height: 1.85; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1.2rem;
+    }
+    .quality-badges {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem;
+    }
+    .badge {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600;
+      border: 1px solid;
+      padding: 0.35rem 0.9rem; border-radius: 2px;
+    }
+    .badge.green { border-color: var(--sage); color: var(--sage); }
+    .badge.amber { border-color: var(--amber); color: var(--amber); }
+
+    /* ─── PARTNERSHIP ─── */
+    #partnerships {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .partner-header {
+      text-align: center; max-width: 640px; margin: 0 auto 4rem;
+    }
+    .partner-header .section-heading { margin-bottom: 1rem; }
+    .partner-lead { font-size: 0.98rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
+
+    .partner-types {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .partner-type {
+      text-align: center; padding: 2.4rem 1.4rem;
+      border: 1px solid rgba(61,107,79,0.12);
+      border-radius: 4px;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .partner-type:hover {
+      border-color: rgba(61,107,79,0.4);
+      background: rgba(61,107,79,0.04);
+      transform: translateY(-3px);
+    }
+    .partner-emoji { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+    .partner-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .partner-desc {
+      font-size: 0.78rem; line-height: 1.55; color: var(--text-mid);
+    }
+
+    .partner-cta-box {
+      background: var(--forest);
+      border-radius: 4px;
+      padding: 4rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+    }
+    .partner-cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 600; color: var(--white);
+      margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .partner-cta-sub {
+      font-size: 0.9rem; line-height: 1.7; color: rgba(244,237,224,0.6); font-weight: 300;
+    }
+    .partner-cta-actions { display: flex; flex-direction: column; gap: 0.85rem; }
+    .btn-outline {
+      border: 1px solid rgba(244,237,224,0.3); color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { border-color: rgba(244,237,224,0.7); background: rgba(244,237,224,0.06); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--earth);
+      padding: 4.5rem 0 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 3.5rem;
+    }
+
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand .nav-logo-text span:first-child { font-size: 1.4rem; }
+    .footer-tagline {
+      font-size: 0.83rem; line-height: 1.7; color: rgba(244,237,224,0.45);
+      margin-top: 1rem; font-weight: 300;
+    }
+
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
+    .footer-links a {
+      font-size: 0.85rem; color: rgba(244,237,224,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(244,237,224,0.85); }
+
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(244,237,224,0.3);
+    }
+    .footer-note {
+      font-size: 0.72rem; color: rgba(244,237,224,0.22);
+      font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.25rem 2rem; }
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; padding: 0 2rem; padding-top: 7rem; }
+      .hero-stats { display: none; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .produce-grid { grid-template-columns: 1fr 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .tech-card.featured { grid-column: 1; }
+      .quality-layout { grid-template-columns: 1fr; }
+      .partner-types { grid-template-columns: 1fr 1fr; }
+      .partner-cta-box { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .section-inner { padding: 0 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .produce-grid { grid-template-columns: 1fr; }
+      .produce-card { aspect-ratio: auto; min-height: 260px; }
+      .pillars-header, .produce-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .partner-types { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .partner-cta-box { padding: 2.5rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#produce">Produce</a></li>
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="#quality">Quality</a></li>
+      <li><a href="#partnerships" class="nav-cta">Partner With Us</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ═══════════════════════════════
+       HERO
+  ═══════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-circle"></div>
+
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-tag">Est. in Nigeria &bull; Agribusiness &bull; Farm-to-Market</div>
+        <h1 class="hero-headline">
+          Technology-powered farming for <em>safer, smarter</em> food supply in Nigeria.
+        </h1>
+        <p class="hero-sub">
+          EcoGrow Farms Limited is building an integrated agribusiness that combines modern crop production, livestock systems, post-harvest handling, and traceable distribution to serve local and international markets.
+        </p>
+        <div class="hero-actions">
+          <a href="#produce" class="btn-primary">Explore Our Produce</a>
+          <a href="#partnerships" class="btn-ghost">Partner With Us</a>
+        </div>
+        <p class="hero-proof">
+          From mechanized field operations and drip irrigation to greenhouse vegetables, digital records, cold-chain planning, and compliance-focused quality systems — we are designing every stage of the value chain for reliability, productivity, and trust.
+        </p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5a8f6c" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="stat-label">Precision Cultivation</div>
+          <div class="stat-title">Mechanized Field Operations</div>
+          <div class="stat-desc">Modern inputs, monitored operations, improved yields.</div>
+        </div>
+
+        <div class="stat-card accent">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c47c22" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="stat-label">Climate-Smart</div>
+          <div class="stat-title">Drip Irrigation & Greenhouse Systems</div>
+          <div class="stat-desc">Weather-aware planning, protected production.</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5a8f6c" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="stat-label">Post-Harvest</div>
+          <div class="stat-title">Grading, Cold-Chain & Route Planning</div>
+          <div class="stat-desc">Storage discipline from farm gate to market.</div>
+        </div>
+
+        <div class="stat-card accent">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c47c22" stroke-width="2">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <div class="stat-label">Traceability</div>
+          <div class="stat-title">Digital Records, Batch ID & Compliance</div>
+          <div class="stat-desc">Building documentation for trusted supply.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FIVE PILLARS
+  ═══════════════════════════════ -->
+  <section id="pillars">
+    <div class="section-inner">
+      <div class="pillars-header">
+        <div>
+          <div class="section-tag reveal">Our Five Pillars</div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Every stage of the<br>value chain, designed<br>for reliability.
+          </h2>
+        </div>
+        <p class="pillars-intro reveal reveal-delay-2">
+          EcoGrow's integrated model addresses the full agricultural value chain — from precision field operations to final-mile delivery — building the infrastructure for a food system that Nigeria's growing market demands.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar reveal">
+          <span class="pillar-num">01</span>
+          <div class="pillar-name">Precision Cultivation</div>
+          <p class="pillar-desc">Mechanization, improved seeds, soil-aware inputs, and monitored field operations designed to maximize output per hectare while reducing waste.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-1">
+          <span class="pillar-num">02</span>
+          <div class="pillar-name">Climate-Smart Production</div>
+          <p class="pillar-desc">Drip irrigation systems, weather-aware planting schedules, and protected vegetable structures to sustain production through dry seasons and climate variability.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <span class="pillar-num">03</span>
+          <div class="pillar-name">Livestock & Poultry</div>
+          <p class="pillar-desc">Safe, documented husbandry with biosecurity protocols, veterinary records, and feeding standards — building consumer confidence in animal-derived products.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-3">
+          <span class="pillar-num">04</span>
+          <div class="pillar-name">Post-Harvest Discipline</div>
+          <p class="pillar-desc">Structured grading, appropriate storage conditions, cold-chain handling where applicable, and optimized delivery routing to minimize losses after harvest.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-4">
+          <span class="pillar-num">05</span>
+          <div class="pillar-name">Traceable Delivery</div>
+          <p class="pillar-desc">Digital production records, batch identification, and compliance-oriented documentation — building the data infrastructure that serious buyers and regulators require.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       WHAT WE PRODUCE
+  ═══════════════════════════════ -->
+  <section id="produce">
+    <div class="section-inner">
+      <div class="produce-header">
+        <div>
+          <div class="section-tag reveal">What We Produce</div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Sustainably grown.<br>Quality-focused.<br>Market-ready.
+          </h2>
+        </div>
+        <p class="produce-sub reveal reveal-delay-2">
+          Our production portfolio spans the breadth of Nigeria's food needs — from staple grains that anchor household diets to premium vegetables, safe livestock, and poultry systems built around documented husbandry practices.
+        </p>
+      </div>
+
+      <div class="produce-grid">
+        <div class="produce-card reveal">
+          <div class="produce-card-inner">
+            <span class="produce-icon">🌽</span>
+            <div class="produce-name">Staple Crops</div>
+            <ul class="produce-items">
+              <li>Maize</li>
+              <li>Rice</li>
+              <li>Cassava</li>
+              <li>Soybean</li>
+              <li>Cowpea</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="produce-card reveal reveal-delay-1">
+          <div class="produce-card-inner">
+            <span class="produce-icon">🥬</span>
+            <div class="produce-name">Vegetables</div>
+            <ul class="produce-items">
+              <li>Tomatoes</li>
+              <li>Leafy Greens</li>
+              <li>Peppers</li>
+              <li>Cucumbers</li>
+              <li>Onions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="produce-card reveal reveal-delay-2">
+          <div class="produce-card-inner">
+            <span class="produce-icon">🐄</span>
+            <div class="produce-name">Livestock</div>
+            <ul class="produce-items">
+              <li>Cattle</li>
+              <li>Goats</li>
+              <li>Sheep</li>
+              <li>Documented husbandry</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="produce-card reveal reveal-delay-3">
+          <div class="produce-card-inner">
+            <span class="produce-icon">🥚</span>
+            <div class="produce-name">Poultry</div>
+            <ul class="produce-items">
+              <li>Broilers</li>
+              <li>Layers</li>
+              <li>Eggs</li>
+              <li>Biosecurity protocols</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       TECHNOLOGY
+  ═══════════════════════════════ -->
+  <section id="technology">
+    <div class="section-inner">
+      <div class="tech-header">
+        <div class="section-tag">Technology Backbone</div>
+        <h2 class="section-heading">Built for the modern<br>agribusiness operator.</h2>
+        <p class="tech-lead">Technology is not an add-on at EcoGrow — it is woven into how we plan, grow, handle, and deliver. From field to market, every stage is designed with tools that improve visibility, reduce loss, and build trust.</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card featured reveal">
+          <span class="tech-card-bg-num">01</span>
+          <div class="tech-card-tag">Field Operations</div>
+          <div class="tech-card-title">Mechanization &amp; Precision Agriculture</div>
+          <p class="tech-card-desc">Modern farm machinery reduces labor intensity and increases consistency across planting, tillage, and harvest. Combined with soil testing and targeted input programs, we align our field management to what the land actually needs — not guesswork.</p>
+          <ul class="tech-features">
+            <li>Mechanized tillage &amp; planting</li>
+            <li>Soil sampling programs</li>
+            <li>Improved seed varieties</li>
+            <li>Input optimization</li>
+            <li>Field monitoring</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal reveal-delay-1">
+          <span class="tech-card-bg-num">02</span>
+          <div class="tech-card-tag">Water Management</div>
+          <div class="tech-card-title">Drip Irrigation Systems</div>
+          <p class="tech-card-desc">Precision water delivery at the root zone, reducing consumption and supporting year-round production independent of rainfall patterns.</p>
+          <ul class="tech-features">
+            <li>Drip &amp; micro-irrigation</li>
+            <li>Seasonal planning</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal reveal-delay-2">
+          <span class="tech-card-bg-num">03</span>
+          <div class="tech-card-tag">Protected Cultivation</div>
+          <div class="tech-card-title">Greenhouse &amp; Net-House Systems</div>
+          <p class="tech-card-desc">Controlled environments for high-value vegetables, enabling extended growing seasons and protection from weather and pest pressure.</p>
+          <ul class="tech-features">
+            <li>Greenhouse structures</li>
+            <li>Net-house production</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal reveal-delay-3">
+          <span class="tech-card-bg-num">04</span>
+          <div class="tech-card-tag">Digital Records</div>
+          <div class="tech-card-title">Farm Management &amp; Documentation</div>
+          <p class="tech-card-desc">Digital logs for inputs, spray records, harvest volumes, livestock treatments, and delivery batches — creating the data trail that compliance-ready buyers and institutional partners require.</p>
+          <ul class="tech-features">
+            <li>Input &amp; spray logs</li>
+            <li>Harvest records</li>
+            <li>Batch identification</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal reveal-delay-4">
+          <span class="tech-card-bg-num">05</span>
+          <div class="tech-card-tag">Post-Harvest</div>
+          <div class="tech-card-title">Cold-Chain &amp; Route Planning</div>
+          <p class="tech-card-desc">Structured grading at harvest, appropriate storage conditions, and planned delivery logistics to reduce post-harvest losses and maintain produce quality to end-market.</p>
+          <ul class="tech-features">
+            <li>Grading standards</li>
+            <li>Cold-chain planning</li>
+            <li>Delivery routing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       QUALITY & TRACEABILITY
+  ═══════════════════════════════ -->
+  <section id="quality">
+    <div class="section-inner">
+      <div class="quality-layout">
+
+        <div class="quality-copy reveal">
+          <div class="section-tag">Quality &amp; Traceability</div>
+          <h2 class="section-heading" style="margin-bottom:1.4rem;">Building the documentation infrastructure that trust requires.</h2>
+          <p>At EcoGrow, quality is not a marketing word — it is a system. We are building documented production protocols aligned with Nigerian regulatory standards, including SON frameworks and NAQS compliance requirements for produce handling and export readiness.</p>
+          <p>Our goal is a supply chain where every batch can be traced: what field it came from, what inputs were applied, how it was handled post-harvest, and where it was delivered. That level of accountability is what modern buyers, institutional partners, and regulators increasingly demand.</p>
+          <p>We describe our produce as <strong>sustainably grown</strong>, <strong>quality-focused</strong>, and <strong>building traceability</strong> — because these reflect what we are actually doing rather than certifications we have not yet earned.</p>
+
+          <div class="quality-badges">
+            <span class="badge green">Sustainably Grown</span>
+            <span class="badge green">Quality-Focused</span>
+            <span class="badge amber">Building Traceability</span>
+            <span class="badge amber">Compliance-Oriented</span>
+            <span class="badge green">Technology-Enabled</span>
+          </div>
+        </div>
+
+        <div class="quality-visual reveal reveal-delay-2">
+          <div class="chain-steps">
+            <div class="chain-step">
+              <div class="chain-line-col">
+                <div class="chain-dot" style="background:var(--sage)"></div>
+                <div class="chain-line" style="background:linear-gradient(var(--sage),var(--amber))"></div>
+              </div>
+              <div class="chain-content">
+                <div class="chain-step-num">Step 01</div>
+                <div class="chain-step-title">Field Production</div>
+                <div class="chain-step-desc">Inputs logged, soil tested, field operations monitored and recorded with batch reference codes assigned at planting.</div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-line-col">
+                <div class="chain-dot" style="background:var(--sage-lt)"></div>
+                <div class="chain-line" style="background:linear-gradient(var(--amber),var(--sage))"></div>
+              </div>
+              <div class="chain-content">
+                <div class="chain-step-num">Step 02</div>
+                <div class="chain-step-title">Harvest &amp; Grading</div>
+                <div class="chain-step-desc">Produce graded by size, weight, and quality standards. Harvest volumes and dates recorded per batch.</div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-line-col">
+                <div class="chain-dot" style="background:var(--amber)"></div>
+                <div class="chain-line" style="background:linear-gradient(var(--sage),var(--amber))"></div>
+              </div>
+              <div class="chain-content">
+                <div class="chain-step-num">Step 03</div>
+                <div class="chain-step-title">Storage &amp; Cold-Chain</div>
+                <div class="chain-step-desc">Temperature-appropriate handling and storage conditions maintained. Chain of custody documented throughout.</div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-line-col">
+                <div class="chain-dot" style="background:var(--amber-lt)"></div>
+                <div class="chain-line" style="background:linear-gradient(var(--amber),transparent)"></div>
+              </div>
+              <div class="chain-content">
+                <div class="chain-step-num">Step 04</div>
+                <div class="chain-step-title">Compliant Distribution</div>
+                <div class="chain-step-desc">Delivery with documentation: batch ID, origin, handling records, and compliance notes for buyers and institutional partners.</div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-line-col">
+                <div class="chain-dot" style="background:var(--forest)"></div>
+              </div>
+              <div class="chain-content">
+                <div class="chain-step-num">Step 05</div>
+                <div class="chain-step-title">Buyer Confidence</div>
+                <div class="chain-step-desc">Full traceability from field to end-customer — the documentation infrastructure that credible market relationships require.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       PARTNERSHIPS
+  ═══════════════════════════════ -->
+  <section id="partnerships">
+    <div class="section-inner">
+      <div class="partner-header">
+        <div class="section-tag reveal">Partnerships</div>
+        <h2 class="section-heading reveal reveal-delay-1">Who we work with.</h2>
+        <p class="partner-lead reveal reveal-delay-2">EcoGrow is building relationships across the agricultural value chain — from smallholder cooperatives to institutional off-takers, wholesalers, and retail buyers seeking reliable, quality-focused supply.</p>
+      </div>
+
+      <div class="partner-types">
+        <div class="partner-type reveal">
+          <span class="partner-emoji">🤝</span>
+          <div class="partner-name">Cooperatives</div>
+          <p class="partner-desc">Aggregating smallholder output through structured off-take agreements and technical support.</p>
+        </div>
+        <div class="partner-type reveal reveal-delay-1">
+          <span class="partner-emoji">🏭</span>
+          <div class="partner-name">Processors &amp; Off-Takers</div>
+          <p class="partner-desc">Supplying agri-processors, food manufacturers, and large-scale off-takers with consistent, traceable produce.</p>
+        </div>
+        <div class="partner-type reveal reveal-delay-2">
+          <span class="partner-emoji">🏪</span>
+          <div class="partner-name">Wholesalers</div>
+          <p class="partner-desc">Reliable bulk supply with graded quality and documented provenance for the wholesale trade.</p>
+        </div>
+        <div class="partner-type reveal reveal-delay-3">
+          <span class="partner-emoji">🛒</span>
+          <div class="partner-name">Retailers</div>
+          <p class="partner-desc">Fresh produce partnerships with supermarkets, specialty stores, and premium food retail channels.</p>
+        </div>
+        <div class="partner-type reveal reveal-delay-4">
+          <span class="partner-emoji">🏥</span>
+          <div class="partner-name">Institutional Buyers</div>
+          <p class="partner-desc">Hospitals, hotels, schools, and government food programs requiring consistent supply with proper documentation.</p>
+        </div>
+      </div>
+
+      <div class="partner-cta-box reveal">
+        <div>
+          <h3 class="partner-cta-heading">Ready to build a<br>supply relationship?</h3>
+          <p class="partner-cta-sub">Whether you are an off-taker looking for consistent supply, a cooperative seeking a structured buyer, or an investor exploring Nigeria's agricultural opportunity — we would like to hear from you.</p>
+        </div>
+        <div class="partner-cta-actions">
+          <a href="mailto:info@ecogrowfarms.com" class="btn-primary">Get In Touch</a>
+          <a href="#" class="btn-outline">Download Capability Brief</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="#" class="nav-logo footer-brand" style="margin-bottom:0">
+            <div class="nav-logo-mark"></div>
+            <div class="nav-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Nigeria Limited</span>
+            </div>
+          </a>
+          <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">What We Do</div>
+          <ul class="footer-links">
+            <li><a href="#pillars">Our Five Pillars</a></li>
+            <li><a href="#produce">What We Produce</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#quality">Quality &amp; Traceability</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Partners</div>
+          <ul class="footer-links">
+            <li><a href="#">Cooperatives</a></li>
+            <li><a href="#">Processors</a></li>
+            <li><a href="#">Wholesalers</a></li>
+            <li><a href="#">Institutional Buyers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></li>
+            <li><a href="#">Nigeria</a></li>
+            <li style="margin-top:1rem"><a href="#">Capability Brief</a></li>
+            <li><a href="#">Investment Deck</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Nigeria Limited. All rights reserved.</p>
+        <p class="footer-note">RC: [Registration No.] &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

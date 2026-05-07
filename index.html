@@ -704,10 +704,54 @@
     .reveal-delay-4 { transition-delay: 0.4s; }
     .reveal-delay-5 { transition-delay: 0.5s; }
 
+
+
+    .mobile-menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(244,237,224,0.22);
+      background: rgba(244,237,224,0.05);
+      border-radius: 4px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 120;
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu-toggle.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-nav-panel {
+      display: none;
+    }
+
+    body.mobile-nav-open {
+      overflow: hidden;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
       nav { padding: 1.25rem 2rem; }
-      .nav-links { display: none; }
       .hero-content { grid-template-columns: 1fr; padding: 0 2rem; padding-top: 7rem; }
       .hero-stats { display: none; }
       .pillars-grid { grid-template-columns: 1fr 1fr; }
@@ -719,6 +763,69 @@
       .partner-cta-box { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .section-inner { padding: 0 2rem; }
+    }
+
+
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 1.25rem;
+        background: rgba(26, 51, 37, 0.96);
+        backdrop-filter: blur(12px);
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: inline-flex;
+      }
+      .mobile-nav-panel {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 1.25rem 1.5rem;
+        background: rgba(26, 51, 37, 0.98);
+        border-top: 1px solid rgba(196, 124, 34, 0.25);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.24);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+      .mobile-nav-panel.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .mobile-nav-panel a {
+        color: rgba(250, 248, 244, 0.88);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(244, 237, 224, 0.09);
+      }
+      .mobile-nav-panel a:hover,
+      .mobile-nav-panel a:focus-visible {
+        color: var(--amber-lt);
+      }
+      .mobile-nav-cta {
+        margin-top: 1rem;
+        padding: 0.9rem 1rem !important;
+        background: var(--amber);
+        color: #1a1206 !important;
+        text-align: center;
+        border-bottom: none !important;
+        border-radius: 3px;
+        font-weight: 700 !important;
+      }
     }
 
     @media (max-width: 640px) {
@@ -751,7 +858,22 @@
       <li><a href="#quality">Quality</a></li>
       <li><a href="#partnerships" class="nav-cta">Partner With Us</a></li>
     </ul>
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="#pillars">About</a>
+    <a href="#produce">Produce</a>
+    <a href="#pillars">Distribution / Farm to Market</a>
+    <a href="#technology">Technology</a>
+    <a href="#quality">Quality</a>
+    <a href="#partnerships">Partnerships</a>
+    <a href="#contact" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
 
 
   <!-- ═══════════════════════════════
@@ -1172,7 +1294,7 @@
   <!-- ═══════════════════════════════
        FOOTER
   ═══════════════════════════════ -->
-  <footer>
+  <footer id="contact">
     <div class="footer-inner">
       <div class="footer-top">
         <div>
@@ -1243,6 +1365,49 @@
       });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
+
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNavPanel = document.querySelector('.mobile-nav-panel');
+
+    if (mobileMenuToggle && mobileNavPanel) {
+      const closeMobileMenu = () => {
+        mobileMenuToggle.classList.remove('is-open');
+        mobileNavPanel.classList.remove('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileNavPanel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('mobile-nav-open');
+      };
+
+      const openMobileMenu = () => {
+        mobileMenuToggle.classList.add('is-open');
+        mobileNavPanel.classList.add('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileNavPanel.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('mobile-nav-open');
+      };
+
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenuToggle.classList.contains('is-open');
+        isOpen ? closeMobileMenu() : openMobileMenu();
+      });
+
+      mobileNavPanel.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+          closeMobileMenu();
+        }
+      });
+    }
+
   </script>
 </body>
 </html>

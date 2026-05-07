@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EcoGrow Farms Limited — Technology-Powered Farming for Nigeria</title>
+  <meta name="description" content="EcoGrow Farms Limited is a technology-enabled Nigerian agribusiness focused on sustainable crop production, livestock and poultry, smart farming systems, quality produce, and farm-to-market distribution." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
@@ -100,6 +101,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--amber-lt); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--amber-lt); outline-offset: 2px; }
 
     .nav-cta {
       background: var(--amber); color: var(--earth) !important;
@@ -409,10 +411,8 @@
     .produce-card-inner {
       position: relative; z-index: 2;
     }
-    .produce-icon {
-      font-size: 2.8rem; margin-bottom: 1rem; display: block;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
-    }
+    .produce-icon { width: 44px; height: 44px; margin-bottom: 1rem; display: inline-grid; place-items: center; border:1px solid rgba(255,255,255,0.3); border-radius:50%; }
+    .produce-icon svg { width: 24px; height: 24px; }
     .produce-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem; font-weight: 600; color: var(--white);
@@ -609,7 +609,7 @@
       background: rgba(61,107,79,0.04);
       transform: translateY(-3px);
     }
-    .partner-emoji { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+    .partner-icon { width: 44px; height: 44px; margin: 0 auto 1rem; border-radius: 50%; border:1px solid rgba(61,107,79,0.3); display:grid; place-items:center; font-size:0.72rem; letter-spacing:0.08em; color:var(--sage); font-weight:600; }
     .partner-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.05rem; font-weight: 600; color: var(--text);
@@ -706,10 +706,12 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
+      .hero-actions { flex-wrap: wrap; }
+      .hero-sub, .hero-proof { max-width: 100%; }
       nav { padding: 1.25rem 2rem; }
       .nav-links { display: none; }
       .hero-content { grid-template-columns: 1fr; padding: 0 2rem; padding-top: 7rem; }
-      .hero-stats { display: none; }
+      .hero-stats { grid-template-columns: 1fr 1fr; margin-top: 1rem; }
       .pillars-grid { grid-template-columns: 1fr 1fr; }
       .produce-grid { grid-template-columns: 1fr 1fr; }
       .tech-grid { grid-template-columns: 1fr; }
@@ -722,6 +724,9 @@
     }
 
     @media (max-width: 640px) {
+      .hero-content { gap: 2rem; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
       .pillars-grid { grid-template-columns: 1fr; }
       .produce-grid { grid-template-columns: 1fr; }
       .produce-card { aspect-ratio: auto; min-height: 260px; }
@@ -738,18 +743,19 @@
        NAVIGATION
   ═══════════════════════════════ -->
   <nav id="main-nav">
-    <a href="#" class="nav-logo">
+    <a href="#hero" class="nav-logo" aria-label="EcoGrow Farms Limited homepage">
       <div class="nav-logo-mark"></div>
       <div class="nav-logo-text">
         <span>EcoGrow Farms</span>
-        <span>Nigeria Limited</span>
+        <span>Limited</span>
       </div>
     </a>
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#produce">Produce</a></li>
+      <li><a href="#supply-chain">Supply Chain</a></li>
       <li><a href="#technology">Technology</a></li>
-      <li><a href="#quality">Quality</a></li>
-      <li><a href="#partnerships" class="nav-cta">Partner With Us</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
   </nav>
 
@@ -769,11 +775,11 @@
           Technology-powered farming for <em>safer, smarter</em> food supply in Nigeria.
         </h1>
         <p class="hero-sub">
-          EcoGrow Farms Limited is building an integrated agribusiness that combines modern crop production, livestock systems, post-harvest handling, and traceable distribution to serve local and international markets.
+          EcoGrow Farms Limited is building an integrated agribusiness that combines modern crop production, livestock systems, post-harvest handling, and traceability-ready distribution systems to serve local markets and future international opportunities.
         </p>
         <div class="hero-actions">
           <a href="#produce" class="btn-primary">Explore Our Produce</a>
-          <a href="#partnerships" class="btn-ghost">Partner With Us</a>
+          <a href="#contact" class="btn-ghost" aria-label="Go to contact section">Partner With Us</a>
         </div>
         <p class="hero-proof">
           From mechanized field operations and drip irrigation to greenhouse vegetables, digital records, cold-chain planning, and compliance-focused quality systems — we are designing every stage of the value chain for reliability, productivity, and trust.
@@ -810,7 +816,7 @@
             </svg>
           </div>
           <div class="stat-label">Post-Harvest</div>
-          <div class="stat-title">Grading, Cold-Chain & Route Planning</div>
+          <div class="stat-title">Grading, Post-Harvest & Route Planning</div>
           <div class="stat-desc">Storage discipline from farm gate to market.</div>
         </div>
 
@@ -877,6 +883,24 @@
   </section>
 
 
+
+  <section id="about">
+    <div class="section-inner">
+      <div class="produce-header">
+        <div>
+          <div class="section-tag reveal">About EcoGrow</div>
+          <h2 class="section-heading reveal reveal-delay-1">A newly established, technology-enabled Nigerian agribusiness.</h2>
+        </div>
+        <p class="produce-sub reveal reveal-delay-2">EcoGrow Farms Limited is a Nigerian agribusiness established to produce, source, market, and distribute quality agricultural products including fruits, vegetables, grains, livestock, poultry, and other farm products. Our model combines sustainable farming practices with practical agricultural technologies to improve productivity, reduce post-harvest losses, strengthen supply chains, and deliver safer food to local and future international markets.</p>
+      </div>
+      <div class="quality-badges reveal">
+        <span class="badge green">Technology-enabled agriculture</span>
+        <span class="badge green">Sustainable crop and livestock production</span>
+        <span class="badge amber">Farm-to-market supply systems</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════════
        WHAT WE PRODUCE
   ═══════════════════════════════ -->
@@ -897,54 +921,52 @@
       <div class="produce-grid">
         <div class="produce-card reveal">
           <div class="produce-card-inner">
-            <span class="produce-icon">🌽</span>
+            <span class="produce-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#e8c48f" stroke-width="1.8"/><path d="M12 5v14M8 7c1.5 1 2 2.5 2 4.5S9.5 15 8 17m8-10c-1.5 1-2 2.5-2 4.5s.5 3.5 2 5" stroke="#e8c48f" stroke-width="1.4" fill="none"/></svg></span>
             <div class="produce-name">Staple Crops</div>
             <ul class="produce-items">
               <li>Maize</li>
               <li>Rice</li>
               <li>Cassava</li>
-              <li>Soybean</li>
-              <li>Cowpea</li>
+              <li>Yam</li>
+              <li>Other grains</li>
             </ul>
           </div>
         </div>
 
         <div class="produce-card reveal reveal-delay-1">
           <div class="produce-card-inner">
-            <span class="produce-icon">🥬</span>
+            <span class="produce-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14c4-8 12-8 16-4-1 5-5 8-10 8-2 0-4-1-6-4z" fill="none" stroke="#e8c48f" stroke-width="1.8"/><path d="M8 15c3-1 6-3 8-6" stroke="#e8c48f" stroke-width="1.4"/></svg></span>
             <div class="produce-name">Vegetables</div>
             <ul class="produce-items">
-              <li>Tomatoes</li>
-              <li>Leafy Greens</li>
-              <li>Peppers</li>
-              <li>Cucumbers</li>
-              <li>Onions</li>
+              <li>Vegetables</li>
+              <li>Fruits</li>
+              <li>Seasonal produce</li>
             </ul>
           </div>
         </div>
 
         <div class="produce-card reveal reveal-delay-2">
           <div class="produce-card-inner">
-            <span class="produce-icon">🐄</span>
+            <span class="produce-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="14" height="9" rx="3" fill="none" stroke="#e8c48f" stroke-width="1.8"/><path d="M18 10h2a2 2 0 012 2v2a2 2 0 01-2 2h-2" stroke="#e8c48f" stroke-width="1.5" fill="none"/></svg></span>
             <div class="produce-name">Livestock</div>
             <ul class="produce-items">
               <li>Cattle</li>
               <li>Goats</li>
-              <li>Sheep</li>
-              <li>Documented husbandry</li>
+              <li>Meat</li>
+              <li>Dairy opportunities (planned)</li>
             </ul>
           </div>
         </div>
 
         <div class="produce-card reveal reveal-delay-3">
           <div class="produce-card-inner">
-            <span class="produce-icon">🥚</span>
+            <span class="produce-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c4 0 6 4.5 6 8a6 6 0 11-12 0c0-3.5 2-8 6-8z" fill="none" stroke="#e8c48f" stroke-width="1.8"/></svg></span>
             <div class="produce-name">Poultry</div>
             <ul class="produce-items">
-              <li>Broilers</li>
-              <li>Layers</li>
+              <li>Chickens</li>
               <li>Eggs</li>
-              <li>Biosecurity protocols</li>
+              <li>Poultry meat</li>
+              <li>Planned production categories</li>
             </ul>
           </div>
         </div>
@@ -952,6 +974,27 @@
     </div>
   </section>
 
+
+
+  <section id="supply-chain">
+    <div class="section-inner">
+      <div class="produce-header">
+        <div>
+          <div class="section-tag reveal">Supply Chain &amp; Distribution</div>
+          <h2 class="section-heading reveal reveal-delay-1">From Farm to Market, With Better Systems</h2>
+        </div>
+        <p class="produce-sub reveal reveal-delay-2">EcoGrow is building a supply chain model that connects production, sourcing, aggregation, sorting, grading, storage, and distribution. Our goal is to support reliable movement of farm produce from rural production points to local markets, urban centers, wholesalers, retailers, processors, and institutional buyers across Nigeria.</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card reveal"><div class="tech-card-title">Produce aggregation</div><p class="tech-card-desc">Structured sourcing and consolidation from farm clusters and cooperative partners.</p></div>
+        <div class="tech-card reveal"><div class="tech-card-title">Sorting and grading</div><p class="tech-card-desc">Consistent quality separation to match buyer requirements and reduce rejections.</p></div>
+        <div class="tech-card reveal"><div class="tech-card-title">Storage and handling</div><p class="tech-card-desc">Better handling protocols and storage discipline to reduce post-harvest loss.</p></div>
+        <div class="tech-card reveal"><div class="tech-card-title">Local and urban market distribution</div><p class="tech-card-desc">Planned movement to market hubs, wholesalers, retailers, and processors.</p></div>
+        <div class="tech-card reveal"><div class="tech-card-title">Cooperative and off-taker partnerships</div><p class="tech-card-desc">Long-term sourcing and off-take relationships built on reliability and records.</p></div>
+        <div class="tech-card reveal"><div class="tech-card-title">Institutional supply</div><p class="tech-card-desc">Documented supply support for schools, hospitals, hospitality, and public programs.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════
        TECHNOLOGY
@@ -1005,7 +1048,7 @@
           <span class="tech-card-bg-num">04</span>
           <div class="tech-card-tag">Digital Records</div>
           <div class="tech-card-title">Farm Management &amp; Documentation</div>
-          <p class="tech-card-desc">Digital logs for inputs, spray records, harvest volumes, livestock treatments, and delivery batches — creating the data trail that compliance-ready buyers and institutional partners require.</p>
+          <p class="tech-card-desc">Digital logs for inputs, spray records, harvest volumes, livestock treatments, and delivery batches — creating the data trail from field records to buyer documentation for institutional buyers, off-takers, and development partners.</p>
           <ul class="tech-features">
             <li>Input &amp; spray logs</li>
             <li>Harvest records</li>
@@ -1038,17 +1081,17 @@
 
         <div class="quality-copy reveal">
           <div class="section-tag">Quality &amp; Traceability</div>
-          <h2 class="section-heading" style="margin-bottom:1.4rem;">Building the documentation infrastructure that trust requires.</h2>
-          <p>At EcoGrow, quality is not a marketing word — it is a system. We are building documented production protocols aligned with Nigerian regulatory standards, including SON frameworks and NAQS compliance requirements for produce handling and export readiness.</p>
-          <p>Our goal is a supply chain where every batch can be traced: what field it came from, what inputs were applied, how it was handled post-harvest, and where it was delivered. That level of accountability is what modern buyers, institutional partners, and regulators increasingly demand.</p>
+          <h2 class="section-heading" style="margin-bottom:1.4rem;">Quality and traceability-ready systems for buyer confidence.</h2>
+          <p>Quality begins before harvest — with the land, seed, water, feed, farm practices, handling, and records. EcoGrow is developing quality-focused and traceability-ready systems to support safer production, better post-harvest handling, documented supply, and buyer confidence.</p>
+          <p>Our systems are designed to support batch-level tracking and documented handling over time, from field records to buyer documentation, while we continue strengthening operations at launch stage.</p>
           <p>We describe our produce as <strong>sustainably grown</strong>, <strong>quality-focused</strong>, and <strong>building traceability</strong> — because these reflect what we are actually doing rather than certifications we have not yet earned.</p>
 
           <div class="quality-badges">
-            <span class="badge green">Sustainably Grown</span>
+            <span class="badge green">Sustainable Practices</span>
             <span class="badge green">Quality-Focused</span>
-            <span class="badge amber">Building Traceability</span>
-            <span class="badge amber">Compliance-Oriented</span>
-            <span class="badge green">Technology-Enabled</span>
+            <span class="badge amber">Traceability-Ready</span>
+            <span class="badge amber">Documented Supply</span>
+            <span class="badge green">Buyer Confidence</span>
           </div>
         </div>
 
@@ -1105,7 +1148,7 @@
               <div class="chain-content">
                 <div class="chain-step-num">Step 05</div>
                 <div class="chain-step-title">Buyer Confidence</div>
-                <div class="chain-step-desc">Full traceability from field to end-customer — the documentation infrastructure that credible market relationships require.</div>
+                <div class="chain-step-desc">Traceability-ready records from field documentation to buyer records — supporting credible long-term market relationships.</div>
               </div>
             </div>
           </div>
@@ -1129,27 +1172,27 @@
 
       <div class="partner-types">
         <div class="partner-type reveal">
-          <span class="partner-emoji">🤝</span>
+          <span class="partner-icon">COOP</span>
           <div class="partner-name">Cooperatives</div>
           <p class="partner-desc">Aggregating smallholder output through structured off-take agreements and technical support.</p>
         </div>
         <div class="partner-type reveal reveal-delay-1">
-          <span class="partner-emoji">🏭</span>
+          <span class="partner-icon">PROC</span>
           <div class="partner-name">Processors &amp; Off-Takers</div>
           <p class="partner-desc">Supplying agri-processors, food manufacturers, and large-scale off-takers with consistent, traceable produce.</p>
         </div>
         <div class="partner-type reveal reveal-delay-2">
-          <span class="partner-emoji">🏪</span>
+          <span class="partner-icon">WHSL</span>
           <div class="partner-name">Wholesalers</div>
           <p class="partner-desc">Reliable bulk supply with graded quality and documented provenance for the wholesale trade.</p>
         </div>
         <div class="partner-type reveal reveal-delay-3">
-          <span class="partner-emoji">🛒</span>
+          <span class="partner-icon">RTL</span>
           <div class="partner-name">Retailers</div>
           <p class="partner-desc">Fresh produce partnerships with supermarkets, specialty stores, and premium food retail channels.</p>
         </div>
         <div class="partner-type reveal reveal-delay-4">
-          <span class="partner-emoji">🏥</span>
+          <span class="partner-icon">INST</span>
           <div class="partner-name">Institutional Buyers</div>
           <p class="partner-desc">Hospitals, hotels, schools, and government food programs requiring consistent supply with proper documentation.</p>
         </div>
@@ -1162,12 +1205,28 @@
         </div>
         <div class="partner-cta-actions">
           <a href="mailto:info@ecogrowfarms.com" class="btn-primary">Get In Touch</a>
-          <a href="#" class="btn-outline">Download Capability Brief</a>
+          <a href="mailto:info@ecogrowfarms.com?subject=Capability%20Brief%20Request" class="btn-outline" aria-label="Request capability brief by email">Request Capability Brief</a>
         </div>
       </div>
     </div>
   </section>
 
+
+
+  <section id="contact">
+    <div class="section-inner">
+      <div class="partner-cta-box reveal">
+        <div>
+          <h2 class="partner-cta-heading">Let’s Build a Smarter Food Supply System Together</h2>
+          <p class="partner-cta-sub">EcoGrow Farms Limited is open to conversations with buyers, farmers, cooperatives, technology providers, distributors, processors, institutional partners, and development organizations.</p>
+        </div>
+        <div class="partner-cta-actions">
+          <a href="mailto:info@ecogrowfarms.com?subject=Partnership%20Conversation" class="btn-primary" aria-label="Start a partnership conversation by email">Start a Partnership Conversation</a>
+          <a href="mailto:info@ecogrowfarms.com?subject=Supply%20Information%20Request" class="btn-outline" aria-label="Request supply information by email">Request Supply Information</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════
        FOOTER
@@ -1176,11 +1235,11 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div>
-          <a href="#" class="nav-logo footer-brand" style="margin-bottom:0">
+          <a href="#hero" class="nav-logo footer-brand" aria-label="EcoGrow Farms Limited homepage" style="margin-bottom:0">
             <div class="nav-logo-mark"></div>
             <div class="nav-logo-text">
               <span>EcoGrow Farms</span>
-              <span>Nigeria Limited</span>
+              <span>Limited</span>
             </div>
           </a>
           <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
@@ -1199,10 +1258,10 @@
         <div>
           <div class="footer-col-title">Partners</div>
           <ul class="footer-links">
-            <li><a href="#">Cooperatives</a></li>
-            <li><a href="#">Processors</a></li>
-            <li><a href="#">Wholesalers</a></li>
-            <li><a href="#">Institutional Buyers</a></li>
+            <li><a href="#partnerships">Cooperatives</a></li>
+            <li><a href="#partnerships">Processors</a></li>
+            <li><a href="#supply-chain">Wholesalers</a></li>
+            <li><a href="#contact">Institutional Buyers</a></li>
           </ul>
         </div>
 
@@ -1210,15 +1269,15 @@
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
             <li><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></li>
-            <li><a href="#">Nigeria</a></li>
-            <li style="margin-top:1rem"><a href="#">Capability Brief</a></li>
-            <li><a href="#">Investment Deck</a></li>
+            <li><a href="#about">Nigeria</a></li>
+            <li style="margin-top:1rem"><a href="mailto:info@ecogrowfarms.com?subject=Capability%20Brief%20Request">Request Capability Brief</a></li>
+            <li><a href="mailto:info@ecogrowfarms.com?subject=Partnership%20Information%20Request">Request Partnership Information</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copy">© 2025 EcoGrow Farms Nigeria Limited. All rights reserved.</p>
+        <p class="footer-copy">© <span id="year">2026</span> EcoGrow Farms Limited. All rights reserved.</p>
         <p class="footer-note">RC: [Registration No.] &nbsp;·&nbsp; Built with precision</p>
       </div>
     </div>
@@ -1243,6 +1302,7 @@
       });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

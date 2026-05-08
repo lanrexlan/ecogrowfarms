@@ -22,11 +22,16 @@
     /* ── NAV ── */
     nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem 3.5rem; background:rgba(26,51,37,0.96); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(255,255,255,0.06); }
     .nav-logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+    .nav-logo-img { width:42px; height:42px; display:block; object-fit:contain; flex-shrink:0; }
     .nav-logo-mark { width:38px; height:38px; border:2px solid var(--amber); border-radius:50%; display:grid; place-items:center; }
     .nav-logo-mark::after { content:''; width:14px; height:14px; background:var(--amber); border-radius:50% 50% 50% 0/60% 60% 40% 40%; transform:rotate(-30deg); }
     .nav-logo-text { display:flex; flex-direction:column; line-height:1.1; }
     .nav-logo-text span:first-child { font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.2rem; letter-spacing:0.02em; color:var(--white); }
-    .nav-logo-text span:last-child { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber-lt); font-weight:500; }
+    
+    @media (max-width: 640px) {
+      .nav-logo-img { width: 38px; height: 38px; }
+    }
+.nav-logo-text span:last-child { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber-lt); font-weight:500; }
     .nav-links { display:flex; gap:2.25rem; list-style:none; align-items:center; }
     .nav-links a { text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(250,248,244,0.78); transition:color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color:var(--amber-lt); }
@@ -279,8 +284,12 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">
-      <div class="nav-logo-mark"></div>
+    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
+      <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
       <div class="nav-logo-text">
         <span>EcoGrow Farms</span>
         <span>Nigeria Limited</span>
@@ -800,8 +809,12 @@
     <div class="section-inner">
       <div class="footer-top">
         <div>
-          <a href="index.html" class="nav-logo" style="margin-bottom:0">
-            <div class="nav-logo-mark"></div>
+          <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home" style="margin-bottom:0">
+            <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
             <div class="nav-logo-text"><span>EcoGrow Farms</span><span>Nigeria Limited</span></div>
           </a>
           <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>

@@ -62,6 +62,13 @@
       display: flex; align-items: center; gap: 0.75rem;
       text-decoration: none;
     }
+    .nav-logo-img {
+      width: 42px;
+      height: 42px;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
     .nav-logo-mark {
       width: 38px; height: 38px;
       border: 2px solid var(--amber);
@@ -829,6 +836,8 @@
     }
 
     @media (max-width: 640px) {
+    .nav-logo-img { width: 38px; height: 38px; }
+
       .pillars-grid { grid-template-columns: 1fr; }
       .produce-grid { grid-template-columns: 1fr; }
       .produce-card { aspect-ratio: auto; min-height: 260px; }
@@ -845,8 +854,12 @@
        NAVIGATION
   ═══════════════════════════════ -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-logo-mark"></div>
+    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
+      <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
       <div class="nav-logo-text">
         <span>EcoGrow Farms</span>
         <span>Nigeria Limited</span>
@@ -1300,7 +1313,11 @@
       <div class="footer-top">
         <div>
           <a href="index.html" class="nav-logo footer-brand" style="margin-bottom:0">
-            <div class="nav-logo-mark"></div>
+            <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
             <div class="nav-logo-text">
               <span>EcoGrow Farms</span>
               <span>Nigeria Limited</span>

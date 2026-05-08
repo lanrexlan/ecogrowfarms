@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About EcoGrow Farms Limited — Technology-Powered Nigerian Agribusiness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1a3325;
+      --sage:     #3d6b4f;
+      --sage-lt:  #5a8f6c;
+      --amber:    #c47c22;
+      --amber-lt: #e09a42;
+      --cream:    #f4ede0;
+      --parchment:#ece3d0;
+      --earth:    #2a1f14;
+      --text:     #1e2b24;
+      --text-mid: #4d5e55;
+      --white:    #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3.5rem;
+      background: rgba(26, 51, 37, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 42px; height: 42px;
+      display: block; object-fit: contain; flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.25rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(250,248,244,0.78);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-links a.active { color: var(--amber-lt); }
+
+    .nav-cta {
+      background: var(--amber); color: #1a1206 !important;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; color: var(--earth) !important; }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu-toggle {
+      display: none;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(244,237,224,0.22);
+      background: rgba(244,237,224,0.05);
+      border-radius: 4px;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; z-index: 120;
+    }
+    .mobile-menu-toggle span {
+      display: block; width: 20px; height: 2px;
+      background: var(--white);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav-panel { display: none; }
+    body.mobile-nav-open { overflow: hidden; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 62vh;
+      background: var(--forest);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding-top: 5rem;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 65% 55%, rgba(61,107,79,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 60% at 10% 25%, rgba(196,124,34,0.1) 0%, transparent 55%),
+        linear-gradient(160deg, #0e2118 0%, #1a3325 50%, #142a1e 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.07) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .hero-circle {
+      position: absolute;
+      width: 560px; height: 560px;
+      border: 1px solid rgba(196,124,34,0.12);
+      border-radius: 50%;
+      right: -80px; top: 50%;
+      transform: translateY(-50%);
+    }
+    .hero-circle::before {
+      content: ''; position: absolute; inset: 48px;
+      border: 1px solid rgba(196,124,34,0.08); border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1320px; margin: 0 auto;
+      padding: 4rem 3.5rem 5rem;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 1.8rem;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.6rem);
+      font-weight: 600; line-height: 1.08;
+      color: var(--white); margin-bottom: 1.6rem;
+      max-width: 780px;
+    }
+    .hero-headline em { font-style: italic; color: var(--amber-lt); }
+
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.78; color: rgba(244,237,224,0.7);
+      font-weight: 300; max-width: 640px;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; }
+    .section-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+    }
+    .section-tag::before { content: '—'; opacity: 0.6; }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      font-weight: 600; line-height: 1.12;
+    }
+
+    /* ─── WHO WE ARE ─── */
+    #who-we-are {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .who-layout {
+      display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: start;
+    }
+
+    .who-copy .section-heading { margin-bottom: 1.6rem; }
+    .who-copy p {
+      font-size: 1rem; line-height: 1.88; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1.2rem;
+    }
+
+    .who-aside {
+      padding-top: 0.5rem;
+    }
+
+    .reg-card {
+      background: var(--forest);
+      border-radius: 4px;
+      padding: 2.4rem 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .reg-card-label {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .reg-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--white);
+      margin-bottom: 0.5rem; line-height: 1.2;
+    }
+    .reg-card-detail {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; color: rgba(244,237,224,0.5);
+      letter-spacing: 0.06em; margin-bottom: 0.35rem;
+    }
+
+    .focus-list {
+      list-style: none;
+      border: 1px solid rgba(61,107,79,0.18);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .focus-list li {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.95rem 1.4rem;
+      font-size: 0.85rem; color: var(--text-mid);
+      border-bottom: 1px solid rgba(61,107,79,0.1);
+    }
+    .focus-list li:last-child { border-bottom: none; }
+    .focus-list li::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sage); flex-shrink: 0;
+    }
+
+    /* ─── MISSION & VISION ─── */
+    #mission-vision {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+    }
+
+    .mv-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+
+    .mv-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(90,143,108,0.2);
+      border-radius: 4px; padding: 3rem 2.8rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .mv-card:hover {
+      border-color: rgba(90,143,108,0.45);
+      background: rgba(90,143,108,0.08);
+      transform: translateY(-3px);
+    }
+    .mv-card.amber-card {
+      border-color: rgba(196,124,34,0.25);
+      background: rgba(196,124,34,0.05);
+    }
+    .mv-card.amber-card:hover {
+      border-color: rgba(196,124,34,0.5);
+      background: rgba(196,124,34,0.1);
+    }
+
+    .mv-bg-word {
+      position: absolute; bottom: -2rem; right: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem; font-weight: 700; line-height: 1;
+      color: rgba(90,143,108,0.06); pointer-events: none; user-select: none;
+    }
+    .mv-card.amber-card .mv-bg-word { color: rgba(196,124,34,0.07); }
+
+    .mv-tag {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--sage-lt); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .mv-card.amber-card .mv-tag { color: var(--amber-lt); }
+
+    .mv-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600; color: var(--white);
+      margin-bottom: 1.2rem; line-height: 1.2;
+    }
+    .mv-text {
+      font-size: 0.95rem; line-height: 1.82; color: rgba(244,237,224,0.65);
+      font-weight: 300;
+    }
+
+    /* ─── WHAT MAKES US DIFFERENT ─── */
+    #differentiators {
+      padding: 7rem 0;
+      background: var(--parchment);
+    }
+
+    .diff-header {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 4.5rem;
+    }
+    .diff-intro {
+      font-size: 1rem; line-height: 1.8; color: var(--text-mid); font-weight: 300;
+    }
+
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+
+    .diff-card {
+      background: var(--white);
+      border: 1px solid rgba(61,107,79,0.1);
+      border-radius: 4px; padding: 2.8rem 2.4rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .diff-card:hover {
+      border-color: rgba(61,107,79,0.35);
+      background: rgba(61,107,79,0.03);
+      transform: translateY(-3px);
+    }
+
+    .diff-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.14em;
+      color: var(--sage); border: 1px solid rgba(61,107,79,0.25);
+      display: inline-block; padding: 0.2rem 0.55rem;
+      border-radius: 2px; margin-bottom: 1.4rem;
+    }
+    .diff-icon {
+      font-size: 2.2rem; display: block; margin-bottom: 1rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+    .diff-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.8rem; line-height: 1.25;
+    }
+    .diff-desc {
+      font-size: 0.85rem; line-height: 1.72; color: var(--text-mid);
+    }
+
+    /* ─── OUR APPROACH ─── */
+    #approach {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .approach-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+
+    .approach-copy .section-heading { margin-bottom: 1.6rem; }
+    .approach-copy p {
+      font-size: 0.95rem; line-height: 1.88; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1.2rem;
+    }
+
+    .approach-tools {
+      margin-top: 1rem;
+    }
+    .approach-tools-heading {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1rem;
+    }
+    .tools-list {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+    .tool-tag {
+      font-size: 0.75rem; letter-spacing: 0.06em;
+      border: 1px solid rgba(61,107,79,0.25);
+      color: var(--sage); padding: 0.3rem 0.8rem;
+      border-radius: 2px; background: rgba(61,107,79,0.04);
+    }
+
+    .approach-visual {
+      display: flex; flex-direction: column; gap: 0;
+    }
+
+    .approach-step {
+      display: flex; gap: 1.4rem; align-items: stretch;
+    }
+    .approach-step-line {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 40px;
+    }
+    .approach-step-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--sage); flex-shrink: 0; margin-top: 4px;
+    }
+    .approach-step:nth-child(2) .approach-step-dot { background: var(--sage-lt); }
+    .approach-step:nth-child(3) .approach-step-dot { background: var(--amber); }
+    .approach-step:nth-child(4) .approach-step-dot { background: var(--amber-lt); }
+    .approach-step:nth-child(5) .approach-step-dot { background: var(--forest); }
+    .approach-step:nth-child(6) .approach-step-dot { background: var(--earth); }
+
+    .approach-connector {
+      width: 2px; flex: 1; min-height: 28px;
+      background: linear-gradient(var(--sage), var(--amber));
+      margin: 0 auto;
+    }
+    .approach-step-content {
+      padding-bottom: 1.8rem; flex: 1;
+    }
+    .approach-step:last-child .approach-step-content { padding-bottom: 0; }
+
+    .approach-step-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.12em;
+      color: var(--sage); margin-bottom: 0.3rem;
+    }
+    .approach-step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem;
+    }
+    .approach-step-desc {
+      font-size: 0.8rem; line-height: 1.65; color: var(--text-mid);
+    }
+
+    /* ─── COMPANY INFO ─── */
+    #company-info {
+      padding: 5rem 0;
+      background: var(--cream);
+    }
+
+    .info-layout {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: center;
+    }
+
+    .info-copy {}
+    .info-copy .section-heading { margin-bottom: 1.2rem; }
+    .info-copy p {
+      font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); font-weight: 300;
+    }
+
+    .info-details {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+
+    .info-item {
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(61,107,79,0.14);
+      border-radius: 4px;
+      background: var(--white);
+      transition: border-color 0.3s;
+    }
+    .info-item:hover { border-color: rgba(61,107,79,0.35); }
+
+    .info-item-label {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .info-item-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1.3;
+    }
+    .info-item-value.mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.92rem; font-weight: 400; color: var(--text-mid);
+    }
+
+    /* ─── CTA ─── */
+    #cta {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+    }
+
+    .cta-inner {
+      text-align: center; max-width: 680px; margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+
+    .cta-bg-circle {
+      position: absolute;
+      width: 500px; height: 500px;
+      border: 1px solid rgba(196,124,34,0.1);
+      border-radius: 50%;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-bg-circle::before {
+      content: ''; position: absolute; inset: 48px;
+      border: 1px solid rgba(196,124,34,0.07); border-radius: 50%;
+    }
+
+    .cta-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+      justify-content: center;
+    }
+    .cta-tag::before { content: '—'; opacity: 0.6; }
+
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.4rem;
+    }
+    .cta-heading em { font-style: italic; color: var(--amber-lt); }
+
+    .cta-sub {
+      font-size: 0.98rem; line-height: 1.78; color: rgba(244,237,224,0.6);
+      font-weight: 300; margin-bottom: 2.8rem;
+    }
+
+    .cta-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--amber); color: #1a1206;
+      padding: 0.88rem 2.2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid rgba(244,237,224,0.28); color: var(--white);
+      padding: 0.88rem 2.2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(244,237,224,0.65); background: rgba(244,237,224,0.05); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--earth);
+      padding: 4.5rem 0 2.5rem;
+    }
+    .footer-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 3.5rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo-text span:first-child { font-size: 1.4rem; }
+    .footer-tagline {
+      font-size: 0.83rem; line-height: 1.7; color: rgba(244,237,224,0.45);
+      margin-top: 1rem; font-weight: 300;
+    }
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
+    .footer-links a {
+      font-size: 0.85rem; color: rgba(244,237,224,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(244,237,224,0.85); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.3); }
+    .footer-note {
+      font-size: 0.72rem; color: rgba(244,237,224,0.22);
+      font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.25rem 2rem; }
+      .hero-content { padding: 4rem 2rem 5rem; }
+      .who-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .mv-grid { grid-template-columns: 1fr; }
+      .diff-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .diff-grid { grid-template-columns: 1fr 1fr; }
+      .approach-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .info-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .section-inner { padding: 0 2rem; }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .mobile-menu-toggle { display: inline-flex; }
+      .mobile-nav-panel {
+        position: fixed; top: 70px; left: 0; right: 0;
+        z-index: 99;
+        display: flex; flex-direction: column; gap: 0;
+        padding: 1rem 1.25rem 1.5rem;
+        background: rgba(26, 51, 37, 0.98);
+        border-top: 1px solid rgba(196, 124, 34, 0.25);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.24);
+        transform: translateY(-120%); opacity: 0; pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+      .mobile-nav-panel.is-open {
+        transform: translateY(0); opacity: 1; pointer-events: auto;
+      }
+      .mobile-nav-panel a {
+        color: rgba(250, 248, 244, 0.88); text-decoration: none;
+        text-transform: uppercase; letter-spacing: 0.08em;
+        font-size: 0.82rem; font-weight: 500;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(244, 237, 224, 0.09);
+      }
+      .mobile-nav-panel a:hover { color: var(--amber-lt); }
+      .mobile-nav-cta {
+        margin-top: 1rem; padding: 0.9rem 1rem !important;
+        background: var(--amber); color: #1a1206 !important;
+        text-align: center; border-bottom: none !important;
+        border-radius: 3px; font-weight: 700 !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-logo-img { width: 38px; height: 38px; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .info-details { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .cta-actions a { width: 100%; max-width: 320px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
+      <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="produce.html">Produce</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="quality.html">Quality</a></li>
+      <li><a href="distribution.html">Distribution</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="produce.html">Produce</a>
+    <a href="technology.html">Technology</a>
+    <a href="quality.html">Quality</a>
+    <a href="distribution.html">Distribution</a>
+    <a href="contact.html" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       HERO
+  ═══════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-circle"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Est. in Nigeria &bull; About Us &bull; Agribusiness</div>
+      <h1 class="hero-headline">
+        About EcoGrow<br><em>Farms Limited</em>
+      </h1>
+      <p class="hero-sub">
+        A technology-enabled Nigerian agribusiness established to produce, source, market, and distribute quality farm products while improving productivity, sustainability, and food supply systems.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       WHO WE ARE
+  ═══════════════════════════════ -->
+  <section id="who-we-are">
+    <div class="section-inner">
+      <div class="who-layout">
+
+        <div class="who-copy reveal">
+          <div class="section-tag">Who We Are</div>
+          <h2 class="section-heading">An integrated<br>Nigerian agribusiness.</h2>
+          <p>
+            EcoGrow Farms Limited is a Nigerian agribusiness focused on crop production, livestock and poultry, agricultural sourcing, marketing, distribution, and farm-to-market supply systems. The company was established to contribute to food security by producing and supplying high-quality agricultural products including fruits, vegetables, grains, livestock, poultry, and other farm products.
+          </p>
+          <p>
+            We are building an operation that combines modern technology with disciplined farming practice — addressing every stage of the agricultural value chain from field production to final-mile delivery. Our approach is designed not just for what the market demands today, but for what compliance-ready buyers, institutional partners, and consumers will increasingly require tomorrow.
+          </p>
+          <p>
+            EcoGrow is registered and operates in Nigeria, with a focus on building the infrastructure, documentation systems, and supply relationships that position Nigerian agriculture for growth on both domestic and international stages.
+          </p>
+        </div>
+
+        <div class="who-aside reveal reveal-delay-2">
+          <div class="reg-card">
+            <div class="reg-card-label">Company Registration</div>
+            <div class="reg-card-name">EcoGrow Farms Limited</div>
+            <div class="reg-card-detail">Registration No: 8778030</div>
+            <div class="reg-card-detail">CAC Registered · Nigeria</div>
+          </div>
+
+          <ul class="focus-list">
+            <li>Crop production &amp; precision cultivation</li>
+            <li>Livestock &amp; poultry systems</li>
+            <li>Agricultural sourcing &amp; off-take</li>
+            <li>Post-harvest handling &amp; distribution</li>
+            <li>Farm-to-market supply systems</li>
+            <li>Digital records &amp; traceability</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       MISSION & VISION
+  ═══════════════════════════════ -->
+  <section id="mission-vision">
+    <div class="section-inner">
+      <div class="mv-grid">
+
+        <div class="mv-card reveal">
+          <div class="mv-bg-word">Mission</div>
+          <div class="mv-tag">Our Mission</div>
+          <div class="mv-heading">What we are<br>here to do.</div>
+          <p class="mv-text">
+            To use sustainable farming systems and practical agricultural technologies to produce, source, and distribute safe, high-quality farm products for Nigerian and future international markets.
+          </p>
+        </div>
+
+        <div class="mv-card amber-card reveal reveal-delay-2">
+          <div class="mv-bg-word">Vision</div>
+          <div class="mv-tag">Our Vision</div>
+          <div class="mv-heading">Where we are<br>building toward.</div>
+          <p class="mv-text">
+            To become a trusted technology-enabled agribusiness known for reliable production, traceability-ready supply systems, quality farm products, and innovation in Nigerian agriculture.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       WHAT MAKES US DIFFERENT
+  ═══════════════════════════════ -->
+  <section id="differentiators">
+    <div class="section-inner">
+      <div class="diff-header">
+        <div>
+          <div class="section-tag reveal">What Makes EcoGrow Different</div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Built differently,<br>from the ground up.
+          </h2>
+        </div>
+        <p class="diff-intro reveal reveal-delay-2">
+          Most agribusinesses in Nigeria operate in silos — focusing on one stage of the value chain while leaving others to chance. EcoGrow is designed differently: integrated, documented, and technology-informed at every step.
+        </p>
+      </div>
+
+      <div class="diff-grid">
+
+        <div class="diff-card reveal">
+          <span class="diff-num">01</span>
+          <span class="diff-icon">⚙️</span>
+          <div class="diff-name">Technology-Enabled Agriculture</div>
+          <p class="diff-desc">We embed technology into farming operations — not as a marketing layer, but as a working infrastructure. From mechanized field operations and drip irrigation to greenhouse systems and digital farm records, technology improves our visibility, reduces waste, and builds the data trail that accountable supply requires.</p>
+        </div>
+
+        <div class="diff-card reveal reveal-delay-1">
+          <span class="diff-num">02</span>
+          <span class="diff-icon">🌱</span>
+          <div class="diff-name">Sustainable Crop and Livestock Production</div>
+          <p class="diff-desc">Sustainability at EcoGrow means producing in ways that are economically durable and environmentally responsible. Soil-aware input programs, water-efficient irrigation, biosecurity protocols for livestock, and responsible post-harvest practices — built to last, not just to yield.</p>
+        </div>
+
+        <div class="diff-card reveal reveal-delay-2">
+          <span class="diff-num">03</span>
+          <span class="diff-icon">🚛</span>
+          <div class="diff-name">Farm-to-Market Supply Thinking</div>
+          <p class="diff-desc">We think about the full journey from seed to sale. Post-harvest handling, cold-chain planning, grading standards, and delivery logistics are built into how we operate — because what happens after harvest determines whether great farming translates into great supply.</p>
+        </div>
+
+        <div class="diff-card reveal reveal-delay-3">
+          <span class="diff-num">04</span>
+          <span class="diff-icon">📋</span>
+          <div class="diff-name">Quality-Focused and Traceability-Ready Systems</div>
+          <p class="diff-desc">We are building documented production protocols aligned with Nigerian regulatory standards, including SON frameworks and NAQS compliance requirements. Every batch is assigned origin references, input logs, and handling records — building the accountability infrastructure that institutional buyers and serious partners require.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       OUR APPROACH
+  ═══════════════════════════════ -->
+  <section id="approach">
+    <div class="section-inner">
+      <div class="approach-layout">
+
+        <div class="approach-copy reveal">
+          <div class="section-tag">Our Approach</div>
+          <h2 class="section-heading">Modern tools,<br>disciplined practice.</h2>
+          <p>
+            EcoGrow combines traditional agricultural knowledge with modern tools and systems. We do not chase technology for its own sake — we adopt what actually improves production outcomes, reduces post-harvest losses, and makes our supply more reliable and traceable.
+          </p>
+          <p>
+            This means mechanized farming where it reduces labor intensity and improves consistency. Drip irrigation where it conserves water and extends growing seasons. Digital records where they build the documentation trail that institutional relationships require.
+          </p>
+
+          <div class="approach-tools">
+            <div class="approach-tools-heading">Tools &amp; Systems We Deploy</div>
+            <div class="tools-list">
+              <span class="tool-tag">Mechanized Farming</span>
+              <span class="tool-tag">Drip Irrigation</span>
+              <span class="tool-tag">Greenhouse Production</span>
+              <span class="tool-tag">Digital Farm Records</span>
+              <span class="tool-tag">Weather-Aware Planning</span>
+              <span class="tool-tag">Post-Harvest Systems</span>
+              <span class="tool-tag">Cold-Chain Planning</span>
+              <span class="tool-tag">Delivery Route Optimization</span>
+              <span class="tool-tag">Batch Identification</span>
+              <span class="tool-tag">Soil Testing Programs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="approach-visual reveal reveal-delay-2">
+          <div class="approach-step">
+            <div class="approach-step-line">
+              <div class="approach-step-dot"></div>
+              <div class="approach-connector"></div>
+            </div>
+            <div class="approach-step-content">
+              <div class="approach-step-label">Stage 01</div>
+              <div class="approach-step-title">Precision Field Planning</div>
+              <div class="approach-step-desc">Soil testing, improved seed selection, input optimization, and mechanized planting — operations designed around what the land actually needs.</div>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="approach-step-line">
+              <div class="approach-step-dot"></div>
+              <div class="approach-connector"></div>
+            </div>
+            <div class="approach-step-content">
+              <div class="approach-step-label">Stage 02</div>
+              <div class="approach-step-title">Climate-Smart Production</div>
+              <div class="approach-step-desc">Drip irrigation, greenhouse and net-house structures, and weather-aware scheduling keep production consistent regardless of seasonal variation.</div>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="approach-step-line">
+              <div class="approach-step-dot"></div>
+              <div class="approach-connector"></div>
+            </div>
+            <div class="approach-step-content">
+              <div class="approach-step-label">Stage 03</div>
+              <div class="approach-step-title">Digital Record Keeping</div>
+              <div class="approach-step-desc">Input logs, spray records, livestock treatments, and harvest volumes captured digitally — creating the data trail compliance-ready buyers require.</div>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="approach-step-line">
+              <div class="approach-step-dot"></div>
+              <div class="approach-connector"></div>
+            </div>
+            <div class="approach-step-content">
+              <div class="approach-step-label">Stage 04</div>
+              <div class="approach-step-title">Post-Harvest Handling</div>
+              <div class="approach-step-desc">Structured grading standards, temperature-appropriate storage, and cold-chain planning to reduce losses and maintain quality from farm gate to market.</div>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="approach-step-line">
+              <div class="approach-step-dot"></div>
+              <div class="approach-connector"></div>
+            </div>
+            <div class="approach-step-content">
+              <div class="approach-step-label">Stage 05</div>
+              <div class="approach-step-title">Organized Distribution</div>
+              <div class="approach-step-desc">Route-optimized delivery with batch documentation — connecting farm supply to wholesale, retail, institutional, and processing buyers.</div>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="approach-step-line">
+              <div class="approach-step-dot"></div>
+            </div>
+            <div class="approach-step-content">
+              <div class="approach-step-label">Stage 06</div>
+              <div class="approach-step-title">Traceable Accountability</div>
+              <div class="approach-step-desc">Full field-to-end-customer traceability: origin records, handling documentation, and compliance notes that underpin credible, lasting supply relationships.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       COMPANY INFORMATION
+  ═══════════════════════════════ -->
+  <section id="company-info">
+    <div class="section-inner">
+      <div class="info-layout">
+
+        <div class="info-copy reveal">
+          <div class="section-tag">Company Information</div>
+          <h2 class="section-heading">Formally<br>registered &amp;<br>Nigeria-rooted.</h2>
+          <p>EcoGrow Farms Limited is a formally registered Nigerian agribusiness, incorporated with the Corporate Affairs Commission. We operate with the governance structures and documentation discipline that institutional partners and serious buyers expect.</p>
+        </div>
+
+        <div class="info-details reveal reveal-delay-2">
+          <div class="info-item">
+            <div class="info-item-label">Company Name</div>
+            <div class="info-item-value">EcoGrow Farms Limited</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">CAC Registration No.</div>
+            <div class="info-item-value mono">8778030</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Country of Operation</div>
+            <div class="info-item-value">Nigeria</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Industry Focus</div>
+            <div class="info-item-value">Technology-Enabled Agribusiness</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Core Activities</div>
+            <div class="info-item-value">Farming &amp; Distribution</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Supply Orientation</div>
+            <div class="info-item-value">Domestic &amp; Export-Ready</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       CTA
+  ═══════════════════════════════ -->
+  <section id="cta">
+    <div class="cta-bg-circle"></div>
+    <div class="section-inner">
+      <div class="cta-inner reveal">
+        <div class="cta-tag">Work With EcoGrow</div>
+        <h2 class="cta-heading">Ready to build a<br><em>supply relationship?</em></h2>
+        <p class="cta-sub">
+          Whether you are an off-taker seeking consistent, traceable supply, a cooperative looking for a structured buyer, or an investor exploring Nigeria's agricultural opportunity — we would like to hear from you.
+        </p>
+        <div class="cta-actions">
+          <a href="produce.html" class="btn-primary">Explore Our Produce</a>
+          <a href="contact.html" class="btn-ghost">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="nav-logo footer-brand" style="margin-bottom:0">
+            <img
+              src="/Images/ecogrow-farms-icon-logo.svg"
+              alt="EcoGrow Farms Limited logo"
+              class="nav-logo-img"
+            />
+            <div class="nav-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Nigeria Limited</span>
+            </div>
+          </a>
+          <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="produce.html">Produce</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="quality.html">Quality</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Business</div>
+          <ul class="footer-links">
+            <li><a href="distribution.html">Distribution</a></li>
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Supply Enquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Focus Areas</div>
+          <ul class="footer-links">
+            <li><a href="technology.html">Smart Farming</a></li>
+            <li><a href="produce.html">Crop &amp; Livestock Production</a></li>
+            <li><a href="quality.html">Traceability-Ready Supply</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Limited. Registration No: 8778030. All rights reserved.</p>
+        <p class="footer-note">CAC Registration No: 8778030 &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Mobile menu
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNavPanel = document.querySelector('.mobile-nav-panel');
+
+    if (mobileMenuToggle && mobileNavPanel) {
+      const closeMobileMenu = () => {
+        mobileMenuToggle.classList.remove('is-open');
+        mobileNavPanel.classList.remove('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileNavPanel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('mobile-nav-open');
+      };
+      const openMobileMenu = () => {
+        mobileMenuToggle.classList.add('is-open');
+        mobileNavPanel.classList.add('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileNavPanel.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('mobile-nav-open');
+      };
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
+      });
+      mobileNavPanel.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+    }
+  </script>
+</body>
+</html>

@@ -287,23 +287,24 @@
       </div>
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#pillars">About</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="produce.html">Produce</a></li>
       <li><a href="technology.html">Technology</a></li>
       <li><a href="quality.html" class="active">Quality</a></li>
-      <li><a href="index.html#partnerships" class="nav-cta">Partner With Us</a></li>
+      <li><a href="index.html#partnerships">Partnerships</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
     </ul>
     <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
       <span></span><span></span><span></span>
     </button>
   </nav>
   <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
-    <a href="index.html#pillars">About</a>
+    <a href="index.html">Home</a>
     <a href="produce.html">Produce</a>
     <a href="technology.html">Technology</a>
-    <a href="quality.html">Quality &amp; Traceability</a>
+    <a href="quality.html">Quality</a>
     <a href="index.html#partnerships">Partnerships</a>
-    <a href="index.html#partnerships" class="mobile-nav-cta">Contact EcoGrow</a>
+    <a href="index.html#contact" class="mobile-nav-cta">Contact EcoGrow</a>
   </div>
 
 
@@ -806,31 +807,30 @@
           <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
         </div>
         <div>
-          <div class="footer-col-title">Quality</div>
-          <ul class="footer-links">
-            <li><a href="#farm-quality">Farm-Level Quality</a></li>
-            <li><a href="#livestock-safety">Livestock Safety</a></li>
-            <li><a href="#postharvest-quality">Post-Harvest Handling</a></li>
-            <li><a href="#traceability">Traceability Systems</a></li>
-            <li><a href="#compliance">Compliance</a></li>
-          </ul>
-        </div>
-        <div>
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
-            <li><a href="index.html#pillars">Our Five Pillars</a></li>
-            <li><a href="produce.html">What We Produce</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="produce.html">Produce</a></li>
             <li><a href="technology.html">Technology</a></li>
-            <li><a href="index.html#partnerships">Partnerships</a></li>
+            <li><a href="quality.html">Quality</a></li>
           </ul>
         </div>
+
         <div>
-          <div class="footer-col-title">Contact</div>
+          <div class="footer-col-title">Business</div>
           <ul class="footer-links">
-            <li><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></li>
-            <li><a href="#">Nigeria</a></li>
-            <li style="margin-top:1rem"><a href="#">Capability Brief</a></li>
-            <li><a href="#">Investment Deck</a></li>
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="index.html#contact">Supply Enquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Focus Areas</div>
+          <ul class="footer-links">
+            <li><a href="technology.html">Smart Farming</a></li>
+            <li><a href="produce.html">Crop &amp; Livestock Production</a></li>
+            <li><a href="quality.html">Traceability-Ready Supply</a></li>
           </ul>
         </div>
       </div>
@@ -848,15 +848,38 @@
     }, { threshold: 0.09 });
     reveals.forEach(el => observer.observe(el));
 
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    const panel  = document.querySelector('.mobile-nav-panel');
-    if (toggle && panel) {
-      const close = () => { toggle.classList.remove('is-open'); panel.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true'); };
-      const open  = () => { toggle.classList.add('is-open'); panel.classList.add('is-open'); toggle.setAttribute('aria-expanded','true'); panel.setAttribute('aria-hidden','false'); };
-      toggle.addEventListener('click', () => toggle.classList.contains('is-open') ? close() : open());
-      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-      document.addEventListener('keydown', e => e.key === 'Escape' && close());
-      window.addEventListener('resize', () => window.innerWidth > 900 && close());
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNavPanel = document.querySelector('.mobile-nav-panel');
+
+    if (mobileMenuToggle && mobileNavPanel) {
+      const closeMobileMenu = () => {
+        mobileMenuToggle.classList.remove('is-open');
+        mobileNavPanel.classList.remove('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileNavPanel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('mobile-nav-open');
+      };
+
+      const openMobileMenu = () => {
+        mobileMenuToggle.classList.add('is-open');
+        mobileNavPanel.classList.add('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileNavPanel.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('mobile-nav-open');
+      };
+
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenuToggle.classList.contains('is-open');
+        isOpen ? closeMobileMenu() : openMobileMenu();
+      });
+
+      mobileNavPanel.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMobileMenu();
+      });
     }
   </script>
 </body>

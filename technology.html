@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agricultural Technology — EcoGrow Farms Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest:#1a3325; --sage:#3d6b4f; --sage-lt:#5a8f6c;
+      --amber:#c47c22; --amber-lt:#e09a42;
+      --cream:#f4ede0; --parchment:#ece3d0; --earth:#2a1f14;
+      --text:#1e2b24; --text-mid:#4d5e55; --white:#faf8f4;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+    body::before {
+      content:''; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity:0.025; pointer-events:none; z-index:9999;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.25rem 3.5rem;
+      background:rgba(26,51,37,0.96); backdrop-filter:blur(12px);
+      box-shadow:0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-logo { display:flex; align-items:center; gap:0.75rem; text-decoration:none; }
+    .nav-logo-mark { width:38px; height:38px; border:2px solid var(--amber); border-radius:50%; display:grid; place-items:center; }
+    .nav-logo-mark::after { content:''; width:14px; height:14px; background:var(--amber); border-radius:50% 50% 50% 0/60% 60% 40% 40%; transform:rotate(-30deg); }
+    .nav-logo-text { display:flex; flex-direction:column; line-height:1.1; }
+    .nav-logo-text span:first-child { font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.2rem; letter-spacing:0.02em; color:var(--white); }
+    .nav-logo-text span:last-child { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber-lt); font-weight:500; }
+    .nav-links { display:flex; gap:2.25rem; list-style:none; align-items:center; }
+    .nav-links a { text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(250,248,244,0.78); transition:color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--amber-lt); }
+    .nav-cta { background:var(--amber); padding:0.55rem 1.4rem; border-radius:2px; font-weight:600 !important; color:#1a1206 !important; transition:background 0.2s !important; }
+    .nav-cta:hover { background:var(--amber-lt) !important; }
+    .mobile-menu-toggle { display:none; width:44px; height:44px; border:1px solid rgba(244,237,224,0.22); background:rgba(244,237,224,0.05); border-radius:4px; align-items:center; justify-content:center; flex-direction:column; gap:5px; cursor:pointer; z-index:120; }
+    .mobile-menu-toggle span { display:block; width:20px; height:2px; background:var(--white); transition:transform 0.25s, opacity 0.25s; }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity:0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-nav-panel { position:fixed; top:70px; left:0; right:0; z-index:99; display:flex; flex-direction:column; padding:1rem 1.25rem 1.5rem; background:rgba(26,51,37,0.98); border-top:1px solid rgba(196,124,34,0.25); box-shadow:0 24px 50px rgba(0,0,0,0.24); transform:translateY(-120%); opacity:0; pointer-events:none; transition:transform 0.25s, opacity 0.25s; }
+    .mobile-nav-panel.is-open { transform:translateY(0); opacity:1; pointer-events:auto; }
+    .mobile-nav-panel a { color:rgba(250,248,244,0.88); text-decoration:none; text-transform:uppercase; letter-spacing:0.08em; font-size:0.82rem; font-weight:500; padding:1rem 0; border-bottom:1px solid rgba(244,237,224,0.09); }
+    .mobile-nav-panel a:hover { color:var(--amber-lt); }
+    .mobile-nav-cta { margin-top:1rem; padding:0.9rem 1rem !important; background:var(--amber); color:#1a1206 !important; text-align:center; border-bottom:none !important; border-radius:3px; font-weight:700 !important; }
+
+    /* ── SHARED ── */
+    .section-inner { max-width:1320px; margin:0 auto; padding:0 3.5rem; }
+    .section-tag { display:inline-flex; align-items:center; gap:0.6rem; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.4rem; }
+    .section-tag::before { content:'—'; opacity:0.6; }
+    .section-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,3.5vw,3.4rem); font-weight:600; line-height:1.12; }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+    .reveal-delay-3 { transition-delay:0.3s; }
+    .reveal-delay-4 { transition-delay:0.4s; }
+    .section-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(61,107,79,0.18),transparent); }
+
+    /* ── PAGE HERO ── */
+    #page-hero {
+      min-height:68vh; background:var(--forest);
+      position:relative; display:flex; align-items:flex-end;
+      overflow:hidden; padding-top:72px;
+    }
+    .page-hero-bg {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 65% 75% at 80% 35%, rgba(61,107,79,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 5% 75%,  rgba(196,124,34,0.1) 0%, transparent 55%),
+        linear-gradient(160deg, #091810 0%, #1a3325 45%, #0e2118 100%);
+    }
+    .page-hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(90,143,108,0.06) 1px,transparent 1px);
+      background-size:72px 72px;
+    }
+    /* Circuit-board decorative lines */
+    .page-hero-circuit {
+      position:absolute; right:0; top:0; bottom:0; width:52%;
+      overflow:hidden; opacity:0.55;
+    }
+    .page-hero-circuit svg { width:100%; height:100%; }
+
+    .page-hero-content {
+      position:relative; z-index:2;
+      max-width:1320px; margin:0 auto;
+      padding:5rem 3.5rem;
+      display:grid; grid-template-columns:3fr 2fr; gap:4rem; align-items:end;
+    }
+    .breadcrumb { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(244,237,224,0.4); font-weight:500; margin-bottom:1.6rem; }
+    .breadcrumb a { color:rgba(244,237,224,0.4); text-decoration:none; transition:color 0.2s; }
+    .breadcrumb a:hover { color:var(--amber-lt); }
+    .breadcrumb span { color:var(--amber); }
+    .breadcrumb-sep { opacity:0.4; }
+    .page-hero-headline { font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,4vw,4.8rem); font-weight:600; line-height:1.07; color:var(--white); margin-bottom:1.6rem; }
+    .page-hero-headline em { font-style:italic; color:var(--amber-lt); }
+    .page-hero-sub { font-size:1.02rem; line-height:1.8; color:rgba(244,237,224,0.68); font-weight:300; max-width:560px; }
+
+    /* Quick-nav index on right */
+    .page-hero-index-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.2rem; }
+    .index-links { list-style:none; display:flex; flex-direction:column; border:1px solid rgba(90,143,108,0.22); border-radius:3px; overflow:hidden; }
+    .index-links li a { display:flex; align-items:center; justify-content:space-between; padding:0.8rem 1.2rem; font-size:0.82rem; font-weight:500; color:rgba(244,237,224,0.7); text-decoration:none; border-bottom:1px solid rgba(90,143,108,0.14); transition:background 0.2s, color 0.2s; }
+    .index-links li:last-child a { border-bottom:none; }
+    .index-links li a:hover { background:rgba(90,143,108,0.14); color:var(--white); }
+    .index-links li a .idx-num { font-family:'DM Mono',monospace; font-size:0.65rem; color:rgba(90,143,108,0.65); }
+
+    /* ── INTRO ── */
+    #intro {
+      padding:6rem 0 5rem;
+      background:var(--white);
+    }
+    .intro-layout {
+      display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+    }
+    .intro-copy .section-heading { margin-bottom:1.6rem; }
+    .intro-copy p { font-size:1rem; line-height:1.88; color:var(--text-mid); font-weight:300; margin-bottom:1.2rem; }
+    .intro-copy p:last-child { margin-bottom:0; }
+
+    /* Animated stat grid */
+    .intro-stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .intro-stat {
+      padding:1.8rem 1.6rem;
+      border:1px solid rgba(61,107,79,0.14);
+      border-radius:4px;
+      background:var(--cream);
+      transition:border-color 0.3s, transform 0.3s;
+    }
+    .intro-stat:hover { border-color:rgba(61,107,79,0.4); transform:translateY(-2px); }
+    .intro-stat.amber { border-color:rgba(196,124,34,0.18); background:rgba(196,124,34,0.04); }
+    .intro-stat.amber:hover { border-color:rgba(196,124,34,0.45); }
+    .intro-stat-icon { font-size:1.8rem; margin-bottom:0.8rem; display:block; }
+    .intro-stat-label { font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--sage); margin-bottom:0.3rem; }
+    .intro-stat.amber .intro-stat-label { color:var(--amber); }
+    .intro-stat-title { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--text); line-height:1.25; }
+    .intro-stat-desc { font-size:0.78rem; color:var(--text-mid); margin-top:0.3rem; line-height:1.55; }
+
+    /* ── PILLAR SECTIONS SHARED ── */
+    .pillar-section {
+      padding:7rem 0;
+      scroll-margin-top:72px;
+    }
+    .pillar-section:nth-child(odd) { background:var(--white); }
+    .pillar-section:nth-child(even) { background:var(--cream); }
+
+    .pillar-layout {
+      display:grid; grid-template-columns:5fr 6fr; gap:5rem; align-items:start;
+    }
+    .pillar-layout.reversed { grid-template-columns:6fr 5fr; }
+    .pillar-layout.reversed .pillar-copy { order:2; }
+    .pillar-layout.reversed .pillar-visual { order:1; }
+
+    /* Pillar number + tag */
+    .pillar-number {
+      font-family:'Cormorant Garamond',serif;
+      font-size:6.5rem; font-weight:700; line-height:1;
+      color:rgba(61,107,79,0.08); margin-bottom:-1.2rem;
+      user-select:none;
+    }
+    .pillar-section.dark-bg .pillar-number { color:rgba(90,143,108,0.1); }
+
+    .pillar-copy .section-heading { margin-bottom:1.4rem; }
+    .pillar-copy p { font-size:0.97rem; line-height:1.85; color:var(--text-mid); font-weight:300; margin-bottom:1.2rem; }
+    .pillar-copy p:last-child { margin-bottom:0; }
+
+    /* Feature chips */
+    .feature-chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:2rem; }
+    .chip {
+      font-size:0.75rem; letter-spacing:0.05em; font-weight:500;
+      border:1px solid rgba(61,107,79,0.22); color:var(--text-mid);
+      padding:0.38rem 0.85rem; border-radius:2px;
+      transition:border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .chip:hover { border-color:var(--sage); color:var(--sage); background:rgba(61,107,79,0.04); }
+    .chip.amber-chip { border-color:rgba(196,124,34,0.25); color:var(--text-mid); }
+    .chip.amber-chip:hover { border-color:var(--amber); color:var(--amber); background:rgba(196,124,34,0.04); }
+
+    /* ── PILLAR VISUALS ── */
+
+    /* 01 Mechanized — step cards in a staggered column */
+    .mech-steps { display:flex; flex-direction:column; gap:1rem; }
+    .mech-step {
+      display:flex; align-items:center; gap:1.4rem;
+      background:var(--cream); border:1px solid rgba(61,107,79,0.12);
+      border-radius:4px; padding:1.3rem 1.6rem;
+      transition:border-color 0.25s, transform 0.25s, background 0.25s;
+      cursor:default;
+    }
+    .mech-step:hover { border-color:rgba(61,107,79,0.4); transform:translateX(6px); background:var(--parchment); }
+    .mech-step-icon { font-size:1.6rem; flex-shrink:0; width:44px; text-align:center; }
+    .mech-step-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--text); }
+    .mech-step-desc { font-size:0.78rem; color:var(--text-mid); margin-top:0.1rem; }
+
+    /* 02 Irrigation — visual diagram card */
+    .irr-diagram {
+      background:var(--white); border:1px solid rgba(61,107,79,0.14);
+      border-radius:4px; overflow:hidden;
+    }
+    .irr-diagram-header {
+      background:var(--forest); padding:1.4rem 1.8rem;
+      display:flex; align-items:center; gap:1rem;
+    }
+    .irr-diagram-header-icon { font-size:1.6rem; }
+    .irr-diagram-header-text { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--white); }
+    .irr-diagram-header-sub { font-size:0.76rem; color:rgba(244,237,224,0.55); margin-top:0.15rem; }
+    .irr-bars { padding:1.6rem 1.8rem; display:flex; flex-direction:column; gap:0.9rem; }
+    .irr-bar-label { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--text-mid); margin-bottom:0.4rem; }
+    .irr-bar-track { background:rgba(61,107,79,0.1); border-radius:2px; height:8px; position:relative; overflow:hidden; }
+    .irr-bar-fill { height:100%; border-radius:2px; background:var(--sage); }
+    .irr-bar-fill.amber { background:var(--amber); }
+    .irr-bar-fill.sage-lt { background:var(--sage-lt); }
+    .irr-features { padding:0 1.8rem 1.6rem; display:flex; flex-wrap:wrap; gap:0.5rem; }
+
+    /* 03 Greenhouse — split card grid */
+    .gh-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .gh-card {
+      border:1px solid rgba(61,107,79,0.12); border-radius:4px;
+      padding:1.6rem 1.4rem;
+      transition:border-color 0.3s, background 0.3s, transform 0.3s;
+      cursor:default;
+    }
+    .gh-card:hover { border-color:rgba(61,107,79,0.4); background:rgba(61,107,79,0.04); transform:translateY(-2px); }
+    .gh-card.span-2 { grid-column:1/-1; border-color:rgba(196,124,34,0.2); }
+    .gh-card.span-2:hover { border-color:rgba(196,124,34,0.5); background:rgba(196,124,34,0.04); }
+    .gh-card-icon { font-size:1.7rem; margin-bottom:0.8rem; display:block; }
+    .gh-card-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:0.4rem; }
+    .gh-card-desc { font-size:0.78rem; line-height:1.6; color:var(--text-mid); }
+
+    /* 04 Digital Records — dark card on forest bg */
+    #digital-records { background:var(--forest) !important; }
+    .records-layout { display:grid; grid-template-columns:5fr 6fr; gap:5rem; align-items:start; }
+    .records-copy .section-heading { color:var(--white); }
+    .records-copy .section-tag { color:var(--amber); }
+    .records-copy p { color:rgba(244,237,224,0.65); font-size:0.97rem; line-height:1.85; font-weight:300; margin-bottom:1.2rem; }
+    .records-copy p:last-child { margin-bottom:0; }
+    .records-copy .pillar-number { color:rgba(90,143,108,0.1); }
+    .records-chip { font-size:0.75rem; letter-spacing:0.05em; font-weight:500; border:1px solid rgba(90,143,108,0.3); color:rgba(244,237,224,0.6); padding:0.38rem 0.85rem; border-radius:2px; transition:border-color 0.2s, color 0.2s; }
+    .records-chip:hover { border-color:rgba(90,143,108,0.7); color:rgba(244,237,224,0.9); }
+
+    /* Record table */
+    .record-table {
+      background:rgba(255,255,255,0.04); border:1px solid rgba(90,143,108,0.2);
+      border-radius:4px; overflow:hidden;
+    }
+    .record-table-header {
+      background:rgba(90,143,108,0.15); padding:0.9rem 1.6rem;
+      display:grid; grid-template-columns:2fr 1fr;
+      font-size:0.63rem; letter-spacing:0.16em; text-transform:uppercase;
+      color:rgba(244,237,224,0.5); font-weight:600;
+    }
+    .record-row {
+      display:grid; grid-template-columns:2fr 1fr;
+      padding:0.85rem 1.6rem;
+      border-bottom:1px solid rgba(90,143,108,0.12);
+      align-items:center;
+      transition:background 0.2s;
+      cursor:default;
+    }
+    .record-row:last-child { border-bottom:none; }
+    .record-row:hover { background:rgba(90,143,108,0.08); }
+    .record-name { font-size:0.84rem; color:rgba(244,237,224,0.8); font-weight:500; display:flex; align-items:center; gap:0.6rem; }
+    .record-name span.dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .record-badge {
+      font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em;
+      padding:0.2rem 0.6rem; border-radius:2px;
+      justify-self:start;
+    }
+    .record-badge.live { background:rgba(90,143,108,0.2); color:var(--sage-lt); }
+    .record-badge.build { background:rgba(196,124,34,0.15); color:var(--amber-lt); }
+
+    /* 05 Weather — horizontal card row */
+    #weather-planning { background:var(--parchment); }
+    .weather-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .weather-copy .section-heading { margin-bottom:1.4rem; }
+    .weather-copy p { font-size:0.97rem; line-height:1.85; color:var(--text-mid); font-weight:300; margin-bottom:1.2rem; }
+    .weather-cards { display:flex; flex-direction:column; gap:1rem; }
+    .weather-card {
+      display:grid; grid-template-columns:auto 1fr; gap:1.4rem; align-items:start;
+      padding:1.5rem 1.8rem;
+      border:1px solid rgba(61,107,79,0.14); border-radius:4px; background:var(--white);
+      transition:border-color 0.3s, transform 0.3s;
+      cursor:default;
+    }
+    .weather-card:hover { border-color:rgba(61,107,79,0.4); transform:translateX(5px); }
+    .weather-card-icon {
+      width:42px; height:42px; border-radius:50%;
+      background:rgba(61,107,79,0.1); display:grid; place-items:center; font-size:1.2rem; flex-shrink:0;
+    }
+    .weather-card-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:0.3rem; }
+    .weather-card-desc { font-size:0.8rem; line-height:1.6; color:var(--text-mid); }
+
+    /* 06 Post-Harvest */
+    #post-harvest { background:var(--white); }
+    .postharvest-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+
+    /* Loss reduction visual */
+    .loss-visual { }
+    .loss-header {
+      background:var(--earth); color:var(--white);
+      padding:1.4rem 1.8rem; border-radius:4px 4px 0 0;
+      display:flex; align-items:center; gap:0.8rem;
+    }
+    .loss-header-icon { font-size:1.5rem; }
+    .loss-header-text { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; }
+    .loss-header-sub { font-size:0.75rem; color:rgba(244,237,224,0.55); margin-top:0.1rem; }
+    .loss-steps {
+      border:1px solid rgba(61,107,79,0.14); border-top:none;
+      border-radius:0 0 4px 4px; overflow:hidden;
+    }
+    .loss-step {
+      display:flex; align-items:stretch;
+      border-bottom:1px solid rgba(61,107,79,0.1);
+    }
+    .loss-step:last-child { border-bottom:none; }
+    .loss-step-num {
+      background:rgba(61,107,79,0.06); padding:1.1rem 1.2rem;
+      font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.1em;
+      color:var(--sage); font-weight:600; min-width:52px;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+      border-right:1px solid rgba(61,107,79,0.1);
+    }
+    .loss-step-body { padding:1.1rem 1.4rem; }
+    .loss-step-name { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.2rem; }
+    .loss-step-desc { font-size:0.78rem; color:var(--text-mid); line-height:1.55; }
+
+    .postharvest-copy .section-heading { margin-bottom:1.4rem; }
+    .postharvest-copy p { font-size:0.97rem; line-height:1.85; color:var(--text-mid); font-weight:300; margin-bottom:1.2rem; }
+
+    /* ── CLOSING CTA ── */
+    #page-cta {
+      background:var(--forest); padding:8rem 0;
+      position:relative; overflow:hidden;
+    }
+    .page-cta-bg {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(61,107,79,0.3) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 5% 30%, rgba(196,124,34,0.08) 0%, transparent 55%);
+    }
+    .page-cta-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(90,143,108,0.05) 1px,transparent 1px);
+      background-size:72px 72px;
+    }
+    .page-cta-inner {
+      position:relative; z-index:2;
+      text-align:center; max-width:720px; margin:0 auto;
+    }
+    .page-cta-tag { display:inline-flex; align-items:center; gap:0.6rem; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.6rem; }
+    .page-cta-tag::before { content:'—'; opacity:0.6; }
+    .page-cta-heading {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.4rem,4vw,4rem); font-weight:600; line-height:1.1;
+      color:var(--white); margin-bottom:1.4rem;
+    }
+    .page-cta-heading em { font-style:italic; color:var(--amber-lt); }
+    .page-cta-sub { font-size:1rem; line-height:1.8; color:rgba(244,237,224,0.6); font-weight:300; max-width:540px; margin:0 auto 2.8rem; }
+    .page-cta-actions { display:flex; gap:1rem; justify-content:center; }
+    .btn-primary { background:var(--amber); color:#1a1206; padding:1rem 2.4rem; border-radius:2px; font-size:0.82rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; transition:background 0.2s, transform 0.2s; display:inline-block; border:none; cursor:pointer; }
+    .btn-primary:hover { background:var(--amber-lt); transform:translateY(-1px); }
+    .btn-ghost { border:1px solid rgba(244,237,224,0.25); color:var(--white); padding:1rem 2.4rem; border-radius:2px; font-size:0.82rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; transition:border-color 0.2s, background 0.2s; }
+    .btn-ghost:hover { border-color:rgba(244,237,224,0.6); background:rgba(244,237,224,0.05); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--earth); border-top:1px solid rgba(255,255,255,0.05); padding:4.5rem 0 2.5rem; }
+    .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:2rem; }
+    .footer-tagline { font-size:0.83rem; line-height:1.7; color:rgba(244,237,224,0.4); margin-top:1rem; font-weight:300; }
+    .footer-col-title { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.2rem; }
+    .footer-links { list-style:none; }
+    .footer-links li { margin-bottom:0.6rem; }
+    .footer-links a { font-size:0.85rem; color:rgba(244,237,224,0.4); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:rgba(244,237,224,0.85); }
+    .footer-bottom { display:flex; justify-content:space-between; align-items:center; }
+    .footer-copy { font-size:0.78rem; color:rgba(244,237,224,0.28); }
+    .footer-note { font-size:0.72rem; color:rgba(244,237,224,0.2); font-family:'DM Mono',monospace; letter-spacing:0.04em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      nav { padding:1rem 1.25rem; }
+      .nav-links { display:none; }
+      .mobile-menu-toggle { display:inline-flex; }
+      .section-inner { padding:0 2rem; }
+      .page-hero-content { grid-template-columns:1fr; padding:4rem 2rem 3rem; }
+      .page-hero-index, .page-hero-circuit { display:none; }
+      .intro-layout, .pillar-layout, .pillar-layout.reversed,
+      .records-layout, .weather-layout, .postharvest-layout { grid-template-columns:1fr; gap:3rem; }
+      .pillar-layout.reversed .pillar-copy { order:1; }
+      .pillar-layout.reversed .pillar-visual { order:2; }
+      .gh-grid { grid-template-columns:1fr; }
+      .footer-top { grid-template-columns:1fr 1fr; }
+      .page-cta-actions { flex-direction:column; align-items:center; }
+    }
+    @media (max-width:640px) {
+      .footer-top { grid-template-columns:1fr; }
+      .intro-stat-grid { grid-template-columns:1fr; }
+      .pillar-section { padding:4.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#pillars">About</a></li>
+      <li><a href="produce.html">Produce</a></li>
+      <li><a href="technology.html" class="active">Technology</a></li>
+      <li><a href="index.html#quality">Quality</a></li>
+      <li><a href="index.html#partnerships" class="nav-cta">Partner With Us</a></li>
+    </ul>
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="index.html#pillars">About</a>
+    <a href="produce.html">Produce</a>
+    <a href="technology.html">Technology</a>
+    <a href="index.html#quality">Quality</a>
+    <a href="index.html#partnerships">Partnerships</a>
+    <a href="index.html#partnerships" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       PAGE HERO
+  ══════════════════════════════════ -->
+  <section id="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+
+    <!-- Decorative circuit-board SVG -->
+    <div class="page-hero-circuit">
+      <svg viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <g stroke="rgba(90,143,108,0.3)" stroke-width="1">
+          <line x1="80" y1="0" x2="80" y2="700"/>
+          <line x1="200" y1="0" x2="200" y2="700"/>
+          <line x1="360" y1="0" x2="360" y2="700"/>
+          <line x1="500" y1="0" x2="500" y2="700"/>
+          <line x1="0" y1="120" x2="600" y2="120"/>
+          <line x1="0" y1="280" x2="600" y2="280"/>
+          <line x1="0" y1="460" x2="600" y2="460"/>
+          <line x1="0" y1="600" x2="600" y2="600"/>
+          <!-- Horizontal connectors -->
+          <line x1="80" y1="120" x2="200" y2="120" stroke="rgba(196,124,34,0.4)" stroke-width="1.5"/>
+          <line x1="360" y1="280" x2="500" y2="280" stroke="rgba(196,124,34,0.35)" stroke-width="1.5"/>
+          <line x1="80" y1="460" x2="360" y2="460" stroke="rgba(90,143,108,0.4)" stroke-width="1.5"/>
+          <line x1="200" y1="600" x2="500" y2="600" stroke="rgba(196,124,34,0.3)" stroke-width="1.5"/>
+        </g>
+        <!-- Nodes -->
+        <g fill="rgba(90,143,108,0.35)">
+          <circle cx="80"  cy="120" r="5"/><circle cx="200" cy="120" r="5"/>
+          <circle cx="360" cy="280" r="5"/><circle cx="500" cy="280" r="5"/>
+          <circle cx="80"  cy="460" r="5"/><circle cx="360" cy="460" r="5"/>
+          <circle cx="200" cy="600" r="5"/><circle cx="500" cy="600" r="5"/>
+        </g>
+        <g fill="rgba(196,124,34,0.5)">
+          <circle cx="80"  cy="280" r="4"/><circle cx="200" cy="460" r="4"/>
+          <circle cx="360" cy="120" r="4"/><circle cx="500" cy="600" r="4"/>
+        </g>
+        <!-- Larger accent nodes -->
+        <circle cx="200" cy="120" r="10" fill="none" stroke="rgba(196,124,34,0.3)" stroke-width="1.5"/>
+        <circle cx="360" cy="460" r="10" fill="none" stroke="rgba(90,143,108,0.3)" stroke-width="1.5"/>
+        <circle cx="500" cy="280" r="8"  fill="none" stroke="rgba(196,124,34,0.25)" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="page-hero-content">
+      <div>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Agricultural Technology</span>
+        </div>
+        <h1 class="page-hero-headline">
+          Technology Integrated<br>Into <em>Every Stage</em><br>of Farming
+        </h1>
+        <p class="page-hero-sub">
+          EcoGrow uses practical agricultural technologies to improve productivity, reduce waste, manage climate risk, and strengthen food supply in Nigeria.
+        </p>
+      </div>
+      <div class="page-hero-index">
+        <div class="page-hero-index-label">Technology Pillars</div>
+        <ul class="index-links">
+          <li><a href="#mechanized"><span>Mechanized Farming</span><span class="idx-num">01</span></a></li>
+          <li><a href="#irrigation"><span>Drip &amp; Smart Irrigation</span><span class="idx-num">02</span></a></li>
+          <li><a href="#greenhouse"><span>Greenhouse &amp; Protected Farming</span><span class="idx-num">03</span></a></li>
+          <li><a href="#digital-records"><span>Digital Farm Records</span><span class="idx-num">04</span></a></li>
+          <li><a href="#weather-planning"><span>Weather-Aware Planning</span><span class="idx-num">05</span></a></li>
+          <li><a href="#post-harvest"><span>Post-Harvest Technology</span><span class="idx-num">06</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       INTRO
+  ══════════════════════════════════ -->
+  <section id="intro">
+    <div class="section-inner">
+      <div class="intro-layout">
+        <div class="intro-copy reveal">
+          <div class="section-tag">Why Technology</div>
+          <h2 class="section-heading">Practical technology<br>for a complex<br>food system.</h2>
+          <p>Traditional farming alone is no longer enough to meet the growing demand for safe, affordable, and reliable food. EcoGrow Farms Limited is building a technology-enabled farming model that combines modern tools with local agricultural knowledge.</p>
+          <p>Our technology focus is practical: we use systems that help farmers plant better, use water efficiently, monitor production, reduce post-harvest losses, and connect produce to markets more reliably — building a value chain that works end to end.</p>
+        </div>
+        <div class="intro-stat-grid reveal reveal-delay-2">
+          <div class="intro-stat">
+            <span class="intro-stat-icon">⚙️</span>
+            <div class="intro-stat-label">Field Level</div>
+            <div class="intro-stat-title">Mechanization &amp; precision inputs</div>
+            <div class="intro-stat-desc">Machinery and improved methods for every stage from soil to harvest.</div>
+          </div>
+          <div class="intro-stat amber">
+            <span class="intro-stat-icon">💧</span>
+            <div class="intro-stat-label">Water</div>
+            <div class="intro-stat-title">Drip &amp; smart irrigation</div>
+            <div class="intro-stat-desc">Efficient water delivery even through dry seasons and irregular rainfall.</div>
+          </div>
+          <div class="intro-stat amber">
+            <span class="intro-stat-icon">📊</span>
+            <div class="intro-stat-label">Data</div>
+            <div class="intro-stat-title">Digital records &amp; traceability</div>
+            <div class="intro-stat-desc">Batch-level records from input to delivery, built for compliance.</div>
+          </div>
+          <div class="intro-stat">
+            <span class="intro-stat-icon">📦</span>
+            <div class="intro-stat-label">Post-Harvest</div>
+            <div class="intro-stat-title">Grading, storage &amp; cold-chain</div>
+            <div class="intro-stat-desc">Systems to protect quality and reduce losses from harvest to market.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+  <!-- ══════════════════════════════════
+       01 — MECHANIZED FARMING
+  ══════════════════════════════════ -->
+  <section id="mechanized" class="pillar-section" style="background:var(--white); scroll-margin-top:72px;">
+    <div class="section-inner">
+      <div class="pillar-layout">
+        <div class="pillar-copy reveal">
+          <div class="pillar-number">01</div>
+          <div class="section-tag">Technology Pillar One</div>
+          <h2 class="section-heading">Mechanized<br>Farming</h2>
+          <p>Mechanization helps improve speed, efficiency, and consistency in land preparation, planting, harvesting, and transport. EcoGrow supports the use of tractors, planters, harvest-support tools, and other appropriate machinery to reduce manual limitations and increase farm productivity.</p>
+          <p>By reducing dependence on manual labor for high-volume tasks, mechanization helps lower production costs, improve timing, and create a more consistent output — factors that matter to serious buyers and processors.</p>
+          <div class="feature-chips">
+            <span class="chip">Land preparation</span>
+            <span class="chip">Planting support</span>
+            <span class="chip">Harvest support</span>
+            <span class="chip">Farm transport</span>
+            <span class="chip">Equipment partnerships</span>
+            <span class="chip">Mechanization service models</span>
+          </div>
+        </div>
+        <div class="pillar-visual reveal reveal-delay-2">
+          <div class="mech-steps">
+            <div class="mech-step">
+              <span class="mech-step-icon">🚜</span>
+              <div>
+                <div class="mech-step-name">Land Preparation</div>
+                <div class="mech-step-desc">Tractor-assisted tillage, ridging, and bed formation for faster, more consistent field preparation.</div>
+              </div>
+            </div>
+            <div class="mech-step">
+              <span class="mech-step-icon">🌱</span>
+              <div>
+                <div class="mech-step-name">Planting &amp; Seeding</div>
+                <div class="mech-step-desc">Mechanized or semi-mechanized planting for uniform spacing, depth, and timing — improving germination rates.</div>
+              </div>
+            </div>
+            <div class="mech-step">
+              <span class="mech-step-icon">🌾</span>
+              <div>
+                <div class="mech-step-name">Harvest Support</div>
+                <div class="mech-step-desc">Appropriate machinery and tools to support faster, lower-loss harvesting across crop types.</div>
+              </div>
+            </div>
+            <div class="mech-step">
+              <span class="mech-step-icon">🚚</span>
+              <div>
+                <div class="mech-step-name">Farm Transport</div>
+                <div class="mech-step-desc">Efficient movement of produce from field to handling point to reduce time-in-field losses.</div>
+              </div>
+            </div>
+            <div class="mech-step" style="border-color:rgba(196,124,34,0.2);">
+              <span class="mech-step-icon">🤝</span>
+              <div>
+                <div class="mech-step-name">Equipment Partnerships</div>
+                <div class="mech-step-desc">Shared equipment models and mechanization services for partner farms and cooperatives we work with.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+  <!-- ══════════════════════════════════
+       02 — DRIP IRRIGATION
+  ══════════════════════════════════ -->
+  <section id="irrigation" class="pillar-section" style="background:var(--cream); scroll-margin-top:72px;">
+    <div class="section-inner">
+      <div class="pillar-layout reversed">
+        <div class="pillar-visual reveal">
+          <div class="irr-diagram">
+            <div class="irr-diagram-header">
+              <span class="irr-diagram-header-icon">💧</span>
+              <div>
+                <div class="irr-diagram-header-text">Water Efficiency Profile</div>
+                <div class="irr-diagram-header-sub">Drip vs. surface irrigation — comparative benefit areas</div>
+              </div>
+            </div>
+            <div class="irr-bars">
+              <div>
+                <div class="irr-bar-label">Water use efficiency</div>
+                <div class="irr-bar-track"><div class="irr-bar-fill" style="width:88%"></div></div>
+              </div>
+              <div>
+                <div class="irr-bar-label">Crop consistency</div>
+                <div class="irr-bar-track"><div class="irr-bar-fill sage-lt" style="width:80%"></div></div>
+              </div>
+              <div>
+                <div class="irr-bar-label">Drought resilience</div>
+                <div class="irr-bar-track"><div class="irr-bar-fill amber" style="width:75%"></div></div>
+              </div>
+              <div>
+                <div class="irr-bar-label">Reduced weed pressure</div>
+                <div class="irr-bar-track"><div class="irr-bar-fill" style="width:70%"></div></div>
+              </div>
+              <div>
+                <div class="irr-bar-label">Year-round production support</div>
+                <div class="irr-bar-track"><div class="irr-bar-fill sage-lt" style="width:65%"></div></div>
+              </div>
+            </div>
+            <div class="irr-features">
+              <span class="chip" style="border-color:rgba(61,107,79,0.2);">Drip lines</span>
+              <span class="chip" style="border-color:rgba(61,107,79,0.2);">Micro-irrigation</span>
+              <span class="chip" style="border-color:rgba(61,107,79,0.2);">Fertigation-ready</span>
+              <span class="chip" style="border-color:rgba(61,107,79,0.2);">Seasonal scheduling</span>
+            </div>
+          </div>
+        </div>
+        <div class="pillar-copy reveal reveal-delay-2">
+          <div class="pillar-number">02</div>
+          <div class="section-tag">Technology Pillar Two</div>
+          <h2 class="section-heading">Drip &amp; Smart<br>Irrigation</h2>
+          <p>Water management is one of the most important parts of modern farming. EcoGrow supports drip irrigation and supplementary irrigation systems that deliver water more efficiently to crops, reduce waste, and help farms remain productive even when rainfall becomes irregular.</p>
+          <p>Nigeria's farming regions face increasing climate variability. Drip systems allow us to decouple production cycles from seasonal rainfall — enabling more predictable planting schedules and output volumes that buyers can plan against.</p>
+          <div class="feature-chips">
+            <span class="chip amber-chip">Drip irrigation</span>
+            <span class="chip amber-chip">Water scheduling</span>
+            <span class="chip amber-chip">Moisture-aware planning</span>
+            <span class="chip amber-chip">Water conservation</span>
+            <span class="chip amber-chip">Climate-resilient production</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+  <!-- ══════════════════════════════════
+       03 — GREENHOUSE & PROTECTED FARMING
+  ══════════════════════════════════ -->
+  <section id="greenhouse" class="pillar-section" style="background:var(--white); scroll-margin-top:72px;">
+    <div class="section-inner">
+      <div class="pillar-layout">
+        <div class="pillar-copy reveal">
+          <div class="pillar-number">03</div>
+          <div class="section-tag">Technology Pillar Three</div>
+          <h2 class="section-heading">Greenhouse &amp;<br>Protected Farming</h2>
+          <p>Protected farming systems such as greenhouses and screenhouses allow better control of growing conditions. These systems are especially valuable for vegetables because they can reduce pest pressure, improve quality, protect crops from extreme weather, and support more predictable production cycles.</p>
+          <p>For buyers who need reliable volumes of fresh vegetables throughout the year, protected farming is a key part of how EcoGrow intends to deliver that consistency without compromising on quality.</p>
+          <div class="feature-chips">
+            <span class="chip">Greenhouse vegetables</span>
+            <span class="chip">Screenhouse systems</span>
+            <span class="chip">Controlled growing conditions</span>
+            <span class="chip">Reduced pest exposure</span>
+            <span class="chip">Year-round production potential</span>
+          </div>
+        </div>
+        <div class="pillar-visual reveal reveal-delay-2">
+          <div class="gh-grid">
+            <div class="gh-card">
+              <span class="gh-card-icon">🏗</span>
+              <div class="gh-card-name">Greenhouse Structures</div>
+              <div class="gh-card-desc">Tunnel and multi-span greenhouse systems for high-value vegetables with climate control and UV protection.</div>
+            </div>
+            <div class="gh-card">
+              <span class="gh-card-icon">🪲</span>
+              <div class="gh-card-name">Pest Management</div>
+              <div class="gh-card-desc">Screenhouse systems that physically block insects and disease vectors, reducing chemical input needs.</div>
+            </div>
+            <div class="gh-card">
+              <span class="gh-card-icon">🌡</span>
+              <div class="gh-card-name">Climate Control</div>
+              <div class="gh-card-desc">Temperature and humidity management to protect crops during extremes and support off-season growing.</div>
+            </div>
+            <div class="gh-card">
+              <span class="gh-card-icon">📅</span>
+              <div class="gh-card-name">Production Continuity</div>
+              <div class="gh-card-desc">Staggered planting cycles designed to deliver consistent weekly volumes to retailers and processors.</div>
+            </div>
+            <div class="gh-card span-2">
+              <span class="gh-card-icon">🥬</span>
+              <div class="gh-card-name">Target Crops for Protected Systems</div>
+              <div class="gh-card-desc">Tomatoes, cucumber, leafy vegetables, pepper, and other high-value fresh produce that benefit most from controlled growing conditions and deliver premium margins for both farmer and buyer.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="background:linear-gradient(90deg,transparent,rgba(26,51,37,0.3),transparent);"></div>
+
+
+  <!-- ══════════════════════════════════
+       04 — DIGITAL FARM RECORDS
+  ══════════════════════════════════ -->
+  <section id="digital-records" class="pillar-section" style="background:var(--forest); scroll-margin-top:72px;">
+    <div class="section-inner">
+      <div class="records-layout">
+        <div class="records-copy reveal">
+          <div class="pillar-number" style="color:rgba(90,143,108,0.1);">04</div>
+          <div class="section-tag" style="color:var(--amber);">Technology Pillar Four</div>
+          <h2 class="section-heading" style="color:var(--white);">Digital Farm<br>Records</h2>
+          <p>EcoGrow is building a record-based farming system. Digital records help track farm activities, input usage, planting dates, harvest dates, batch details, livestock health records, and delivery history. This supports better decision-making today and enables real traceability in the future.</p>
+          <p>Buyers and regulators increasingly require documentation at the batch level. Our record system is designed from the ground up to meet that expectation — creating a data trail that travels with the produce from field to end-customer.</p>
+          <div class="feature-chips" style="margin-top:2rem;">
+            <span class="records-chip">Crop records</span>
+            <span class="records-chip">Input records</span>
+            <span class="records-chip">Harvest logs</span>
+            <span class="records-chip">Batch movement</span>
+            <span class="records-chip">Delivery records</span>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div style="font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(244,237,224,0.4); font-weight:600; margin-bottom:1.2rem;">Record Types We Are Building</div>
+          <div class="record-table">
+            <div class="record-table-header">
+              <span>Record Type</span>
+              <span>Status</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--sage-lt);"></span>Crop &amp; Planting Records</div>
+              <span class="record-badge live">Active</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--sage-lt);"></span>Input &amp; Spray Logs</div>
+              <span class="record-badge live">Active</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--sage-lt);"></span>Harvest Volume Records</div>
+              <span class="record-badge live">Active</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--amber);"></span>Livestock Health &amp; Vet Logs</div>
+              <span class="record-badge build">Building</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--amber);"></span>Vaccination &amp; Feed Logs</div>
+              <span class="record-badge build">Building</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--amber);"></span>Batch Movement &amp; Traceability</div>
+              <span class="record-badge build">Building</span>
+            </div>
+            <div class="record-row">
+              <div class="record-name"><span class="dot" style="background:var(--amber);"></span>Buyer &amp; Delivery Records</div>
+              <span class="record-badge build">Building</span>
+            </div>
+          </div>
+          <p style="font-size:0.74rem; color:rgba(244,237,224,0.32); margin-top:1rem; line-height:1.6;">"Active" indicates systems in current use. "Building" indicates record types under active development as part of EcoGrow's traceability roadmap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="background:linear-gradient(90deg,transparent,rgba(26,51,37,0.3),transparent);"></div>
+
+
+  <!-- ══════════════════════════════════
+       05 — WEATHER-AWARE PLANNING
+  ══════════════════════════════════ -->
+  <section id="weather-planning" class="pillar-section" style="background:var(--parchment); scroll-margin-top:72px;">
+    <div class="section-inner">
+      <div class="weather-layout">
+        <div class="weather-copy reveal">
+          <div class="pillar-number">05</div>
+          <div class="section-tag">Technology Pillar Five</div>
+          <h2 class="section-heading">Weather-Aware<br>Farm Planning</h2>
+          <p>Climate variability affects planting, irrigation, pest control, and harvesting. Delayed rains, early dry spells, and unpredictable temperature swings can all undermine production if not factored into planning cycles.</p>
+          <p>EcoGrow's model supports weather-aware planning so that production decisions can be better aligned with seasonal patterns and local farm conditions — reducing climate risk and improving predictability across our growing calendar.</p>
+          <div class="feature-chips">
+            <span class="chip">Seasonal planting calendars</span>
+            <span class="chip">Rainfall-adjusted irrigation</span>
+            <span class="chip">Pest pressure forecasting</span>
+            <span class="chip">Harvest timing optimisation</span>
+            <span class="chip amber-chip">Climate-resilient crop selection</span>
+          </div>
+        </div>
+        <div class="weather-cards reveal reveal-delay-2">
+          <div class="weather-card">
+            <div class="weather-card-icon">🌧</div>
+            <div>
+              <div class="weather-card-name">Rainfall-Aware Planting</div>
+              <div class="weather-card-desc">Aligning planting windows to local rainfall patterns and seasonal forecasts reduces risk of crop failure from moisture stress at critical growth stages.</div>
+            </div>
+          </div>
+          <div class="weather-card">
+            <div class="weather-card-icon">🌡</div>
+            <div>
+              <div class="weather-card-name">Temperature &amp; Heat Monitoring</div>
+              <div class="weather-card-desc">Tracking temperature patterns to protect livestock welfare, time harvest windows, and manage crop stress during extreme dry or heat periods.</div>
+            </div>
+          </div>
+          <div class="weather-card">
+            <div class="weather-card-icon">🌬</div>
+            <div>
+              <div class="weather-card-name">Irrigation Scheduling</div>
+              <div class="weather-card-desc">Coordinating drip and supplementary irrigation with actual field moisture levels and weather forecasts to avoid over- or under-watering.</div>
+            </div>
+          </div>
+          <div class="weather-card" style="border-color:rgba(196,124,34,0.2);">
+            <div class="weather-card-icon" style="background:rgba(196,124,34,0.1);">🗓</div>
+            <div>
+              <div class="weather-card-name">Year-Round Production Calendar</div>
+              <div class="weather-card-desc">Building rolling production plans that sequence planting, harvesting, and delivery cycles across seasons — giving buyers a more reliable supply schedule to plan against.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+  <!-- ══════════════════════════════════
+       06 — POST-HARVEST TECHNOLOGY
+  ══════════════════════════════════ -->
+  <section id="post-harvest" class="pillar-section" style="background:var(--white); scroll-margin-top:72px;">
+    <div class="section-inner">
+      <div class="postharvest-layout">
+        <div class="pillar-copy postharvest-copy reveal">
+          <div class="pillar-number">06</div>
+          <div class="section-tag">Technology Pillar Six</div>
+          <h2 class="section-heading">Post-Harvest<br>Technology</h2>
+          <p>A significant portion of Nigeria's food loss happens after harvest — not in the field. Poorly graded produce, inadequate storage, and weak distribution systems destroy value that good farming created. EcoGrow is designed to close that gap.</p>
+          <p>We are building post-harvest handling systems across grading, sorting, packaging, storage, cold-chain planning, and distribution — so that quality produced in the field is quality that arrives at market.</p>
+          <div class="feature-chips">
+            <span class="chip amber-chip">Sorting &amp; grading</span>
+            <span class="chip amber-chip">Crate handling</span>
+            <span class="chip amber-chip">Cold storage partnerships</span>
+            <span class="chip amber-chip">Warehouse systems</span>
+            <span class="chip amber-chip">Route planning</span>
+            <span class="chip amber-chip">Reduced spoilage</span>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="loss-visual">
+            <div class="loss-header">
+              <span class="loss-header-icon">📦</span>
+              <div>
+                <div class="loss-header-text">Post-Harvest Value Chain</div>
+                <div class="loss-header-sub">How we protect quality from field gate to final buyer</div>
+              </div>
+            </div>
+            <div class="loss-steps">
+              <div class="loss-step">
+                <div class="loss-step-num">01</div>
+                <div class="loss-step-body">
+                  <div class="loss-step-name">Sorting &amp; Grading</div>
+                  <div class="loss-step-desc">Produce sorted by size, quality, and marketability at harvest point — separating premium grades from processing-grade and waste streams.</div>
+                </div>
+              </div>
+              <div class="loss-step">
+                <div class="loss-step-num">02</div>
+                <div class="loss-step-body">
+                  <div class="loss-step-name">Crate &amp; Packaging Systems</div>
+                  <div class="loss-step-desc">Reusable crates and appropriate packaging to protect produce integrity and reduce bruising and contamination during handling and transport.</div>
+                </div>
+              </div>
+              <div class="loss-step">
+                <div class="loss-step-num">03</div>
+                <div class="loss-step-body">
+                  <div class="loss-step-name">Storage &amp; Cold-Chain</div>
+                  <div class="loss-step-desc">Temperature-appropriate storage facilities and cold-chain partnerships for perishables — extending shelf life and expanding delivery radius.</div>
+                </div>
+              </div>
+              <div class="loss-step">
+                <div class="loss-step-num">04</div>
+                <div class="loss-step-body">
+                  <div class="loss-step-name">Route Planning &amp; Logistics</div>
+                  <div class="loss-step-desc">Optimized delivery scheduling to minimize transit time and consolidate loads — reducing spoilage and delivery cost per unit.</div>
+                </div>
+              </div>
+              <div class="loss-step" style="border-bottom:none;">
+                <div class="loss-step-num" style="color:var(--amber);">05</div>
+                <div class="loss-step-body">
+                  <div class="loss-step-name">Documented Delivery</div>
+                  <div class="loss-step-desc">Batch ID, delivery notes, and receipt records travelling with every shipment — supporting buyer confidence and future compliance requirements.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       CLOSING CTA
+  ══════════════════════════════════ -->
+  <section id="page-cta">
+    <div class="page-cta-bg"></div>
+    <div class="page-cta-grid"></div>
+    <div class="section-inner">
+      <div class="page-cta-inner reveal">
+        <div class="page-cta-tag">Work With Us</div>
+        <h2 class="page-cta-heading">
+          Interested in building<br><em>smarter agricultural</em><br>systems with us?
+        </h2>
+        <p class="page-cta-sub">Whether you are a technology partner, investor, off-taker, or cooperative looking to adopt better systems — EcoGrow is building the infrastructure that Nigeria's food system needs. Let us talk.</p>
+        <div class="page-cta-actions">
+          <a href="index.html#partnerships" class="btn-primary">Partner With EcoGrow</a>
+          <a href="produce.html" class="btn-ghost">View Our Produce</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="section-inner">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="nav-logo" style="margin-bottom:0">
+            <div class="nav-logo-mark"></div>
+            <div class="nav-logo-text"><span>EcoGrow Farms</span><span>Nigeria Limited</span></div>
+          </a>
+          <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Technology</div>
+          <ul class="footer-links">
+            <li><a href="#mechanized">Mechanized Farming</a></li>
+            <li><a href="#irrigation">Drip Irrigation</a></li>
+            <li><a href="#greenhouse">Greenhouse &amp; Protected</a></li>
+            <li><a href="#digital-records">Digital Records</a></li>
+            <li><a href="#post-harvest">Post-Harvest</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html#pillars">Our Five Pillars</a></li>
+            <li><a href="produce.html">What We Produce</a></li>
+            <li><a href="index.html#quality">Quality &amp; Traceability</a></li>
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></li>
+            <li><a href="#">Nigeria</a></li>
+            <li style="margin-top:1rem"><a href="#">Capability Brief</a></li>
+            <li><a href="#">Investment Deck</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Nigeria Limited. All rights reserved.</p>
+        <p class="footer-note">RC: [Registration No.] &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.09 });
+    reveals.forEach(el => observer.observe(el));
+
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const panel  = document.querySelector('.mobile-nav-panel');
+    if (toggle && panel) {
+      const close = () => { toggle.classList.remove('is-open'); panel.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true'); };
+      const open  = () => { toggle.classList.add('is-open'); panel.classList.add('is-open'); toggle.setAttribute('aria-expanded','true'); panel.setAttribute('aria-hidden','false'); };
+      toggle.addEventListener('click', () => toggle.classList.contains('is-open') ? close() : open());
+      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => e.key === 'Escape' && close());
+      window.addEventListener('resize', () => window.innerWidth > 900 && close());
+    }
+  </script>
+</body>
+</html>

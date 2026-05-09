@@ -37,11 +37,6 @@
         width: 46px;
         height: 46px;
       }
-      .footer-logo-img {
-        width: 56px;
-        height: 56px;
-      }
-
       .nav-logo-img { width: 46px; height: 46px; }
     }
 .nav-logo-text span:last-child { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber-lt); font-weight:500; }
@@ -261,7 +256,26 @@
 
     /* ── FOOTER ── */
     footer { background:var(--earth); border-top:1px solid rgba(255,255,255,0.05); padding:4.5rem 0 2.5rem; }
-    .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:2rem; }
+    .footer-top { display:grid; grid-template-columns:minmax(260px, 1.6fr) repeat(3, minmax(140px, 1fr)); gap:2.5rem; align-items:start; padding-bottom:3rem; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:2rem; }
+    .footer-logo {
+      display:flex;
+      align-items:center;
+      gap:0.75rem;
+      text-decoration:none;
+      margin-bottom:1rem;
+    }
+    .footer-logo-img {
+      width:48px;
+      height:48px;
+      max-width:48px;
+      max-height:48px;
+      object-fit:contain;
+      display:block;
+      flex-shrink:0;
+    }
+    .footer-logo-text { display:flex; flex-direction:column; line-height:1.1; }
+    .footer-logo-text span:first-child { font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.2rem; letter-spacing:0.02em; color:var(--white); }
+    .footer-logo-text span:last-child { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber-lt); font-weight:500; }
     .footer-tagline { font-size:0.83rem; line-height:1.7; color:rgba(244,237,224,0.4); margin-top:1rem; font-weight:300; }
     .footer-col-title { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.2rem; }
     .footer-links { list-style:none; }
@@ -289,7 +303,8 @@
     @media (max-width:640px) {
       .pillars-overview-grid { grid-template-columns:1fr; }
       .practice-grid { grid-template-columns:1fr; }
-      .footer-top { grid-template-columns:1fr; }
+      .footer-top { grid-template-columns:1fr; gap:2rem; }
+      .footer-logo-img { width:42px; height:42px; max-width:42px; max-height:42px; }
       #farm-quality, #livestock-safety, #postharvest-quality, #traceability, #compliance { padding:4.5rem 0; }
     }
   </style>
@@ -808,7 +823,7 @@
         <div>
           <a href="index.html" class="footer-logo" aria-label="EcoGrow Farms Limited home">
             <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms Limited logo" class="footer-logo-img">
-            <span class="nav-logo-text">
+            <span class="footer-logo-text">
               <span>EcoGrow Farms</span>
               <span>Limited</span>
             </span>

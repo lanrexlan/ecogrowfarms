@@ -56,9 +56,12 @@
       display: flex; align-items: center; gap: 0.75rem;
       text-decoration: none; flex-shrink: 0;
     }
-    .nav-logo img {
-      width: 36px; height: 36px;
+    .nav-logo-img {
+      width: 54px;
+      height: 54px;
       object-fit: contain;
+      display: block;
+      flex-shrink: 0;
     }
     .nav-logo-text {
       display: flex; flex-direction: column; line-height: 1.1;
@@ -454,28 +457,28 @@
     }
     .btn-ghost:hover { border-color: rgba(244,237,224,0.6); background: rgba(244,237,224,0.05); }
 
-    /* ─── FOOTER ─── */
-    footer { background: var(--earth); border-top: 1px solid rgba(255,255,255,0.05); padding: 4.5rem 0 2.5rem; }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      margin-bottom: 2rem;
+        /* ─── FOOTER ─── */
+    footer {
+      background: var(--earth);
+      padding: 4.5rem 0 2.5rem;
     }
-    .footer-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; margin-bottom: 0; }
-    .footer-logo img { width: 34px; height: 34px; object-fit: contain; }
-    .footer-tagline { font-size: 0.83rem; line-height: 1.7; color: rgba(244,237,224,0.4); margin-top: 1rem; font-weight: 300; }
-    .footer-col-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 1.2rem; }
+    .footer-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+    .footer-top {
+      display: grid; grid-template-columns: minmax(280px, 1.8fr) 1fr 1fr 1fr; gap: 3.5rem;
+      padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 1.6rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; margin-bottom: 1rem; }
+    .footer-logo-img { width: 64px; height: 64px; object-fit: contain; display: block; flex-shrink: 0; }
+    .footer-tagline { font-size: 0.82rem; line-height: 1.75; color: rgba(244,237,224,0.5); max-width: 33ch; }
+    .footer-col-title { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 1rem; }
     .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 0.6rem; }
-    .footer-links a { font-size: 0.85rem; color: rgba(244,237,224,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { font-size: 0.81rem; color: rgba(244,237,224,0.52); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: rgba(244,237,224,0.88); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
-    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.28); }
-    .footer-note { font-size: 0.72rem; color: rgba(244,237,224,0.2); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+    .footer-bottom { display: flex; justify-content: flex-start; align-items: center; }
+    .footer-copy { font-size: 0.74rem; color: rgba(244,237,224,0.35); }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 1024px) {
+@media (max-width: 1024px) {
       .articles-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 900px) {
@@ -490,11 +493,20 @@
       .notify-inner { grid-template-columns: 1fr; gap: 2rem; }
       .notify-form { flex-direction: column; align-items: stretch; }
       .notify-input { width: 100%; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
     }
     @media (max-width: 640px) {
+      .nav-logo-img {
+        width: 46px;
+        height: 46px;
+      }
+      .footer-logo-img {
+        width: 56px;
+        height: 56px;
+      }
+
       .articles-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 1.8rem; }
       #featured, #categories, #notify, #page-cta { padding: 4rem 0; }
     }
   </style>
@@ -505,17 +517,12 @@
        NAVIGATION
   ═══════════════════════════════ -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">
-      <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms logo icon"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <!-- Fallback logo mark if SVG not found -->
-      <div style="display:none; width:36px; height:36px; border:2px solid var(--amber); border-radius:50%; place-items:center;">
-        <div style="width:13px; height:13px; background:var(--amber); border-radius:50% 50% 50% 0/60% 60% 40% 40%; transform:rotate(-30deg);"></div>
-      </div>
-      <div class="nav-logo-text">
+    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
+      <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms Limited logo" class="nav-logo-img">
+      <span class="nav-logo-text">
         <span>EcoGrow Farms</span>
-        <span>Nigeria Limited</span>
-      </div>
+        <span>Limited</span>
+      </span>
     </a>
 
     <ul class="nav-links">
@@ -828,36 +835,47 @@
        FOOTER
   ═══════════════════════════════ -->
   <footer>
-    <div class="section-inner">
+    <div class="footer-inner">
       <div class="footer-top">
         <div>
-          <a href="index.html" class="nav-logo footer-brand" style="margin-bottom:0">
-            <img src="./assets/logo.png" alt="EcoGrow Farms Limited logo" class="nav-logo-img" loading="eager" decoding="async">
-            <div class="nav-logo-text"><span>EcoGrow Farms</span><span>Nigeria Limited</span></div>
+          <a href="index.html" class="footer-logo" aria-label="EcoGrow Farms Limited home">
+            <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms Limited logo" class="footer-logo-img">
+            <span class="nav-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Limited</span>
+            </span>
           </a>
-          <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
+          <p class="footer-tagline">Technology-enabled Nigerian agribusiness focused on sustainable farming, quality produce, and smarter farm-to-market systems.</p>
         </div>
         <div>
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="produce.html">Produce</a></li><li><a href="technology.html">Technology</a></li><li><a href="quality.html">Quality</a></li><li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="produce.html">Produce</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="quality.html">Quality</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Business</div>
+          <div class="footer-col-title">Resources</div>
           <ul class="footer-links">
-            <li><a href="procurement.html">Procurement &amp; Contract Services</a></li><li><a href="insights.html">Insights</a></li>
+            <li><a href="procurement.html">Procurement</a></li>
+            <li><a href="insights.html">Insights</a></li>
+            <li><a href="compliance.html">Compliance</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Standards &amp; Legal</div>
+          <div class="footer-col-title">Legal</div>
           <ul class="footer-links">
-            <li><a href="compliance.html">Quality &amp; Compliance Statement</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
           </ul>
         </div>
+      </div>
       <div class="footer-bottom">
         <p class="footer-copy">© 2026 EcoGrow Farms Limited. All rights reserved.</p>
-        <p class="footer-note">Built with precision</p>
       </div>
     </div>
   </footer>

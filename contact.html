@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact EcoGrow Farms Limited — Supply, Partnerships & Business Enquiries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1a3325;
+      --sage:     #3d6b4f;
+      --sage-lt:  #5a8f6c;
+      --amber:    #c47c22;
+      --amber-lt: #e09a42;
+      --cream:    #f4ede0;
+      --parchment:#ece3d0;
+      --earth:    #2a1f14;
+      --text:     #1e2b24;
+      --text-mid: #4d5e55;
+      --white:    #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3.5rem;
+      background: rgba(26, 51, 37, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 42px; height: 42px;
+      display: block; object-fit: contain; flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.25rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(250,248,244,0.78);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-links a.active { color: var(--amber-lt); }
+
+    .nav-cta {
+      background: var(--amber); color: #1a1206 !important;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu-toggle {
+      display: none;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(244,237,224,0.22);
+      background: rgba(244,237,224,0.05);
+      border-radius: 4px;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; z-index: 120;
+    }
+    .mobile-menu-toggle span {
+      display: block; width: 20px; height: 2px;
+      background: var(--white);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav-panel { display: none; }
+    body.mobile-nav-open { overflow: hidden; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 52vh;
+      background: var(--forest);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding-top: 5rem;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 68% 55%, rgba(61,107,79,0.38) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 5% 25%, rgba(196,124,34,0.1) 0%, transparent 52%),
+        linear-gradient(158deg, #0d2016 0%, #1a3325 50%, #152b1f 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.07) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .hero-rings {
+      position: absolute; right: -90px; top: 50%;
+      transform: translateY(-50%);
+      width: 520px; height: 520px;
+      border: 1px solid rgba(196,124,34,0.11);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-rings::before {
+      content: ''; position: absolute; inset: 55px;
+      border: 1px solid rgba(196,124,34,0.07); border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1320px; margin: 0 auto;
+      padding: 3.5rem 3.5rem 4.5rem;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 1.6rem;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4vw, 4.2rem);
+      font-weight: 600; line-height: 1.08;
+      color: var(--white); margin-bottom: 1.4rem;
+      max-width: 720px;
+    }
+    .hero-headline em { font-style: italic; color: var(--amber-lt); }
+
+    .hero-sub {
+      font-size: 1.02rem; line-height: 1.76; color: rgba(244,237,224,0.66);
+      font-weight: 300; max-width: 580px;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; }
+    .section-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+    }
+    .section-tag::before { content: '—'; opacity: 0.6; }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 3.2vw, 3.2rem);
+      font-weight: 600; line-height: 1.12;
+    }
+
+    /* ─── MAIN CONTACT LAYOUT ─── */
+    #contact-main {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* ── LEFT: info panel ── */
+    .contact-info {}
+
+    .contact-info .section-heading { margin-bottom: 1.2rem; }
+    .contact-info-lead {
+      font-size: 0.95rem; line-height: 1.8; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 2.4rem;
+    }
+
+    /* Company card */
+    .company-card {
+      background: var(--forest);
+      border-radius: 4px;
+      padding: 2.2rem 2rem;
+      margin-bottom: 1.6rem;
+    }
+    .company-card-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .company-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600; color: var(--white);
+      margin-bottom: 1.2rem; line-height: 1.2;
+    }
+
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+    .contact-detail:last-child { margin-bottom: 0; }
+    .contact-detail-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: rgba(255,255,255,0.07);
+      border-radius: 4px;
+      display: grid; place-items: center;
+      margin-top: 1px;
+    }
+    .contact-detail-icon svg {
+      width: 14px; height: 14px;
+      stroke: var(--sage-lt); fill: none; stroke-width: 2;
+    }
+    .contact-detail-body {}
+    .contact-detail-label {
+      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(244,237,224,0.38); font-weight: 600; margin-bottom: 0.2rem;
+    }
+    .contact-detail-value {
+      font-size: 0.88rem; color: rgba(244,237,224,0.82);
+      font-weight: 400;
+    }
+    .contact-detail-value a {
+      color: rgba(244,237,224,0.82); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-detail-value a:hover { color: var(--amber-lt); }
+    .contact-detail-value.placeholder {
+      color: rgba(244,237,224,0.42); font-style: italic;
+    }
+
+    /* Enquiry categories */
+    .enquiry-cats {
+      border: 1px solid rgba(61,107,79,0.18);
+      border-radius: 4px; overflow: hidden;
+    }
+    .enquiry-cats-heading {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600;
+      padding: 1rem 1.4rem 0.8rem;
+      border-bottom: 1px solid rgba(61,107,79,0.12);
+      background: rgba(61,107,79,0.04);
+    }
+    .enquiry-cat {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.9rem 1.4rem;
+      border-bottom: 1px solid rgba(61,107,79,0.09);
+      transition: background 0.2s;
+    }
+    .enquiry-cat:last-child { border-bottom: none; }
+    .enquiry-cat:hover { background: rgba(61,107,79,0.05); }
+    .enquiry-cat-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sage); flex-shrink: 0;
+    }
+    .enquiry-cat-name {
+      font-size: 0.84rem; color: var(--text); font-weight: 400;
+    }
+    .enquiry-cat-arrow {
+      margin-left: auto;
+      font-size: 0.72rem; color: rgba(61,107,79,0.4);
+    }
+
+    /* ── RIGHT: form panel ── */
+    .contact-form-panel {
+      background: var(--white);
+      border: 1px solid rgba(61,107,79,0.12);
+      border-radius: 4px;
+      padding: 3rem 2.8rem;
+    }
+
+    .form-panel-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.6rem; line-height: 1.2;
+    }
+    .form-panel-sub {
+      font-size: 0.88rem; line-height: 1.7; color: var(--text-mid);
+      margin-bottom: 2.2rem; font-weight: 300;
+    }
+
+    /* Mailto CTA — primary action */
+    .mailto-cta {
+      display: flex; align-items: center; gap: 0.8rem;
+      background: var(--forest);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      text-decoration: none;
+      margin-bottom: 2.4rem;
+      transition: background 0.25s;
+      border: 1px solid rgba(90,143,108,0.22);
+    }
+    .mailto-cta:hover { background: #1e3e2c; border-color: rgba(90,143,108,0.45); }
+    .mailto-cta-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: rgba(196,124,34,0.18);
+      border-radius: 4px;
+      display: grid; place-items: center;
+    }
+    .mailto-cta-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--amber-lt); fill: none; stroke-width: 2;
+    }
+    .mailto-cta-body { flex: 1; }
+    .mailto-cta-label {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 0.2rem;
+    }
+    .mailto-cta-address {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem; color: var(--white); letter-spacing: 0.03em;
+    }
+    .mailto-cta-arrow {
+      font-size: 1.1rem; color: rgba(244,237,224,0.35);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .mailto-cta:hover .mailto-cta-arrow { color: var(--amber-lt); transform: translateX(3px); }
+
+    /* Divider */
+    .form-divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .form-divider-line { flex: 1; height: 1px; background: rgba(61,107,79,0.12); }
+    .form-divider-text {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(77,94,85,0.5); font-weight: 500; white-space: nowrap;
+    }
+
+    /* Form */
+    .enquiry-form {
+      display: flex; flex-direction: column; gap: 1.1rem;
+    }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+
+    .form-field {
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .form-field.full { grid-column: 1 / -1; }
+
+    .form-label {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-mid); font-weight: 600;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid rgba(61,107,79,0.2);
+      border-radius: 3px;
+      padding: 0.72rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(77,94,85,0.38); }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(61,107,79,0.1);
+    }
+
+    .form-select-wrap {
+      position: relative;
+    }
+    .form-select-wrap::after {
+      content: '';
+      position: absolute; right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid rgba(61,107,79,0.45);
+      pointer-events: none;
+    }
+    .form-select { cursor: pointer; padding-right: 2.2rem; color: var(--text); }
+    .form-select option[value=""] { color: rgba(77,94,85,0.5); }
+
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.65; }
+
+    .form-note {
+      font-size: 0.75rem; line-height: 1.6; color: rgba(77,94,85,0.5);
+      padding: 0.9rem 1rem;
+      background: rgba(61,107,79,0.04);
+      border: 1px solid rgba(61,107,79,0.1);
+      border-radius: 3px;
+    }
+    .form-note strong { color: var(--text-mid); }
+
+    .form-submit-area {
+      display: flex; flex-direction: column; gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .btn-compose {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
+      background: var(--amber); color: #1a1206;
+      padding: 0.92rem 2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-family: 'DM Sans', sans-serif;
+      width: 100%;
+    }
+    .btn-compose:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .btn-compose svg { width: 15px; height: 15px; stroke: #1a1206; fill: none; stroke-width: 2.5; }
+
+    .form-submit-note {
+      font-size: 0.74rem; color: rgba(77,94,85,0.5); text-align: center; line-height: 1.55;
+    }
+
+    /* ─── AUDIENCE TYPES ─── */
+    #audience {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .audience-header {
+      text-align: center; max-width: 580px; margin: 0 auto 4.5rem;
+    }
+    .audience-header .section-heading { margin-bottom: 1rem; }
+    .audience-lead {
+      font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); font-weight: 300;
+    }
+
+    .audience-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+
+    .audience-card {
+      border: 1px solid rgba(61,107,79,0.12);
+      border-radius: 4px;
+      padding: 2.6rem 2.4rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .audience-card:hover {
+      border-color: rgba(61,107,79,0.35);
+      background: rgba(61,107,79,0.03);
+      transform: translateY(-3px);
+    }
+    .audience-card.amber-border { border-color: rgba(196,124,34,0.18); }
+    .audience-card.amber-border:hover { border-color: rgba(196,124,34,0.42); background: rgba(196,124,34,0.03); }
+
+    .audience-card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      color: var(--sage); border: 1px solid rgba(61,107,79,0.22);
+      display: inline-block; padding: 0.18rem 0.55rem;
+      border-radius: 2px; margin-bottom: 1.2rem;
+    }
+    .audience-card.amber-border .audience-card-num { color: var(--amber); border-color: rgba(196,124,34,0.3); }
+
+    .audience-icon { font-size: 2.2rem; display: block; margin-bottom: 0.9rem; }
+    .audience-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.7rem; line-height: 1.2;
+    }
+    .audience-desc {
+      font-size: 0.86rem; line-height: 1.72; color: var(--text-mid);
+      margin-bottom: 1.2rem;
+    }
+    .audience-topics {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+    }
+    .audience-topic {
+      font-size: 0.7rem; letter-spacing: 0.05em;
+      border: 1px solid rgba(61,107,79,0.18);
+      color: var(--sage); padding: 0.22rem 0.65rem;
+      border-radius: 2px;
+    }
+    .audience-card.amber-border .audience-topic { border-color: rgba(196,124,34,0.22); color: var(--amber); }
+
+    /* ─── CTA ─── */
+    #cta {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+    }
+
+    .cta-bg-circle {
+      position: absolute;
+      width: 500px; height: 500px;
+      border: 1px solid rgba(196,124,34,0.1); border-radius: 50%;
+      left: 50%; top: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-bg-circle::before {
+      content: ''; position: absolute; inset: 52px;
+      border: 1px solid rgba(196,124,34,0.07); border-radius: 50%;
+    }
+
+    .cta-inner {
+      text-align: center; max-width: 640px; margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+    .cta-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+      justify-content: center;
+    }
+    .cta-tag::before { content: '—'; opacity: 0.6; }
+
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.4rem;
+    }
+    .cta-heading em { font-style: italic; color: var(--amber-lt); }
+
+    .cta-sub {
+      font-size: 0.98rem; line-height: 1.78; color: rgba(244,237,224,0.6);
+      font-weight: 300; margin-bottom: 2.8rem;
+    }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--amber); color: #1a1206;
+      padding: 0.88rem 2.2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid rgba(244,237,224,0.28); color: var(--white);
+      padding: 0.88rem 2.2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(244,237,224,0.65); background: rgba(244,237,224,0.05); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--earth); padding: 4.5rem 0 2.5rem; }
+    .footer-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo-text span:first-child { font-size: 1.4rem; }
+    .footer-tagline {
+      font-size: 0.83rem; line-height: 1.7; color: rgba(244,237,224,0.45);
+      margin-top: 1rem; font-weight: 300;
+    }
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
+    .footer-links a {
+      font-size: 0.85rem; color: rgba(244,237,224,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(244,237,224,0.85); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.3); }
+    .footer-note {
+      font-size: 0.72rem; color: rgba(244,237,224,0.22);
+      font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.25rem 2rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .audience-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .section-inner { padding: 0 2rem; }
+      .hero-content { padding: 3.5rem 2rem 4.5rem; }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .mobile-menu-toggle { display: inline-flex; }
+      .mobile-nav-panel {
+        position: fixed; top: 70px; left: 0; right: 0;
+        z-index: 99;
+        display: flex; flex-direction: column; gap: 0;
+        padding: 1rem 1.25rem 1.5rem;
+        background: rgba(26, 51, 37, 0.98);
+        border-top: 1px solid rgba(196, 124, 34, 0.25);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.24);
+        transform: translateY(-120%); opacity: 0; pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+      .mobile-nav-panel.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .mobile-nav-panel a {
+        color: rgba(250, 248, 244, 0.88); text-decoration: none;
+        text-transform: uppercase; letter-spacing: 0.08em;
+        font-size: 0.82rem; font-weight: 500;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(244, 237, 224, 0.09);
+      }
+      .mobile-nav-panel a:hover { color: var(--amber-lt); }
+      .mobile-nav-cta {
+        margin-top: 1rem; padding: 0.9rem 1rem !important;
+        background: var(--amber); color: #1a1206 !important;
+        text-align: center; border-bottom: none !important;
+        border-radius: 3px; font-weight: 700 !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-logo-img { width: 38px; height: 38px; }
+      .form-row { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .contact-form-panel { padding: 2.2rem 1.6rem; }
+      .footer-top { grid-template-columns: 1fr; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .cta-actions a { width: 100%; max-width: 320px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
+      <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="produce.html">Produce</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="quality.html">Quality</a></li>
+      <li><a href="distribution.html">Distribution</a></li>
+      <li><a href="contact.html" class="nav-cta active">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="produce.html">Produce</a>
+    <a href="technology.html">Technology</a>
+    <a href="quality.html">Quality</a>
+    <a href="distribution.html">Distribution</a>
+    <a href="procurement.html">Procurement</a>
+    <a href="contact.html" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       HERO
+  ═══════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-rings"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Nigeria &bull; Agribusiness &bull; Get In Touch</div>
+      <h1 class="hero-headline">
+        Contact <em>EcoGrow</em><br>Farms Limited
+      </h1>
+      <p class="hero-sub">
+        Let's discuss farm produce supply, technology-enabled agriculture, partnerships, procurement, and market opportunities. We welcome enquiries from buyers, investors, cooperatives, and institutions.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       MAIN CONTACT SECTION
+  ═══════════════════════════════ -->
+  <section id="contact-main">
+    <div class="section-inner">
+      <div class="contact-layout">
+
+        <!-- ── LEFT: Contact information ── -->
+        <div class="contact-info reveal">
+          <div class="section-tag">Get In Touch</div>
+          <h2 class="section-heading">How to reach<br>EcoGrow.</h2>
+          <p class="contact-info-lead">
+            Use the email link to start a conversation, or prepare your message using the enquiry form to the right. We respond to all genuine business enquiries.
+          </p>
+
+          <!-- Company card -->
+          <div class="company-card">
+            <div class="company-card-label">Company Details</div>
+            <div class="company-card-name">EcoGrow Farms Limited</div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-detail-body">
+                <div class="contact-detail-label">Email</div>
+                <div class="contact-detail-value">
+                  <a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact-detail-body">
+                <div class="contact-detail-label">Phone</div>
+                <div class="contact-detail-value placeholder">+234 XXX XXX XXXX &nbsp;·&nbsp; To be updated</div>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-detail-body">
+                <div class="contact-detail-label">Location</div>
+                <div class="contact-detail-value">Nigeria</div>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+              </div>
+              <div class="contact-detail-body">
+                <div class="contact-detail-label">CAC Registration</div>
+                <div class="contact-detail-value">No. 8778030</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enquiry categories -->
+          <div class="enquiry-cats">
+            <div class="enquiry-cats-heading">Enquiry Areas</div>
+            <div class="enquiry-cat">
+              <div class="enquiry-cat-dot"></div>
+              <div class="enquiry-cat-name">Produce Supply</div>
+              <div class="enquiry-cat-arrow">→</div>
+            </div>
+            <div class="enquiry-cat">
+              <div class="enquiry-cat-dot"></div>
+              <div class="enquiry-cat-name">Partnership</div>
+              <div class="enquiry-cat-arrow">→</div>
+            </div>
+            <div class="enquiry-cat">
+              <div class="enquiry-cat-dot"></div>
+              <div class="enquiry-cat-name">Technology Collaboration</div>
+              <div class="enquiry-cat-arrow">→</div>
+            </div>
+            <div class="enquiry-cat">
+              <div class="enquiry-cat-dot"></div>
+              <div class="enquiry-cat-name">Procurement / Contract Services</div>
+              <div class="enquiry-cat-arrow">→</div>
+            </div>
+            <div class="enquiry-cat">
+              <div class="enquiry-cat-dot"></div>
+              <div class="enquiry-cat-name">Investment / Development Support</div>
+              <div class="enquiry-cat-arrow">→</div>
+            </div>
+            <div class="enquiry-cat">
+              <div class="enquiry-cat-dot"></div>
+              <div class="enquiry-cat-name">General Enquiry</div>
+              <div class="enquiry-cat-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: Form panel ── -->
+        <div class="contact-form-panel reveal reveal-delay-2">
+          <div class="form-panel-heading">Send an Enquiry</div>
+          <p class="form-panel-sub">
+            Fill out the fields below, then use the email button to send your message directly to EcoGrow. All fields are optional — include what's relevant to your enquiry.
+          </p>
+
+          <!-- Primary action: mailto -->
+          <a href="mailto:info@ecogrowfarms.com" class="mailto-cta" id="mailto-link">
+            <div class="mailto-cta-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="mailto-cta-body">
+              <div class="mailto-cta-label">Email EcoGrow Directly</div>
+              <div class="mailto-cta-address">info@ecogrowfarms.com</div>
+            </div>
+            <div class="mailto-cta-arrow">→</div>
+          </a>
+
+          <div class="form-divider">
+            <div class="form-divider-line"></div>
+            <div class="form-divider-text">Or prepare your message below</div>
+            <div class="form-divider-line"></div>
+          </div>
+
+          <!-- Enquiry form — populates mailto on submit -->
+          <div class="enquiry-form" id="enquiry-form">
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="full-name">Full Name</label>
+                <input class="form-input" type="text" id="full-name" name="full-name"
+                  placeholder="Your full name" autocomplete="name" />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" name="email"
+                  placeholder="your@email.com" autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input class="form-input" type="tel" id="phone" name="phone"
+                  placeholder="+234 XXX XXX XXXX" autocomplete="tel" />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="organization">Organization</label>
+                <input class="form-input" type="text" id="organization" name="organization"
+                  placeholder="Company or institution name" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="reason">Reason for Contact</label>
+              <div class="form-select-wrap">
+                <select class="form-select" id="reason" name="reason">
+                  <option value="">— Select a reason —</option>
+                  <option value="Produce Supply">Produce Supply</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Technology Collaboration">Technology Collaboration</option>
+                  <option value="Procurement / Contract Services">Procurement / Contract Services</option>
+                  <option value="Investment / Development Support">Investment / Development Support</option>
+                  <option value="General Enquiry">General Enquiry</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message"
+                placeholder="Describe your enquiry — what you need, your timeline, volumes, or any relevant detail that helps EcoGrow understand how to respond…"></textarea>
+            </div>
+
+            <div class="form-note">
+              <strong>Note:</strong> This form does not submit automatically. Use the button below to open your email client with your details pre-filled, then send from there.
+            </div>
+
+            <div class="form-submit-area">
+              <button type="button" class="btn-compose" id="compose-btn">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Open Email Client with My Details
+              </button>
+              <p class="form-submit-note">
+                Clicking this opens your default email app with your message pre-filled.<br>
+                You will be able to review and send from there.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       AUDIENCE TYPES
+  ═══════════════════════════════ -->
+  <section id="audience">
+    <div class="section-inner">
+      <div class="audience-header">
+        <div class="section-tag reveal">Who Should Reach Out</div>
+        <h2 class="section-heading reveal reveal-delay-1">We're listening to<br>the right partners.</h2>
+        <p class="audience-lead reveal reveal-delay-2">EcoGrow welcomes enquiries from across the agricultural value chain — whether you are a buyer, farmer, technology provider, or institutional partner.</p>
+      </div>
+
+      <div class="audience-grid">
+
+        <div class="audience-card reveal">
+          <span class="audience-card-num">01</span>
+          <span class="audience-icon">🛒</span>
+          <div class="audience-name">For Buyers</div>
+          <p class="audience-desc">
+            Supermarkets, wholesalers, processors, food service operators, and retailers seeking consistent, graded, and traceable farm produce supply. We discuss volumes, quality specifications, delivery schedules, and supply documentation with serious buyers.
+          </p>
+          <div class="audience-topics">
+            <span class="audience-topic">Produce Supply</span>
+            <span class="audience-topic">Bulk Orders</span>
+            <span class="audience-topic">Off-Take Agreements</span>
+            <span class="audience-topic">Quality Documentation</span>
+          </div>
+        </div>
+
+        <div class="audience-card amber-border reveal reveal-delay-1">
+          <span class="audience-card-num">02</span>
+          <span class="audience-icon">🌾</span>
+          <div class="audience-name">For Farmers &amp; Cooperatives</div>
+          <p class="audience-desc">
+            Smallholder farmers and cooperatives interested in structured off-take arrangements, input procurement support, or technical partnership. EcoGrow works with producer groups that share our commitment to quality and documented farming practice.
+          </p>
+          <div class="audience-topics">
+            <span class="audience-topic">Cooperative Off-Take</span>
+            <span class="audience-topic">Input Procurement</span>
+            <span class="audience-topic">Technical Support</span>
+            <span class="audience-topic">Aggregation Partnership</span>
+          </div>
+        </div>
+
+        <div class="audience-card amber-border reveal reveal-delay-2">
+          <span class="audience-card-num">03</span>
+          <span class="audience-icon">⚙️</span>
+          <div class="audience-name">For Technology Partners</div>
+          <p class="audience-desc">
+            AgriTech companies, precision agriculture providers, irrigation specialists, and digital farm management platforms interested in collaboration, integration, or deployment within EcoGrow's operational environment.
+          </p>
+          <div class="audience-topics">
+            <span class="audience-topic">Technology Collaboration</span>
+            <span class="audience-topic">AgriTech Integration</span>
+            <span class="audience-topic">Pilot Programs</span>
+            <span class="audience-topic">Research &amp; Development</span>
+          </div>
+        </div>
+
+        <div class="audience-card reveal reveal-delay-3">
+          <span class="audience-card-num">04</span>
+          <span class="audience-icon">🏛️</span>
+          <div class="audience-name">For Institutions &amp; Development Partners</div>
+          <p class="audience-desc">
+            NGOs, development finance institutions, government programs, and impact investors with an interest in Nigerian agricultural development, food security, rural productivity, or export-ready supply chain building.
+          </p>
+          <div class="audience-topics">
+            <span class="audience-topic">Investment Enquiries</span>
+            <span class="audience-topic">Development Support</span>
+            <span class="audience-topic">Food Security Programs</span>
+            <span class="audience-topic">Institutional Supply</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       CTA
+  ═══════════════════════════════ -->
+  <section id="cta">
+    <div class="cta-bg-circle"></div>
+    <div class="section-inner">
+      <div class="cta-inner reveal">
+        <div class="cta-tag">Explore Further</div>
+        <h2 class="cta-heading">Ready to start<br>a <em>conversation?</em></h2>
+        <p class="cta-sub">
+          Learn more about what EcoGrow produces, how we use technology to improve agricultural outcomes, and the supply systems we are building across Nigeria's food value chain.
+        </p>
+        <div class="cta-actions">
+          <a href="produce.html" class="btn-primary">Explore Produce</a>
+          <a href="technology.html" class="btn-ghost">Explore Technology</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="nav-logo footer-brand" style="margin-bottom:0">
+            <img
+              src="/Images/ecogrow-farms-icon-logo.svg"
+              alt="EcoGrow Farms Limited logo"
+              class="nav-logo-img"
+            />
+            <div class="nav-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Nigeria Limited</span>
+            </div>
+          </a>
+          <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="produce.html">Produce</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="quality.html">Quality</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="distribution.html">Distribution</a></li>
+            <li><a href="procurement.html">Procurement</a></li>
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Supply Enquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Focus Areas</div>
+          <ul class="footer-links">
+            <li><a href="technology.html">Smart Farming</a></li>
+            <li><a href="produce.html">Crop &amp; Livestock Production</a></li>
+            <li><a href="quality.html">Traceability-Ready Supply</a></li>
+            <li><a href="procurement.html">Contract Supply Services</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Limited. Registration No: 8778030. All rights reserved.</p>
+        <p class="footer-note">CAC Registration No: 8778030 &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── Mobile menu ──
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const panel  = document.querySelector('.mobile-nav-panel');
+    if (toggle && panel) {
+      const close = () => {
+        toggle.classList.remove('is-open'); panel.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true');
+        document.body.classList.remove('mobile-nav-open');
+      };
+      const open = () => {
+        toggle.classList.add('is-open'); panel.classList.add('is-open');
+        toggle.setAttribute('aria-expanded','true'); panel.setAttribute('aria-hidden','false');
+        document.body.classList.add('mobile-nav-open');
+      };
+      toggle.addEventListener('click', () => toggle.classList.contains('is-open') ? close() : open());
+      panel.querySelectorAll('a').forEach(l => l.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 900) close(); });
+    }
+
+    // ── Compose mailto from form fields ──
+    const composeBtn  = document.getElementById('compose-btn');
+    const mailtoLink  = document.getElementById('mailto-link');
+    const BASE_EMAIL  = 'info@ecogrowfarms.com';
+
+    function buildMailto() {
+      const name  = document.getElementById('full-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const org   = document.getElementById('organization').value.trim();
+      const reason= document.getElementById('reason').value;
+      const msg   = document.getElementById('message').value.trim();
+
+      const subject = reason
+        ? `EcoGrow Enquiry: ${reason}`
+        : 'EcoGrow Enquiry';
+
+      let body = '';
+      if (name)   body += `Name: ${name}\n`;
+      if (email)  body += `Email: ${email}\n`;
+      if (phone)  body += `Phone: ${phone}\n`;
+      if (org)    body += `Organisation: ${org}\n`;
+      if (reason) body += `Reason: ${reason}\n`;
+      if (body)   body += '\n';
+      if (msg)    body += `Message:\n${msg}\n`;
+      if (!body)  body = '(No details entered — please type your message here.)';
+
+      return `mailto:${BASE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    if (composeBtn) {
+      composeBtn.addEventListener('click', () => {
+        window.location.href = buildMailto();
+      });
+    }
+
+    // Keep the direct mailto link in sync with selected reason if user picks one first
+    if (mailtoLink) {
+      document.getElementById('reason').addEventListener('change', () => {
+        mailtoLink.href = buildMailto();
+      });
+    }
+  </script>
+</body>
+</html>

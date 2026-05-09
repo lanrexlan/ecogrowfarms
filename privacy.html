@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — EcoGrow Farms Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1a3325;
+      --sage:     #3d6b4f;
+      --sage-lt:  #5a8f6c;
+      --amber:    #c47c22;
+      --amber-lt: #e09a42;
+      --cream:    #f4ede0;
+      --parchment:#ece3d0;
+      --earth:    #2a1f14;
+      --text:     #1e2b24;
+      --text-mid: #4d5e55;
+      --white:    #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(26,51,37,0.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo img { width: 36px; height: 36px; object-fit: contain; }
+    .nav-logo-fallback {
+      width: 36px; height: 36px;
+      border: 2px solid var(--amber); border-radius: 50%;
+      display: none; place-items: center;
+    }
+    .nav-logo-fallback::after {
+      content: '';
+      width: 13px; height: 13px;
+      background: var(--amber);
+      border-radius: 50% 50% 50% 0 / 60% 60% 40% 40%;
+      transform: rotate(-30deg);
+    }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--white);
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(250,248,244,0.75); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-cta {
+      background: var(--amber) !important; padding: 0.52rem 1.3rem;
+      border-radius: 2px; font-weight: 600 !important;
+      color: #1a1206 !important; transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; }
+
+    .mobile-menu-toggle {
+      display: none; width: 44px; height: 44px;
+      border: 1px solid rgba(244,237,224,0.22);
+      background: rgba(244,237,224,0.05);
+      border-radius: 4px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px; cursor: pointer; z-index: 120;
+    }
+    .mobile-menu-toggle span {
+      display: block; width: 20px; height: 2px;
+      background: var(--white); transition: transform 0.25s, opacity 0.25s;
+    }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav-panel {
+      position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+      display: flex; flex-direction: column;
+      padding: 1rem 1.25rem 1.5rem;
+      background: rgba(26,51,37,0.98);
+      border-top: 1px solid rgba(196,124,34,0.25);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.24);
+      transform: translateY(-120%); opacity: 0; pointer-events: none;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .mobile-nav-panel.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .mobile-nav-panel a {
+      color: rgba(250,248,244,0.88); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      font-size: 0.82rem; font-weight: 500;
+      padding: 1rem 0; border-bottom: 1px solid rgba(244,237,224,0.09);
+    }
+    .mobile-nav-panel a:hover { color: var(--amber-lt); }
+    .mobile-nav-cta {
+      margin-top: 1rem; padding: 0.9rem 1rem !important;
+      background: var(--amber); color: #1a1206 !important;
+      text-align: center; border-bottom: none !important;
+      border-radius: 3px; font-weight: 700 !important;
+    }
+
+    /* ─── PAGE HERO ─── */
+    #page-hero {
+      padding-top: 68px;
+      background: var(--forest);
+      position: relative; overflow: hidden;
+      min-height: 40vh;
+      display: flex; align-items: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 72% 40%, rgba(61,107,79,0.32) 0%, transparent 60%),
+        linear-gradient(158deg, #091810 0%, #1a3325 52%, #0f2218 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.05) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1320px; margin: 0 auto;
+      padding: 4rem 3.5rem;
+      width: 100%;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(244,237,224,0.38); font-weight: 500; margin-bottom: 1.4rem;
+    }
+    .breadcrumb a { color: rgba(244,237,224,0.38); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber-lt); }
+    .breadcrumb span { color: var(--amber); }
+    .breadcrumb-sep { opacity: 0.4; }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 600; line-height: 1.04;
+      color: var(--white); margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.78;
+      color: rgba(244,237,224,0.62); font-weight: 300;
+      max-width: 520px;
+    }
+
+    /* ─── MAIN LAYOUT ─── */
+    #policy-body {
+      background: var(--white);
+      padding: 5.5rem 0 6rem;
+    }
+
+    .policy-layout {
+      max-width: 1320px; margin: 0 auto; padding: 0 3.5rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* ─── STICKY SIDEBAR NAV ─── */
+    .policy-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    .sidebar-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 700; margin-bottom: 1.2rem;
+    }
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 0.8rem; font-weight: 500; color: var(--text-mid);
+      text-decoration: none; padding: 0.6rem 0;
+      border-left: 2px solid rgba(61,107,79,0.14);
+      padding-left: 1rem;
+      transition: color 0.2s, border-color 0.2s;
+      line-height: 1.35;
+    }
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      color: var(--sage);
+      border-left-color: var(--sage);
+    }
+    .sidebar-nav li a .s-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; color: rgba(61,107,79,0.5);
+      flex-shrink: 0;
+    }
+
+    .sidebar-meta {
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(61,107,79,0.12);
+    }
+    .sidebar-meta-label {
+      font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-mid); font-weight: 600; opacity: 0.6; margin-bottom: 0.5rem;
+    }
+    .sidebar-meta-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; color: var(--text-mid); line-height: 1.7;
+    }
+
+    /* ─── POLICY CONTENT ─── */
+    .policy-content { max-width: 720px; }
+
+    .policy-section {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(61,107,79,0.1);
+      scroll-margin-top: 100px;
+    }
+    .policy-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .policy-section-header {
+      display: flex; align-items: baseline; gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+    .policy-section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      color: var(--sage); border: 1px solid rgba(61,107,79,0.25);
+      padding: 0.18rem 0.6rem; border-radius: 2px;
+      flex-shrink: 0; margin-top: 0.25rem;
+    }
+    .policy-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      font-weight: 600; line-height: 1.18; color: var(--text);
+    }
+
+    .policy-content p {
+      font-size: 0.96rem; line-height: 1.9;
+      color: var(--text-mid); font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .policy-content p:last-child { margin-bottom: 0; }
+
+    /* Data list */
+    .policy-list {
+      list-style: none;
+      margin: 1.2rem 0;
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid rgba(61,107,79,0.12);
+      border-radius: 4px; overflow: hidden;
+    }
+    .policy-list li {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.85rem 1.4rem;
+      font-size: 0.92rem; color: var(--text-mid); font-weight: 400;
+      border-bottom: 1px solid rgba(61,107,79,0.08);
+      background: var(--white);
+      transition: background 0.18s;
+    }
+    .policy-list li:last-child { border-bottom: none; }
+    .policy-list li:hover { background: rgba(61,107,79,0.03); }
+    .policy-list li::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sage-lt); flex-shrink: 0;
+    }
+
+    /* Callout box */
+    .policy-callout {
+      margin: 1.8rem 0;
+      padding: 1.4rem 1.8rem;
+      border-left: 3px solid var(--sage);
+      background: rgba(61,107,79,0.05);
+      border-radius: 0 3px 3px 0;
+    }
+    .policy-callout p {
+      font-size: 0.9rem !important;
+      margin-bottom: 0 !important;
+      color: var(--text) !important;
+      font-weight: 400 !important;
+    }
+    .policy-callout.amber {
+      border-left-color: var(--amber);
+      background: rgba(196,124,34,0.05);
+    }
+
+    /* Company info block */
+    .company-block {
+      background: var(--cream);
+      border: 1px solid rgba(61,107,79,0.14);
+      border-radius: 4px;
+      padding: 2rem 2.2rem;
+      margin-top: 1.6rem;
+    }
+    .company-block-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .company-detail-row {
+      display: flex; align-items: baseline; gap: 0.8rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(61,107,79,0.09);
+    }
+    .company-detail-row:last-child { border-bottom: none; }
+    .company-detail-key {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: var(--sage); min-width: 110px; flex-shrink: 0;
+    }
+    .company-detail-val {
+      font-size: 0.88rem; color: var(--text-mid);
+    }
+    .company-detail-val a {
+      color: var(--sage); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .company-detail-val a:hover { color: var(--amber); }
+
+    /* Effective date chip */
+    .policy-date-chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.08em;
+      background: rgba(61,107,79,0.08);
+      color: var(--sage); padding: 0.3rem 0.85rem;
+      border-radius: 2px; margin-bottom: 2rem;
+      border: 1px solid rgba(61,107,79,0.18);
+    }
+    .policy-date-chip::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sage-lt);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--earth);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 4.5rem 0 2.5rem;
+    }
+    .footer-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 2rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .footer-logo img { width: 34px; height: 34px; object-fit: contain; }
+    .footer-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .footer-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--white);
+    }
+    .footer-logo-text span:last-child {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+    .footer-tagline {
+      font-size: 0.83rem; line-height: 1.7;
+      color: rgba(244,237,224,0.4); margin-top: 1rem; font-weight: 300;
+    }
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
+    .footer-links a {
+      font-size: 0.85rem; color: rgba(244,237,224,0.4);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(244,237,224,0.88); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.75rem;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.28); }
+    .footer-note {
+      font-size: 0.72rem; color: rgba(244,237,224,0.2);
+      font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
+    }
+    .footer-legal-links {
+      display: flex; gap: 1.5rem;
+    }
+    .footer-legal-links a {
+      font-size: 0.75rem; color: rgba(244,237,224,0.28);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-legal-links a:hover { color: rgba(244,237,224,0.7); }
+    .footer-legal-links a.current { color: rgba(244,237,224,0.55); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .mobile-menu-toggle { display: inline-flex; }
+      .hero-content { padding: 3.5rem 1.5rem; }
+      .policy-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem; padding: 0 1.5rem;
+      }
+      .policy-sidebar { position: static; }
+      .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
+      .sidebar-nav li a {
+        border-left: none; padding-left: 0;
+        border-bottom: 2px solid rgba(61,107,79,0.14);
+        padding-bottom: 0.3rem;
+        font-size: 0.75rem;
+      }
+      .sidebar-nav li a:hover, .sidebar-nav li a.active {
+        border-left: none;
+        border-bottom-color: var(--sage);
+      }
+      .sidebar-nav li a .s-num { display: none; }
+      .sidebar-meta { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-inner { padding: 0 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .policy-section { margin-bottom: 2.8rem; padding-bottom: 2.8rem; }
+      #policy-body { padding: 3.5rem 0 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <div class="nav-logo-fallback"></div>
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#pillars">About</a></li>
+      <li><a href="produce.html">Produce</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="quality.html">Quality</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="index.html#partnerships" class="nav-cta">Partner With Us</a></li>
+    </ul>
+
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu"
+            aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="index.html#pillars">About</a>
+    <a href="produce.html">Produce</a>
+    <a href="technology.html">Technology</a>
+    <a href="quality.html">Quality</a>
+    <a href="insights.html">Insights</a>
+    <a href="index.html#partnerships">Partnerships</a>
+    <a href="contact.html" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       PAGE HERO
+  ═══════════════════════════════ -->
+  <section id="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Privacy Policy</span>
+      </div>
+      <h1 class="hero-headline">Privacy Policy</h1>
+      <p class="hero-sub">
+        How EcoGrow Farms Limited handles information submitted through this website.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       POLICY BODY
+  ═══════════════════════════════ -->
+  <main id="policy-body">
+    <div class="policy-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="policy-sidebar" aria-label="Policy navigation">
+        <div class="sidebar-label">On this page</div>
+        <ul class="sidebar-nav">
+          <li><a href="#introduction"><span class="s-num">01</span> Introduction</a></li>
+          <li><a href="#information-we-collect"><span class="s-num">02</span> Information We Collect</a></li>
+          <li><a href="#how-we-use"><span class="s-num">03</span> How We Use It</a></li>
+          <li><a href="#information-sharing"><span class="s-num">04</span> Information Sharing</a></li>
+          <li><a href="#data-security"><span class="s-num">05</span> Data Security</a></li>
+          <li><a href="#cookies"><span class="s-num">06</span> Cookies &amp; Analytics</a></li>
+          <li><a href="#contact-privacy"><span class="s-num">07</span> Contact</a></li>
+          <li><a href="#company-info"><span class="s-num">08</span> Company Information</a></li>
+        </ul>
+
+        <div class="sidebar-meta">
+          <div class="sidebar-meta-label">Last updated</div>
+          <div class="sidebar-meta-val">May 2025</div>
+          <div class="sidebar-meta-label" style="margin-top:1rem;">Registration</div>
+          <div class="sidebar-meta-val">RC: 8778030</div>
+        </div>
+      </aside>
+
+
+      <!-- CONTENT -->
+      <article class="policy-content">
+
+        <div class="policy-date-chip">Effective date: May 2025</div>
+
+        <!-- 1. Introduction -->
+        <section class="policy-section" id="introduction">
+          <div class="policy-section-header">
+            <span class="policy-section-num">01</span>
+            <h2 class="policy-section-title">Introduction</h2>
+          </div>
+          <p>EcoGrow Farms Limited respects the privacy of visitors, partners, customers, and users who interact with our website. This Privacy Policy explains what information we may collect when you use this website, how we use that information, and your options in relation to it.</p>
+          <p>By using this website, you agree to the practices described in this policy. If you have questions or concerns, please contact us through the details provided at the end of this document.</p>
+          <p>This policy applies to the EcoGrow Farms Limited website and does not cover third-party websites, platforms, or services that may be linked to from our pages.</p>
+        </section>
+
+        <!-- 2. Information We May Collect -->
+        <section class="policy-section" id="information-we-collect">
+          <div class="policy-section-header">
+            <span class="policy-section-num">02</span>
+            <h2 class="policy-section-title">Information We May Collect</h2>
+          </div>
+          <p>We may collect information that you submit directly to us through contact forms, enquiry submissions, or other communication channels on this website. The types of information we may collect include:</p>
+
+          <ul class="policy-list">
+            <li>Your name or the name of your organisation's representative</li>
+            <li>Your email address</li>
+            <li>Your phone number</li>
+            <li>The name of your organisation or company</li>
+            <li>The subject and details of your enquiry</li>
+            <li>Any other information you choose to include in a message or form submission</li>
+          </ul>
+
+          <p>We may also collect basic technical information about how visitors use this website. This may include:</p>
+
+          <ul class="policy-list">
+            <li>Pages visited and time spent on the site</li>
+            <li>Browser type and device information</li>
+            <li>General geographic location (country or region level)</li>
+            <li>Referral source — how you arrived at the website</li>
+          </ul>
+
+          <div class="policy-callout">
+            <p>We do not collect payment card details, identity document information, or any sensitive personal data through this website.</p>
+          </div>
+        </section>
+
+        <!-- 3. How We Use Information -->
+        <section class="policy-section" id="how-we-use">
+          <div class="policy-section-header">
+            <span class="policy-section-num">03</span>
+            <h2 class="policy-section-title">How We Use Information</h2>
+          </div>
+          <p>Information submitted through this website is used only for legitimate business purposes related to EcoGrow Farms Limited's operations. Specifically, we may use the information we collect to:</p>
+
+          <ul class="policy-list">
+            <li>Respond to enquiries, messages, and requests submitted through our contact channels</li>
+            <li>Process partnership, supply, or collaboration requests and follow up appropriately</li>
+            <li>Improve the content and communication on this website based on how visitors use it</li>
+            <li>Maintain records of business communications and relationships</li>
+            <li>Contact you about relevant EcoGrow services, updates, or opportunities, where you have expressed interest or given consent</li>
+          </ul>
+
+          <p>We will not use your information for purposes that are unrelated to our business operations, and we will not use it in ways that are inconsistent with what is described in this policy.</p>
+        </section>
+
+        <!-- 4. Information Sharing -->
+        <section class="policy-section" id="information-sharing">
+          <div class="policy-section-header">
+            <span class="policy-section-num">04</span>
+            <h2 class="policy-section-title">Information Sharing</h2>
+          </div>
+
+          <div class="policy-callout amber">
+            <p>EcoGrow Farms Limited does not sell, rent, or trade personal information to third parties for commercial purposes.</p>
+          </div>
+
+          <p>We may share information in limited and specific circumstances, including where it is necessary to:</p>
+
+          <ul class="policy-list">
+            <li>Facilitate a business communication or service request you have made</li>
+            <li>Engage a service provider or platform that assists in operating this website or managing communications, and where that provider is bound to appropriate data handling standards</li>
+            <li>Comply with applicable legal obligations, regulatory requirements, or a lawful request from a competent authority</li>
+            <li>Protect the rights, safety, or property of EcoGrow Farms Limited or others, where required</li>
+          </ul>
+
+          <p>Where information is shared with service providers for operational purposes, those providers are expected to use the information only for the purpose for which it was shared and not for their own independent purposes.</p>
+        </section>
+
+        <!-- 5. Data Security -->
+        <section class="policy-section" id="data-security">
+          <div class="policy-section-header">
+            <span class="policy-section-num">05</span>
+            <h2 class="policy-section-title">Data Security</h2>
+          </div>
+          <p>EcoGrow Farms Limited takes reasonable and appropriate steps to protect information submitted through this website from loss, misuse, and unauthorised access. These measures include standard technical and organisational safeguards appropriate to the nature of the information we handle.</p>
+          <p>However, no method of electronic transmission or storage is completely secure. While we work to protect your information, we cannot guarantee absolute security, and we encourage you to take care when sharing personal information online.</p>
+          <p>We retain information submitted through this website for as long as is reasonably necessary for the business purpose for which it was collected, unless a longer retention period is required or permitted by applicable law.</p>
+        </section>
+
+        <!-- 6. Cookies & Analytics -->
+        <section class="policy-section" id="cookies">
+          <div class="policy-section-header">
+            <span class="policy-section-num">06</span>
+            <h2 class="policy-section-title">Cookies and Website Analytics</h2>
+          </div>
+          <p>This website may use basic cookies or similar technologies to support the operation of the site. Cookies are small data files placed on your device that help the website function correctly and allow us to understand how visitors use it.</p>
+          <p>If analytics tools are enabled on this website, they may collect aggregated data about visitor behaviour such as pages viewed, session duration, and traffic sources. This information is used to improve the website experience and is not used to identify individual visitors.</p>
+
+          <div class="policy-callout">
+            <p>You can manage or disable cookies through your browser settings at any time. Disabling cookies may affect certain features of this website.</p>
+          </div>
+
+          <p>We do not use cookies or tracking tools for the purpose of advertising or selling your data to third parties.</p>
+        </section>
+
+        <!-- 7. Contact -->
+        <section class="policy-section" id="contact-privacy">
+          <div class="policy-section-header">
+            <span class="policy-section-num">07</span>
+            <h2 class="policy-section-title">Contact</h2>
+          </div>
+          <p>If you have any questions, concerns, or requests related to this Privacy Policy or how EcoGrow Farms Limited handles personal information, please contact us through our website's Contact page.</p>
+          <p>We will respond to reasonable enquiries and, where appropriate, address concerns about how your information has been handled.</p>
+          <p>This policy may be updated from time to time to reflect changes to our practices or applicable requirements. We will publish the most current version on this page, along with the date it was last updated. We encourage you to review this page periodically.</p>
+        </section>
+
+        <!-- 8. Company Information -->
+        <section class="policy-section" id="company-info">
+          <div class="policy-section-header">
+            <span class="policy-section-num">08</span>
+            <h2 class="policy-section-title">Company Information</h2>
+          </div>
+          <p>This Privacy Policy is published by:</p>
+
+          <div class="company-block">
+            <div class="company-block-name">EcoGrow Farms Nigeria Limited</div>
+            <div class="company-detail-row">
+              <span class="company-detail-key">Registration</span>
+              <span class="company-detail-val">RC: 8778030</span>
+            </div>
+            <div class="company-detail-row">
+              <span class="company-detail-key">Country</span>
+              <span class="company-detail-val">Nigeria</span>
+            </div>
+            <div class="company-detail-row">
+              <span class="company-detail-key">Email</span>
+              <span class="company-detail-val">
+                <a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a>
+              </span>
+            </div>
+            <div class="company-detail-row">
+              <span class="company-detail-key">Contact page</span>
+              <span class="company-detail-val">
+                <a href="contact.html">ecogrowfarms.com/contact</a>
+              </span>
+            </div>
+            <div class="company-detail-row">
+              <span class="company-detail-key">Policy updated</span>
+              <span class="company-detail-val">May 2025</span>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div>
+          <a href="index.html" class="footer-logo">
+            <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms"
+                 onerror="this.style.display='none';">
+            <div class="footer-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Nigeria Limited</span>
+            </div>
+          </a>
+          <p class="footer-tagline">
+            Technology-powered farming for safer, smarter<br>
+            food supply in Nigeria. Building the agribusiness<br>
+            infrastructure the market demands.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html#pillars">About EcoGrow</a></li>
+            <li><a href="produce.html">What We Produce</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="quality.html">Quality &amp; Traceability</a></li>
+            <li><a href="insights.html">Insights</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Work With Us</div>
+          <ul class="footer-links">
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+            <li><a href="index.html#partnerships">Cooperatives</a></li>
+            <li><a href="index.html#partnerships">Processors &amp; Off-Takers</a></li>
+            <li><a href="index.html#partnerships">Institutional Buyers</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></li>
+            <li><a href="contact.html">Contact Page</a></li>
+            <li style="margin-top:1rem;"><a href="#">Capability Brief</a></li>
+            <li><a href="#">Investment Deck</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Nigeria Limited. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html" class="current">Privacy Policy</a>
+        </div>
+        <p class="footer-note">RC: 8778030 &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    /* Mobile nav */
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const panel  = document.querySelector('.mobile-nav-panel');
+    if (toggle && panel) {
+      const close = () => {
+        toggle.classList.remove('is-open');
+        panel.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+      };
+      const open = () => {
+        toggle.classList.add('is-open');
+        panel.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        panel.setAttribute('aria-hidden', 'false');
+      };
+      toggle.addEventListener('click', () =>
+        toggle.classList.contains('is-open') ? close() : open()
+      );
+      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => e.key === 'Escape' && close());
+      window.addEventListener('resize', () => window.innerWidth > 900 && close());
+    }
+
+    /* Sidebar active link on scroll */
+    const sections = document.querySelectorAll('.policy-section');
+    const navLinks = document.querySelectorAll('.sidebar-nav li a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-15% 0px -75% 0px' });
+
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+</body>
+</html>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights — EcoGrow Farms Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1a3325;
+      --sage:     #3d6b4f;
+      --sage-lt:  #5a8f6c;
+      --amber:    #c47c22;
+      --amber-lt: #e09a42;
+      --cream:    #f4ede0;
+      --parchment:#ece3d0;
+      --earth:    #2a1f14;
+      --text:     #1e2b24;
+      --text-mid: #4d5e55;
+      --white:    #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(26, 51, 37, 0.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo img {
+      width: 36px; height: 36px;
+      object-fit: contain;
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(250,248,244,0.75); transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber-lt); }
+    .nav-cta {
+      background: var(--amber) !important;
+      padding: 0.52rem 1.3rem; border-radius: 2px;
+      font-weight: 600 !important; color: #1a1206 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; color: #1a1206 !important; }
+
+    /* Mobile toggle */
+    .mobile-menu-toggle {
+      display: none; width: 44px; height: 44px;
+      border: 1px solid rgba(244,237,224,0.22);
+      background: rgba(244,237,224,0.05);
+      border-radius: 4px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px; cursor: pointer; z-index: 120;
+    }
+    .mobile-menu-toggle span {
+      display: block; width: 20px; height: 2px;
+      background: var(--white);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav-panel {
+      position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+      display: flex; flex-direction: column;
+      padding: 1rem 1.25rem 1.5rem;
+      background: rgba(26, 51, 37, 0.98);
+      border-top: 1px solid rgba(196,124,34,0.25);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.24);
+      transform: translateY(-120%); opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .mobile-nav-panel.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .mobile-nav-panel a {
+      color: rgba(250,248,244,0.88); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      font-size: 0.82rem; font-weight: 500;
+      padding: 1rem 0; border-bottom: 1px solid rgba(244,237,224,0.09);
+    }
+    .mobile-nav-panel a:hover { color: var(--amber-lt); }
+    .mobile-nav-cta {
+      margin-top: 1rem; padding: 0.9rem 1rem !important;
+      background: var(--amber); color: #1a1206 !important;
+      text-align: center; border-bottom: none !important;
+      border-radius: 3px; font-weight: 700 !important;
+    }
+
+    /* ─── SHARED UTILITIES ─── */
+    .section-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+    }
+    .section-tag::before { content: '—'; opacity: 0.6; }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      font-weight: 600; line-height: 1.12;
+    }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(61,107,79,0.18), transparent); }
+
+    /* ─── PAGE HERO ─── */
+    #page-hero {
+      min-height: 58vh;
+      background: var(--forest);
+      position: relative; display: flex; align-items: flex-end;
+      overflow: hidden; padding-top: 68px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 65% 80% at 78% 38%, rgba(61,107,79,0.38) 0%, transparent 58%),
+        radial-gradient(ellipse 40% 50% at 6% 72%, rgba(196,124,34,0.09) 0%, transparent 55%),
+        linear-gradient(158deg, #091810 0%, #1a3325 48%, #0f2218 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.06) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    /* Open-book decorative lines on the right */
+    .hero-deco {
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      display: flex; gap: 1.8rem; opacity: 0.55;
+    }
+    .hero-deco-line {
+      width: 1px; height: 240px;
+      background: linear-gradient(to bottom, transparent, rgba(90,143,108,0.6), rgba(196,124,34,0.4), transparent);
+    }
+    .hero-deco-line:nth-child(2) { height: 320px; margin-top: -40px; }
+    .hero-deco-line:nth-child(3) { height: 200px; margin-top: 20px; }
+    .hero-deco-line:nth-child(4) { height: 280px; margin-top: -20px; }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1320px; margin: 0 auto;
+      padding: 4.5rem 3.5rem;
+      width: 100%;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(244,237,224,0.38); font-weight: 500; margin-bottom: 1.6rem;
+    }
+    .breadcrumb a { color: rgba(244,237,224,0.38); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber-lt); }
+    .breadcrumb span { color: var(--amber); }
+    .breadcrumb-sep { opacity: 0.4; }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 600; line-height: 1.02;
+      color: var(--white); margin-bottom: 1.4rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8;
+      color: rgba(244,237,224,0.64); font-weight: 300;
+      max-width: 580px;
+    }
+
+    /* ─── FEATURED INSIGHTS ─── */
+    #featured { padding: 6.5rem 0 0; background: var(--white); }
+
+    .featured-header {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 4rem;
+    }
+    .featured-intro {
+      font-size: 0.97rem; line-height: 1.82; color: var(--text-mid);
+      font-weight: 300;
+    }
+
+    /* Article grid — 3 col top row, 3 col bottom row */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Article Card */
+    .article-card {
+      background: var(--white);
+      border: 1px solid rgba(61,107,79,0.13);
+      border-radius: 4px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .article-card:hover {
+      border-color: rgba(61,107,79,0.38);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(26,51,37,0.1);
+    }
+
+    /* Top colour band — unique per category */
+    .article-card-band {
+      height: 4px; width: 100%; flex-shrink: 0;
+    }
+    .band-smart     { background: linear-gradient(90deg, var(--sage), var(--sage-lt)); }
+    .band-irrigation{ background: linear-gradient(90deg, #2a6b8a, #4fa3c4); }
+    .band-protected { background: linear-gradient(90deg, #4a7c3f, #7ab648); }
+    .band-postharvest{ background: linear-gradient(90deg, var(--amber), var(--amber-lt)); }
+    .band-quality   { background: linear-gradient(90deg, #6b4f9e, #a07dd4); }
+    .band-mech      { background: linear-gradient(90deg, #7a4a1e, #b57a42); }
+
+    .article-card-body { padding: 1.8rem 1.8rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+
+    .article-meta {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .article-category {
+      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 2px;
+    }
+    .cat-smart      { background: rgba(61,107,79,0.1);  color: var(--sage); }
+    .cat-irrigation { background: rgba(42,107,138,0.1); color: #2a6b8a; }
+    .cat-protected  { background: rgba(74,124,63,0.1);  color: #4a7c3f; }
+    .cat-postharvest{ background: rgba(196,124,34,0.1); color: var(--amber); }
+    .cat-quality    { background: rgba(107,79,158,0.1); color: #6b4f9e; }
+    .cat-mech       { background: rgba(122,74,30,0.1);  color: #7a4a1e; }
+
+    /* Coming soon pill */
+    .coming-soon-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(196,124,34,0.75);
+      border: 1px solid rgba(196,124,34,0.28);
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+      margin-left: auto; flex-shrink: 0;
+    }
+    .coming-soon-pill::before {
+      content: '';
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--amber); opacity: 0.7;
+    }
+
+    .article-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.32rem; font-weight: 600; line-height: 1.22;
+      color: var(--text); margin-bottom: 0.85rem;
+      transition: color 0.2s;
+    }
+    .article-summary {
+      font-size: 0.84rem; line-height: 1.72;
+      color: var(--text-mid); font-weight: 300; flex: 1;
+    }
+
+    .article-card-footer {
+      padding: 1rem 1.8rem 1.6rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(61,107,79,0.09);
+    }
+    .article-label {
+      font-size: 0.72rem; color: rgba(196,124,34,0.7);
+      letter-spacing: 0.08em; font-weight: 500; font-style: italic;
+    }
+    .article-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(61,107,79,0.06);
+      display: grid; place-items: center;
+      font-size: 0.8rem; color: var(--text-mid);
+      transition: background 0.2s;
+    }
+
+    /* ─── CATEGORIES ─── */
+    #categories { padding: 5.5rem 0; background: var(--cream); }
+    .categories-layout {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: center;
+    }
+    .categories-copy .section-heading { margin-bottom: 1.2rem; }
+    .categories-copy p {
+      font-size: 0.97rem; line-height: 1.82; color: var(--text-mid); font-weight: 300;
+    }
+    .categories-chips {
+      display: flex; flex-wrap: wrap; gap: 0.85rem;
+    }
+    .cat-chip {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; font-weight: 500;
+      border: 1px solid rgba(61,107,79,0.2);
+      color: var(--text-mid);
+      padding: 0.6rem 1.1rem; border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .cat-chip:hover {
+      border-color: var(--sage);
+      color: var(--sage);
+      background: rgba(61,107,79,0.05);
+      transform: translateY(-1px);
+    }
+    .cat-chip-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ─── NEWSLETTER / NOTIFY STRIP ─── */
+    #notify {
+      background: var(--parchment);
+      padding: 4rem 0;
+      border-top: 1px solid rgba(61,107,79,0.1);
+      border-bottom: 1px solid rgba(61,107,79,0.1);
+    }
+    .notify-inner {
+      display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+    }
+    .notify-copy-label {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 700; margin-bottom: 0.6rem;
+    }
+    .notify-copy-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 600; color: var(--text); line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .notify-copy-sub {
+      font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; font-weight: 300;
+    }
+    .notify-form {
+      display: flex; gap: 0.6rem; align-items: center; flex-shrink: 0;
+    }
+    .notify-input {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.84rem; font-weight: 400;
+      border: 1px solid rgba(61,107,79,0.22);
+      background: var(--white); color: var(--text);
+      padding: 0.8rem 1.2rem; border-radius: 2px;
+      width: 260px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .notify-input::placeholder { color: rgba(77,94,85,0.5); }
+    .notify-input:focus { border-color: var(--sage); }
+    .notify-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--forest); color: var(--white);
+      border: none; padding: 0.8rem 1.6rem; border-radius: 2px;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .notify-btn:hover { background: var(--sage); }
+
+    /* ─── CTA ─── */
+    #page-cta {
+      padding: 7rem 0; background: var(--forest);
+      position: relative; overflow: hidden;
+    }
+    .page-cta-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(61,107,79,0.3) 0%, transparent 65%),
+        radial-gradient(ellipse 38% 55% at 5% 28%, rgba(196,124,34,0.08) 0%, transparent 55%);
+    }
+    .page-cta-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.05) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .page-cta-inner {
+      position: relative; z-index: 2;
+      text-align: center; max-width: 680px; margin: 0 auto;
+    }
+    .page-cta-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.6rem;
+    }
+    .page-cta-tag::before { content: '—'; opacity: 0.6; }
+    .page-cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.6rem); font-weight: 600;
+      line-height: 1.1; color: var(--white); margin-bottom: 1.3rem;
+    }
+    .page-cta-heading em { font-style: italic; color: var(--amber-lt); }
+    .page-cta-sub {
+      font-size: 1rem; line-height: 1.8; color: rgba(244,237,224,0.58);
+      font-weight: 300; max-width: 500px; margin: 0 auto 2.8rem;
+    }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--amber); color: #1a1206;
+      padding: 1rem 2.4rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid rgba(244,237,224,0.25); color: var(--white);
+      padding: 1rem 2.4rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(244,237,224,0.6); background: rgba(244,237,224,0.05); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--earth); border-top: 1px solid rgba(255,255,255,0.05); padding: 4.5rem 0 2.5rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 2rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; margin-bottom: 0; }
+    .footer-logo img { width: 34px; height: 34px; object-fit: contain; }
+    .footer-tagline { font-size: 0.83rem; line-height: 1.7; color: rgba(244,237,224,0.4); margin-top: 1rem; font-weight: 300; }
+    .footer-col-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 1.2rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
+    .footer-links a { font-size: 0.85rem; color: rgba(244,237,224,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(244,237,224,0.88); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.28); }
+    .footer-note { font-size: 0.72rem; color: rgba(244,237,224,0.2); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .articles-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .mobile-menu-toggle { display: inline-flex; }
+      .section-inner { padding: 0 1.5rem; }
+      .hero-content { padding: 4rem 1.5rem; }
+      .hero-deco { display: none; }
+      .featured-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .categories-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .notify-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .notify-form { flex-direction: column; align-items: stretch; }
+      .notify-input { width: 100%; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .articles-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      #featured, #categories, #notify, #page-cta { padding: 4rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms logo icon"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <!-- Fallback logo mark if SVG not found -->
+      <div style="display:none; width:36px; height:36px; border:2px solid var(--amber); border-radius:50%; place-items:center;">
+        <div style="width:13px; height:13px; background:var(--amber); border-radius:50% 50% 50% 0/60% 60% 40% 40%; transform:rotate(-30deg);"></div>
+      </div>
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#pillars">About</a></li>
+      <li><a href="produce.html">Produce</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="quality.html">Quality</a></li>
+      <li><a href="insights.html" class="active">Insights</a></li>
+      <li><a href="index.html#partnerships" class="nav-cta">Partner With Us</a></li>
+    </ul>
+
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu"
+            aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="index.html#pillars">About</a>
+    <a href="produce.html">Produce</a>
+    <a href="technology.html">Technology</a>
+    <a href="quality.html">Quality</a>
+    <a href="insights.html">Insights</a>
+    <a href="index.html#partnerships">Partnerships</a>
+    <a href="contact.html" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       PAGE HERO
+  ═══════════════════════════════ -->
+  <section id="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-deco" aria-hidden="true">
+      <div class="hero-deco-line"></div>
+      <div class="hero-deco-line"></div>
+      <div class="hero-deco-line"></div>
+      <div class="hero-deco-line"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Insights</span>
+      </div>
+      <h1 class="hero-headline">Insights</h1>
+      <p class="hero-sub">
+        Thoughts on smart farming, sustainable agriculture, food supply systems, post-harvest handling, and agribusiness innovation in Nigeria.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FEATURED INSIGHTS
+  ═══════════════════════════════ -->
+  <section id="featured">
+    <div class="section-inner">
+
+      <div class="featured-header">
+        <div>
+          <div class="section-tag reveal">Featured Insights</div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Ideas shaping the future<br>of Nigerian agriculture.
+          </h2>
+        </div>
+        <p class="featured-intro reveal reveal-delay-2">
+          These articles explore the technologies, systems, and practices that EcoGrow is building towards — and that the wider Nigerian agribusiness sector needs to engage with. Articles are in preparation and will be published progressively.
+        </p>
+      </div>
+
+      <div class="articles-grid">
+
+        <!-- Article 1 — Smart Farming -->
+        <article class="article-card reveal" aria-label="Coming soon article">
+          <div class="article-card-band band-smart"></div>
+          <div class="article-card-body">
+            <div class="article-meta">
+              <span class="article-category cat-smart">Smart Farming</span>
+              <span class="coming-soon-pill">Coming Soon</span>
+            </div>
+            <h3 class="article-title">
+              How Technology Is Changing Farming in Nigeria
+            </h3>
+            <p class="article-summary">
+              A look at how mechanization, irrigation, protected farming, and digital records can improve agricultural productivity and build the foundation for a more reliable food system.
+            </p>
+          </div>
+          <div class="article-card-footer">
+            <span class="article-label">Article in preparation</span>
+            <span class="article-icon" aria-hidden="true">✦</span>
+          </div>
+        </article>
+
+        <!-- Article 2 — Irrigation -->
+        <article class="article-card reveal reveal-delay-1" aria-label="Coming soon article">
+          <div class="article-card-band band-irrigation"></div>
+          <div class="article-card-body">
+            <div class="article-meta">
+              <span class="article-category cat-irrigation">Irrigation</span>
+              <span class="coming-soon-pill">Coming Soon</span>
+            </div>
+            <h3 class="article-title">
+              Why Drip Irrigation Matters for Climate-Smart Agriculture
+            </h3>
+            <p class="article-summary">
+              How better water management can help farms remain productive under changing rainfall patterns — and why drip systems are becoming essential, not optional, for serious producers.
+            </p>
+          </div>
+          <div class="article-card-footer">
+            <span class="article-label">Article in preparation</span>
+            <span class="article-icon" aria-hidden="true">✦</span>
+          </div>
+        </article>
+
+        <!-- Article 3 — Protected Farming -->
+        <article class="article-card reveal reveal-delay-2" aria-label="Coming soon article">
+          <div class="article-card-band band-protected"></div>
+          <div class="article-card-body">
+            <div class="article-meta">
+              <span class="article-category cat-protected">Protected Farming</span>
+              <span class="coming-soon-pill">Coming Soon</span>
+            </div>
+            <h3 class="article-title">
+              Greenhouse Farming and the Future of Vegetable Production
+            </h3>
+            <p class="article-summary">
+              Why controlled growing environments can support cleaner, more reliable vegetable production — and what the shift toward protected farming means for Nigerian growers and buyers alike.
+            </p>
+          </div>
+          <div class="article-card-footer">
+            <span class="article-label">Article in preparation</span>
+            <span class="article-icon" aria-hidden="true">✦</span>
+          </div>
+        </article>
+
+        <!-- Article 4 — Post-Harvest -->
+        <article class="article-card reveal reveal-delay-1" aria-label="Coming soon article">
+          <div class="article-card-band band-postharvest"></div>
+          <div class="article-card-body">
+            <div class="article-meta">
+              <span class="article-category cat-postharvest">Post-Harvest</span>
+              <span class="coming-soon-pill">Coming Soon</span>
+            </div>
+            <h3 class="article-title">
+              Reducing Post-Harvest Losses in Nigerian Agriculture
+            </h3>
+            <p class="article-summary">
+              How sorting, grading, storage, handling, and distribution planning can protect the value that good farming creates — and why post-harvest discipline is as important as what happens in the field.
+            </p>
+          </div>
+          <div class="article-card-footer">
+            <span class="article-label">Article in preparation</span>
+            <span class="article-icon" aria-hidden="true">✦</span>
+          </div>
+        </article>
+
+        <!-- Article 5 — Quality & Traceability -->
+        <article class="article-card reveal reveal-delay-2" aria-label="Coming soon article">
+          <div class="article-card-band band-quality"></div>
+          <div class="article-card-body">
+            <div class="article-meta">
+              <span class="article-category cat-quality">Quality &amp; Traceability</span>
+              <span class="coming-soon-pill">Coming Soon</span>
+            </div>
+            <h3 class="article-title">
+              Why Traceability Matters in Modern Food Supply Chains
+            </h3>
+            <p class="article-summary">
+              How documented supply systems can improve buyer confidence, food safety, and regulatory compliance — and what building a traceability-ready operation actually requires in practice.
+            </p>
+          </div>
+          <div class="article-card-footer">
+            <span class="article-label">Article in preparation</span>
+            <span class="article-icon" aria-hidden="true">✦</span>
+          </div>
+        </article>
+
+        <!-- Article 6 — Mechanization -->
+        <article class="article-card reveal reveal-delay-3" aria-label="Coming soon article">
+          <div class="article-card-band band-mech"></div>
+          <div class="article-card-body">
+            <div class="article-meta">
+              <span class="article-category cat-mech">Mechanization</span>
+              <span class="coming-soon-pill">Coming Soon</span>
+            </div>
+            <h3 class="article-title">
+              Mechanized Farming and the Future of Crop Production
+            </h3>
+            <p class="article-summary">
+              How appropriate machinery can improve farm efficiency, production consistency, and unit economics — and why mechanization is a prerequisite for serious agribusiness scale in Nigeria.
+            </p>
+          </div>
+          <div class="article-card-footer">
+            <span class="article-label">Article in preparation</span>
+            <span class="article-icon" aria-hidden="true">✦</span>
+          </div>
+        </article>
+
+      </div><!-- /articles-grid -->
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       CATEGORIES
+  ═══════════════════════════════ -->
+  <section id="categories" style="margin-top: 5rem;">
+    <div class="section-divider"></div>
+    <div style="padding: 5.5rem 0; background: var(--cream);">
+      <div class="section-inner">
+        <div class="categories-layout">
+          <div class="categories-copy reveal">
+            <div class="section-tag">Browse by Topic</div>
+            <h2 class="section-heading">Find insights<br>by category.</h2>
+            <p style="margin-top: 1.2rem;">
+              Our insights span the full agricultural value chain — from field-level production systems to supply chain management, compliance, and agribusiness innovation. Articles will be added progressively.
+            </p>
+          </div>
+          <div class="categories-chips reveal reveal-delay-2">
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:var(--sage-lt);"></span>
+              Smart Farming
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:#4a7c3f;"></span>
+              Crop Production
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:#2a6b8a;"></span>
+              Irrigation
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:#7ab648;"></span>
+              Greenhouse Farming
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:var(--sage);"></span>
+              Livestock &amp; Poultry
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:var(--amber);"></span>
+              Post-Harvest
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:#7a4a1e;"></span>
+              Supply Chain
+            </span>
+            <span class="cat-chip">
+              <span class="cat-chip-dot" style="background:#6b4f9e;"></span>
+              Traceability
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       NOTIFY / STAY UPDATED
+  ═══════════════════════════════ -->
+  <section id="notify">
+    <div class="section-inner">
+      <div class="notify-inner reveal">
+        <div>
+          <div class="notify-copy-label">Stay Updated</div>
+          <div class="notify-copy-heading">Be notified when new articles are published.</div>
+          <p class="notify-copy-sub">Leave your email address and we will notify you when EcoGrow insights go live — no spam, just relevant agribusiness content.</p>
+        </div>
+        <form class="notify-form" onsubmit="handleNotify(event)" novalidate>
+          <label for="notify-email" style="position:absolute;opacity:0;pointer-events:none;">Email address</label>
+          <input type="email" id="notify-email" class="notify-input"
+                 placeholder="your@email.com" autocomplete="email" required>
+          <button type="submit" class="notify-btn">Notify Me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       CLOSING CTA
+  ═══════════════════════════════ -->
+  <section id="page-cta">
+    <div class="page-cta-bg"></div>
+    <div class="page-cta-grid"></div>
+    <div class="section-inner">
+      <div class="page-cta-inner reveal">
+        <div class="page-cta-tag">Work With Us</div>
+        <h2 class="page-cta-heading">
+          Looking for <em>agricultural</em><br>collaboration?
+        </h2>
+        <p class="page-cta-sub">
+          Whether you are a buyer, partner, cooperative, or investor — EcoGrow is building supply relationships and technology partnerships across Nigeria's agricultural value chain.
+        </p>
+        <div class="cta-actions">
+          <a href="index.html#partnerships" class="btn-primary">Partner With EcoGrow</a>
+          <a href="contact.html" class="btn-ghost">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer>
+    <div class="section-inner">
+      <div class="footer-top">
+
+        <div>
+          <a href="index.html" class="footer-logo">
+            <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms"
+                 onerror="this.outerHTML='<div style=\'width:34px;height:34px;border:2px solid var(--amber);border-radius:50%;display:grid;place-items:center;\'><div style=\'width:12px;height:12px;background:var(--amber);border-radius:50% 50% 50% 0/60% 60% 40% 40%;transform:rotate(-30deg);\'></div></div>'">
+            <div class="nav-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Nigeria Limited</span>
+            </div>
+          </a>
+          <p class="footer-tagline">
+            Technology-powered farming for safer, smarter<br>
+            food supply in Nigeria. Building the agribusiness<br>
+            infrastructure the market demands.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Insights</div>
+          <ul class="footer-links">
+            <li><a href="insights.html">All Insights</a></li>
+            <li><a href="insights.html#featured">Smart Farming</a></li>
+            <li><a href="insights.html#featured">Irrigation</a></li>
+            <li><a href="insights.html#featured">Post-Harvest</a></li>
+            <li><a href="insights.html#featured">Traceability</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html#pillars">About EcoGrow</a></li>
+            <li><a href="produce.html">What We Produce</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="quality.html">Quality &amp; Traceability</a></li>
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></li>
+            <li><a href="contact.html">Contact Page</a></li>
+            <li style="margin-top:1rem;"><a href="#">Capability Brief</a></li>
+            <li><a href="#">Investment Deck</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Nigeria Limited. All rights reserved.</p>
+        <p class="footer-note">RC: 8778030 &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    /* ── Scroll reveal ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+
+    /* ── Mobile nav ── */
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const panel  = document.querySelector('.mobile-nav-panel');
+    if (toggle && panel) {
+      const close = () => {
+        toggle.classList.remove('is-open');
+        panel.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+      };
+      const open = () => {
+        toggle.classList.add('is-open');
+        panel.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        panel.setAttribute('aria-hidden', 'false');
+      };
+      toggle.addEventListener('click', () =>
+        toggle.classList.contains('is-open') ? close() : open()
+      );
+      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => e.key === 'Escape' && close());
+      window.addEventListener('resize', () => window.innerWidth > 900 && close());
+    }
+
+    /* ── Notify form ── */
+    function handleNotify(e) {
+      e.preventDefault();
+      const input = document.getElementById('notify-email');
+      const btn   = e.target.querySelector('.notify-btn');
+      if (!input.value || !input.checkValidity()) {
+        input.focus();
+        return;
+      }
+      btn.textContent = 'Thank you!';
+      btn.style.background = 'var(--sage)';
+      btn.disabled = true;
+      input.disabled = true;
+      input.value = '';
+      input.placeholder = 'We will be in touch.';
+    }
+  </script>
+</body>
+</html>

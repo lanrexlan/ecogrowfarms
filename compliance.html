@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quality & Compliance Statement — EcoGrow Farms Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1a3325;
+      --sage:     #3d6b4f;
+      --sage-lt:  #5a8f6c;
+      --amber:    #c47c22;
+      --amber-lt: #e09a42;
+      --cream:    #f4ede0;
+      --parchment:#ece3d0;
+      --earth:    #2a1f14;
+      --text:     #1e2b24;
+      --text-mid: #4d5e55;
+      --white:    #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3.5rem;
+      background: rgba(26, 51, 37, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 42px; height: 42px;
+      display: block; object-fit: contain; flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.25rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(250,248,244,0.78);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-links a.active { color: var(--amber-lt); }
+
+    .nav-cta {
+      background: var(--amber); color: #1a1206 !important;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--amber-lt) !important; }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu-toggle {
+      display: none;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(244,237,224,0.22);
+      background: rgba(244,237,224,0.05);
+      border-radius: 4px;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; z-index: 120;
+    }
+    .mobile-menu-toggle span {
+      display: block; width: 20px; height: 2px;
+      background: var(--white);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav-panel { display: none; }
+    body.mobile-nav-open { overflow: hidden; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 54vh;
+      background: var(--forest);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding-top: 5rem;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 70% 52%, rgba(61,107,79,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 38% 48% at 6% 28%, rgba(196,124,34,0.09) 0%, transparent 52%),
+        linear-gradient(158deg, #0d2016 0%, #1a3325 52%, #152b1f 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,143,108,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,143,108,0.07) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .hero-rings {
+      position: absolute; right: -80px; top: 50%;
+      transform: translateY(-50%);
+      width: 500px; height: 500px;
+      border: 1px solid rgba(196,124,34,0.1);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-rings::before {
+      content: ''; position: absolute; inset: 55px;
+      border: 1px solid rgba(196,124,34,0.07); border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1320px; margin: 0 auto;
+      padding: 3.5rem 3.5rem 4.5rem;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber-lt); font-weight: 600; margin-bottom: 1.6rem;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4vw, 4.2rem);
+      font-weight: 600; line-height: 1.08;
+      color: var(--white); margin-bottom: 1.4rem;
+      max-width: 700px;
+    }
+    .hero-headline em { font-style: italic; color: var(--amber-lt); }
+
+    .hero-sub {
+      font-size: 1.02rem; line-height: 1.76; color: rgba(244,237,224,0.66);
+      font-weight: 300; max-width: 600px; margin-bottom: 2rem;
+    }
+
+    /* Effective-date chip */
+    .hero-meta {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(244,237,224,0.38);
+      border: 1px solid rgba(90,143,108,0.2);
+      padding: 0.35rem 0.9rem; border-radius: 2px;
+    }
+    .hero-meta span { color: rgba(244,237,224,0.55); }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; }
+    .section-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+    }
+    .section-tag::before { content: '—'; opacity: 0.6; }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+      font-weight: 600; line-height: 1.12;
+    }
+
+    /* ─── QUALITY COMMITMENT ─── */
+    #commitment {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .commitment-layout {
+      display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: start;
+    }
+
+    .commitment-copy .section-heading { margin-bottom: 1.5rem; }
+    .commitment-copy p {
+      font-size: 1rem; line-height: 1.9; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1.1rem;
+    }
+
+    /* Status badges */
+    .status-grid {
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+    .status-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.3rem 1.4rem;
+      border: 1px solid rgba(61,107,79,0.14);
+      border-radius: 4px;
+      background: var(--white);
+      transition: border-color 0.25s;
+    }
+    .status-item:hover { border-color: rgba(61,107,79,0.32); }
+    .status-item.amber-item { border-color: rgba(196,124,34,0.16); }
+    .status-item.amber-item:hover { border-color: rgba(196,124,34,0.36); }
+
+    .status-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: 4px;
+      display: grid; place-items: center;
+      background: rgba(61,107,79,0.1);
+    }
+    .status-item.amber-item .status-icon { background: rgba(196,124,34,0.12); }
+    .status-icon svg { width: 15px; height: 15px; fill: none; stroke-width: 2; }
+
+    .status-body {}
+    .status-label {
+      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--sage); font-weight: 600; margin-bottom: 0.25rem;
+    }
+    .status-item.amber-item .status-label { color: var(--amber); }
+    .status-text {
+      font-size: 0.84rem; line-height: 1.58; color: var(--text-mid);
+    }
+
+    /* ─── PRACTICES — shared accordion-style rows ─── */
+    .practices-section {
+      padding: 7rem 0;
+    }
+    .practices-section:nth-child(odd) { background: var(--white); }
+    .practices-section:nth-child(even) { background: var(--parchment); }
+
+    /* Force explicit alternation */
+    #crop-practices    { background: var(--white); }
+    #livestock-practices { background: var(--parchment); }
+    #postharvest       { background: var(--white); }
+
+    .practices-layout {
+      display: grid; grid-template-columns: 4fr 5fr; gap: 5rem; align-items: start;
+    }
+    .practices-layout.flip { grid-template-columns: 5fr 4fr; }
+    .practices-layout.flip .practices-copy { order: 2; }
+    .practices-layout.flip .practices-items { order: 1; }
+
+    .practices-copy .section-heading { margin-bottom: 1.2rem; }
+    .practices-copy p {
+      font-size: 0.95rem; line-height: 1.88; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+
+    .practices-items {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid rgba(61,107,79,0.14);
+      border-radius: 4px; overflow: hidden;
+    }
+
+    .practice-row {
+      display: flex; align-items: flex-start; gap: 1.1rem;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(61,107,79,0.09);
+      background: var(--white);
+      transition: background 0.2s;
+    }
+    #livestock-practices .practice-row,
+    #postharvest .practice-row { background: var(--parchment); }
+
+    .practice-row:last-child { border-bottom: none; }
+    .practice-row:hover { background: rgba(61,107,79,0.05); }
+    #livestock-practices .practice-row:hover,
+    #postharvest .practice-row:hover { background: rgba(61,107,79,0.07); }
+
+    .practice-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.12em;
+      color: rgba(61,107,79,0.45);
+      min-width: 28px; padding-top: 1px; flex-shrink: 0;
+    }
+    .practice-body {}
+    .practice-name {
+      font-size: 0.88rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .practice-desc {
+      font-size: 0.8rem; line-height: 1.58; color: var(--text-mid);
+    }
+
+    /* ─── TRACEABILITY ─── */
+    #traceability {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+    }
+
+    .trace-header {
+      text-align: center; margin-bottom: 4.5rem;
+    }
+    .trace-header .section-heading { color: var(--white); margin-bottom: 1rem; }
+    .trace-header .section-tag { justify-content: center; }
+    .trace-lead {
+      font-size: 1rem; line-height: 1.8; color: rgba(244,237,224,0.62);
+      font-weight: 300; max-width: 600px; margin: 0 auto;
+    }
+
+    .trace-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .trace-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(90,143,108,0.18);
+      border-radius: 4px; padding: 2.2rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .trace-card:hover {
+      border-color: rgba(90,143,108,0.42);
+      background: rgba(90,143,108,0.08);
+      transform: translateY(-3px);
+    }
+    .trace-card.amber {
+      border-color: rgba(196,124,34,0.2);
+      background: rgba(196,124,34,0.04);
+    }
+    .trace-card.amber:hover {
+      border-color: rgba(196,124,34,0.46);
+      background: rgba(196,124,34,0.09);
+    }
+
+    .trace-card-bg {
+      position: absolute; bottom: -1.5rem; right: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem; font-weight: 700; line-height: 1;
+      color: rgba(90,143,108,0.06); pointer-events: none; user-select: none;
+    }
+    .trace-card.amber .trace-card-bg { color: rgba(196,124,34,0.07); }
+
+    .trace-card-tag {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--sage-lt); font-weight: 600; margin-bottom: 1rem;
+    }
+    .trace-card.amber .trace-card-tag { color: var(--amber-lt); }
+
+    .trace-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; color: var(--white);
+      margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .trace-card-desc {
+      font-size: 0.82rem; line-height: 1.72; color: rgba(244,237,224,0.58);
+    }
+
+    /* "In development" ribbon */
+    .in-dev-note {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      max-width: 680px; margin: 0 auto;
+      padding: 1.1rem 1.6rem;
+      border: 1px solid rgba(196,124,34,0.22);
+      border-radius: 4px;
+      background: rgba(196,124,34,0.06);
+    }
+    .in-dev-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--amber-lt); flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+    .in-dev-text {
+      font-size: 0.82rem; line-height: 1.6; color: rgba(244,237,224,0.62);
+    }
+
+    /* ─── COMPLIANCE ─── */
+    #compliance-aware {
+      padding: 7rem 0;
+      background: var(--parchment);
+    }
+
+    .compliance-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+
+    .compliance-copy .section-heading { margin-bottom: 1.4rem; }
+    .compliance-copy p {
+      font-size: 0.95rem; line-height: 1.88; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1.1rem;
+    }
+
+    .compliance-areas {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .compliance-area {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.2rem 1.4rem;
+      background: var(--white);
+      border: 1px solid rgba(61,107,79,0.12);
+      border-radius: 4px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .compliance-area:hover {
+      border-color: rgba(61,107,79,0.32);
+      background: rgba(255,255,255,0.9);
+    }
+    .compliance-area-icon {
+      width: 34px; height: 34px; flex-shrink: 0;
+      background: rgba(61,107,79,0.08);
+      border-radius: 4px;
+      display: grid; place-items: center;
+    }
+    .compliance-area-icon svg { width: 14px; height: 14px; fill: none; stroke: var(--sage); stroke-width: 2; }
+    .compliance-area-body {}
+    .compliance-area-name {
+      font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem;
+    }
+    .compliance-area-desc {
+      font-size: 0.78rem; line-height: 1.55; color: var(--text-mid);
+    }
+
+    /* ─── WHAT WE DO NOT CLAIM ─── */
+    #no-claim {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .no-claim-inner {
+      max-width: 820px; margin: 0 auto;
+    }
+
+    .no-claim-card {
+      border: 1px solid rgba(196,124,34,0.25);
+      border-radius: 4px;
+      padding: 3rem 3.2rem;
+      position: relative; overflow: hidden;
+      background: rgba(196,124,34,0.03);
+    }
+
+    .no-claim-card-bg {
+      position: absolute; top: -1rem; right: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9rem; font-weight: 700; line-height: 1;
+      color: rgba(196,124,34,0.05);
+      pointer-events: none; user-select: none;
+    }
+
+    .no-claim-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .no-claim-label::before { content: '—'; opacity: 0.5; }
+
+    .no-claim-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem; font-weight: 600; color: var(--text);
+      margin-bottom: 1.2rem; line-height: 1.2;
+    }
+
+    .no-claim-body {
+      font-size: 0.95rem; line-height: 1.88; color: var(--text-mid);
+      font-weight: 300; margin-bottom: 1.6rem;
+    }
+
+    .no-claim-points {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .no-claim-points li {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      font-size: 0.88rem; line-height: 1.65; color: var(--text-mid);
+    }
+    .no-claim-points li::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--amber); flex-shrink: 0; margin-top: 6px;
+    }
+
+    /* ─── COMPANY INFO ─── */
+    #company-info {
+      padding: 5rem 0;
+      background: var(--cream);
+    }
+
+    .company-info-inner {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: center;
+    }
+
+    .company-info-copy .section-heading { margin-bottom: 1.1rem; }
+    .company-info-copy p {
+      font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); font-weight: 300;
+    }
+
+    .company-info-details {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+    }
+
+    .info-box {
+      padding: 1.6rem 1.5rem;
+      border: 1px solid rgba(61,107,79,0.13);
+      border-radius: 4px;
+      background: var(--white);
+      transition: border-color 0.25s;
+    }
+    .info-box:hover { border-color: rgba(61,107,79,0.3); }
+    .info-box-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 0.45rem;
+    }
+    .info-box-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.3;
+    }
+    .info-box-value.mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.88rem; font-weight: 400; color: var(--text-mid);
+    }
+
+    /* ─── CTA ─── */
+    #cta {
+      padding: 7rem 0;
+      background: var(--forest);
+      overflow: hidden;
+    }
+
+    .cta-bg-circle {
+      position: absolute;
+      width: 500px; height: 500px;
+      border: 1px solid rgba(196,124,34,0.1); border-radius: 50%;
+      left: 50%; top: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-bg-circle::before {
+      content: ''; position: absolute; inset: 52px;
+      border: 1px solid rgba(196,124,34,0.07); border-radius: 50%;
+    }
+
+    .cta-inner {
+      text-align: center; max-width: 640px; margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+    .cta-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.4rem;
+      justify-content: center;
+    }
+    .cta-tag::before { content: '—'; opacity: 0.6; }
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.4rem;
+    }
+    .cta-heading em { font-style: italic; color: var(--amber-lt); }
+    .cta-sub {
+      font-size: 0.98rem; line-height: 1.78; color: rgba(244,237,224,0.6);
+      font-weight: 300; margin-bottom: 2.8rem;
+    }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--amber); color: #1a1206;
+      padding: 0.88rem 2.2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid rgba(244,237,224,0.28); color: var(--white);
+      padding: 0.88rem 2.2rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(244,237,224,0.65); background: rgba(244,237,224,0.05); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--earth); padding: 4.5rem 0 2.5rem; }
+    .footer-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo-text span:first-child { font-size: 1.4rem; }
+    .footer-tagline {
+      font-size: 0.83rem; line-height: 1.7; color: rgba(244,237,224,0.45);
+      margin-top: 1rem; font-weight: 300;
+    }
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
+    .footer-links a {
+      font-size: 0.85rem; color: rgba(244,237,224,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(244,237,224,0.85); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.3); }
+    .footer-note {
+      font-size: 0.72rem; color: rgba(244,237,224,0.22);
+      font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.25rem 2rem; }
+      .commitment-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .practices-layout,
+      .practices-layout.flip { grid-template-columns: 1fr; }
+      .practices-layout.flip .practices-copy { order: 1; }
+      .practices-layout.flip .practices-items { order: 2; }
+      .trace-grid { grid-template-columns: 1fr 1fr; }
+      .compliance-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .company-info-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .company-info-details { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .section-inner { padding: 0 2rem; }
+      .hero-content { padding: 3.5rem 2rem 4.5rem; }
+      .no-claim-card { padding: 2.4rem 2rem; }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .mobile-menu-toggle { display: inline-flex; }
+      .mobile-nav-panel {
+        position: fixed; top: 70px; left: 0; right: 0;
+        z-index: 99;
+        display: flex; flex-direction: column; gap: 0;
+        padding: 1rem 1.25rem 1.5rem;
+        background: rgba(26, 51, 37, 0.98);
+        border-top: 1px solid rgba(196, 124, 34, 0.25);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.24);
+        transform: translateY(-120%); opacity: 0; pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+      .mobile-nav-panel.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .mobile-nav-panel a {
+        color: rgba(250, 248, 244, 0.88); text-decoration: none;
+        text-transform: uppercase; letter-spacing: 0.08em;
+        font-size: 0.82rem; font-weight: 500;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(244, 237, 224, 0.09);
+      }
+      .mobile-nav-panel a:hover { color: var(--amber-lt); }
+      .mobile-nav-cta {
+        margin-top: 1rem; padding: 0.9rem 1rem !important;
+        background: var(--amber); color: #1a1206 !important;
+        text-align: center; border-bottom: none !important;
+        border-radius: 3px; font-weight: 700 !important;
+      }
+      .trace-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-logo-img { width: 38px; height: 38px; }
+      .company-info-details { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .cta-actions a { width: 100%; max-width: 320px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
+      <img
+        src="/Images/ecogrow-farms-icon-logo.svg"
+        alt="EcoGrow Farms Limited logo"
+        class="nav-logo-img"
+      />
+      <div class="nav-logo-text">
+        <span>EcoGrow Farms</span>
+        <span>Nigeria Limited</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="produce.html">Produce</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="quality.html">Quality</a></li>
+      <li><a href="distribution.html">Distribution</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="produce.html">Produce</a>
+    <a href="technology.html">Technology</a>
+    <a href="quality.html">Quality</a>
+    <a href="distribution.html">Distribution</a>
+    <a href="procurement.html">Procurement</a>
+    <a href="compliance.html">Compliance</a>
+    <a href="contact.html" class="mobile-nav-cta">Contact EcoGrow</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       HERO
+  ═══════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-rings"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Compliance &bull; Quality &bull; Responsible Practice</div>
+      <h1 class="hero-headline">
+        Quality &amp; <em>Compliance</em><br>Statement
+      </h1>
+      <p class="hero-sub">
+        EcoGrow Farms Limited is building quality-focused systems for safer production, better handling, documented supply, and buyer confidence — while being transparent about where those systems currently stand.
+      </p>
+      <div class="hero-meta">
+        EcoGrow Farms Limited &nbsp;·&nbsp; <span>Registration No: 8778030</span> &nbsp;·&nbsp; Nigeria
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       OUR QUALITY COMMITMENT
+  ═══════════════════════════════ -->
+  <section id="commitment">
+    <div class="section-inner">
+      <div class="commitment-layout">
+
+        <div class="commitment-copy reveal">
+          <div class="section-tag">Our Quality Commitment</div>
+          <h2 class="section-heading">A genuine commitment<br>to quality-focused<br>agricultural practice.</h2>
+          <p>
+            EcoGrow Farms Limited is committed to developing agricultural systems that support safe production, responsible handling, product quality, and reliable supply. This commitment is not a marketing position — it is the operating framework around which we design our field practices, post-harvest systems, and supply documentation.
+          </p>
+          <p>
+            We acknowledge that building quality systems is a continuous process. We describe our approach honestly: as quality-focused and traceability-ready, reflecting the direction we are building toward and the standards we hold ourselves to in daily operations — not certifications we have not yet obtained.
+          </p>
+          <p>
+            Our goal is a supply chain that buyers, institutions, and partners can trust — not because we claim it, but because we can demonstrate it through documented practice.
+          </p>
+        </div>
+
+        <div class="status-grid reveal reveal-delay-2">
+          <div class="status-item">
+            <div class="status-icon">
+              <svg viewBox="0 0 24 24" stroke="var(--sage)"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div class="status-body">
+              <div class="status-label">Active</div>
+              <div class="status-text">Quality-focused field practices and operational discipline across crop and livestock production.</div>
+            </div>
+          </div>
+          <div class="status-item">
+            <div class="status-icon">
+              <svg viewBox="0 0 24 24" stroke="var(--sage)"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div class="status-body">
+              <div class="status-label">Active</div>
+              <div class="status-text">Post-harvest handling standards covering grading, storage, and careful movement of produce.</div>
+            </div>
+          </div>
+          <div class="status-item amber-item">
+            <div class="status-icon">
+              <svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="status-body">
+              <div class="status-label">In Development</div>
+              <div class="status-text">Traceability-ready batch documentation systems — currently being built and refined across operations.</div>
+            </div>
+          </div>
+          <div class="status-item amber-item">
+            <div class="status-icon">
+              <svg viewBox="0 0 24 24" stroke="var(--amber)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="status-body">
+              <div class="status-label">In Progress</div>
+              <div class="status-text">Alignment with Nigerian regulatory frameworks — SON, NAQS, and relevant food safety standards — as systems mature.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       CROP PRODUCTION PRACTICES
+  ═══════════════════════════════ -->
+  <section id="crop-practices" class="practices-section">
+    <div class="section-inner">
+      <div class="practices-layout">
+
+        <div class="practices-copy reveal">
+          <div class="section-tag">Crop Production Practices</div>
+          <h2 class="section-heading">Good agricultural practice<br>in the field.</h2>
+          <p>
+            EcoGrow's crop production operations are designed around principles of good agricultural practice. From soil preparation through to harvest, we aim to make decisions based on what the land needs — not convenience — and to record what we do so that our supply can be accounted for at every stage.
+          </p>
+          <p>
+            We use modern inputs responsibly, plan for water and pest management, and apply harvesting discipline to reduce post-harvest losses. Field records support our traceability-ready supply commitment.
+          </p>
+        </div>
+
+        <div class="practices-items reveal reveal-delay-2">
+          <div class="practice-row">
+            <div class="practice-num">01</div>
+            <div class="practice-body">
+              <div class="practice-name">Good Agricultural Practices (GAP)</div>
+              <div class="practice-desc">Field operations aligned with recognised good agricultural practice principles — covering soil health, input use, and crop husbandry.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">02</div>
+            <div class="practice-body">
+              <div class="practice-name">Responsible Input Use</div>
+              <div class="practice-desc">Fertilisers, crop protection products, and soil amendments selected and applied in quantities appropriate to soil test results and crop requirements.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">03</div>
+            <div class="practice-body">
+              <div class="practice-name">Water Management</div>
+              <div class="practice-desc">Drip irrigation and water-aware scheduling to reduce consumption, support consistent production, and minimise run-off risk.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">04</div>
+            <div class="practice-body">
+              <div class="practice-name">Pest &amp; Disease Management</div>
+              <div class="practice-desc">Integrated approach to pest monitoring and management — prioritising observation, prevention, and targeted intervention over routine chemical application.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">05</div>
+            <div class="practice-body">
+              <div class="practice-name">Harvesting Discipline</div>
+              <div class="practice-desc">Harvest timing, handling methods, and container hygiene standards that protect produce quality from field to packhouse.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">06</div>
+            <div class="practice-body">
+              <div class="practice-name">Field Records</div>
+              <div class="practice-desc">Input logs, spray records, planting dates, and harvest volumes recorded per batch — building the field-level data trail that traceability requires.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       LIVESTOCK & POULTRY PRACTICES
+  ═══════════════════════════════ -->
+  <section id="livestock-practices" class="practices-section">
+    <div class="section-inner">
+      <div class="practices-layout flip">
+
+        <div class="practices-copy reveal">
+          <div class="section-tag">Livestock &amp; Poultry Practices</div>
+          <h2 class="section-heading">Safe, documented<br>animal husbandry.</h2>
+          <p>
+            EcoGrow's livestock and poultry operations are designed around welfare awareness, hygiene standards, and documented husbandry practice. We maintain records for feed, health treatments, and vaccination schedules to support the accountability that buyers of animal-derived products increasingly require.
+          </p>
+          <p>
+            Our production environments are designed to reduce stress, support animal health, and minimise disease risk — because better animal welfare and safer products are inseparable in a well-run operation.
+          </p>
+        </div>
+
+        <div class="practices-items reveal reveal-delay-2">
+          <div class="practice-row">
+            <div class="practice-num">01</div>
+            <div class="practice-body">
+              <div class="practice-name">Animal Welfare Awareness</div>
+              <div class="practice-desc">Housing, stocking densities, feeding systems, and handling procedures designed with animal welfare considerations in mind.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">02</div>
+            <div class="practice-body">
+              <div class="practice-name">Hygiene &amp; Biosecurity</div>
+              <div class="practice-desc">Facility hygiene protocols, entry controls, and biosecurity measures to reduce disease introduction and transmission risk.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">03</div>
+            <div class="practice-body">
+              <div class="practice-name">Feed Records</div>
+              <div class="practice-desc">Feed composition, sources, and quantities recorded to support traceability and demonstrate responsible feed management to buyers.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">04</div>
+            <div class="practice-body">
+              <div class="practice-name">Health Monitoring</div>
+              <div class="practice-desc">Regular observation of animal condition with records of any health concerns, treatments administered, and outcomes.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">05</div>
+            <div class="practice-body">
+              <div class="practice-name">Vaccination Schedules</div>
+              <div class="practice-desc">Vaccination programs carried out in accordance with veterinary guidance and recorded with batch, date, and product details where applicable.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">06</div>
+            <div class="practice-body">
+              <div class="practice-name">Safe Production Environments</div>
+              <div class="practice-desc">Facilities designed to support healthy, productive animals — with appropriate ventilation, water access, space standards, and predator protection.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       POST-HARVEST HANDLING
+  ═══════════════════════════════ -->
+  <section id="postharvest" class="practices-section">
+    <div class="section-inner">
+      <div class="practices-layout">
+
+        <div class="practices-copy reveal">
+          <div class="section-tag">Post-Harvest Handling</div>
+          <h2 class="section-heading">From farm gate to<br>market — with care.</h2>
+          <p>
+            Post-harvest is where much Nigerian agricultural value is lost. EcoGrow treats the period between harvest and buyer delivery as a critical quality window — not an afterthought. Our handling systems are designed to reduce spoilage, maintain product presentation, and ensure that what reaches the buyer reflects the quality of what was produced.
+          </p>
+          <p>
+            Every stage of post-harvest handling — from initial sorting through to final delivery — is planned with both quality preservation and documentation in mind.
+          </p>
+        </div>
+
+        <div class="practices-items reveal reveal-delay-2">
+          <div class="practice-row">
+            <div class="practice-num">01</div>
+            <div class="practice-body">
+              <div class="practice-name">Sorting &amp; Inspection</div>
+              <div class="practice-desc">Initial sorting at harvest point to remove damaged, diseased, or substandard produce before it enters the supply chain.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">02</div>
+            <div class="practice-body">
+              <div class="practice-name">Grading Standards</div>
+              <div class="practice-desc">Grading by size, weight, and visual quality standards — creating consistent, predictable product for buyers who require specification-aligned supply.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">03</div>
+            <div class="practice-body">
+              <div class="practice-name">Storage Planning</div>
+              <div class="practice-desc">Storage conditions selected and managed for each produce type — including temperature-appropriate environments and cold-chain planning where applicable.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">04</div>
+            <div class="practice-body">
+              <div class="practice-name">Packaging</div>
+              <div class="practice-desc">Appropriate packaging materials and methods to protect produce during storage and transit, reduce physical damage, and maintain presentation quality.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">05</div>
+            <div class="practice-body">
+              <div class="practice-name">Careful Movement</div>
+              <div class="practice-desc">Handling protocols during loading, transport, and delivery that minimise physical damage and thermal shock to sensitive produce.</div>
+            </div>
+          </div>
+          <div class="practice-row">
+            <div class="practice-num">06</div>
+            <div class="practice-body">
+              <div class="practice-name">Reduced Spoilage Focus</div>
+              <div class="practice-desc">Every post-harvest decision evaluated against its impact on spoilage reduction — because less spoilage means more value delivered to buyers and better returns for producers.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       TRACEABILITY-READY SYSTEMS
+  ═══════════════════════════════ -->
+  <section id="traceability">
+    <div class="section-inner">
+      <div class="trace-header reveal">
+        <div class="section-tag">Traceability-Ready Systems</div>
+        <h2 class="section-heading">Building the documentation<br>infrastructure.</h2>
+        <p class="trace-lead">EcoGrow is developing systems that can support batch-level documentation, farm records, handling records, supplier information, and buyer documentation — the data infrastructure that accountable agricultural supply requires.</p>
+      </div>
+
+      <div class="trace-grid">
+        <div class="trace-card reveal">
+          <div class="trace-card-bg">01</div>
+          <div class="trace-card-tag">Field Level</div>
+          <div class="trace-card-title">Farm &amp; Batch Records</div>
+          <p class="trace-card-desc">Planting dates, field references, input logs, spray records, and harvest volumes — recorded per batch so that supply can be traced to its point of origin in the field.</p>
+        </div>
+
+        <div class="trace-card reveal reveal-delay-1">
+          <div class="trace-card-bg">02</div>
+          <div class="trace-card-tag">Supply Chain</div>
+          <div class="trace-card-title">Handling &amp; Movement Records</div>
+          <p class="trace-card-desc">Chain-of-custody documentation covering grading, storage conditions, packaging dates, and delivery movement — tracking produce through the post-harvest journey.</p>
+        </div>
+
+        <div class="trace-card amber reveal reveal-delay-2">
+          <div class="trace-card-bg">03</div>
+          <div class="trace-card-tag">Supplier Network</div>
+          <div class="trace-card-title">Supplier Information Management</div>
+          <p class="trace-card-desc">For sourced produce, EcoGrow aims to maintain supplier records — origin, production practices, and relevant documentation — to extend traceability beyond its own production.</p>
+        </div>
+
+        <div class="trace-card reveal reveal-delay-3">
+          <div class="trace-card-bg">04</div>
+          <div class="trace-card-tag">Buyer-Facing</div>
+          <div class="trace-card-title">Delivery Documentation</div>
+          <p class="trace-card-desc">Batch identification, origin references, handling notes, and compliance-relevant documentation provided to buyers at point of delivery — supporting their own quality and audit requirements.</p>
+        </div>
+
+        <div class="trace-card reveal reveal-delay-4">
+          <div class="trace-card-bg">05</div>
+          <div class="trace-card-tag">Livestock</div>
+          <div class="trace-card-title">Animal Production Records</div>
+          <p class="trace-card-desc">Feed records, health treatments, vaccination schedules, and production details maintained to support the accountability requirements of institutional and regulated buyers.</p>
+        </div>
+
+        <div class="trace-card amber reveal reveal-delay-4">
+          <div class="trace-card-bg">06</div>
+          <div class="trace-card-tag">Digital Systems</div>
+          <div class="trace-card-title">Digital Record Infrastructure</div>
+          <p class="trace-card-desc">EcoGrow is building toward digital farm management records that reduce manual documentation burden and improve the reliability, completeness, and accessibility of production data.</p>
+        </div>
+      </div>
+
+      <div class="in-dev-note reveal">
+        <div class="in-dev-dot"></div>
+        <p class="in-dev-text">
+          EcoGrow's traceability systems are actively under development. We describe these capabilities as <strong style="color:rgba(244,237,224,0.75)">traceability-ready</strong> — meaning our systems are designed with traceability in mind and are being built toward full batch-level documentation. We do not claim complete or certified traceability at this stage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       COMPLIANCE-AWARE GROWTH
+  ═══════════════════════════════ -->
+  <section id="compliance-aware">
+    <div class="section-inner">
+      <div class="compliance-layout">
+
+        <div class="compliance-copy reveal">
+          <div class="section-tag">Compliance-Aware Growth</div>
+          <h2 class="section-heading">Building toward<br>regulatory alignment.</h2>
+          <p>
+            As EcoGrow grows, the company aims to align its systems with relevant Nigerian agricultural, food safety, animal welfare, phytosanitary, and market documentation requirements. We approach compliance as a direction of travel, not a box to tick.
+          </p>
+          <p>
+            Our planning takes into account the regulatory frameworks that govern Nigerian agribusiness — and we design our operational systems so that formal compliance alignment is achievable as the business scales, rather than requiring a complete rebuild later.
+          </p>
+          <p>
+            This means building documentation practices today that can meet tomorrow's audit requirements, and being honest with buyers about where we are in that process.
+          </p>
+        </div>
+
+        <div class="compliance-areas reveal reveal-delay-2">
+          <div class="compliance-area">
+            <div class="compliance-area-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div class="compliance-area-body">
+              <div class="compliance-area-name">Nigerian Food Safety Standards</div>
+              <div class="compliance-area-desc">Designing production and handling systems compatible with SON and NAFDAC food safety frameworks as they apply to our produce categories.</div>
+            </div>
+          </div>
+          <div class="compliance-area">
+            <div class="compliance-area-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="compliance-area-body">
+              <div class="compliance-area-name">Phytosanitary Requirements</div>
+              <div class="compliance-area-desc">Awareness of NAQS plant health and phytosanitary requirements for domestic and future export supply — informing how we manage pest and disease risk.</div>
+            </div>
+          </div>
+          <div class="compliance-area">
+            <div class="compliance-area-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div class="compliance-area-body">
+              <div class="compliance-area-name">Animal Welfare Standards</div>
+              <div class="compliance-area-desc">Aligning livestock and poultry husbandry with responsible welfare standards, informed by Nigerian regulations and international best practice where relevant.</div>
+            </div>
+          </div>
+          <div class="compliance-area">
+            <div class="compliance-area-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            </div>
+            <div class="compliance-area-body">
+              <div class="compliance-area-name">Market Documentation Requirements</div>
+              <div class="compliance-area-desc">Building documentation systems that can satisfy the requirements of institutional buyers, processors, exporters, and regulated procurement programs.</div>
+            </div>
+          </div>
+          <div class="compliance-area">
+            <div class="compliance-area-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="compliance-area-body">
+              <div class="compliance-area-name">Agricultural Records &amp; Reporting</div>
+              <div class="compliance-area-desc">Developing record-keeping practices that support regulatory reporting requirements and provide a reliable audit trail for production and supply activities.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       WHAT WE DO NOT CLAIM
+  ═══════════════════════════════ -->
+  <section id="no-claim">
+    <div class="section-inner">
+      <div class="no-claim-inner">
+        <div class="no-claim-card reveal">
+          <div class="no-claim-card-bg">!</div>
+          <div class="no-claim-label">Transparency Statement</div>
+          <div class="no-claim-heading">What We Do Not Claim</div>
+          <p class="no-claim-body">
+            EcoGrow Farms Limited is committed to honest communication about the status of its systems, certifications, and compliance position. We believe that transparency builds more durable business relationships than inflated claims.
+          </p>
+          <ul class="no-claim-points">
+            <li>EcoGrow does not claim certifications unless formally obtained and documented. Certification, export, and compliance claims will only be made where supported by valid, current documentation.</li>
+            <li>We do not use the terms "certified organic", "fully traceable", "guaranteed compliance", "export-ready", or "zero waste" in describing our current operations — these would require formal certification or verification we have not yet completed.</li>
+            <li>We describe our produce as <em>sustainably grown</em>, <em>quality-focused</em>, and <em>traceability-ready</em> — language that accurately reflects our practices and the direction we are building toward.</li>
+            <li>Our quality and compliance position will be updated as our systems develop and formal certifications are obtained. Any claims made beyond this statement will be supported by documentation on request.</li>
+            <li>Buyers with specific compliance requirements — regulatory, institutional, or export-market — are encouraged to discuss those requirements directly with EcoGrow so we can give an accurate, honest account of our current capability.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       COMPANY INFORMATION
+  ═══════════════════════════════ -->
+  <section id="company-info">
+    <div class="section-inner">
+      <div class="company-info-inner">
+
+        <div class="company-info-copy reveal">
+          <div class="section-tag">Company Information</div>
+          <h2 class="section-heading">EcoGrow Farms<br>Limited</h2>
+          <p>Formally registered Nigerian agribusiness, incorporated with the Corporate Affairs Commission. This Quality &amp; Compliance Statement reflects our current operating position and is subject to update as our systems develop.</p>
+        </div>
+
+        <div class="company-info-details reveal reveal-delay-2">
+          <div class="info-box">
+            <div class="info-box-label">Company Name</div>
+            <div class="info-box-value">EcoGrow Farms Limited</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">CAC Registration No.</div>
+            <div class="info-box-value mono">8778030</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">Country</div>
+            <div class="info-box-value">Nigeria</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">Quality Position</div>
+            <div class="info-box-value">Quality-Focused</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">Traceability Status</div>
+            <div class="info-box-value">Traceability-Ready</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">Compliance Approach</div>
+            <div class="info-box-value">Compliance-Aware</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       CTA
+  ═══════════════════════════════ -->
+  <section id="cta">
+    <div class="cta-bg-circle"></div>
+    <div class="section-inner">
+      <div class="cta-inner reveal">
+        <div class="cta-tag">Learn More</div>
+        <h2 class="cta-heading">Quality at every<br><em>stage of the chain.</em></h2>
+        <p class="cta-sub">
+          See how EcoGrow's quality-focused systems translate into real practice across our full production and supply infrastructure.
+        </p>
+        <div class="cta-actions">
+          <a href="quality.html" class="btn-primary">View Quality Page</a>
+          <a href="contact.html" class="btn-ghost">Contact EcoGrow</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="nav-logo footer-brand" style="margin-bottom:0">
+            <img
+              src="/Images/ecogrow-farms-icon-logo.svg"
+              alt="EcoGrow Farms Limited logo"
+              class="nav-logo-img"
+            />
+            <div class="nav-logo-text">
+              <span>EcoGrow Farms</span>
+              <span>Nigeria Limited</span>
+            </div>
+          </a>
+          <p class="footer-tagline">Technology-powered farming for safer, smarter<br>food supply in Nigeria. Building the agribusiness<br>infrastructure the market demands.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="produce.html">Produce</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="quality.html">Quality</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="distribution.html">Distribution</a></li>
+            <li><a href="procurement.html">Procurement</a></li>
+            <li><a href="compliance.html">Compliance Statement</a></li>
+            <li><a href="index.html#partnerships">Partnerships</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Focus Areas</div>
+          <ul class="footer-links">
+            <li><a href="technology.html">Smart Farming</a></li>
+            <li><a href="produce.html">Crop &amp; Livestock Production</a></li>
+            <li><a href="quality.html">Traceability-Ready Supply</a></li>
+            <li><a href="procurement.html">Contract Supply Services</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 EcoGrow Farms Limited. Registration No: 8778030. All rights reserved.</p>
+        <p class="footer-note">CAC Registration No: 8778030 &nbsp;·&nbsp; Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Mobile menu
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const panel  = document.querySelector('.mobile-nav-panel');
+    if (toggle && panel) {
+      const close = () => {
+        toggle.classList.remove('is-open'); panel.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true');
+        document.body.classList.remove('mobile-nav-open');
+      };
+      const open = () => {
+        toggle.classList.add('is-open'); panel.classList.add('is-open');
+        toggle.setAttribute('aria-expanded','true'); panel.setAttribute('aria-hidden','false');
+        document.body.classList.add('mobile-nav-open');
+      };
+      toggle.addEventListener('click', () => toggle.classList.contains('is-open') ? close() : open());
+      panel.querySelectorAll('a').forEach(l => l.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 900) close(); });
+    }
+  </script>
+</body>
+</html>

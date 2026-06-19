@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — EcoGrow Farms</title>
+  <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --soil:       #16100a;
+      --earth:      #1f1610;
+      --bark:       #2c1f12;
+      --clay:       #3d2c1a;
+      --copper:     #b87333;
+      --copper-lt:  #d4904a;
+      --copper-dim: rgba(184,115,51,0.14);
+      --steel:      #4a7fa5;
+      --steel-lt:   #6b9dc2;
+      --steel-dim:  rgba(74,127,165,0.12);
+      --cream:      #f0e8d8;
+      --dust:       #9a8878;
+      --dust-lt:    #b5a494;
+      --white:      #f7f2ea;
+      --green-ok:   #7ecba1;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Space Grotesk', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    body { font-family: var(--font-body); background: var(--soil); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: background 0.4s, border-color 0.4s; border-bottom: 1px solid transparent; }
+    nav.stuck { background: rgba(22,16,10,0.95); backdrop-filter: blur(14px); border-color: rgba(255,255,255,0.06); }
+    .nav-brand { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+    .nav-brand-img { width: 38px; height: 38px; object-fit: contain; }
+    .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-brand-wordmark strong { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: 0.01em; }
+    .nav-brand-wordmark span { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); font-weight: 500; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--dust-lt); text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; color: var(--soil); background: var(--copper); padding: 0.55rem 1.4rem; border-radius: 2px; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--copper-lt); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--dust-lt); }
+    .drawer { display: none; position: fixed; inset: 0; background: var(--earth); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    .drawer.open { display: flex; }
+    .drawer a { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--white); text-decoration: none; transition: color 0.2s; }
+    .drawer a:hover { color: var(--copper); }
+    .drawer-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; cursor: pointer; font-size: 1.6rem; color: var(--dust); }
+
+    /* ── PAGE HERO ── */
+    #page-hero { padding: 10rem 4rem 6rem; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end; }
+    .page-kicker { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .page-kicker::before { content: '\2014'; opacity: 0.5; }
+    .page-h1 { font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; color: var(--white); }
+    .page-h1 em { font-style: italic; color: var(--copper-lt); display: block; }
+    .page-hero-right p { font-size: 1.02rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; margin-bottom: 1.2rem; }
+    .hero-rule { height: 1px; background: rgba(255,255,255,0.06); }
+
+    /* Product nav tabs */
+    .product-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.07); max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+    .product-tab { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); padding: 1.1rem 1.8rem; text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
+    .product-tab:hover { color: var(--cream); }
+    .product-tab.active { color: var(--copper-lt); border-bottom-color: var(--copper); }
+
+    /* ── SHARED ── */
+    .s-label { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem; }
+    .s-label::before { content: '\2014'; opacity: 0.5; }
+    .s-h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1rem; }
+    .s-h2 em { font-style: italic; color: var(--copper-lt); }
+    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+
+    .status-badge { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.22rem 0.65rem; border-radius: 2px; display: inline-block; margin-bottom: 1.2rem; }
+    .status-badge.active { background: rgba(126,203,161,0.1); color: var(--green-ok); }
+    .status-badge.beta   { background: var(--copper-dim); color: var(--copper-lt); }
+    .status-badge.soon   { background: rgba(155,155,155,0.1); color: var(--dust-lt); }
+
+    /* ── PRODUCT SECTIONS ── */
+    .product-section { padding: 8rem 0; border-top: 1px solid rgba(255,255,255,0.05); }
+    .product-section:nth-child(odd) { background: var(--soil); }
+    .product-section:nth-child(even) { background: var(--earth); }
+
+    .product-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 6rem; align-items: start; }
+    .product-layout.flip { grid-template-columns: 1.3fr 1fr; }
+    .product-layout.flip .product-visual { order: -1; }
+
+    .product-copy {}
+    .product-tagline { font-size: 1rem; line-height: 1.7; color: var(--dust-lt); font-weight: 300; margin-bottom: 2rem; max-width: 420px; }
+    .product-body p { font-size: 0.88rem; line-height: 1.9; color: var(--dust-lt); font-weight: 300; margin-bottom: 1rem; }
+
+    .product-cta { margin-top: 2.2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-copper { display: inline-block; text-align: center; background: var(--copper); color: var(--soil); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 2px; transition: background 0.2s; }
+    .btn-copper:hover { background: var(--copper-lt); }
+    .btn-ghost { display: inline-block; text-align: center; border: 1px solid rgba(240,232,216,0.18); color: var(--dust-lt); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; padding: 0.78rem 1.6rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: rgba(240,232,216,0.45); color: var(--white); }
+
+    /* Feature panels */
+    .product-visual { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+
+    .feature-card { background: var(--soil); padding: 1.6rem 1.8rem; transition: background 0.25s; }
+    .product-section:nth-child(even) .feature-card { background: var(--earth); }
+    .feature-card:hover { background: var(--bark); }
+    .feature-card-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.6rem; }
+    .feature-icon { width: 34px; height: 34px; flex-shrink: 0; border-radius: 3px; background: var(--copper-dim); display: grid; place-items: center; font-size: 0.95rem; }
+    .feature-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--white); }
+    .feature-desc { font-size: 0.78rem; line-height: 1.7; color: var(--dust); padding-left: calc(34px + 0.9rem); }
+
+    /* Data readout blocks */
+    .readout-block { background: var(--bark); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
+    .readout-head { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.06); background: var(--clay); }
+    .readout-name { font-family: var(--font-mono); font-size: 0.63rem; letter-spacing: 0.1em; color: var(--copper); text-transform: uppercase; }
+    .readout-badge { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; padding: 0.15rem 0.5rem; border-radius: 2px; }
+    .readout-badge.green { background: rgba(126,203,161,0.1); color: var(--green-ok); }
+    .readout-badge.copper { background: var(--copper-dim); color: var(--copper-lt); }
+    .readout-badge.grey { background: rgba(155,155,155,0.1); color: var(--dust-lt); }
+
+    .readout-rows {}
+    .readout-row { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s; }
+    .readout-row:last-child { border-bottom: none; }
+    .readout-row:hover { background: rgba(255,255,255,0.03); }
+    .row-key { font-size: 0.72rem; color: var(--dust); }
+    .row-val { font-family: var(--font-mono); font-size: 0.72rem; color: var(--cream); font-weight: 500; }
+    .row-val.ok { color: var(--green-ok); }
+    .row-val.warn { color: #e8a44a; }
+    .row-val.copper { color: var(--copper-lt); }
+    .row-val.steel { color: var(--steel-lt); }
+
+    .readout-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.06); }
+    .readout-stat { padding: 0.9rem 1rem; border-right: 1px solid rgba(255,255,255,0.06); text-align: center; }
+    .readout-stat:last-child { border-right: none; }
+    .stat-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .stat-val.copper { color: var(--copper-lt); }
+    .stat-val.steel { color: var(--steel-lt); }
+    .stat-label { font-size: 0.62rem; color: var(--dust); margin-top: 0.25rem; line-height: 1.4; }
+
+    /* Audience tags */
+    .audience-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
+    .audience-chip { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.03em; border: 1px solid rgba(240,232,216,0.13); color: var(--dust-lt); padding: 0.28rem 0.75rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+    .audience-chip:hover { border-color: var(--copper); color: var(--copper-lt); }
+
+    /* ── COMPARISON TABLE ── */
+    #comparison { padding: 8rem 0; background: var(--bark); border-top: 1px solid rgba(255,255,255,0.06); }
+    .compare-head { margin-bottom: 4rem; }
+    .compare-head p { font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; margin-top: 0.6rem; max-width: 540px; }
+    .compare-table { width: 100%; border-collapse: collapse; border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
+    .compare-table th { background: var(--clay); padding: 1rem 1.4rem; text-align: left; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--copper); border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 500; }
+    .compare-table th:first-child { color: var(--dust); }
+    .compare-table td { padding: 0.9rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; color: var(--dust-lt); vertical-align: middle; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(255,255,255,0.025); }
+    .compare-table td:first-child { font-weight: 500; color: var(--cream); }
+    .check { color: var(--green-ok); font-size: 0.9rem; }
+    .dash { color: rgba(255,255,255,0.15); font-size: 0.9rem; }
+    .soon-txt { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--dust); }
+
+    /* ── INTEGRATION ── */
+    #integration { padding: 8rem 0; background: var(--soil); border-top: 1px solid rgba(255,255,255,0.05); }
+    .integration-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .integration-copy p { font-size: 0.9rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; margin-bottom: 1rem; }
+    .integration-copy p:last-of-type { margin-bottom: 0; }
+
+    .integration-diagram { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .int-row { display: flex; align-items: center; gap: 1.2rem; background: var(--soil); padding: 1.3rem 1.6rem; transition: background 0.25s; }
+    .int-row:hover { background: var(--bark); }
+    .int-product { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--copper); min-width: 110px; }
+    .int-arrow { color: rgba(255,255,255,0.15); font-size: 0.8rem; flex-shrink: 0; }
+    .int-feeds { font-size: 0.78rem; color: var(--dust-lt); line-height: 1.5; }
+    .int-feeds strong { color: var(--cream); font-weight: 500; }
+
+    /* ── CTA ── */
+    #page-cta { padding: 8rem 0; background: var(--earth); border-top: 1px solid rgba(255,255,255,0.05); }
+    .page-cta-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
+    .cta-h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; color: var(--white); margin-bottom: 0.8rem; }
+    .cta-h2 em { font-style: italic; color: var(--copper-lt); }
+    .cta-sub { font-size: 0.9rem; line-height: 1.82; color: var(--dust-lt); max-width: 480px; font-weight: 300; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; min-width: 200px; }
+    .btn-copper-full { display: block; text-align: center; background: var(--copper); color: var(--soil); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; padding: 0.9rem 2rem; border-radius: 2px; transition: background 0.2s; }
+    .btn-copper-full:hover { background: var(--copper-lt); }
+    .btn-outline-cta { display: block; text-align: center; border: 1px solid rgba(240,232,216,0.2); color: var(--dust-lt); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; padding: 0.88rem 2rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+    .btn-outline-cta:hover { border-color: rgba(240,232,216,0.5); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--soil); border-top: 1px solid rgba(255,255,255,0.05); padding: 4.5rem 0 2rem; }
+    .footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.6rem; }
+    .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
+    .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
+    .footer-brand-wrap strong { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white); }
+    .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
+    .footer-col-head { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .footer-copy { font-size: 0.72rem; color: var(--dust); }
+    .footer-contact { font-family: var(--font-mono); font-size: 0.68rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
+    .footer-contact:hover { color: var(--copper-lt); }
+
+    /* ── SCROLL REVEAL ── */
+    .r { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .r.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      #page-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 8rem 2.5rem 4rem; }
+      .product-layout, .product-layout.flip { grid-template-columns: 1fr; gap: 3rem; }
+      .product-layout.flip .product-visual { order: 0; }
+      .integration-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .page-cta-wrap { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: row; min-width: 0; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .product-tabs { overflow-x: auto; padding: 0 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1.1rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #page-hero { padding: 7rem 1.5rem 3rem; }
+      .section-wrap { padding: 0 1.5rem; }
+      .product-tabs { padding: 0 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; }
+      .page-cta-wrap { padding: 0 1.5rem; }
+      .product-section, #comparison, #integration, #page-cta { padding: 5rem 0; }
+      .cta-buttons { flex-direction: column; }
+      .compare-table { font-size: 0.72rem; }
+      .compare-table th, .compare-table td { padding: 0.75rem 0.9rem; }
+    }
+    @media (max-width: 480px) {
+      .readout-stats { grid-template-columns: 1fr; }
+      .readout-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .readout-stat:last-child { border-bottom: none; }
+      .product-cta { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="/" class="nav-brand">
+    <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms" class="nav-brand-img">
+    <div class="nav-brand-wordmark">
+      <strong>EcoGrow Farms</strong>
+      <span>Limited</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/farm">The Farm</a></li>
+    <li><a href="/products" class="active">Products</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/insights">Insights</a></li>
+  </ul>
+  <a href="/contact" class="nav-cta">Get in touch</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="drawer" id="drawer">
+  <button class="drawer-close" id="drawer-close">&#x2715;</button>
+  <a href="/farm">The Farm</a>
+  <a href="/products">Products</a>
+  <a href="/about">About</a>
+  <a href="/insights">Insights</a>
+  <a href="/contact">Get in touch</a>
+</div>
+
+
+<!-- ═══ PAGE HERO ═══ -->
+<div id="page-hero">
+  <div class="r">
+    <div class="page-kicker">Intelligence Products</div>
+    <h1 class="page-h1">Software born<br><em>from the field.</em></h1>
+  </div>
+  <div class="r d1">
+    <p>Every product we build started as a problem on our own farm. We don&#8217;t theorise about African agriculture &#8212; we operate in it. The tools we sell are the tools we depend on to make our own harvest decisions.</p>
+    <p>Four products. One integrated pipeline. Built for a continent that the rest of precision agriculture forgot to design for.</p>
+  </div>
+</div>
+<div class="hero-rule"></div>
+
+<!-- Product anchor tabs -->
+<div class="product-tabs">
+  <a href="#cropsentinel" class="product-tab active">CropSentinel</a>
+  <a href="#soilpulse" class="product-tab">SoilPulse</a>
+  <a href="#harvestiq" class="product-tab">HarvestIQ</a>
+  <a href="#irrigateai" class="product-tab">IrrigateAI</a>
+</div>
+
+
+<!-- ═══ CROPSENTINEL ═══ -->
+<section class="product-section" id="cropsentinel">
+  <div class="section-wrap">
+    <div class="product-layout">
+      <div class="product-copy r">
+        <span class="status-badge active">Active &#8212; Kano Pilot</span>
+        <div class="s-label">CropSentinel</div>
+        <h2 class="s-h2">Crop failure predicted<br><em>6&#8211;8 weeks</em><br>before it happens.</h2>
+        <p class="product-tagline">AI-powered early warning for farm-level yield failure &#8212; delivered to farmers, agencies, and insurers before the season is lost.</p>
+        <div class="product-body">
+          <p>CropSentinel fuses daily Sentinel-2 and MODIS satellite imagery with readings from our IoT soil sensor network. An LSTM ensemble model processes the combined stream against historical African crop stress patterns to output farm-level yield loss probabilities &#8212; with a confidence score &#8212; up to two months ahead of harvest.</p>
+          <p>Farmers receive an SMS alert in their local language. District risk maps update in real time for humanitarian agencies. Agri-insurers receive a parametric trigger via API &#8212; no loss adjuster in the field required. Everyone gets the signal they need in the channel they actually use.</p>
+        </div>
+        <div class="audience-chips">
+          <span class="audience-chip">Humanitarian agencies</span>
+          <span class="audience-chip">Government ministries</span>
+          <span class="audience-chip">Agri-insurers</span>
+          <span class="audience-chip">Farmer cooperatives</span>
+          <span class="audience-chip">Extension services</span>
+        </div>
+        <div class="product-cta">
+          <a href="/contact" class="btn-copper">Request a demo</a>
+          <a href="/contact" class="btn-ghost">API documentation</a>
+        </div>
+      </div>
+
+      <div class="product-visual r d2">
+        <div class="readout-block">
+          <div class="readout-head">
+            <span class="readout-name">CropSentinel &middot; Kano State Scan</span>
+            <span class="readout-badge green">ACTIVE</span>
+          </div>
+          <div class="readout-rows">
+            <div class="readout-row"><span class="row-key">Satellite source</span><span class="row-val">Sentinel-2 &middot; MODIS</span></div>
+            <div class="readout-row"><span class="row-key">Scan frequency</span><span class="row-val steel">Daily pass</span></div>
+            <div class="readout-row"><span class="row-key">NDVI anomaly</span><span class="row-val warn">Detected &middot; Zone 4-C, 4-D</span></div>
+            <div class="readout-row"><span class="row-key">Yield loss probability</span><span class="row-val warn">67% &middot; Zone 4-C</span></div>
+            <div class="readout-row"><span class="row-key">Model confidence</span><span class="row-val ok">0.91 LSTM ensemble</span></div>
+            <div class="readout-row"><span class="row-key">Farmers alerted (SMS)</span><span class="row-val ok">2,841 sent</span></div>
+            <div class="readout-row"><span class="row-key">Insurance trigger</span><span class="row-val ok">Filed &middot; AgroSafe API</span></div>
+            <div class="readout-row"><span class="row-key">Agency dashboard</span><span class="row-val ok">Updated</span></div>
+          </div>
+          <div class="readout-stats">
+            <div class="readout-stat"><div class="stat-val copper">6&#8211;8 wk</div><div class="stat-label">advance warning</div></div>
+            <div class="readout-stat"><div class="stat-val">847</div><div class="stat-label">polygons monitored</div></div>
+            <div class="readout-stat"><div class="stat-val copper">0.91</div><div class="stat-label">model confidence</div></div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#127859;</div><div class="feature-title">Farm-Level Yield Probability</div></div>
+          <p class="feature-desc">Per-farm, per-season risk scores rather than district averages &#8212; granular enough for parametric insurance triggers and precision aid pre-positioning.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128241;</div><div class="feature-title">SMS Alerts in Local Language</div></div>
+          <p class="feature-desc">Smallholders receive plain-language warnings via SMS &#8212; no smartphone, no internet connection, no app required.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128203;</div><div class="feature-title">Parametric Insurance API</div></div>
+          <p class="feature-desc">Machine-readable risk triggers delivered to insurer APIs &#8212; enabling automatic policy activation without field loss adjusters.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SOILPULSE ═══ -->
+<section class="product-section" id="soilpulse">
+  <div class="section-wrap">
+    <div class="product-layout flip">
+      <div class="product-copy r">
+        <span class="status-badge beta">Beta &#8212; Field Trials</span>
+        <div class="s-label">SoilPulse</div>
+        <h2 class="s-h2">Continuous soil<br>intelligence for<br><em>precision inputs.</em></h2>
+        <p class="product-tagline">Solar-powered IoT probes that measure NPK, pH, moisture, and compaction &#8212; feeding a prescription engine that tells extension officers exactly what each field needs.</p>
+        <div class="product-body">
+          <p>SoilPulse deploys a network of low-power soil probes that transmit continuous readings via LoRaWAN &#8212; no cellular coverage required. Each node measures nitrogen, phosphorus, potassium, pH, volumetric water content, and bulk density at multiple depths.</p>
+          <p>A prescription engine ingests the sensor data alongside historical yield records and agronomic rules to generate field-specific fertiliser recommendations &#8212; by crop, by season, by block. Extension officers see an actionable recommendation, not a raw number. Agri-dealers can plug in to understand demand before the season opens.</p>
+        </div>
+        <div class="audience-chips">
+          <span class="audience-chip">Extension services</span>
+          <span class="audience-chip">Agri-dealers &amp; input suppliers</span>
+          <span class="audience-chip">Cooperatives</span>
+          <span class="audience-chip">Development programmes</span>
+        </div>
+        <div class="product-cta">
+          <a href="/contact" class="btn-copper">Join beta programme</a>
+          <a href="/contact" class="btn-ghost">Sensor specifications</a>
+        </div>
+      </div>
+
+      <div class="product-visual r d2">
+        <div class="readout-block">
+          <div class="readout-head">
+            <span class="readout-name">SoilPulse &middot; Node EGF-KN-007</span>
+            <span class="readout-badge copper">BETA</span>
+          </div>
+          <div class="readout-rows">
+            <div class="readout-row"><span class="row-key">Location</span><span class="row-val">Block C3 &middot; Kano Site</span></div>
+            <div class="readout-row"><span class="row-key">Depth profile</span><span class="row-val steel">15 cm &middot; 30 cm &middot; 60 cm</span></div>
+            <div class="readout-row"><span class="row-key">Nitrogen (N)</span><span class="row-val warn">Low &middot; 18 mg/kg</span></div>
+            <div class="readout-row"><span class="row-key">Phosphorus (P)</span><span class="row-val ok">Adequate &middot; 24 mg/kg</span></div>
+            <div class="readout-row"><span class="row-key">Potassium (K)</span><span class="row-val ok">Adequate &middot; 142 mg/kg</span></div>
+            <div class="readout-row"><span class="row-key">pH</span><span class="row-val ok">6.4 &middot; Optimal</span></div>
+            <div class="readout-row"><span class="row-key">Moisture (15 cm)</span><span class="row-val warn">22% VWC &middot; Low</span></div>
+            <div class="readout-row"><span class="row-key">Prescription</span><span class="row-val copper">Apply 40 kg/ha urea</span></div>
+          </div>
+          <div class="readout-stats">
+            <div class="readout-stat"><div class="stat-val">41</div><div class="stat-label">nodes active</div></div>
+            <div class="readout-stat"><div class="stat-val copper">3</div><div class="stat-label">depth readings</div></div>
+            <div class="readout-stat"><div class="stat-val steel">15 min</div><div class="stat-label">update interval</div></div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128268;</div><div class="feature-title">LoRaWAN Connectivity</div></div>
+          <p class="feature-desc">Transmits data over 10+ km in open terrain with a single charge lasting 6&#8211;12 months &#8212; designed for off-grid farms with no GSM coverage.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128200;</div><div class="feature-title">Fertiliser Prescription Engine</div></div>
+          <p class="feature-desc">Converts raw NPK readings into field-specific recommendations that extension officers can act on immediately &#8212; no agronomist interpretation required.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128101;</div><div class="feature-title">Extension &amp; Dealer Portal</div></div>
+          <p class="feature-desc">A shared web dashboard gives extension officers, cooperative managers, and agri-dealers a unified view of soil health across their cluster of farms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ HARVESTIQ ═══ -->
+<section class="product-section" id="harvestiq">
+  <div class="section-wrap">
+    <div class="product-layout">
+      <div class="product-copy r">
+        <span class="status-badge beta">Beta &#8212; Cooperative Trials</span>
+        <div class="s-label">HarvestIQ</div>
+        <h2 class="s-h2">Market intelligence<br>that tells you<br><em>when to sell.</em></h2>
+        <p class="product-tagline">Real-time price aggregation from commodity markets, wholesale hubs, and rural networks &#8212; giving cooperatives and offtakers a data edge on timing and destination.</p>
+        <div class="product-body">
+          <p>In Nigerian agriculture, the difference between a good season and a bad one is often not the harvest &#8212; it&#8217;s the sell decision. Prices at the nearest market and the regional hub can differ by 30&#8211;45%. Smallholders sell urgently because they can&#8217;t afford to wait. HarvestIQ gives them a reason &#8212; and a window &#8212; to hold.</p>
+          <p>The platform aggregates price signals from commodity exchanges, wholesale market reporters, and a field-agent network. A cooperative manager sees a real-time price spread map and a sell-timing recommendation. SMS price alerts go directly to farmers. Offtakers and processors connect to a price feed API to plan procurement before they send trucks.</p>
+        </div>
+        <div class="audience-chips">
+          <span class="audience-chip">Farmer cooperatives</span>
+          <span class="audience-chip">Commodity offtakers</span>
+          <span class="audience-chip">Processors &amp; aggregators</span>
+          <span class="audience-chip">NGO market programmes</span>
+        </div>
+        <div class="product-cta">
+          <a href="/contact" class="btn-copper">Join beta programme</a>
+          <a href="/contact" class="btn-ghost">Price feed API</a>
+        </div>
+      </div>
+
+      <div class="product-visual r d2">
+        <div class="readout-block">
+          <div class="readout-head">
+            <span class="readout-name">HarvestIQ &middot; Maize Price Scan</span>
+            <span class="readout-badge copper">BETA</span>
+          </div>
+          <div class="readout-rows">
+            <div class="readout-row"><span class="row-key">Commodity</span><span class="row-val">White Maize &middot; Grade A</span></div>
+            <div class="readout-row"><span class="row-key">Kano Dawanau (local)</span><span class="row-val warn">&#8358;185,000 / MT</span></div>
+            <div class="readout-row"><span class="row-key">Lagos Mile 12</span><span class="row-val ok">&#8358;224,000 / MT</span></div>
+            <div class="readout-row"><span class="row-key">Abuja wholesale</span><span class="row-val ok">&#8358;218,000 / MT</span></div>
+            <div class="readout-row"><span class="row-key">Price spread</span><span class="row-val copper">&#8358;39,000 / MT</span></div>
+            <div class="readout-row"><span class="row-key">Trend (7-day)</span><span class="row-val ok">&#8593; Rising &middot; +6.2%</span></div>
+            <div class="readout-row"><span class="row-key">Recommendation</span><span class="row-val copper">Hold 10&#8211;14 days &rarr; Lagos</span></div>
+            <div class="readout-row"><span class="row-key">SMS alerts sent</span><span class="row-val ok">1,204 farmers</span></div>
+          </div>
+          <div class="readout-stats">
+            <div class="readout-stat"><div class="stat-val copper">39k</div><div class="stat-label">&#8358; / MT price spread</div></div>
+            <div class="readout-stat"><div class="stat-val">12</div><div class="stat-label">markets tracked</div></div>
+            <div class="readout-stat"><div class="stat-val steel">1 hr</div><div class="stat-label">price update cycle</div></div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128202;</div><div class="feature-title">Multi-Market Price Aggregation</div></div>
+          <p class="feature-desc">Tracks real-time prices across commodity exchanges, wholesale markets, and rural broker networks &#8212; updated hourly from a field-agent reporting network.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#9201;</div><div class="feature-title">Sell-Timing Recommendations</div></div>
+          <p class="feature-desc">Rather than raw prices, cooperative managers receive a plain-language recommendation: hold, sell now, or target a specific market &#8212; with the spread math shown.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128241;</div><div class="feature-title">SMS Price Alerts for Farmers</div></div>
+          <p class="feature-desc">Weekly price digests and threshold alerts go directly to smallholder phones &#8212; no app, no data connection, works on any handset in any coverage area.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ IRRIGATEAI ═══ -->
+<section class="product-section" id="irrigateai">
+  <div class="section-wrap">
+    <div class="product-layout flip">
+      <div class="product-copy r">
+        <span class="status-badge soon">Coming Soon</span>
+        <div class="s-label">IrrigateAI</div>
+        <h2 class="s-h2">AI irrigation scheduling<br>that cuts water waste<br><em>by half.</em></h2>
+        <p class="product-tagline">Daily irrigation schedules generated by AI &#8212; combining satellite evapotranspiration, weather forecasts, and SoilPulse soil moisture readings.</p>
+        <div class="product-body">
+          <p>Most irrigation in Nigeria runs on calendar schedules or farmer intuition &#8212; leading to chronic over-watering in wet spells and under-watering during dry ones. IrrigateAI calculates actual crop water demand daily by combining Landsat-derived evapotranspiration, 7-day weather forecasts, and SoilPulse volumetric moisture readings.</p>
+          <p>The output is a simple daily schedule: how much water, in which zone, via which valve. Drip and centre-pivot controllers receive the schedule via API &#8212; no manual intervention. For large irrigation scheme operators, a water allocation dashboard shows demand forecasts across the entire command area, enabling equitable and efficient distribution.</p>
+        </div>
+        <div class="audience-chips">
+          <span class="audience-chip">Irrigation scheme operators</span>
+          <span class="audience-chip">Commercial farms</span>
+          <span class="audience-chip">River basin authorities</span>
+          <span class="audience-chip">Water utilities</span>
+        </div>
+        <div class="product-cta">
+          <a href="/contact" class="btn-copper">Join the waitlist</a>
+          <a href="/contact" class="btn-ghost">Pilot enquiries</a>
+        </div>
+      </div>
+
+      <div class="product-visual r d2">
+        <div class="readout-block">
+          <div class="readout-head">
+            <span class="readout-name">IrrigateAI &middot; Schedule Preview</span>
+            <span class="readout-badge grey">COMING SOON</span>
+          </div>
+          <div class="readout-rows">
+            <div class="readout-row"><span class="row-key">Site</span><span class="row-val">EGF-KN-01 &middot; Zone B</span></div>
+            <div class="readout-row"><span class="row-key">Crop</span><span class="row-val">Tomato &middot; Flowering stage</span></div>
+            <div class="readout-row"><span class="row-key">ET&#8320; today</span><span class="row-val steel">5.2 mm/day</span></div>
+            <div class="readout-row"><span class="row-key">Soil moisture (15cm)</span><span class="row-val warn">22% VWC &middot; Below threshold</span></div>
+            <div class="readout-row"><span class="row-key">Rainfall forecast (48h)</span><span class="row-val">0 mm</span></div>
+            <div class="readout-row"><span class="row-key">Irrigation required</span><span class="row-val copper">18 mm &middot; Today</span></div>
+            <div class="readout-row"><span class="row-key">Run time</span><span class="row-val copper">3.5 hrs from 05:30</span></div>
+            <div class="readout-row"><span class="row-key">Controller</span><span class="row-val ok">API command sent</span></div>
+          </div>
+          <div class="readout-stats">
+            <div class="readout-stat"><div class="stat-val copper">50%</div><div class="stat-label">water reduction target</div></div>
+            <div class="readout-stat"><div class="stat-val">Daily</div><div class="stat-label">schedule generation</div></div>
+            <div class="readout-stat"><div class="stat-val steel">API</div><div class="stat-label">controller integration</div></div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#127777;</div><div class="feature-title">Evapotranspiration Data Fusion</div></div>
+          <p class="feature-desc">Combines Landsat satellite ET products with 7-day weather forecasts to calculate actual crop water demand &#8212; not a generic lookup table.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#9881;</div><div class="feature-title">Drip &amp; Centre-Pivot API</div></div>
+          <p class="feature-desc">Delivers schedules directly to drip controller APIs and centre-pivot automation systems &#8212; no manual programming, no agronomist visit required.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-head"><div class="feature-icon">&#128203;</div><div class="feature-title">Water Use Compliance Reporting</div></div>
+          <p class="feature-desc">Generates volume-by-volume water use logs for river basin authority reporting and climate-smart agriculture compliance documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ COMPARISON TABLE ═══ -->
+<section id="comparison">
+  <div class="section-wrap">
+    <div class="compare-head r">
+      <div class="s-label">At a Glance</div>
+      <h2 class="s-h2">Four products.<br><em>One pipeline.</em></h2>
+      <p>Each product works independently &#8212; but they are designed to share data with each other. SoilPulse feeds CropSentinel and IrrigateAI. HarvestIQ closes the loop with the market.</p>
+    </div>
+    <table class="compare-table r d1">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>CropSentinel</th>
+          <th>SoilPulse</th>
+          <th>HarvestIQ</th>
+          <th>IrrigateAI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Satellite data integration</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>IoT sensor network</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>AI / ML model</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td></tr>
+        <tr><td>SMS farmer alerts</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+        <tr><td>Web dashboard</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="soon-txt">Soon</span></td></tr>
+        <tr><td>API / data output</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="soon-txt">Soon</span></td></tr>
+        <tr><td>Insurance trigger</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td></tr>
+        <tr><td>Works offline / no GSM</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td><td><span class="soon-txt">Soon</span></td></tr>
+        <tr><td>SON / NAQS compliance output</td><td><span class="check">&#10003;</span></td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td><td><span class="soon-txt">Soon</span></td></tr>
+        <tr><td>Current status</td><td>Active pilot</td><td>Beta</td><td>Beta</td><td>Coming soon</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ═══ INTEGRATION ═══ -->
+<section id="integration">
+  <div class="section-wrap">
+    <div class="integration-layout">
+      <div class="integration-copy r">
+        <div class="s-label">How They Connect</div>
+        <h2 class="s-h2">Each product is<br>standalone. Together<br><em>they share data.</em></h2>
+        <p>You can deploy any single product in isolation. But the four tools are designed around a shared data model &#8212; SoilPulse sensor readings flow into CropSentinel&#8217;s risk model and IrrigateAI&#8217;s scheduling engine. CropSentinel yield forecasts inform HarvestIQ&#8217;s timing recommendations.</p>
+        <p>The more products you run, the more each one knows. A full deployment means one integrated pipeline: sense the soil, predict the season, schedule the water, time the sale.</p>
+        <p>All products share a single API key and data namespace. Integration with your existing ERP, MIS, or government data system is supported via our REST API and webhook infrastructure.</p>
+      </div>
+      <div class="integration-diagram r d2">
+        <div class="int-row">
+          <span class="int-product">SoilPulse</span>
+          <span class="int-arrow">&rarr;</span>
+          <span class="int-feeds">Soil moisture data feeds <strong>IrrigateAI</strong> irrigation schedules and <strong>CropSentinel</strong> stress detection</span>
+        </div>
+        <div class="int-row">
+          <span class="int-product">CropSentinel</span>
+          <span class="int-arrow">&rarr;</span>
+          <span class="int-feeds">Yield probability forecasts feed <strong>HarvestIQ</strong> sell-timing logic and <strong>insurance API</strong> triggers</span>
+        </div>
+        <div class="int-row">
+          <span class="int-product">IrrigateAI</span>
+          <span class="int-arrow">&rarr;</span>
+          <span class="int-feeds">Irrigation event log feeds <strong>CropSentinel</strong> field-stress context and <strong>compliance</strong> reporting</span>
+        </div>
+        <div class="int-row">
+          <span class="int-product">HarvestIQ</span>
+          <span class="int-arrow">&rarr;</span>
+          <span class="int-feeds">Price signals feed <strong>cooperative portals</strong> and <strong>farmer SMS</strong> &#8212; closing the loop from field to market</span>
+        </div>
+        <div class="int-row">
+          <span class="int-product">All products</span>
+          <span class="int-arrow">&rarr;</span>
+          <span class="int-feeds">Share one <strong>REST API</strong> and <strong>data namespace</strong> &#8212; one integration, one key, one audit trail</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CTA ═══ -->
+<section id="page-cta">
+  <div class="page-cta-wrap">
+    <div>
+      <h2 class="cta-h2 r">Built for the field.<br><em>Ready for</em><br>your organisation.</h2>
+      <p class="cta-sub r d1">Whether you need one product or the full pipeline &#8212; we start with a conversation. Tell us the problem. We&#8217;ll tell you what we can do about it.</p>
+    </div>
+    <div class="cta-buttons r d2">
+      <a href="/contact" class="btn-copper-full">Start a conversation</a>
+      <a href="/farm" class="btn-outline-cta">See the farm</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-brand-wrap">
+          <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms">
+          <strong>EcoGrow Farms Limited</strong>
+        </a>
+        <p class="footer-tagline">Nigerian agribusiness with its own intelligence layer. Growing food. Building software. Feeding better decisions.</p>
+      </div>
+      <div>
+        <div class="footer-col-head">Products</div>
+        <ul class="footer-links">
+          <li><a href="/products#cropsentinel">CropSentinel</a></li>
+          <li><a href="/products#soilpulse">SoilPulse</a></li>
+          <li><a href="/products#harvestiq">HarvestIQ</a></li>
+          <li><a href="/products#irrigateai">IrrigateAI</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Company</div>
+        <ul class="footer-links">
+          <li><a href="/farm">The Farm</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/insights">Insights</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 EcoGrow Farms Limited. All rights reserved.</p>
+      <a href="mailto:info@ecogrowfarms.com" class="footer-contact">info@ecogrowfarms.com</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  const drawerClose = document.getElementById('drawer-close');
+  hamburger.addEventListener('click', () => drawer.classList.add('open'));
+  drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+  // Update active product tab on scroll
+  const tabs = document.querySelectorAll('.product-tab');
+  const sections = ['cropsentinel','soilpulse','harvestiq','irrigateai'].map(id => document.getElementById(id));
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => { if (s && window.scrollY >= s.offsetTop - 200) current = i; });
+    tabs.forEach((t, i) => t.classList.toggle('active', i === current));
+  });
+
+  const els = document.querySelectorAll('.r');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

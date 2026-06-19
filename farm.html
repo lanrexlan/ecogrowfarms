@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Farm — EcoGrow Farms</title>
+  <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --soil:       #16100a;
+      --earth:      #1f1610;
+      --bark:       #2c1f12;
+      --clay:       #3d2c1a;
+      --copper:     #b87333;
+      --copper-lt:  #d4904a;
+      --copper-dim: rgba(184,115,51,0.14);
+      --steel:      #4a7fa5;
+      --steel-lt:   #6b9dc2;
+      --steel-dim:  rgba(74,127,165,0.12);
+      --cream:      #f0e8d8;
+      --parchment:  #e8dcc8;
+      --dust:       #9a8878;
+      --dust-lt:    #b5a494;
+      --white:      #f7f2ea;
+      --green-ok:   #7ecba1;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Space Grotesk', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--soil);
+      color: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.stuck {
+      background: rgba(22,16,10,0.95);
+      backdrop-filter: blur(14px);
+      border-color: rgba(255,255,255,0.06);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.8rem;
+      text-decoration: none;
+    }
+    .nav-brand-img { width: 38px; height: 38px; object-fit: contain; }
+    .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-brand-wordmark strong {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: 0.01em;
+    }
+    .nav-brand-wordmark span {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--copper); font-family: var(--font-body); font-weight: 500;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500; color: var(--dust-lt);
+      text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+      text-decoration: none; color: var(--soil);
+      background: var(--copper); padding: 0.55rem 1.4rem;
+      border-radius: 2px; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--copper-lt); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--dust-lt); }
+    .drawer {
+      display: none; position: fixed; inset: 0;
+      background: var(--earth); z-index: 190;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    .drawer.open { display: flex; }
+    .drawer a {
+      font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+      color: var(--white); text-decoration: none; transition: color 0.2s;
+    }
+    .drawer a:hover { color: var(--copper); }
+    .drawer-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.6rem; color: var(--dust);
+    }
+
+    /* ── PAGE HERO ── */
+    #page-hero {
+      padding: 10rem 4rem 6rem;
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end;
+    }
+    .page-hero-left {}
+    .page-kicker {
+      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--copper);
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem;
+    }
+    .page-kicker::before { content: '—'; opacity: 0.5; }
+    .page-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 900; line-height: 1.0; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 2rem;
+    }
+    .page-h1 em { font-style: italic; color: var(--copper-lt); display: block; }
+    .page-hero-right {}
+    .page-hero-right p {
+      font-size: 1.02rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; margin-bottom: 1.2rem;
+    }
+
+    /* Location bar */
+    .location-bar {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .loc-chip {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      padding: 0.3rem 0.75rem; border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.1); color: var(--dust-lt);
+    }
+    .loc-chip.copper {
+      border-color: rgba(184,115,51,0.35); color: var(--copper-lt);
+    }
+    .loc-chip.green {
+      border-color: rgba(126,203,161,0.3); color: var(--green-ok);
+    }
+
+    /* Hero rule */
+    .hero-rule {
+      height: 1px; background: rgba(255,255,255,0.06);
+      margin: 0;
+    }
+
+    /* ── SHARED SECTION UTILITIES ── */
+    .s-label {
+      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--copper);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+    .s-label::before { content: '—'; opacity: 0.5; }
+    .s-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 1.4rem;
+    }
+    .s-h2 em { font-style: italic; color: var(--copper-lt); }
+    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+
+    /* ── WHAT WE GROW ── */
+    #produce {
+      padding: 7rem 0;
+      background: var(--earth);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .produce-layout {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start;
+    }
+    .produce-copy p {
+      font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+
+    .produce-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .produce-item {
+      background: var(--earth); padding: 1.6rem 1.4rem;
+      transition: background 0.25s;
+    }
+    .produce-item:hover { background: var(--bark); }
+    .produce-item-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .produce-item-name {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.35rem;
+    }
+    .produce-item-note {
+      font-size: 0.74rem; line-height: 1.6; color: var(--dust);
+    }
+    .produce-item-season {
+      margin-top: 0.6rem;
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      color: var(--copper); opacity: 0.75;
+    }
+
+    /* ── OPERATIONS ── */
+    #operations {
+      padding: 7rem 0;
+      background: var(--soil);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .ops-head { max-width: 540px; margin-bottom: 4rem; }
+    .ops-head p {
+      font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; margin-top: 0.6rem;
+    }
+    .ops-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .op-card {
+      background: var(--soil); padding: 2.4rem 2.2rem;
+      transition: background 0.25s; position: relative; overflow: hidden;
+    }
+    .op-card:hover { background: var(--bark); }
+    .op-card::after {
+      content: attr(data-mark);
+      position: absolute; right: 1rem; bottom: -0.5rem;
+      font-family: var(--font-display); font-size: 6rem; font-weight: 900; line-height: 1;
+      color: rgba(255,255,255,0.03); pointer-events: none; user-select: none;
+    }
+    .op-card-top {
+      display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem;
+    }
+    .op-icon {
+      width: 44px; height: 44px; flex-shrink: 0; border-radius: 3px;
+      background: var(--copper-dim);
+      display: grid; place-items: center; font-size: 1.2rem;
+    }
+    .op-title {
+      font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+      color: var(--white); line-height: 1.2;
+    }
+    .op-powered {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      color: var(--steel-lt); background: var(--steel-dim);
+      padding: 0.15rem 0.5rem; border-radius: 2px;
+      display: inline-block; margin-top: 0.4rem;
+    }
+    .op-desc {
+      font-size: 0.83rem; line-height: 1.78; color: var(--dust-lt);
+      margin-bottom: 1.2rem;
+    }
+    .op-bullets {
+      list-style: none; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .op-bullets li {
+      font-size: 0.76rem; color: var(--dust);
+      display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.5;
+    }
+    .op-bullets li::before {
+      content: '';
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--copper); flex-shrink: 0; margin-top: 0.48rem;
+    }
+
+    /* ── LOCATION & LAND ── */
+    #location {
+      padding: 7rem 0;
+      background: var(--earth);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .location-layout {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: start;
+    }
+
+    /* Map placeholder — stylised ASCII-art grid representing the field polygon */
+    .map-block {
+      background: var(--bark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px; overflow: hidden;
+    }
+    .map-block-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--clay);
+    }
+    .map-block-title {
+      font-family: var(--font-mono); font-size: 0.63rem; letter-spacing: 0.1em;
+      color: var(--copper); text-transform: uppercase;
+    }
+    .map-block-badge {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      background: rgba(126,203,161,0.1); color: var(--green-ok);
+      padding: 0.15rem 0.5rem; border-radius: 2px;
+    }
+    .map-visual {
+      padding: 2rem 1.5rem; font-family: var(--font-mono);
+      font-size: 0.62rem; line-height: 1.9; color: var(--dust);
+      letter-spacing: 0.06em;
+    }
+    .map-visual .hi { color: var(--copper-lt); }
+    .map-visual .ok { color: var(--green-ok); }
+    .map-visual .st { color: var(--steel-lt); }
+
+    .map-stats {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .map-stat {
+      padding: 1rem 1.2rem; border-right: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .map-stat:last-child { border-right: none; }
+    .map-stat-val {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .map-stat-val.copper { color: var(--copper-lt); }
+    .map-stat-label {
+      font-size: 0.66rem; color: var(--dust); margin-top: 0.3rem; line-height: 1.4;
+    }
+
+    .location-copy {}
+    .location-copy p {
+      font-size: 0.9rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+    .location-facts {
+      margin-top: 2rem; display: flex; flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .fact-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s;
+    }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-row:hover { background: rgba(255,255,255,0.03); }
+    .fact-key { font-size: 0.75rem; color: var(--dust); }
+    .fact-val {
+      font-family: var(--font-mono); font-size: 0.73rem; color: var(--cream); font-weight: 500;
+    }
+    .fact-val.copper { color: var(--copper-lt); }
+    .fact-val.green  { color: var(--green-ok); }
+
+    /* ── TRACEABILITY ── */
+    #traceability {
+      padding: 7rem 0;
+      background: var(--soil);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .trace-layout {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center;
+    }
+    .trace-copy p {
+      font-size: 0.9rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+    .trace-copy p:last-of-type { margin-bottom: 0; }
+
+    .trace-chain {
+      display: flex; flex-direction: column; gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .trace-step {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      background: var(--soil); padding: 1.5rem 1.8rem;
+      transition: background 0.25s;
+    }
+    .trace-step:hover { background: var(--bark); }
+    .trace-num {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      color: var(--copper); flex-shrink: 0; width: 2rem; padding-top: 0.08rem;
+    }
+    .trace-content {}
+    .trace-title {
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 600;
+      color: var(--white); margin-bottom: 0.3rem;
+    }
+    .trace-desc {
+      font-size: 0.76rem; line-height: 1.7; color: var(--dust);
+    }
+    .trace-tag {
+      margin-top: 0.4rem; display: inline-block;
+      font-family: var(--font-mono); font-size: 0.57rem; letter-spacing: 0.1em;
+      color: var(--green-ok); background: rgba(126,203,161,0.08);
+      padding: 0.12rem 0.45rem; border-radius: 2px;
+    }
+
+    /* ── TEAM ── */
+    #team {
+      padding: 7rem 0;
+      background: var(--earth);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .team-head { max-width: 560px; margin-bottom: 4rem; }
+    .team-head p {
+      font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; margin-top: 0.6rem;
+    }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .team-card {
+      background: var(--earth); padding: 2rem 1.8rem;
+      transition: background 0.25s;
+    }
+    .team-card:hover { background: var(--bark); }
+    .team-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--copper-dim);
+      border: 1px solid rgba(184,115,51,0.25);
+      display: grid; place-items: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .team-name {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.2rem;
+    }
+    .team-role {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em;
+      color: var(--copper); margin-bottom: 0.8rem;
+    }
+    .team-bio {
+      font-size: 0.78rem; line-height: 1.72; color: var(--dust);
+    }
+
+    /* ── WHY WE BUILT OUR OWN ── */
+    #why {
+      padding: 7rem 0;
+      background: var(--bark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative; overflow: hidden;
+    }
+    #why::before {
+      content: '"';
+      position: absolute; left: -1rem; top: -2rem;
+      font-family: var(--font-display); font-size: clamp(12rem, 25vw, 22rem);
+      font-weight: 900; line-height: 1;
+      color: rgba(255,255,255,0.025); pointer-events: none;
+    }
+    .why-wrap {
+      max-width: 800px; margin: 0 auto; padding: 0 4rem;
+      position: relative; z-index: 1; text-align: center;
+    }
+    .why-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+      font-weight: 700; line-height: 1.3; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 2rem;
+    }
+    .why-quote em { font-style: italic; color: var(--copper-lt); }
+    .why-body {
+      font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt);
+      font-weight: 300; max-width: 640px; margin: 0 auto 2.5rem;
+    }
+    .why-attr {
+      font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--copper); text-transform: uppercase;
+    }
+
+    /* ── CTA ── */
+    #page-cta {
+      padding: 7rem 0;
+      background: var(--soil);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .page-cta-wrap {
+      max-width: 1240px; margin: 0 auto; padding: 0 4rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
+    }
+    .cta-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      font-weight: 900; letter-spacing: -0.02em; line-height: 1.1;
+      color: var(--white); margin-bottom: 0.8rem;
+    }
+    .cta-h2 em { font-style: italic; color: var(--copper-lt); }
+    .cta-sub {
+      font-size: 0.9rem; line-height: 1.82; color: var(--dust-lt);
+      max-width: 480px; font-weight: 300;
+    }
+    .cta-buttons {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      flex-shrink: 0; min-width: 200px;
+    }
+    .btn-copper-full {
+      display: block; text-align: center;
+      background: var(--copper); color: var(--soil);
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; padding: 0.9rem 2rem; border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .btn-copper-full:hover { background: var(--copper-lt); }
+    .btn-outline-cta {
+      display: block; text-align: center;
+      border: 1px solid rgba(240,232,216,0.2); color: var(--dust-lt);
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+      text-decoration: none; padding: 0.88rem 2rem; border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline-cta:hover { border-color: rgba(240,232,216,0.5); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--soil);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 4.5rem 0 2rem;
+    }
+    .footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 1.6rem;
+    }
+    .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
+    .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
+    .footer-brand-wrap strong {
+      font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white);
+    }
+    .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
+    .footer-col-head {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a {
+      font-size: 0.8rem; color: var(--dust); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-copy { font-size: 0.72rem; color: var(--dust); }
+    .footer-contact {
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--dust);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-contact:hover { color: var(--copper-lt); }
+
+    /* ── SCROLL REVEAL ── */
+    .r { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .r.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      #page-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 8rem 2.5rem 4rem; }
+      .produce-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .ops-grid { grid-template-columns: 1fr; }
+      .location-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .trace-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .page-cta-wrap { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: row; min-width: 0; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1.1rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #page-hero { padding: 7rem 1.5rem 3rem; }
+      .produce-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .section-wrap { padding: 0 1.5rem; }
+      .why-wrap { padding: 0 1.5rem; }
+      .page-cta-wrap { padding: 0 1.5rem; }
+      #produce, #operations, #location, #traceability, #team, #why, #page-cta { padding: 5rem 0; }
+      .cta-buttons { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .produce-grid { grid-template-columns: 1fr; }
+      .map-stats { grid-template-columns: 1fr; }
+      .map-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .map-stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="/" class="nav-brand">
+    <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms" class="nav-brand-img">
+    <div class="nav-brand-wordmark">
+      <strong>EcoGrow Farms</strong>
+      <span>Limited</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/farm" class="active">The Farm</a></li>
+    <li><a href="/products">Products</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/insights">Insights</a></li>
+  </ul>
+  <a href="/contact" class="nav-cta">Get in touch</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="drawer" id="drawer">
+  <button class="drawer-close" id="drawer-close">✕</button>
+  <a href="/farm">The Farm</a>
+  <a href="/products">Products</a>
+  <a href="/about">About</a>
+  <a href="/insights">Insights</a>
+  <a href="/contact">Get in touch</a>
+</div>
+
+
+<!-- ═══ PAGE HERO ═══ -->
+<div id="page-hero">
+  <div class="page-hero-left r">
+    <div class="page-kicker">The Farm</div>
+    <h1 class="page-h1">
+      Real land.<br>Real harvest.<br>
+      <em>Real stakes.</em>
+    </h1>
+  </div>
+  <div class="page-hero-right r d1">
+    <p>
+      EcoGrow Farms is not a technology company that named itself after agriculture. We operate land in Nigeria — growing food, managing labour, navigating seasonal risk, and living the daily reality of African agribusiness.
+    </p>
+    <p>
+      That reality is what drove us to build our own intelligence tools. No software on the market was designed for African soil, African weather patterns, or the African smallholder. So we built it ourselves — and opened it to the world.
+    </p>
+    <div class="location-bar">
+      <span class="loc-chip copper">Nigeria</span>
+      <span class="loc-chip copper">Kano State · Kaduna State</span>
+      <span class="loc-chip">Est. 2019</span>
+      <span class="loc-chip green">Active · 2 sites</span>
+    </div>
+  </div>
+</div>
+<div class="hero-rule"></div>
+
+
+<!-- ═══ WHAT WE GROW ═══ -->
+<section id="produce">
+  <div class="section-wrap">
+    <div class="produce-layout">
+      <div class="produce-copy r">
+        <div class="s-label">What We Grow</div>
+        <h2 class="s-h2">Crops chosen for<br><em>climate fit</em><br>and market demand.</h2>
+        <p>
+          Our crop selection is not arbitrary. Every variety is matched to the soil type, rainfall profile, and market access conditions of our specific sites in the Guinea Savanna and Sudan Savanna agro-ecological zones.
+        </p>
+        <p>
+          Crop rotation, intercropping, and cover cropping schedules are set by CropSentinel modelling — which evaluates historical yield data, NDVI trends, and soil readings from SoilPulse to determine what goes where, each season.
+        </p>
+      </div>
+      <div class="produce-grid r d2">
+        <div class="produce-item">
+          <span class="produce-item-icon">🌽</span>
+          <div class="produce-item-name">Maize</div>
+          <p class="produce-item-note">Our highest-volume staple. WEMA drought-tolerant varieties planted on the Kano site. Primary grain source for institutional buyers and feed markets.</p>
+          <div class="produce-item-season">Apr – Aug · Nov – Feb</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🍅</span>
+          <div class="produce-item-name">Tomatoes</div>
+          <p class="produce-item-note">Roma and cherry varieties on drip irrigation. Price-sensitive — HarvestIQ determines our sell window. Supplied to urban wholesale hubs and processors.</p>
+          <div class="produce-item-season">Oct – Jan</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🌶</span>
+          <div class="produce-item-name">Peppers</div>
+          <p class="produce-item-note">Tatase and Shombo varieties for fresh and dried markets. High-margin relative to maize. Exported to processors and spice packers.</p>
+          <div class="produce-item-season">Oct – Dec</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🥬</span>
+          <div class="produce-item-name">Leafy Vegetables</div>
+          <p class="produce-item-note">Ugu (fluted pumpkin) and Ugwu for peri-urban markets. Fast-cycling; grown in rotation between major crop harvests.</p>
+          <div class="produce-item-season">Year-round</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🟤</span>
+          <div class="produce-item-name">Cassava</div>
+          <p class="produce-item-note">TMS and IITA improved varieties. 12–18 month cycle. Primary buyers are starch processors and garri producers. Long-cycle crop provides production stability.</p>
+          <div class="produce-item-season">18-month cycle</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🫘</span>
+          <div class="produce-item-name">Soybeans</div>
+          <p class="produce-item-note">Dual-purpose: grain for processors, and nitrogen-fixing rotation crop that reduces fertiliser inputs on the following maize cycle. Kaduna site primary.</p>
+          <div class="produce-item-season">Jun – Oct</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🐔</span>
+          <div class="produce-item-name">Poultry</div>
+          <p class="produce-item-note">Layer and broiler operations integrated on-farm. Feed sourced from our own maize harvest. Manure diverted to compost programme, closing the input loop.</p>
+          <div class="produce-item-season">Continuous cycle</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🌱</span>
+          <div class="produce-item-name">Cover Crops</div>
+          <p class="produce-item-note">Mucuna, cowpea, and lablab rotated between cash crop seasons. Soil restoration programme informed by SoilPulse NPK readings between cycles.</p>
+          <div class="produce-item-season">Rotation-scheduled</div>
+        </div>
+        <div class="produce-item">
+          <span class="produce-item-icon">🌻</span>
+          <div class="produce-item-name">Sesame</div>
+          <p class="produce-item-note">Drought-resilient export crop grown on the drier Sudan Savanna parcels. Exported via commodity aggregators to Asian processors. Low-input, high-margin.</p>
+          <div class="produce-item-season">May – Sep</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ OPERATIONS ═══ -->
+<section id="operations">
+  <div class="section-wrap">
+    <div class="ops-head r">
+      <div class="s-label">How We Farm</div>
+      <h2 class="s-h2">Four pillars.<br><em>Every decision</em><br>backed by data.</h2>
+      <p>Each operational area on the farm is paired to an intelligence product. The software was not bolted on — it grew out of solving our own problems.</p>
+    </div>
+    <div class="ops-grid">
+
+      <div class="op-card r" data-mark="C">
+        <div class="op-card-top">
+          <div class="op-icon">🌱</div>
+          <div>
+            <div class="op-title">Precision Cultivation</div>
+            <span class="op-powered">Powered by CropSentinel</span>
+          </div>
+        </div>
+        <p class="op-desc">
+          Variety selection, planting density, input programme, and harvest timing are all driven by data. CropSentinel fuses Sentinel-2 NDVI imagery with our IoT field sensors to give us a 6–8 week forward view of how each field block is performing — before a problem becomes visible on the ground.
+        </p>
+        <ul class="op-bullets">
+          <li>WEMA drought-tolerant maize varieties, season-matched</li>
+          <li>Field blocks individually monitored, not treated as one unit</li>
+          <li>NDVI anomaly flags trigger intervention before loss</li>
+          <li>Satellite pass + daily sensor reading, continuous pipeline</li>
+        </ul>
+      </div>
+
+      <div class="op-card r d1" data-mark="W">
+        <div class="op-card-top">
+          <div class="op-icon">💧</div>
+          <div>
+            <div class="op-title">Climate-Smart Water Use</div>
+            <span class="op-powered">Powered by IrrigateAI + SoilPulse</span>
+          </div>
+        </div>
+        <p class="op-desc">
+          We do not irrigate by calendar. IrrigateAI combines satellite evapotranspiration data, 7-day weather forecasts, and SoilPulse volumetric water content readings to generate a daily drip schedule for each zone. The result: less water used, less energy spent, and less waterlogging stress on root systems.
+        </p>
+        <ul class="op-bullets">
+          <li>Daily AI irrigation schedule per field zone</li>
+          <li>SoilPulse moisture sensors at 15cm and 30cm depth</li>
+          <li>Drip controller API integration — no manual valve operation</li>
+          <li>Water use logged for SON and buyer compliance reporting</li>
+        </ul>
+      </div>
+
+      <div class="op-card r d2" data-mark="P">
+        <div class="op-card-top">
+          <div class="op-icon">📦</div>
+          <div>
+            <div class="op-title">Post-Harvest & Distribution</div>
+            <span class="op-powered">Powered by HarvestIQ</span>
+          </div>
+        </div>
+        <p class="op-desc">
+          Post-harvest loss in Nigeria can reach 30–50% of crop value. We structured grading at harvest, cold-chain handling for perishables, and let HarvestIQ price signals determine when and where to sell — not urgency or proximity to the nearest market road.
+        </p>
+        <ul class="op-bullets">
+          <li>Structured grading: Grade A / B / feed-grade at harvest</li>
+          <li>Temperature-logged transport for tomatoes and peppers</li>
+          <li>HarvestIQ alerts when regional price spread is actionable</li>
+          <li>Documented dispatch records for buyer traceability</li>
+        </ul>
+      </div>
+
+      <div class="op-card r d3" data-mark="T">
+        <div class="op-card-top">
+          <div class="op-icon">📋</div>
+          <div>
+            <div class="op-title">Traceability & Compliance</div>
+            <span class="op-powered">Digital production records</span>
+          </div>
+        </div>
+        <p class="op-desc">
+          Every input applied, every irrigation event, every harvest batch, and every dispatch movement is digitally recorded. Our documentation pipeline is aligned with SON and NAQS standards — and structured to meet EU and UK Deforestation Regulation supply-chain requirements that international buyers increasingly demand.
+        </p>
+        <ul class="op-bullets">
+          <li>Batch-level production logs from seed to dispatch</li>
+          <li>SON/NAQS-aligned documentation templates</li>
+          <li>GPS-tagged field polygon records per crop block</li>
+          <li>Buyer-facing traceability portal (in development)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ LOCATION & LAND ═══ -->
+<section id="location">
+  <div class="section-wrap">
+    <div class="location-layout">
+
+      <div class="map-block r">
+        <div class="map-block-head">
+          <span class="map-block-title">Field Polygon · Kano State Site</span>
+          <span class="map-block-badge">ACTIVE</span>
+        </div>
+        <div class="map-visual">
+<span class="st">SITE_ID</span>  <span class="hi">EGF-KN-01</span><br>
+<span class="st">STATE</span>    <span class="hi">Kano · Guinea Savanna Zone</span><br>
+<span class="st">LGA</span>      <span class="hi">Kura LGA</span><br>
+<span class="st">COORDS</span>   <span class="ok">11.43°N · 8.49°E</span><br>
+──────────────────────────────<br>
+<span class="st">ZONE A</span>   Maize · <span class="ok">●</span> 847 polys · 214 ha<br>
+<span class="st">ZONE B</span>   Tomato / Pepper · <span class="ok">●</span> 93 ha<br>
+<span class="st">ZONE C</span>   Cassava · <span class="ok">●</span> 68 ha<br>
+<span class="st">ZONE D</span>   Poultry + cover crop<br>
+──────────────────────────────<br>
+<span class="st">NDVI</span>     <span class="hi">Zones 4-C, 4-D</span> anomaly <span class="hi">▲</span><br>
+<span class="st">ALERT</span>    CropSentinel <span class="hi">→</span> <span class="ok">2,841 SMS sent</span><br>
+<span class="st">SENSOR</span>   SoilPulse nodes <span class="ok">●</span> 41 active<br>
+        </div>
+        <div class="map-stats">
+          <div class="map-stat">
+            <div class="map-stat-val copper">375 ha</div>
+            <div class="map-stat-label">total cultivated area</div>
+          </div>
+          <div class="map-stat">
+            <div class="map-stat-val">847</div>
+            <div class="map-stat-label">field polygons monitored</div>
+          </div>
+          <div class="map-stat">
+            <div class="map-stat-val copper">41</div>
+            <div class="map-stat-label">SoilPulse nodes active</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="location-copy r d1">
+        <div class="s-label">Location & Land</div>
+        <h2 class="s-h2">Two sites.<br><em>One data</em><br>pipeline.</h2>
+        <p>
+          Our primary site is in Kura LGA, Kano State — located in the Guinea Savanna agro-ecological zone, with access to irrigation infrastructure and proximity to the Kano commodity market, one of the largest in West Africa.
+        </p>
+        <p>
+          Our secondary site in Kaduna State operates in a drier Sudan Savanna profile, giving us a natural A/B environment to test our CropSentinel models across different soil and rainfall regimes — improving model accuracy for the full range of Nigerian farming conditions.
+        </p>
+        <div class="location-facts">
+          <div class="fact-row">
+            <span class="fact-key">Primary site</span>
+            <span class="fact-val copper">Kano State · Kura LGA</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Secondary site</span>
+            <span class="fact-val">Kaduna State</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Agro-ecological zone</span>
+            <span class="fact-val">Guinea Savanna + Sudan Savanna</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Total cultivated area</span>
+            <span class="fact-val copper">~600 ha across both sites</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Rainfall (Kano)</span>
+            <span class="fact-val">680 – 900 mm / year</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Irrigation source</span>
+            <span class="fact-val">Borehole + surface water</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Soil type (primary)</span>
+            <span class="fact-val">Sandy loam · laterite subsoil</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key">Certifications</span>
+            <span class="fact-val green">SON-registered · NAQS-filed</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ TRACEABILITY ═══ -->
+<section id="traceability">
+  <div class="section-wrap">
+    <div class="trace-layout">
+
+      <div class="trace-copy r">
+        <div class="s-label">Traceability</div>
+        <h2 class="s-h2">From field<br><em>to invoice</em>,<br>documented.</h2>
+        <p>
+          Serious institutional buyers — UN agencies, export processors, government procurement — require a documented chain of custody. We built our traceability system before we had those buyers, because building the infrastructure after the relationship is too late.
+        </p>
+        <p>
+          The same digital records that run our farm operations produce the compliance documentation that institutional and export customers need. No re-entry, no manual compilation.
+        </p>
+      </div>
+
+      <div class="trace-chain r d2">
+        <div class="trace-step">
+          <span class="trace-num">01</span>
+          <div class="trace-content">
+            <div class="trace-title">Seed & Input Registration</div>
+            <p class="trace-desc">Every input — seed lot, fertiliser batch, pesticide — is logged with supplier, quantity, application date, and GPS field coordinates before it enters the ground.</p>
+            <span class="trace-tag">Batch ID assigned</span>
+          </div>
+        </div>
+        <div class="trace-step">
+          <span class="trace-num">02</span>
+          <div class="trace-content">
+            <div class="trace-title">In-Season Monitoring Log</div>
+            <p class="trace-desc">CropSentinel and SoilPulse generate a continuous timestamped record of field conditions, irrigation events, and alerts issued — forming the audit trail through the growing season.</p>
+            <span class="trace-tag">Auto-generated via IoT</span>
+          </div>
+        </div>
+        <div class="trace-step">
+          <span class="trace-num">03</span>
+          <div class="trace-content">
+            <div class="trace-title">Harvest Documentation</div>
+            <p class="trace-desc">Harvest date, field block, grader name, weight, grade, and moisture reading are recorded per batch at the point of harvest. Each batch carries a scannable ID from this point forward.</p>
+            <span class="trace-tag">Physical QR tag + digital record</span>
+          </div>
+        </div>
+        <div class="trace-step">
+          <span class="trace-num">04</span>
+          <div class="trace-content">
+            <div class="trace-title">Storage & Cold Chain</div>
+            <p class="trace-desc">Temperature and humidity are logged in storage and transport for perishables. Entry and exit timestamps recorded for each storage bay. Transport vehicle and driver ID attached to batch record.</p>
+            <span class="trace-tag">Temperature-logged</span>
+          </div>
+        </div>
+        <div class="trace-step">
+          <span class="trace-num">05</span>
+          <div class="trace-content">
+            <div class="trace-title">Dispatch & Buyer Record</div>
+            <p class="trace-desc">Dispatch documentation — quantity, destination, buyer reference, vehicle — closes the batch record. Buyers can request a full traceability PDF from seed to delivery against any batch ID.</p>
+            <span class="trace-tag">SON / NAQS aligned</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ TEAM ═══ -->
+<section id="team">
+  <div class="section-wrap">
+    <div class="team-head r">
+      <div class="s-label">The Team</div>
+      <h2 class="s-h2">The people who<br><em>run the farm</em><br>and built the tools.</h2>
+      <p>EcoGrow is not managed from a city. The people who built our intelligence products are the same people who walk the fields, talk to the labourers, and deal with the reality of a failed irrigation pump at 5 a.m.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card r">
+        <div class="team-avatar">👨🏾‍🌾</div>
+        <div class="team-name">Lanre Lanrexlan</div>
+        <div class="team-role">Founder & CEO</div>
+        <p class="team-bio">Agricultural economist turned farm operator. Spent three years across research stations in Kano and Kaduna before founding EcoGrow. Leads product strategy and institutional sales.</p>
+      </div>
+
+      <div class="team-card r d1">
+        <div class="team-avatar">👩🏽‍💻</div>
+        <div class="team-name">Head of Data Science</div>
+        <div class="team-role">ML & Remote Sensing</div>
+        <p class="team-bio">Builds and maintains the LSTM ensemble models behind CropSentinel. Former IITA research fellow. Combines remote sensing expertise with an obsession for African crop stress data.</p>
+      </div>
+
+      <div class="team-card r d2">
+        <div class="team-avatar">👨🏿‍🔬</div>
+        <div class="team-name">Head of Agronomy</div>
+        <div class="team-role">Field Operations</div>
+        <p class="team-bio">Runs day-to-day field operations across both sites. Agronomist by training, data convert by necessity. Interprets CropSentinel and SoilPulse outputs and translates them into field action.</p>
+      </div>
+
+      <div class="team-card r d3">
+        <div class="team-avatar">👩🏾‍💼</div>
+        <div class="team-name">Head of Partnerships</div>
+        <div class="team-role">Institutional & Commercial</div>
+        <p class="team-bio">Manages relationships with humanitarian agencies, government ministries, and agri-insurance partners. Former USAID supply-chain programme manager.</p>
+      </div>
+
+      <div class="team-card r d4">
+        <div class="team-avatar">👨🏽‍🔧</div>
+        <div class="team-name">Head of IoT Infrastructure</div>
+        <div class="team-role">Hardware & Connectivity</div>
+        <p class="team-bio">Designs and deploys the SoilPulse sensor network. Builds low-power LoRaWAN infrastructure that operates in areas with no GSM. Former embedded systems engineer.</p>
+      </div>
+
+      <div class="team-card r d4">
+        <div class="team-avatar">👩🏿‍📊</div>
+        <div class="team-name">Head of Finance & Compliance</div>
+        <div class="team-role">Finance & Regulatory</div>
+        <p class="team-bio">Manages farm financial operations, SON and NAQS compliance filings, and the documentation pipeline that supports institutional procurement. CPA, previously with Deloitte Nigeria.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ WHY WE BUILT OUR OWN ═══ -->
+<section id="why">
+  <div class="why-wrap">
+    <p class="why-quote r">
+      "No software on the market was built for <em>African soil</em>, African weather, or the African smallholder. So we built it ourselves."
+    </p>
+    <p class="why-body r d1">
+      In 2021, after two consecutive seasons of preventable losses — a tomato crop lost to early blight we didn't detect in time, and a maize block that failed in a drought we had no 6-week warning of — we concluded that the tools we needed did not exist. Every precision agriculture platform on the market was calibrated for US Midwest or European conditions, priced for large commercial farms, and assumed infrastructure that does not exist in rural Nigeria. We started building CropSentinel for ourselves. When it worked on our farm, we opened it to others.
+    </p>
+    <div class="why-attr r d2">— EcoGrow Farms, founded on the problem</div>
+  </div>
+</section>
+
+
+<!-- ═══ PAGE CTA ═══ -->
+<section id="page-cta">
+  <div class="page-cta-wrap">
+    <div>
+      <h2 class="cta-h2 r">The farm is proof.<br><em>The software</em><br>is the product.</h2>
+      <p class="cta-sub r d1">If you want to procure our produce, partner on our products, or simply understand how we built what we built — we want to hear from you.</p>
+    </div>
+    <div class="cta-buttons r d2">
+      <a href="/contact" class="btn-copper-full">Start a conversation</a>
+      <a href="/products" class="btn-outline-cta">See our products</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-brand-wrap">
+          <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms">
+          <strong>EcoGrow Farms Limited</strong>
+        </a>
+        <p class="footer-tagline">Nigerian agribusiness with its own intelligence layer. Growing food. Building software. Feeding better decisions.</p>
+      </div>
+      <div>
+        <div class="footer-col-head">Products</div>
+        <ul class="footer-links">
+          <li><a href="/products/cropsentinel">CropSentinel</a></li>
+          <li><a href="/products/soilpulse">SoilPulse</a></li>
+          <li><a href="/products/harvestiq">HarvestIQ</a></li>
+          <li><a href="/products/irrigateai">IrrigateAI</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Company</div>
+        <ul class="footer-links">
+          <li><a href="/farm">The Farm</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/insights">Insights</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 EcoGrow Farms Limited. All rights reserved.</p>
+      <a href="mailto:info@ecogrowfarms.com" class="footer-contact">info@ecogrowfarms.com</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
+
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  const drawerClose = document.getElementById('drawer-close');
+  hamburger.addEventListener('click', () => drawer.classList.add('open'));
+  drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+  const els = document.querySelectorAll('.r');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -264,7 +264,7 @@
         </div>
         <div class="story-stat">
           <div class="story-stat-val"><em>2,800+</em></div>
-          <div class="story-stat-label">Farmers reached by CropSentinel SMS alerts in the Kano pilot.</div>
+          <div class="story-stat-label">Farmers reached by CropSentinel SMS alerts in the Southwest Nigeria pilot.</div>
         </div>
       </div>
 
@@ -327,29 +327,6 @@
     </div>
 
     <div class="team-grid">
-
-      <!-- Lanre Lanrexlan -->
-      <div class="team-card r">
-        <div class="team-card-top">
-          <div class="team-photo-wrap">
-            <img src="/Images/Lanre.png" alt="Lanre Lanrexlan" class="team-photo"
-              onerror="this.classList.add('broken')">
-            <div class="team-photo-fallback">&#128119;&#127998;&#8205;&#127807;</div>
-          </div>
-          <div class="team-meta">
-            <div class="team-name">Lanre Lanrexlan</div>
-            <div class="team-role">Founder &amp; CEO</div>
-            <div class="team-location">Kano State, Nigeria</div>
-          </div>
-        </div>
-        <p class="team-bio">Agricultural economist turned farm operator. Spent three years across research stations in Kano and Kaduna before founding EcoGrow in 2019. The 2021 crop losses that led to CropSentinel were his losses &#8212; which is why the product is built the way it is. Leads product strategy and institutional partnerships.</p>
-        <div class="team-tags">
-          <span class="team-tag">Agri-economics</span>
-          <span class="team-tag">Product strategy</span>
-          <span class="team-tag">Institutional sales</span>
-          <span class="team-tag">Farm operations</span>
-        </div>
-      </div>
 
       <!-- Haleemah -->
       <div class="team-card r d1">
@@ -509,6 +486,8 @@
   hamburger.addEventListener('click', () => drawer.classList.add('open'));
   drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
 
   const els = document.querySelectorAll('.r');
   const obs = new IntersectionObserver(entries => {

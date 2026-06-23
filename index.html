@@ -759,7 +759,7 @@
         </div>
         <div class="data-card">
           <div class="data-card-val">847</div>
-          <div class="data-card-label">farm polygons monitored, Kano pilot</div>
+          <div class="data-card-label">farm polygons monitored, Southwest Nigeria pilot</div>
         </div>
         <div class="data-card">
           <div class="data-card-val copper">67%</div>
@@ -769,7 +769,7 @@
 
       <div class="cs-readout">
         <div class="cs-readout-head">
-          <span class="cs-readout-name">CropSentinel · Kano State Scan</span>
+          <span class="cs-readout-name">CropSentinel · Southwest Nigeria Scan</span>
           <span class="cs-readout-badge">ACTIVE</span>
         </div>
         <div class="cs-rows">
@@ -1090,6 +1090,8 @@
   hamburger.addEventListener('click', () => drawer.classList.add('open'));
   drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
 
   // Scroll reveal
   const els = document.querySelectorAll('.r');

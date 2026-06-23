@@ -994,13 +994,6 @@
     </div>
     <div class="team-grid">
 
-      <div class="team-card r">
-        <div class="team-avatar">👨🏾‍🌾</div>
-        <div class="team-name">Lanre Lanrexlan</div>
-        <div class="team-role">Founder & CEO</div>
-        <p class="team-bio">Agricultural economist turned farm operator. Spent three years across research stations in Kano and Kaduna before founding EcoGrow. Leads product strategy and institutional sales.</p>
-      </div>
-
       <div class="team-card r d1">
         <div class="team-avatar">👩🏽‍💻</div>
         <div class="team-name">Head of Data Science</div>
@@ -1125,6 +1118,8 @@
   hamburger.addEventListener('click', () => drawer.classList.add('open'));
   drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
 
   const els = document.querySelectorAll('.r');
   const obs = new IntersectionObserver(entries => {

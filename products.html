@@ -302,7 +302,7 @@
   <div class="section-wrap">
     <div class="product-layout">
       <div class="product-copy r">
-        <span class="status-badge active">Active &#8212; Kano Pilot</span>
+        <span class="status-badge active">Active &#8212; Southwest Nigeria Pilot</span>
         <div class="s-label">CropSentinel</div>
         <h2 class="s-h2">Crop failure predicted<br><em>6&#8211;8 weeks</em><br>before it happens.</h2>
         <p class="product-tagline">AI-powered early warning for farm-level yield failure &#8212; delivered to farmers, agencies, and insurers before the season is lost.</p>
@@ -326,7 +326,7 @@
       <div class="product-visual r d2">
         <div class="readout-block">
           <div class="readout-head">
-            <span class="readout-name">CropSentinel &middot; Kano State Scan</span>
+            <span class="readout-name">CropSentinel &middot; Southwest Nigeria Scan</span>
             <span class="readout-badge green">ACTIVE</span>
           </div>
           <div class="readout-rows">
@@ -710,6 +710,8 @@
   hamburger.addEventListener('click', () => drawer.classList.add('open'));
   drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
 
   // Update active product tab on scroll
   const tabs = document.querySelectorAll('.product-tab');

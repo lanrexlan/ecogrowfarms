@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#1a3325">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -19,7 +19,7 @@
       --text:#1e2b24; --text-mid:#4d5e55; --white:#faf8f4;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
     body::before {
       content:''; position:fixed; inset:0;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
@@ -43,7 +43,7 @@
       flex-shrink: 0;
     }
     .nav-logo-text { display:flex; flex-direction:column; line-height:1.1; }
-    .nav-logo-text span:first-child { font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.2rem; letter-spacing:0.02em; color:var(--white); }
+    .nav-logo-text span:first-child { font-family:'Playfair Display',serif; font-weight:700; font-size:1.2rem; letter-spacing:0.02em; color:var(--white); }
     
     @media (max-width: 640px) {
       .nav-logo-img {
@@ -73,7 +73,7 @@
     .section-inner { max-width:1320px; margin:0 auto; padding:0 3.5rem; }
     .section-tag { display:inline-flex; align-items:center; gap:0.6rem; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.4rem; }
     .section-tag::before { content:'—'; opacity:0.6; }
-    .section-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,3.5vw,3.4rem); font-weight:600; line-height:1.12; }
+    .section-heading { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.5vw,3.4rem); font-weight:600; line-height:1.12; }
     .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity:1; transform:translateY(0); }
     .reveal-delay-1 { transition-delay:0.1s; }
@@ -120,7 +120,7 @@
     .breadcrumb a:hover { color:var(--amber-lt); }
     .breadcrumb span { color:var(--amber); }
     .breadcrumb-sep { opacity:0.4; }
-    .page-hero-headline { font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,4vw,4.8rem); font-weight:600; line-height:1.07; color:var(--white); margin-bottom:1.6rem; }
+    .page-hero-headline { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,4vw,4.8rem); font-weight:600; line-height:1.07; color:var(--white); margin-bottom:1.6rem; }
     .page-hero-headline em { font-style:italic; color:var(--amber-lt); }
     .page-hero-sub { font-size:1.02rem; line-height:1.8; color:rgba(244,237,224,0.68); font-weight:300; max-width:560px; }
 
@@ -130,7 +130,7 @@
     .index-links li a { display:flex; align-items:center; justify-content:space-between; padding:0.8rem 1.2rem; font-size:0.82rem; font-weight:500; color:rgba(244,237,224,0.7); text-decoration:none; border-bottom:1px solid rgba(90,143,108,0.14); transition:background 0.2s, color 0.2s; }
     .index-links li:last-child a { border-bottom:none; }
     .index-links li a:hover { background:rgba(90,143,108,0.14); color:var(--white); }
-    .index-links li a .idx-num { font-family:'DM Mono',monospace; font-size:0.65rem; color:rgba(90,143,108,0.65); }
+    .index-links li a .idx-num { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:rgba(90,143,108,0.65); }
 
     /* ── INTRO ── */
     #intro {
@@ -159,7 +159,7 @@
     .intro-stat-icon { font-size:1.8rem; margin-bottom:0.8rem; display:block; }
     .intro-stat-label { font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:var(--sage); margin-bottom:0.3rem; }
     .intro-stat.amber .intro-stat-label { color:var(--amber); }
-    .intro-stat-title { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--text); line-height:1.25; }
+    .intro-stat-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:600; color:var(--text); line-height:1.25; }
     .intro-stat-desc { font-size:0.78rem; color:var(--text-mid); margin-top:0.3rem; line-height:1.55; }
 
     /* ── PILLAR SECTIONS SHARED ── */
@@ -179,7 +179,7 @@
 
     /* Pillar number + tag */
     .pillar-number {
-      font-family:'Cormorant Garamond',serif;
+      font-family:'Playfair Display',serif;
       font-size:6.5rem; font-weight:700; line-height:1;
       color:rgba(61,107,79,0.08); margin-bottom:-1.2rem;
       user-select:none;
@@ -215,7 +215,7 @@
     }
     .mech-step:hover { border-color:rgba(61,107,79,0.4); transform:translateX(6px); background:var(--parchment); }
     .mech-step-icon { font-size:1.6rem; flex-shrink:0; width:44px; text-align:center; }
-    .mech-step-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--text); }
+    .mech-step-name { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; color:var(--text); }
     .mech-step-desc { font-size:0.78rem; color:var(--text-mid); margin-top:0.1rem; }
 
     /* 02 Irrigation — visual diagram card */
@@ -228,7 +228,7 @@
       display:flex; align-items:center; gap:1rem;
     }
     .irr-diagram-header-icon { font-size:1.6rem; }
-    .irr-diagram-header-text { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--white); }
+    .irr-diagram-header-text { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:600; color:var(--white); }
     .irr-diagram-header-sub { font-size:0.76rem; color:rgba(244,237,224,0.55); margin-top:0.15rem; }
     .irr-bars { padding:1.6rem 1.8rem; display:flex; flex-direction:column; gap:0.9rem; }
     .irr-bar-label { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--text-mid); margin-bottom:0.4rem; }
@@ -250,7 +250,7 @@
     .gh-card.span-2 { grid-column:1/-1; border-color:rgba(196,124,34,0.2); }
     .gh-card.span-2:hover { border-color:rgba(196,124,34,0.5); background:rgba(196,124,34,0.04); }
     .gh-card-icon { font-size:1.7rem; margin-bottom:0.8rem; display:block; }
-    .gh-card-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:0.4rem; }
+    .gh-card-name { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:0.4rem; }
     .gh-card-desc { font-size:0.78rem; line-height:1.6; color:var(--text-mid); }
 
     /* 04 Digital Records — dark card on forest bg */
@@ -288,7 +288,7 @@
     .record-name { font-size:0.84rem; color:rgba(244,237,224,0.8); font-weight:500; display:flex; align-items:center; gap:0.6rem; }
     .record-name span.dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
     .record-badge {
-      font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em;
+      font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.1em;
       padding:0.2rem 0.6rem; border-radius:2px;
       justify-self:start;
     }
@@ -313,7 +313,7 @@
       width:42px; height:42px; border-radius:50%;
       background:rgba(61,107,79,0.1); display:grid; place-items:center; font-size:1.2rem; flex-shrink:0;
     }
-    .weather-card-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:0.3rem; }
+    .weather-card-name { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:0.3rem; }
     .weather-card-desc { font-size:0.8rem; line-height:1.6; color:var(--text-mid); }
 
     /* 06 Post-Harvest */
@@ -328,7 +328,7 @@
       display:flex; align-items:center; gap:0.8rem;
     }
     .loss-header-icon { font-size:1.5rem; }
-    .loss-header-text { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; }
+    .loss-header-text { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:600; }
     .loss-header-sub { font-size:0.75rem; color:rgba(244,237,224,0.55); margin-top:0.1rem; }
     .loss-steps {
       border:1px solid rgba(61,107,79,0.14); border-top:none;
@@ -341,13 +341,13 @@
     .loss-step:last-child { border-bottom:none; }
     .loss-step-num {
       background:rgba(61,107,79,0.06); padding:1.1rem 1.2rem;
-      font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.1em;
+      font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em;
       color:var(--sage); font-weight:600; min-width:52px;
       display:flex; align-items:center; justify-content:center; flex-shrink:0;
       border-right:1px solid rgba(61,107,79,0.1);
     }
     .loss-step-body { padding:1.1rem 1.4rem; }
-    .loss-step-name { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.2rem; }
+    .loss-step-name { font-family:'Playfair Display',serif; font-size:1rem; font-weight:600; color:var(--text); margin-bottom:0.2rem; }
     .loss-step-desc { font-size:0.78rem; color:var(--text-mid); line-height:1.55; }
 
     .postharvest-copy .section-heading { margin-bottom:1.4rem; }
@@ -378,7 +378,7 @@
     .page-cta-tag { display:inline-flex; align-items:center; gap:0.6rem; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:1.6rem; }
     .page-cta-tag::before { content:'—'; opacity:0.6; }
     .page-cta-heading {
-      font-family:'Cormorant Garamond',serif;
+      font-family:'Playfair Display',serif;
       font-size:clamp(2.4rem,4vw,4rem); font-weight:600; line-height:1.1;
       color:var(--white); margin-bottom:1.4rem;
     }

@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#1a3325">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -68,7 +68,7 @@
     }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
     .nav-logo-text span:first-child {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--white);
     }
     .nav-logo-text span:last-child {
@@ -165,7 +165,7 @@
     .breadcrumb span { color: var(--amber); }
     .breadcrumb-sep { opacity: 0.4; }
     .hero-headline {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(3rem, 5.5vw, 5.5rem);
       font-weight: 600; line-height: 1.04;
       color: var(--white); margin-bottom: 1.2rem;
@@ -216,7 +216,7 @@
       border-left-color: var(--sage);
     }
     .sidebar-nav li a .s-num {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.6rem; color: rgba(61,107,79,0.5);
       flex-shrink: 0;
     }
@@ -231,7 +231,7 @@
       color: var(--text-mid); font-weight: 600; opacity: 0.6; margin-bottom: 0.5rem;
     }
     .sidebar-meta-val {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.72rem; color: var(--text-mid); line-height: 1.7;
     }
 
@@ -255,14 +255,14 @@
       margin-bottom: 1.6rem;
     }
     .policy-section-num {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.7rem; letter-spacing: 0.12em;
       color: var(--sage); border: 1px solid rgba(61,107,79,0.25);
       padding: 0.18rem 0.6rem; border-radius: 2px;
       flex-shrink: 0; margin-top: 0.25rem;
     }
     .policy-section-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(1.5rem, 2.2vw, 2rem);
       font-weight: 600; line-height: 1.18; color: var(--text);
     }
@@ -326,7 +326,7 @@
       margin-top: 1.6rem;
     }
     .company-block-name {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.3rem; font-weight: 700; color: var(--text);
       margin-bottom: 1rem;
     }
@@ -352,7 +352,7 @@
     /* Effective date chip */
     .policy-date-chip {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.72rem; letter-spacing: 0.08em;
       background: rgba(61,107,79,0.08);
       color: var(--sage); padding: 0.3rem 0.85rem;
@@ -382,7 +382,7 @@
     .footer-logo img { width: 34px; height: 34px; object-fit: contain; }
     .footer-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
     .footer-logo-text span:first-child {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--white);
     }
     .footer-logo-text span:last-child {
@@ -411,7 +411,7 @@
     .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.28); }
     .footer-note {
       font-size: 0.72rem; color: rgba(244,237,224,0.2);
-      font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em;
+      font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.04em;
     }
     .footer-legal-links {
       display: flex; gap: 1.5rem;
@@ -1047,6 +1047,7 @@
         toggle.classList.contains('is-open') ? close() : open()
       );
       panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      panel.addEventListener('click', e => { if (e.target === panel) close(); });
       document.addEventListener('keydown', e => e.key === 'Escape' && close());
       window.addEventListener('resize', () => window.innerWidth > 900 && close());
     }

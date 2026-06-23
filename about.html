@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,9 +30,9 @@
       --white:      #f7f2ea;
       --green-ok:   #7ecba1;
 
-      --font-display: 'Playfair Display', Georgia, serif;
+      --font-display: 'Space Grotesk', sans-serif;
       --font-body:    'Space Grotesk', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
+      --font-mono:    'Space Grotesk', sans-serif;
     }
 
     body { font-family: var(--font-body); background: var(--soil); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -43,7 +43,7 @@
     .nav-brand { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
     .nav-brand-img { width: 38px; height: 38px; object-fit: contain; }
     .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-brand-wordmark strong { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: 0.01em; }
+    .nav-brand-wordmark strong { font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: 0.01em; }
     .nav-brand-wordmark span { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
     .nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--dust-lt); text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em; }
@@ -54,23 +54,23 @@
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--dust-lt); }
     .drawer { display: none; position: fixed; inset: 0; background: var(--earth); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
     .drawer.open { display: flex; }
-    .drawer a { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--white); text-decoration: none; transition: color 0.2s; }
+    .drawer a { font-family: var(--font-body); font-size: 2.2rem; font-weight: 700; color: var(--white); text-decoration: none; transition: color 0.2s; }
     .drawer a:hover { color: var(--copper); }
     .drawer-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; cursor: pointer; font-size: 1.6rem; color: var(--dust); }
 
     /* ── PAGE HERO ── */
     #page-hero { padding: 10rem 4rem 6rem; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end; }
-    .page-kicker { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .page-kicker { font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem; }
     .page-kicker::before { content: '&#x2014;'; opacity: 0.5; }
-    .page-h1 { font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; color: var(--white); }
+    .page-h1 { font-family: var(--font-body); font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; color: var(--white); }
     .page-h1 em { font-style: italic; color: var(--copper-lt); display: block; }
     .page-hero-right p { font-size: 1.02rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; margin-bottom: 1.2rem; }
     .hero-rule { height: 1px; background: rgba(255,255,255,0.06); }
 
     /* ── SHARED ── */
-    .s-label { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem; }
+    .s-label { font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem; }
     .s-label::before { content: '&#x2014;'; opacity: 0.5; }
-    .s-h2 { font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1.4rem; }
+    .s-h2 { font-family: var(--font-body); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1.4rem; }
     .s-h2 em { font-style: italic; color: var(--copper-lt); }
     .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
 
@@ -84,7 +84,7 @@
     .story-stats { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
     .story-stat { background: var(--earth); padding: 1.8rem 2rem; transition: background 0.25s; }
     .story-stat:hover { background: var(--bark); }
-    .story-stat-val { font-family: var(--font-display); font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--white); margin-bottom: 0.3rem; }
+    .story-stat-val { font-family: var(--font-body); font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--white); margin-bottom: 0.3rem; }
     .story-stat-val em { font-style: normal; color: var(--copper-lt); }
     .story-stat-label { font-size: 0.8rem; line-height: 1.6; color: var(--dust); }
 
@@ -95,9 +95,9 @@
     .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
     .value-card { background: var(--soil); padding: 2.2rem 1.8rem; transition: background 0.25s; position: relative; overflow: hidden; }
     .value-card:hover { background: var(--bark); }
-    .value-card::after { content: attr(data-num); position: absolute; right: 0.8rem; bottom: -1rem; font-family: var(--font-display); font-size: 7rem; font-weight: 900; line-height: 1; color: rgba(255,255,255,0.025); pointer-events: none; }
+    .value-card::after { content: attr(data-num); position: absolute; right: 0.8rem; bottom: -1rem; font-family: var(--font-body); font-size: 7rem; font-weight: 900; line-height: 1; color: rgba(255,255,255,0.025); pointer-events: none; }
     .value-icon { font-size: 1.6rem; margin-bottom: 1rem; display: block; }
-    .value-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.55rem; line-height: 1.2; }
+    .value-title { font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.55rem; line-height: 1.2; }
     .value-desc { font-size: 0.8rem; line-height: 1.75; color: var(--dust); }
 
     /* ── TEAM ── */
@@ -113,26 +113,26 @@
     .team-photo-fallback { width: 100%; height: 100%; display: none; place-items: center; font-size: 1.8rem; }
     .team-photo.broken + .team-photo-fallback { display: grid; }
     .team-meta {}
-    .team-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; line-height: 1.2; }
-    .team-role { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.09em; color: var(--copper); margin-bottom: 0.5rem; }
+    .team-name { font-family: var(--font-body); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; line-height: 1.2; }
+    .team-role { font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.09em; color: var(--copper); margin-bottom: 0.5rem; }
     .team-location { font-size: 0.72rem; color: var(--dust); }
     .team-bio { font-size: 0.8rem; line-height: 1.78; color: var(--dust); padding: 0 2rem 1.6rem; }
     .team-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 2rem 2rem; }
-    .team-tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; color: var(--steel-lt); background: var(--steel-dim); padding: 0.15rem 0.55rem; border-radius: 2px; }
+    .team-tag { font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.08em; color: var(--steel-lt); background: var(--steel-dim); padding: 0.15rem 0.55rem; border-radius: 2px; }
 
     /* ── PULLQUOTE ── */
     #pullquote { padding: 7rem 0; background: var(--bark); border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
-    #pullquote::before { content: '\201C'; position: absolute; left: -1rem; top: -2rem; font-family: var(--font-display); font-size: clamp(12rem, 25vw, 22rem); font-weight: 900; line-height: 1; color: rgba(255,255,255,0.025); pointer-events: none; }
+    #pullquote::before { content: '\201C'; position: absolute; left: -1rem; top: -2rem; font-family: var(--font-body); font-size: clamp(12rem, 25vw, 22rem); font-weight: 900; line-height: 1; color: rgba(255,255,255,0.025); pointer-events: none; }
     .pullquote-wrap { max-width: 800px; margin: 0 auto; padding: 0 4rem; position: relative; z-index: 1; text-align: center; }
-    .pullquote-text { font-family: var(--font-display); font-size: clamp(1.5rem, 3.2vw, 2.4rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; color: var(--white); margin-bottom: 2rem; }
+    .pullquote-text { font-family: var(--font-body); font-size: clamp(1.5rem, 3.2vw, 2.4rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; color: var(--white); margin-bottom: 2rem; }
     .pullquote-text em { font-style: italic; color: var(--copper-lt); }
     .pullquote-body { font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; max-width: 640px; margin: 0 auto 2.5rem; }
-    .pullquote-attr { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--copper); text-transform: uppercase; }
+    .pullquote-attr { font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--copper); text-transform: uppercase; }
 
     /* ── CTA ── */
     #page-cta { padding: 7rem 0; background: var(--soil); border-top: 1px solid rgba(255,255,255,0.05); }
     .page-cta-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
-    .cta-h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; color: var(--white); margin-bottom: 0.8rem; }
+    .cta-h2 { font-family: var(--font-body); font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; color: var(--white); margin-bottom: 0.8rem; }
     .cta-h2 em { font-style: italic; color: var(--copper-lt); }
     .cta-sub { font-size: 0.9rem; line-height: 1.82; color: var(--dust-lt); max-width: 480px; font-weight: 300; }
     .cta-buttons { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; min-width: 200px; }
@@ -147,15 +147,15 @@
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.6rem; }
     .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
     .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
-    .footer-brand-wrap strong { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white); }
+    .footer-brand-wrap strong { font-family: var(--font-body); font-weight: 700; font-size: 1rem; color: var(--white); }
     .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
-    .footer-col-head { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem; }
+    .footer-col-head { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
     .footer-links a { font-size: 0.8rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--cream); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
     .footer-copy { font-size: 0.72rem; color: var(--dust); }
-    .footer-contact { font-family: var(--font-mono); font-size: 0.68rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
+    .footer-contact { font-family: var(--font-body); font-size: 0.68rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
     .footer-contact:hover { color: var(--copper-lt); }
 
     /* ── SCROLL REVEAL ── */
@@ -228,7 +228,7 @@
     <h1 class="page-h1">Built from<br>the ground<br><em>up.</em></h1>
   </div>
   <div class="r d1">
-    <p>EcoGrow Farms Limited is a Nigerian agribusiness operating farmland across Kano and Kaduna states &#8212; and building the intelligence tools that African farms have always needed but never had.</p>
+    <p>EcoGrow Farms Limited is a Nigerian agribusiness operating farmland in Ede, Osun State, Nigeria &#8212; and building the intelligence tools that African farms have always needed but never had.</p>
     <p>We are not a technology company that adopted an agricultural theme. We are farmers who had to become technologists because the tools we needed did not exist.</p>
   </div>
 </div>
@@ -246,17 +246,17 @@
         <p>EcoGrow Farms was founded in 2019 in Nigeria, with a simple premise: that African agriculture deserved intelligence tools built for African conditions &#8212; not adapted from systems designed for Iowa or Normandy.</p>
         <p>For the first two seasons, we farmed the way most Nigerian operations do: by experience, by proximity, by guesswork. Then in 2021, we lost a tomato block to early blight we didn&#8217;t detect in time. A maize block failed in a dry spell we had no early warning of. Two seasons. Two preventable losses. Two reasons to build something.</p>
         <p><strong>CropSentinel came first</strong> &#8212; a yield-failure prediction model trained on African satellite imagery and soil data. When it worked on our land, we opened it to others. SoilPulse, HarvestIQ, and IrrigateAI followed. Each one started as a problem on our own farm. Each one is now a product any farmer, cooperative, or agency can deploy.</p>
-        <p>We remain an operating farm. We grow maize, tomatoes, peppers, cassava, soybeans, and sesame across two sites totalling roughly 600 hectares. The farm is not a demonstration garden &#8212; it is a commercial operation, and every tool we sell is one we depend on ourselves.</p>
+        <p>We remain an operating farm. We grow maize, tomatoes, peppers, cassava, soybeans, and sesame from our Ede, Osun State base. The farm is not a demonstration garden &#8212; it is a commercial operation, and every tool we sell is one we depend on ourselves.</p>
       </div>
 
       <div class="story-stats r d2">
         <div class="story-stat">
           <div class="story-stat-val"><em>2019</em></div>
-          <div class="story-stat-label">Founded in Nigeria. First season planted on the Kano site.</div>
+          <div class="story-stat-label">Founded in Nigeria. First season planted on the Ede, Osun State farm.</div>
         </div>
         <div class="story-stat">
           <div class="story-stat-val">~<em>600</em> ha</div>
-          <div class="story-stat-label">Cultivated across two sites in Kano and Kaduna states.</div>
+          <div class="story-stat-label">Cultivated in Ede, Osun State, Nigeria.</div>
         </div>
         <div class="story-stat">
           <div class="story-stat-val"><em>4</em> products</div>
@@ -483,11 +483,24 @@
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   const drawerClose = document.getElementById('drawer-close');
-  hamburger.addEventListener('click', () => drawer.classList.add('open'));
-  drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
-  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
+  if (hamburger && drawer) {
+    const closeDrawer = () => {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const openDrawer = () => {
+      drawer.classList.add('open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+    drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeDrawer(); });
+  }
 
   const els = document.querySelectorAll('.r');
   const obs = new IntersectionObserver(entries => {

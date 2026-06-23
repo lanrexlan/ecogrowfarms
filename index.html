@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,9 +30,9 @@
       --dust-lt:    #b5a494;
       --white:      #f7f2ea;
 
-      --font-display: 'Playfair Display', Georgia, serif;
+      --font-display: 'Space Grotesk', sans-serif;
       --font-body:    'Space Grotesk', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
+      --font-mono:    'Space Grotesk', sans-serif;
     }
 
     body {
@@ -66,7 +66,7 @@
       display: flex; flex-direction: column; line-height: 1.1;
     }
     .nav-brand-wordmark strong {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-weight: 700; font-size: 1.1rem; color: var(--white);
       letter-spacing: 0.01em;
     }
@@ -105,7 +105,7 @@
     }
     .drawer.open { display: flex; }
     .drawer a {
-      font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 2.2rem; font-weight: 700;
       color: var(--white); text-decoration: none; transition: color 0.2s;
     }
     .drawer a:hover { color: var(--copper); }
@@ -152,14 +152,14 @@
 
     .hero-kicker {
       display: inline-flex; align-items: center; gap: 0.55rem;
-      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em;
+      font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.14em;
       color: var(--copper); text-transform: uppercase;
       margin-bottom: 2.2rem;
     }
     .hero-kicker-line { width: 24px; height: 1px; background: var(--copper); opacity: 0.6; }
 
     .hero-h1 {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(3rem, 4.8vw, 5.2rem);
       font-weight: 900; line-height: 1.0; letter-spacing: -0.02em;
       color: var(--white); margin-bottom: 2rem;
@@ -223,7 +223,7 @@
     }
     .hero-data-inner { position: relative; z-index: 1; }
     .hero-data-label {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
+      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.14em;
       color: var(--steel-lt); text-transform: uppercase;
       display: flex; align-items: center; gap: 0.5rem;
       margin-bottom: 1.8rem;
@@ -249,7 +249,7 @@
     }
     .data-card:hover { background: var(--bark); }
     .data-card-val {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 2.2rem; font-weight: 700; line-height: 1;
       color: var(--white); margin-bottom: 0.3rem;
     }
@@ -272,11 +272,11 @@
       background: var(--clay);
     }
     .cs-readout-name {
-      font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.1em;
       color: var(--copper); text-transform: uppercase;
     }
     .cs-readout-badge {
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
       background: rgba(74,127,165,0.15); color: var(--steel-lt);
       padding: 0.15rem 0.5rem; border-radius: 2px;
     }
@@ -293,7 +293,7 @@
       font-size: 0.72rem; color: var(--dust); font-weight: 400;
     }
     .cs-row-val {
-      font-family: var(--font-mono); font-size: 0.72rem; color: var(--cream);
+      font-family: var(--font-body); font-size: 0.72rem; color: var(--cream);
       font-weight: 500;
     }
     .cs-row-val.hi  { color: var(--copper-lt); }
@@ -312,14 +312,14 @@
     }
     .farm-copy {}
     .s-label {
-      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em;
+      font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--copper);
       display: inline-flex; align-items: center; gap: 0.5rem;
       margin-bottom: 1.4rem;
     }
     .s-label::before { content: '—'; opacity: 0.5; }
     .s-h2 {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(2rem, 3.2vw, 3rem);
       font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
       color: var(--white); margin-bottom: 1.4rem;
@@ -362,7 +362,7 @@
       display: grid; place-items: center; font-size: 1.1rem;
     }
     .farm-op-title {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+      font-family: var(--font-body); font-size: 1rem; font-weight: 600;
       color: var(--white); margin-bottom: 0.3rem;
     }
     .farm-op-desc {
@@ -370,7 +370,7 @@
     }
     .farm-op-tag {
       margin-top: 0.5rem; display: inline-block;
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
       color: var(--steel-lt); background: var(--steel-dim);
       padding: 0.15rem 0.5rem; border-radius: 2px;
     }
@@ -423,12 +423,12 @@
     .product-card::after {
       content: attr(data-mark);
       position: absolute; right: 1rem; bottom: -0.5rem;
-      font-family: var(--font-display); font-size: 7rem; font-weight: 900; line-height: 1;
+      font-family: var(--font-body); font-size: 7rem; font-weight: 900; line-height: 1;
       color: rgba(255,255,255,0.03); pointer-events: none; user-select: none;
     }
 
     .product-status {
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em;
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.12em;
       text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 2px;
       display: inline-block; margin-bottom: 1rem; width: fit-content;
     }
@@ -437,7 +437,7 @@
     .product-status.soon   { background: rgba(155,155,155,0.1); color: var(--dust-lt); }
 
     .product-name {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 1.45rem; font-weight: 700; letter-spacing: -0.01em;
       color: var(--white); margin-bottom: 0.35rem; line-height: 1.1;
     }
@@ -481,12 +481,12 @@
     .how-step:last-child { border-right: none; }
     .how-step:hover { background: var(--bark); }
     .how-n {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em;
+      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.12em;
       color: var(--copper); margin-bottom: 1.4rem; display: block;
     }
     .how-icon { font-size: 1.4rem; margin-bottom: 1rem; display: block; }
     .how-title {
-      font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1.05rem; font-weight: 700;
       color: var(--white); margin-bottom: 0.6rem;
     }
     .how-desc {
@@ -529,7 +529,7 @@
     .serve-cell:hover { background: var(--bark); }
     .serve-cell-icon { font-size: 1.4rem; margin-bottom: 0.9rem; display: block; }
     .serve-cell-title {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1rem; font-weight: 700;
       color: var(--white); margin-bottom: 0.45rem;
     }
     .serve-cell-desc {
@@ -547,7 +547,7 @@
     #cta::before {
       content: 'EcoGrow';
       position: absolute; bottom: -3rem; right: -1rem;
-      font-family: var(--font-display); font-weight: 900;
+      font-family: var(--font-body); font-weight: 900;
       font-size: clamp(8rem, 18vw, 18rem); line-height: 1;
       color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none;
     }
@@ -557,7 +557,7 @@
       position: relative; z-index: 1;
     }
     .cta-h2 {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(2.2rem, 4vw, 3.6rem);
       font-weight: 900; letter-spacing: -0.02em; line-height: 1.08;
       color: var(--white); margin-bottom: 1rem;
@@ -603,11 +603,11 @@
     .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
     .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
     .footer-brand-wrap strong {
-      font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white);
+      font-family: var(--font-body); font-weight: 700; font-size: 1rem; color: var(--white);
     }
     .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
     .footer-col-head {
-      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em;
+      font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
@@ -621,7 +621,7 @@
     }
     .footer-copy { font-size: 0.72rem; color: var(--dust); }
     .footer-contact {
-      font-family: var(--font-mono); font-size: 0.68rem; color: var(--dust);
+      font-family: var(--font-body); font-size: 0.68rem; color: var(--dust);
       text-decoration: none; transition: color 0.2s;
     }
     .footer-contact:hover { color: var(--copper-lt); }
@@ -1087,11 +1087,24 @@
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   const drawerClose = document.getElementById('drawer-close');
-  hamburger.addEventListener('click', () => drawer.classList.add('open'));
-  drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
-  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
+  if (hamburger && drawer) {
+    const closeDrawer = () => {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const openDrawer = () => {
+      drawer.classList.add('open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+    drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeDrawer(); });
+  }
 
   // Scroll reveal
   const els = document.querySelectorAll('.r');

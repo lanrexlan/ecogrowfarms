@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#1a3325">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,7 +72,7 @@
       display: flex; flex-direction: column; line-height: 1.1;
     }
     .nav-logo-text span:first-child {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em;
       color: var(--white);
     }
@@ -174,7 +174,7 @@
     .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
 
     .hero-headline {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.6rem, 4vw, 4.2rem);
       font-weight: 600; line-height: 1.08;
       color: var(--white); margin-bottom: 1.4rem;
@@ -190,7 +190,7 @@
     /* Effective-date chip */
     .hero-meta {
       display: inline-flex; align-items: center; gap: 0.65rem;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.72rem; letter-spacing: 0.1em;
       color: rgba(244,237,224,0.38);
       border: 1px solid rgba(90,143,108,0.2);
@@ -210,7 +210,7 @@
     .section-tag::before { content: '—'; opacity: 0.6; }
 
     .section-heading {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.1rem, 3.2vw, 3.1rem);
       font-weight: 600; line-height: 1.12;
     }
@@ -313,7 +313,7 @@
     #postharvest .practice-row:hover { background: rgba(61,107,79,0.07); }
 
     .practice-num {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.62rem; letter-spacing: 0.12em;
       color: rgba(61,107,79,0.45);
       min-width: 28px; padding-top: 1px; flex-shrink: 0;
@@ -372,7 +372,7 @@
 
     .trace-card-bg {
       position: absolute; bottom: -1.5rem; right: 1rem;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 7rem; font-weight: 700; line-height: 1;
       color: rgba(90,143,108,0.06); pointer-events: none; user-select: none;
     }
@@ -385,7 +385,7 @@
     .trace-card.amber .trace-card-tag { color: var(--amber-lt); }
 
     .trace-card-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.25rem; font-weight: 600; color: var(--white);
       margin-bottom: 0.8rem; line-height: 1.2;
     }
@@ -481,7 +481,7 @@
 
     .no-claim-card-bg {
       position: absolute; top: -1rem; right: 1.5rem;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 9rem; font-weight: 700; line-height: 1;
       color: rgba(196,124,34,0.05);
       pointer-events: none; user-select: none;
@@ -495,7 +495,7 @@
     .no-claim-label::before { content: '—'; opacity: 0.5; }
 
     .no-claim-heading {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.75rem; font-weight: 600; color: var(--text);
       margin-bottom: 1.2rem; line-height: 1.2;
     }
@@ -551,11 +551,11 @@
       color: var(--amber); font-weight: 600; margin-bottom: 0.45rem;
     }
     .info-box-value {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.3;
     }
     .info-box-value.mono {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.88rem; font-weight: 400; color: var(--text-mid);
     }
 
@@ -590,7 +590,7 @@
     }
     .cta-tag::before { content: '—'; opacity: 0.6; }
     .cta-heading {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.2rem, 3.5vw, 3.4rem);
       font-weight: 600; color: var(--white);
       line-height: 1.1; margin-bottom: 1.4rem;
@@ -1595,6 +1595,7 @@
       };
       toggle.addEventListener('click', () => toggle.classList.contains('is-open') ? close() : open());
       panel.querySelectorAll('a').forEach(l => l.addEventListener('click', close));
+      panel.addEventListener('click', e => { if (e.target === panel) close(); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
       window.addEventListener('resize', () => { if (window.innerWidth > 900) close(); });
     }

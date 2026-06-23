@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,9 +31,9 @@
       --white:      #f7f2ea;
       --green-ok:   #7ecba1;
 
-      --font-display: 'Playfair Display', Georgia, serif;
+      --font-display: 'Space Grotesk', sans-serif;
       --font-body:    'Space Grotesk', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
+      --font-mono:    'Space Grotesk', sans-serif;
     }
 
     body {
@@ -64,7 +64,7 @@
     .nav-brand-img { width: 38px; height: 38px; object-fit: contain; }
     .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
     .nav-brand-wordmark strong {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: 0.01em;
     }
     .nav-brand-wordmark span {
@@ -98,7 +98,7 @@
     }
     .drawer.open { display: flex; }
     .drawer a {
-      font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 2.2rem; font-weight: 700;
       color: var(--white); text-decoration: none; transition: color 0.2s;
     }
     .drawer a:hover { color: var(--copper); }
@@ -116,13 +116,13 @@
     }
     .page-hero-left {}
     .page-kicker {
-      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em;
+      font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--copper);
       display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem;
     }
     .page-kicker::before { content: '—'; opacity: 0.5; }
     .page-h1 {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(3rem, 5vw, 5rem);
       font-weight: 900; line-height: 1.0; letter-spacing: -0.02em;
       color: var(--white); margin-bottom: 2rem;
@@ -140,7 +140,7 @@
       margin-top: 2rem;
     }
     .loc-chip {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.1em;
       padding: 0.3rem 0.75rem; border-radius: 2px;
       border: 1px solid rgba(255,255,255,0.1); color: var(--dust-lt);
     }
@@ -159,14 +159,14 @@
 
     /* ── SHARED SECTION UTILITIES ── */
     .s-label {
-      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.16em;
+      font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--copper);
       display: inline-flex; align-items: center; gap: 0.5rem;
       margin-bottom: 1.4rem;
     }
     .s-label::before { content: '—'; opacity: 0.5; }
     .s-h2 {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(1.9rem, 3vw, 2.8rem);
       font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
       color: var(--white); margin-bottom: 1.4rem;
@@ -201,7 +201,7 @@
     .produce-item:hover { background: var(--bark); }
     .produce-item-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
     .produce-item-name {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1rem; font-weight: 700;
       color: var(--white); margin-bottom: 0.35rem;
     }
     .produce-item-note {
@@ -209,7 +209,7 @@
     }
     .produce-item-season {
       margin-top: 0.6rem;
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
       color: var(--copper); opacity: 0.75;
     }
 
@@ -238,7 +238,7 @@
     .op-card::after {
       content: attr(data-mark);
       position: absolute; right: 1rem; bottom: -0.5rem;
-      font-family: var(--font-display); font-size: 6rem; font-weight: 900; line-height: 1;
+      font-family: var(--font-body); font-size: 6rem; font-weight: 900; line-height: 1;
       color: rgba(255,255,255,0.03); pointer-events: none; user-select: none;
     }
     .op-card-top {
@@ -250,11 +250,11 @@
       display: grid; place-items: center; font-size: 1.2rem;
     }
     .op-title {
-      font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1.15rem; font-weight: 700;
       color: var(--white); line-height: 1.2;
     }
     .op-powered {
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
       color: var(--steel-lt); background: var(--steel-dim);
       padding: 0.15rem 0.5rem; border-radius: 2px;
       display: inline-block; margin-top: 0.4rem;
@@ -299,16 +299,16 @@
       background: var(--clay);
     }
     .map-block-title {
-      font-family: var(--font-mono); font-size: 0.63rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.63rem; letter-spacing: 0.1em;
       color: var(--copper); text-transform: uppercase;
     }
     .map-block-badge {
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
       background: rgba(126,203,161,0.1); color: var(--green-ok);
       padding: 0.15rem 0.5rem; border-radius: 2px;
     }
     .map-visual {
-      padding: 2rem 1.5rem; font-family: var(--font-mono);
+      padding: 2rem 1.5rem; font-family: var(--font-body);
       font-size: 0.62rem; line-height: 1.9; color: var(--dust);
       letter-spacing: 0.06em;
     }
@@ -326,7 +326,7 @@
     }
     .map-stat:last-child { border-right: none; }
     .map-stat-val {
-      font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1.5rem; font-weight: 700;
       color: var(--white); line-height: 1;
     }
     .map-stat-val.copper { color: var(--copper-lt); }
@@ -354,7 +354,7 @@
     .fact-row:hover { background: rgba(255,255,255,0.03); }
     .fact-key { font-size: 0.75rem; color: var(--dust); }
     .fact-val {
-      font-family: var(--font-mono); font-size: 0.73rem; color: var(--cream); font-weight: 500;
+      font-family: var(--font-body); font-size: 0.73rem; color: var(--cream); font-weight: 500;
     }
     .fact-val.copper { color: var(--copper-lt); }
     .fact-val.green  { color: var(--green-ok); }
@@ -387,12 +387,12 @@
     }
     .trace-step:hover { background: var(--bark); }
     .trace-num {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.1em;
       color: var(--copper); flex-shrink: 0; width: 2rem; padding-top: 0.08rem;
     }
     .trace-content {}
     .trace-title {
-      font-family: var(--font-display); font-size: 0.95rem; font-weight: 600;
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
       color: var(--white); margin-bottom: 0.3rem;
     }
     .trace-desc {
@@ -400,7 +400,7 @@
     }
     .trace-tag {
       margin-top: 0.4rem; display: inline-block;
-      font-family: var(--font-mono); font-size: 0.57rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.57rem; letter-spacing: 0.1em;
       color: var(--green-ok); background: rgba(126,203,161,0.08);
       padding: 0.12rem 0.45rem; border-radius: 2px;
     }
@@ -435,11 +435,11 @@
       font-size: 1.2rem; margin-bottom: 1rem;
     }
     .team-name {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1rem; font-weight: 700;
       color: var(--white); margin-bottom: 0.2rem;
     }
     .team-role {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em;
+      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.08em;
       color: var(--copper); margin-bottom: 0.8rem;
     }
     .team-bio {
@@ -456,7 +456,7 @@
     #why::before {
       content: '"';
       position: absolute; left: -1rem; top: -2rem;
-      font-family: var(--font-display); font-size: clamp(12rem, 25vw, 22rem);
+      font-family: var(--font-body); font-size: clamp(12rem, 25vw, 22rem);
       font-weight: 900; line-height: 1;
       color: rgba(255,255,255,0.025); pointer-events: none;
     }
@@ -465,7 +465,7 @@
       position: relative; z-index: 1; text-align: center;
     }
     .why-quote {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(1.5rem, 3.2vw, 2.4rem);
       font-weight: 700; line-height: 1.3; letter-spacing: -0.01em;
       color: var(--white); margin-bottom: 2rem;
@@ -476,7 +476,7 @@
       font-weight: 300; max-width: 640px; margin: 0 auto 2.5rem;
     }
     .why-attr {
-      font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.1em;
       color: var(--copper); text-transform: uppercase;
     }
 
@@ -491,7 +491,7 @@
       display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
     }
     .cta-h2 {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: clamp(2rem, 3.6vw, 3.2rem);
       font-weight: 900; letter-spacing: -0.02em; line-height: 1.1;
       color: var(--white); margin-bottom: 0.8rem;
@@ -538,11 +538,11 @@
     .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
     .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
     .footer-brand-wrap strong {
-      font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white);
+      font-family: var(--font-body); font-weight: 700; font-size: 1rem; color: var(--white);
     }
     .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
     .footer-col-head {
-      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em;
+      font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
@@ -556,7 +556,7 @@
     }
     .footer-copy { font-size: 0.72rem; color: var(--dust); }
     .footer-contact {
-      font-family: var(--font-mono); font-size: 0.68rem; color: var(--dust);
+      font-family: var(--font-body); font-size: 0.68rem; color: var(--dust);
       text-decoration: none; transition: color 0.2s;
     }
     .footer-contact:hover { color: var(--copper-lt); }
@@ -654,9 +654,9 @@
     </p>
     <div class="location-bar">
       <span class="loc-chip copper">Nigeria</span>
-      <span class="loc-chip copper">Kano State · Kaduna State</span>
+      <span class="loc-chip copper">Ede · Osun State</span>
       <span class="loc-chip">Est. 2019</span>
-      <span class="loc-chip green">Active · 2 sites</span>
+      <span class="loc-chip green">Active · Ede farm</span>
     </div>
   </div>
 </div>
@@ -671,7 +671,7 @@
         <div class="s-label">What We Grow</div>
         <h2 class="s-h2">Crops chosen for<br><em>climate fit</em><br>and market demand.</h2>
         <p>
-          Our crop selection is not arbitrary. Every variety is matched to the soil type, rainfall profile, and market access conditions of our specific sites in the Guinea Savanna and Sudan Savanna agro-ecological zones.
+          Our crop selection is not arbitrary. Every variety is matched to the soil type, rainfall profile, and market access conditions of our Ede, Osun State farm and the wider southwest production corridor.
         </p>
         <p>
           Crop rotation, intercropping, and cover cropping schedules are set by CropSentinel modelling — which evaluates historical yield data, NDVI trends, and soil readings from SoilPulse to determine what goes where, each season.
@@ -681,7 +681,7 @@
         <div class="produce-item">
           <span class="produce-item-icon">🌽</span>
           <div class="produce-item-name">Maize</div>
-          <p class="produce-item-note">Our highest-volume staple. WEMA drought-tolerant varieties planted on the Kano site. Primary grain source for institutional buyers and feed markets.</p>
+          <p class="produce-item-note">Our highest-volume staple. Drought-tolerant varieties planted on the Ede, Osun State farm. Primary grain source for institutional buyers and feed markets.</p>
           <div class="produce-item-season">Apr – Aug · Nov – Feb</div>
         </div>
         <div class="produce-item">
@@ -711,7 +711,7 @@
         <div class="produce-item">
           <span class="produce-item-icon">🫘</span>
           <div class="produce-item-name">Soybeans</div>
-          <p class="produce-item-note">Dual-purpose: grain for processors, and nitrogen-fixing rotation crop that reduces fertiliser inputs on the following maize cycle. Kaduna site primary.</p>
+          <p class="produce-item-note">Dual-purpose: grain for processors, and nitrogen-fixing rotation crop that reduces fertiliser inputs on the following maize cycle. Ede farm rotation crop.</p>
           <div class="produce-item-season">Jun – Oct</div>
         </div>
         <div class="produce-item">
@@ -729,7 +729,7 @@
         <div class="produce-item">
           <span class="produce-item-icon">🌻</span>
           <div class="produce-item-name">Sesame</div>
-          <p class="produce-item-note">Drought-resilient export crop grown on the drier Sudan Savanna parcels. Exported via commodity aggregators to Asian processors. Low-input, high-margin.</p>
+          <p class="produce-item-note">Drought-resilient export crop grown on well-drained Ede parcels. Exported via commodity aggregators to processors. Low-input, high-margin.</p>
           <div class="produce-item-season">May – Sep</div>
         </div>
       </div>
@@ -836,14 +836,14 @@
 
       <div class="map-block r">
         <div class="map-block-head">
-          <span class="map-block-title">Field Polygon · Kano State Site</span>
+          <span class="map-block-title">Field Polygon · Ede Farm Site</span>
           <span class="map-block-badge">ACTIVE</span>
         </div>
         <div class="map-visual">
-<span class="st">SITE_ID</span>  <span class="hi">EGF-KN-01</span><br>
-<span class="st">STATE</span>    <span class="hi">Kano · Guinea Savanna Zone</span><br>
-<span class="st">LGA</span>      <span class="hi">Kura LGA</span><br>
-<span class="st">COORDS</span>   <span class="ok">11.43°N · 8.49°E</span><br>
+<span class="st">SITE_ID</span>  <span class="hi">EGF-EDE-01</span><br>
+<span class="st">STATE</span>    <span class="hi">Ede · Osun State</span><br>
+<span class="st">LGA</span>      <span class="hi">Ede LGA</span><br>
+<span class="st">COORDS</span>   <span class="ok">7.74°N · 4.44°E</span><br>
 ──────────────────────────────<br>
 <span class="st">ZONE A</span>   Maize · <span class="ok">●</span> 847 polys · 214 ha<br>
 <span class="st">ZONE B</span>   Tomato / Pepper · <span class="ok">●</span> 93 ha<br>
@@ -872,33 +872,33 @@
 
       <div class="location-copy r d1">
         <div class="s-label">Location & Land</div>
-        <h2 class="s-h2">Two sites.<br><em>One data</em><br>pipeline.</h2>
+        <h2 class="s-h2">Ede farm.<br><em>One data</em><br>pipeline.</h2>
         <p>
-          Our primary site is in Kura LGA, Kano State — located in the Guinea Savanna agro-ecological zone, with access to irrigation infrastructure and proximity to the Kano commodity market, one of the largest in West Africa.
+          Our farm is located in Ede, Osun State, Nigeria — within a southwest production corridor with access to regional markets, road links, and a reliable base for field operations.
         </p>
         <p>
-          Our secondary site in Kaduna State operates in a drier Sudan Savanna profile, giving us a natural A/B environment to test our CropSentinel models across different soil and rainfall regimes — improving model accuracy for the full range of Nigerian farming conditions.
+          CropSentinel is piloted across southwest states in Nigeria, giving our team a practical environment to test models across different soil, rainfall, and crop-management conditions.
         </p>
         <div class="location-facts">
           <div class="fact-row">
             <span class="fact-key">Primary site</span>
-            <span class="fact-val copper">Kano State · Kura LGA</span>
+            <span class="fact-val copper">Ede · Osun State</span>
           </div>
           <div class="fact-row">
             <span class="fact-key">Secondary site</span>
-            <span class="fact-val">Kaduna State</span>
+            <span class="fact-val">Southwest Nigeria</span>
           </div>
           <div class="fact-row">
             <span class="fact-key">Agro-ecological zone</span>
-            <span class="fact-val">Guinea Savanna + Sudan Savanna</span>
+            <span class="fact-val">Southwest rainforest-savanna transition</span>
           </div>
           <div class="fact-row">
             <span class="fact-key">Total cultivated area</span>
-            <span class="fact-val copper">~600 ha across both sites</span>
+            <span class="fact-val copper">~600 ha managed from Ede</span>
           </div>
           <div class="fact-row">
-            <span class="fact-key">Rainfall (Kano)</span>
-            <span class="fact-val">680 – 900 mm / year</span>
+            <span class="fact-key">Rainfall (Ede)</span>
+            <span class="fact-val">1,200 – 1,500 mm / year</span>
           </div>
           <div class="fact-row">
             <span class="fact-key">Irrigation source</span>
@@ -1115,11 +1115,24 @@
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   const drawerClose = document.getElementById('drawer-close');
-  hamburger.addEventListener('click', () => drawer.classList.add('open'));
-  drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
-  drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') drawer.classList.remove('open'); });
+  if (hamburger && drawer) {
+    const closeDrawer = () => {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const openDrawer = () => {
+      drawer.classList.add('open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+    drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeDrawer(); });
+  }
 
   const els = document.querySelectorAll('.r');
   const obs = new IntersectionObserver(entries => {

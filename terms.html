@@ -5,1105 +5,632 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Use — EcoGrow Farms Limited</title>
   <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
-  <link rel="shortcut icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
-  <meta name="theme-color" content="#1a3325">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --forest:   #1a3325;
-      --sage:     #3d6b4f;
-      --sage-lt:  #5a8f6c;
-      --amber:    #c47c22;
-      --amber-lt: #e09a42;
-      --cream:    #f4ede0;
-      --parchment:#ece3d0;
-      --earth:    #2a1f14;
-      --text:     #1e2b24;
-      --text-mid: #4d5e55;
-      --white:    #faf8f4;
-    }
-
     html { scroll-behavior: smooth; }
 
+    :root {
+      --page:       #e9f0dd;   /* light sage page ground */
+      --page-deep:  #dfe9cf;
+      --card:       #ffffff;
+      --ink:        #121712;   /* near-black green text */
+      --ink-soft:   #3d463c;
+      --ink-mute:   #6b7566;
+      --forest:     #14231a;   /* dark hero panel */
+      --forest-2:   #1b2f22;
+      --forest-3:   #24402e;
+      --lime:       #a8e63c;   /* glow accent on dark */
+      --lime-soft:  rgba(168,230,60,0.16);
+      --green:      #3e7d32;   /* accent on light */
+      --green-deep: #2c5a24;
+      --line:       rgba(18,23,18,0.12);
+      --line-soft:  rgba(18,23,18,0.07);
+      --white:      #f4f8ee;
+      --mist:       rgba(244,248,238,0.62);
+      --mist-dim:   rgba(244,248,238,0.38);
+
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Space Grotesk', sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+    }
+
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--white);
-      color: var(--text);
+      font-family: var(--font-body);
+      background: var(--page);
+      color: var(--ink);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.022;
-      pointer-events: none;
-      z-index: 9999;
-    }
+    ::selection { background: var(--lime); color: var(--forest); }
 
-    /* ─── NAV ─── */
+    /* ── NAV — floating pills ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 3.5rem;
-      background: rgba(26,51,37,0.97);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+      padding: 1rem 2rem;
+      pointer-events: none;
     }
-    .nav-logo {
-      display: flex; align-items: center; gap: 0.75rem;
-      text-decoration: none; flex-shrink: 0;
-    }
-    .nav-logo-img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      display: block;
-      flex-shrink: 0;
-    }
-    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-logo-text span:first-child {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--white);
-    }
-    .nav-logo-text span:last-child {
-      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--amber-lt); font-weight: 500;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(250,248,244,0.75); transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--amber-lt); }
-    .nav-cta {
-      background: var(--amber) !important; padding: 0.52rem 1.3rem;
-      border-radius: 2px; font-weight: 600 !important;
-      color: #1a1206 !important; transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--amber-lt) !important; }
-
-    .mobile-menu-toggle {
-      display: none; width: 44px; height: 44px;
-      border: 1px solid rgba(244,237,224,0.22);
-      background: rgba(244,237,224,0.05);
-      border-radius: 4px; align-items: center; justify-content: center;
-      flex-direction: column; gap: 5px; cursor: pointer; z-index: 120;
-    }
-    .mobile-menu-toggle span {
-      display: block; width: 20px; height: 2px;
-      background: var(--white); transition: transform 0.25s, opacity 0.25s;
-    }
-    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-nav-panel {
-      position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
-      display: flex; flex-direction: column;
-      padding: 1rem 1.25rem 1.5rem;
-      background: rgba(26,51,37,0.98);
-      border-top: 1px solid rgba(196,124,34,0.25);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.24);
-      transform: translateY(-120%); opacity: 0; pointer-events: none;
-      transition: transform 0.25s, opacity 0.25s;
-    }
-    .mobile-nav-panel.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-    .mobile-nav-panel a {
-      color: rgba(250,248,244,0.88); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      font-size: 0.82rem; font-weight: 500;
-      padding: 1rem 0; border-bottom: 1px solid rgba(244,237,224,0.09);
-    }
-    .mobile-nav-panel a:hover { color: var(--amber-lt); }
-    .mobile-nav-cta {
-      margin-top: 1rem; padding: 0.9rem 1rem !important;
-      background: var(--amber); color: #1a1206 !important;
-      text-align: center; border-bottom: none !important;
-      border-radius: 3px; font-weight: 700 !important;
-    }
-
-    /* ─── PAGE HERO ─── */
-    #page-hero {
-      padding-top: 68px;
-      background: var(--forest);
-      position: relative; overflow: hidden;
-      min-height: 40vh;
-      display: flex; align-items: flex-end;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 50% 65% at 68% 42%, rgba(61,107,79,0.28) 0%, transparent 60%),
-        linear-gradient(160deg, #091810 0%, #1a3325 52%, #0f2218 100%);
-    }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(90,143,108,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(90,143,108,0.05) 1px, transparent 1px);
-      background-size: 72px 72px;
-    }
-    /* Right-side Roman-column decorative motif — vertical rules */
-    .hero-deco {
-      position: absolute; right: 6%; top: 0; bottom: 0;
-      display: flex; align-items: center; gap: 2.2rem;
-      opacity: 0.4;
-    }
-    .hero-deco-col {
-      width: 1px;
-      background: linear-gradient(to bottom,
-        transparent 5%,
-        rgba(90,143,108,0.55) 25%,
-        rgba(196,124,34,0.45) 60%,
-        transparent 95%);
-    }
-    .hero-deco-col:nth-child(1) { height: 55%; }
-    .hero-deco-col:nth-child(2) { height: 80%; }
-    .hero-deco-col:nth-child(3) { height: 65%; }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 1320px; margin: 0 auto;
-      padding: 4rem 3.5rem;
-      width: 100%;
-    }
-    .breadcrumb {
-      display: flex; align-items: center; gap: 0.6rem;
-      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(244,237,224,0.38); font-weight: 500; margin-bottom: 1.4rem;
-    }
-    .breadcrumb a { color: rgba(244,237,224,0.38); text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--amber-lt); }
-    .breadcrumb span { color: var(--amber); }
-    .breadcrumb-sep { opacity: 0.4; }
-    .hero-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(3rem, 5.5vw, 5.5rem);
-      font-weight: 600; line-height: 1.04;
-      color: var(--white); margin-bottom: 1.2rem;
-      letter-spacing: -0.01em;
-    }
-    .hero-sub {
-      font-size: 1rem; line-height: 1.78;
-      color: rgba(244,237,224,0.62); font-weight: 300;
-      max-width: 500px;
-    }
-
-    /* ─── MAIN LAYOUT ─── */
-    #terms-body {
-      background: var(--white);
-      padding: 5.5rem 0 6rem;
-    }
-
-    .terms-layout {
-      max-width: 1320px; margin: 0 auto; padding: 0 3.5rem;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-
-    /* ─── STICKY SIDEBAR ─── */
-    .terms-sidebar { position: sticky; top: 100px; }
-    .sidebar-label {
-      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--amber); font-weight: 700; margin-bottom: 1.2rem;
-    }
-    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .sidebar-nav li a {
-      display: flex; align-items: baseline; gap: 0.65rem;
-      font-size: 0.8rem; font-weight: 500; color: var(--text-mid);
+    nav > * { pointer-events: auto; }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.65rem;
       text-decoration: none;
-      padding: 0.6rem 0 0.6rem 1rem;
-      border-left: 2px solid rgba(61,107,79,0.14);
-      transition: color 0.2s, border-color 0.2s;
-      line-height: 1.35;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.5rem 1.1rem 0.5rem 0.7rem; border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
     }
-    .sidebar-nav li a:hover,
-    .sidebar-nav li a.active {
-      color: var(--sage);
-      border-left-color: var(--sage);
+    .nav-brand-img { width: 30px; height: 30px; object-fit: contain; }
+    .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+    .nav-brand-wordmark strong {
+      font-weight: 700; font-size: 0.95rem; color: var(--ink); letter-spacing: -0.01em;
     }
-    .sidebar-nav li a .s-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.6rem; color: rgba(61,107,79,0.45); flex-shrink: 0;
-    }
-    .sidebar-meta {
-      margin-top: 2.4rem; padding-top: 1.6rem;
-      border-top: 1px solid rgba(61,107,79,0.12);
-    }
-    .sidebar-meta-label {
-      font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--text-mid); font-weight: 600; opacity: 0.6; margin-bottom: 0.5rem;
-    }
-    .sidebar-meta-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.72rem; color: var(--text-mid); line-height: 1.7;
+    .nav-brand-wordmark span {
+      font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green);
     }
 
-    /* ─── TERMS CONTENT ─── */
-    .terms-content { max-width: 720px; }
+    .nav-links {
+      display: flex; align-items: center; gap: 0.25rem; list-style: none;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.35rem; border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+    }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--ink-soft);
+      text-decoration: none; letter-spacing: 0.01em;
+      padding: 0.5rem 1.05rem; border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--page-deep); color: var(--ink); }
 
-    .terms-date-chip {
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.72rem; letter-spacing: 0.08em;
-      background: rgba(61,107,79,0.08);
-      color: var(--sage); padding: 0.3rem 0.85rem;
-      border-radius: 2px; margin-bottom: 2rem;
-      border: 1px solid rgba(61,107,79,0.18);
+      font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; color: var(--ink);
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.6rem 1.3rem; border-radius: 999px;
+      border: 1.5px solid var(--green);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+      transition: background 0.2s, color 0.2s;
     }
-    .terms-date-chip::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--sage-lt);
+    .nav-cta .arr {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--green);
+      display: grid; place-items: center;
+      font-size: 0.7rem; color: var(--green);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--forest); color: var(--white); border-color: var(--forest); }
+    .nav-cta:hover .arr { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateX(2px); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; border: 1px solid var(--line-soft); padding: 12px 11px;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+    }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    .drawer {
+      display: none; position: fixed; inset: 0;
+      background: var(--forest); z-index: 290;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
+    }
+    .drawer.open { display: flex; }
+    .drawer a {
+      font-size: 2rem; font-weight: 700;
+      color: var(--white); text-decoration: none; transition: color 0.2s;
+      letter-spacing: -0.02em;
+    }
+    .drawer a:hover { color: var(--lime); }
+    .drawer-close {
+      position: absolute; top: 1.5rem; right: 1.8rem;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; color: var(--mist);
     }
 
-    .terms-section {
-      margin-bottom: 4rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid rgba(61,107,79,0.1);
+    .s-label {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green);
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      margin-bottom: 1.3rem;
+    }
+    .s-label::before { content: ''; width: 22px; height: 1.5px; background: var(--green); opacity: 0.6; }
+    .s-h2 {
+      font-size: clamp(1.9rem, 3.4vw, 3rem);
+      font-weight: 700; line-height: 1.08; letter-spacing: -0.025em;
+      color: var(--ink); margin-bottom: 1.2rem;
+    }
+    .s-h2 em { font-style: italic; color: var(--green); }
+    .s-sub { font-size: 0.95rem; line-height: 1.85; color: var(--ink-mute); font-weight: 300; }
+
+    /* ── LEGAL HEADER ── */
+    #legal-hero { padding: 9rem 2rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .legal-hero-inner { max-width: 760px; }
+    .legal-h1 {
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      font-weight: 700; line-height: 1.08; letter-spacing: -0.025em;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .legal-date-chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--green-deep);
+      background: var(--lime-soft); border: 1px solid rgba(62,125,50,0.2);
+      padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 1.3rem;
+    }
+    .legal-date-chip::before { content:''; width:6px; height:6px; border-radius:50%; background: var(--green); }
+    .legal-meta {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-mute);
+    }
+
+    /* ── TOC ── */
+    #legal-toc { padding: 0 2rem 3rem; max-width: 1200px; margin: 0 auto; }
+    .legal-toc-list { display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 760px; list-style: none; }
+    .legal-toc-list a {
+      font-size: 0.75rem; font-weight: 500;
+      border: 1px solid var(--line); background: var(--card);
+      color: var(--ink-soft); padding: 0.38rem 0.95rem; border-radius: 999px;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .legal-toc-list a:hover { border-color: var(--green); color: var(--green-deep); background: #f2f8e8; }
+    .legal-toc-list a .t-num { font-family: var(--font-mono); font-size: 0.62rem; color: var(--green); }
+
+    /* ── LEGAL BODY CARD ── */
+    #legal-body { padding: 0 2rem 7rem; }
+    .legal-card {
+      max-width: 900px; margin: 0 auto;
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+    }
+    .legal-section {
+      margin-bottom: 3rem; padding-bottom: 3rem;
+      border-bottom: 1px solid var(--line-soft);
       scroll-margin-top: 100px;
     }
-    .terms-section:last-child {
-      border-bottom: none; margin-bottom: 0; padding-bottom: 0;
+    .legal-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .legal-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.4rem; }
+    .legal-section-num {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
+      color: var(--green); border: 1px solid var(--line); padding: 0.16rem 0.55rem;
+      border-radius: 4px; flex-shrink: 0; margin-top: 0.2rem;
+    }
+    .legal-section-title {
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
+      font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; color: var(--ink);
+    }
+    .legal-section p {
+      font-size: 0.94rem; line-height: 1.88; color: var(--ink-mute);
+      font-weight: 300; margin-bottom: 1.1rem;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section strong { font-weight: 600; color: var(--ink-soft); }
+
+    .legal-list {
+      list-style: none; margin: 1.2rem 0;
+      border: 1px solid var(--line-soft); border-radius: var(--radius-sm); overflow: hidden;
+    }
+    .legal-list li {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      padding: 0.85rem 1.3rem; font-size: 0.86rem; line-height: 1.62;
+      color: var(--ink-mute); border-bottom: 1px solid var(--line-soft);
+      background: var(--card); transition: background 0.18s;
+    }
+    .legal-list li:last-child { border-bottom: none; }
+    .legal-list li:hover { background: var(--page); }
+    .legal-list li::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0; margin-top: 0.5rem;
     }
 
-    .terms-section-header {
-      display: flex; align-items: baseline; gap: 1rem;
-      margin-bottom: 1.6rem;
+    .legal-callout {
+      margin: 1.6rem 0; padding: 1.2rem 1.6rem;
+      border-left: 3px solid var(--green); background: var(--lime-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
-    .terms-section-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.12em;
-      color: var(--sage); border: 1px solid rgba(61,107,79,0.25);
-      padding: 0.18rem 0.6rem; border-radius: 2px;
-      flex-shrink: 0; margin-top: 0.3rem;
-    }
-    .terms-section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.5rem, 2.2vw, 2rem);
-      font-weight: 600; line-height: 1.18; color: var(--text);
-    }
+    .legal-callout p { font-size: 0.88rem !important; color: var(--ink-soft) !important; font-weight: 400 !important; margin-bottom: 0 !important; }
 
-    .terms-content p {
-      font-size: 0.96rem; line-height: 1.9;
-      color: var(--text-mid); font-weight: 300;
-      margin-bottom: 1rem;
+    .legal-company {
+      background: var(--page); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 1.8rem 2rem; margin-top: 1.4rem;
     }
-    .terms-content p:last-child { margin-bottom: 0; }
+    .legal-company-name { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+    .legal-company-row {
+      display: flex; align-items: baseline; gap: 0.8rem; padding: 0.55rem 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .legal-company-row:last-child { border-bottom: none; }
+    .legal-company-key {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green); min-width: 110px; flex-shrink: 0;
+    }
+    .legal-company-val { font-size: 0.85rem; color: var(--ink-mute); }
+    .legal-company-val a { color: var(--green); text-decoration: none; transition: color 0.2s; }
+    .legal-company-val a:hover { color: var(--green-deep); }
 
-    /* Inline emphasis — used for key terms */
-    .terms-content strong {
-      font-weight: 600; color: var(--text);
-    }
-
-    /* Callout boxes */
-    .terms-callout {
-      margin: 1.6rem 0;
-      padding: 1.3rem 1.8rem;
-      border-left: 3px solid var(--sage);
-      background: rgba(61,107,79,0.05);
-      border-radius: 0 3px 3px 0;
-    }
-    .terms-callout p {
-      font-size: 0.9rem !important;
-      margin-bottom: 0 !important;
-      color: var(--text) !important;
-      font-weight: 400 !important;
-      line-height: 1.75 !important;
-    }
-    .terms-callout.amber {
-      border-left-color: var(--amber);
-      background: rgba(196,124,34,0.05);
-    }
-    .terms-callout.amber p { color: var(--text) !important; }
-
-    /* Bullet list */
-    .terms-list {
-      list-style: none;
-      margin: 1.2rem 0;
-      display: flex; flex-direction: column; gap: 0;
-      border: 1px solid rgba(61,107,79,0.12);
-      border-radius: 4px; overflow: hidden;
-    }
-    .terms-list li {
-      display: flex; align-items: flex-start; gap: 1rem;
-      padding: 0.88rem 1.4rem;
-      font-size: 0.92rem; color: var(--text-mid); font-weight: 400;
-      border-bottom: 1px solid rgba(61,107,79,0.08);
-      background: var(--white);
-      line-height: 1.62;
-      transition: background 0.18s;
-    }
-    .terms-list li:last-child { border-bottom: none; }
-    .terms-list li:hover { background: rgba(61,107,79,0.03); }
-    .terms-list li::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--sage-lt); flex-shrink: 0;
-      margin-top: 0.48rem;
-    }
-
-    /* Company info block */
-    .company-block {
-      background: var(--cream);
-      border: 1px solid rgba(61,107,79,0.14);
-      border-radius: 4px;
-      padding: 2rem 2.2rem;
-      margin-top: 1.6rem;
-    }
-    .company-block-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.3rem; font-weight: 700; color: var(--text);
-      margin-bottom: 1rem;
-    }
-    .company-detail-row {
-      display: flex; align-items: baseline; gap: 0.8rem;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid rgba(61,107,79,0.09);
-    }
-    .company-detail-row:last-child { border-bottom: none; }
-    .company-detail-key {
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      font-weight: 700; color: var(--sage); min-width: 110px; flex-shrink: 0;
-    }
-    .company-detail-val {
-      font-size: 0.88rem; color: var(--text-mid);
-    }
-    .company-detail-val a {
-      color: var(--sage); text-decoration: none; transition: color 0.2s;
-    }
-    .company-detail-val a:hover { color: var(--amber); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--earth);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 4.5rem 0 2.5rem;
-    }
-    .footer-inner { max-width: 1320px; margin: 0 auto; padding: 0 3.5rem; }
+    /* ── FOOTER ── */
+    footer { background: var(--page); padding: 4.5rem 0 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      margin-bottom: 2rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: 1.6rem;
     }
-    .footer-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-    .footer-logo img { width: 34px; height: 34px; object-fit: contain; }
-    .footer-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .footer-logo-text span:first-child {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--white);
+    .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
+    .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
+    .footer-brand-wrap strong { font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .footer-tagline { font-size: 0.8rem; line-height: 1.78; color: var(--ink-mute); max-width: 28ch; }
+    .footer-col-head {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1.1rem;
     }
-    .footer-logo-text span:last-child {
-      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--amber-lt); font-weight: 500;
-    }
-    .footer-tagline {
-      font-size: 0.83rem; line-height: 1.7;
-      color: rgba(244,237,224,0.4); margin-top: 1rem; font-weight: 300;
-    }
-    .footer-col-title {
-      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--amber); font-weight: 600; margin-bottom: 1.2rem;
-    }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 0.6rem; }
-    .footer-links a {
-      font-size: 0.85rem; color: rgba(244,237,224,0.4);
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a { font-size: 0.82rem; color: var(--ink-mute); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .footer-copy { font-size: 0.72rem; color: var(--ink-mute); }
+    .footer-contact {
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-mute);
       text-decoration: none; transition: color 0.2s;
     }
-    .footer-links a:hover { color: rgba(244,237,224,0.88); }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 0.75rem;
-    }
-    .footer-copy { font-size: 0.78rem; color: rgba(244,237,224,0.28); }
-    .footer-note {
-      font-size: 0.72rem; color: rgba(244,237,224,0.2);
-      font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.04em;
-    }
-    .footer-legal-links { display: flex; gap: 1.5rem; }
-    .footer-legal-links a {
-      font-size: 0.75rem; color: rgba(244,237,224,0.28);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .footer-legal-links a:hover { color: rgba(244,237,224,0.7); }
-    .footer-legal-links a.current { color: rgba(244,237,224,0.55); }
+    .footer-contact:hover { color: var(--green); }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.25rem; }
-      .nav-links { display: none; }
-      .mobile-menu-toggle { display: inline-flex; }
-      .hero-content { padding: 3.5rem 1.5rem; }
-      .hero-deco { display: none; }
-      .terms-layout {
-        grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem;
-      }
-      .terms-sidebar { position: static; }
-      .sidebar-nav {
-        flex-direction: row; flex-wrap: wrap; gap: 0.4rem;
-      }
-      .sidebar-nav li a {
-        border-left: none; padding-left: 0;
-        border-bottom: 2px solid rgba(61,107,79,0.14);
-        padding-bottom: 0.28rem; font-size: 0.75rem;
-      }
-      .sidebar-nav li a:hover, .sidebar-nav li a.active {
-        border-left: none; border-bottom-color: var(--sage);
-      }
-      .sidebar-nav li a .s-num { display: none; }
-      .sidebar-meta { display: none; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
-      .footer-inner { padding: 0 1.5rem; }
+    /* ── SCROLL REVEAL ── */
+    .r { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .r.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 640px) {
-      .nav-logo-img {
-        width: 46px;
-        height: 46px;
-      }
-      .footer-logo-img {
-        width: 56px;
-        height: 56px;
-      }
-
-      .footer-top { grid-template-columns: 1fr; gap: 1.8rem; }
-      .terms-section { margin-bottom: 2.8rem; padding-bottom: 2.8rem; }
-      #terms-body { padding: 3.5rem 0 4rem; }
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
     }
-  
-
-    /* ─── GLOBAL MOBILE RESPONSIVENESS SAFETY PATCH ─── */
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
-    img,
-    svg,
-    video {
-      max-width: 100%;
-      height: auto;
-    }
-
-    * { box-sizing: border-box; }
-
-    section,
-    main,
-    footer,
-    header,
-    nav {
-      max-width: 100%;
-    }
-
-    .footer-logo-img {
-      width: 48px;
-      height: 48px;
-      max-width: 48px;
-      max-height: 48px;
-      object-fit: contain;
-      display: block;
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 900px) {
-      nav { padding: 0.9rem 1.25rem; }
-      .nav-links { display: none; }
-      .mobile-menu-toggle { display: inline-flex; }
-      .mobile-nav-panel {
-        left: 0;
-        right: 0;
-        width: 100%;
-        max-width: 100vw;
-      }
-      .contact-layout,
-      .audience-grid,
-      .cards-grid,
-      .values-grid,
-      .insights-grid,
-      .legal-grid,
-      .procurement-grid,
-      .partnership-grid,
-      .partner-grid,
-      .focus-grid,
-      .services-grid,
-      .footer-top {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .footer-top { gap: 2rem; }
-    }
-
     @media (max-width: 768px) {
-      .section-inner,
-      .hero-content,
-      .footer-inner,
-      .legal-inner,
-      .content-inner,
-      .container,
-      .page-content {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-
-      .hero-content,
-      .page-hero-content,
-      .legal-hero-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding-top: 7rem;
-        padding-bottom: 3rem;
-      }
-
-      .hero-headline,
-      .page-hero h1,
-      .legal-hero h1,
-      h1 {
-        font-size: clamp(2.2rem, 12vw, 3.2rem);
-        line-height: 1.05;
-        max-width: 100%;
-        overflow-wrap: break-word;
-      }
-
-      .hero-sub,
-      .page-hero p,
-      .legal-hero p {
-        font-size: 0.95rem;
-        line-height: 1.7;
-        max-width: 100%;
-      }
-
-      .contact-layout,
-      .insights-grid,
-      .articles-grid,
-      .featured-grid,
-      .procurement-grid,
-      .partnership-grid,
-      .partner-grid,
-      .focus-grid,
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-form-panel,
-      .company-card,
-      .article-card,
-      .insight-card,
-      .legal-card,
-      .policy-card,
-      .terms-card {
-        padding: 1.5rem;
-      }
-
-      .form-row { grid-template-columns: 1fr; gap: 1rem; }
-      .mailto-cta { align-items: flex-start; }
-      .mailto-cta-address,
-      .contact-detail-value {
-        overflow-wrap: anywhere;
-        word-break: break-word;
-      }
-
-      .legal-content,
-      .legal-section,
-      .policy-content,
-      .terms-content {
-        padding: 2.5rem 1.25rem;
-      }
-
-      .legal-content h2,
-      .policy-content h2,
-      .terms-content h2 {
-        font-size: 1.45rem;
-        line-height: 1.25;
-      }
-
-      .legal-content p,
-      .legal-content li,
-      .policy-content p,
-      .policy-content li,
-      .terms-content p,
-      .terms-content li {
-        font-size: 0.92rem;
-        line-height: 1.75;
-      }
-
-      .category-chips,
-      .article-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .cta-actions,
-      .hero-actions,
-      .partner-cta-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .cta-actions a,
-      .hero-actions a,
-      .partner-cta-actions a {
-        width: 100%;
-        text-align: center;
-      }
+      nav { padding: 0.9rem 1rem; }
+      #legal-hero { padding: 7rem 1.4rem 1.2rem; }
+      #legal-toc { padding: 0 1.4rem 2.2rem; }
+      #legal-body { padding: 0 1.4rem 5rem; }
+      .legal-card { padding: 1.7rem 1.4rem; }
+      .legal-section { margin-bottom: 2.4rem; padding-bottom: 2.4rem; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-inner { padding: 0 1.4rem; }
     }
-
-    @media (max-width: 640px) {
-      .contact-layout,
-      .audience-grid,
-      .cards-grid,
-      .values-grid,
-      .insights-grid,
-      .legal-grid,
-      .procurement-grid,
-      .partnership-grid,
-      .partner-grid,
-      .focus-grid,
-      .services-grid,
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-      .footer-top { gap: 2rem; }
-      .footer-logo-img {
-        width: 42px;
-        height: 42px;
-        max-width: 42px;
-        max-height: 42px;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-      .hero-actions,
-      .cta-actions,
-      .form-submit-area,
-      .partner-cta-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn-primary,
-      .btn-ghost,
-      .btn-outline,
-      .btn-compose {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-      }
-      p, li, a, span { overflow-wrap: break-word; }
-    }
-
     @media (max-width: 480px) {
-      .section-inner,
-      .hero-content,
-      .footer-inner,
-      .legal-inner,
-      .content-inner,
-      .container,
-      .page-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
+      .legal-section-header { flex-wrap: wrap; }
     }
 
-    @media (max-width: 420px) {
-      .contact-form-panel,
-      .company-card,
-      .legal-card,
-      .policy-card,
-      .terms-card {
-        padding: 1.25rem;
-      }
-      .mailto-cta { padding: 1rem; }
-      .mailto-cta-address { font-size: 0.78rem; }
-      .legal-card,
-      .policy-card,
-      .terms-card { padding: 1.15rem; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .r { opacity: 1; transform: none; transition: none; }
     }
-</style>
+  </style>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════
-       NAVIGATION
-  ═══════════════════════════════ -->
-  <nav>
-    <a href="index.html" class="nav-logo" aria-label="EcoGrow Farms Limited home">
-      <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms Limited logo" class="nav-logo-img">
-      <span class="nav-logo-text">
-        <span>EcoGrow Farms</span>
-        <span>Limited</span>
-      </span>
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="produce.html">Produce</a></li>
-      <li><a href="technology.html">Technology</a></li>
-      <li><a href="quality.html">Quality</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
-    </ul>
-
-    <button class="mobile-menu-toggle" aria-label="Open navigation menu"
-            aria-expanded="false" aria-controls="mobileNav">
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="/" class="nav-brand">
+    <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms" class="nav-brand-img">
+    <div class="nav-brand-wordmark">
+      <strong>EcoGrow Farms</strong>
+      <span>Limited</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/farm.html">The Farm</a></li>
+    <li><a href="/products.html">Products</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/insights.html">Insights</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/contact.html" class="nav-cta">Get in touch <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-  </nav>
-
-  <div class="mobile-nav-panel" id="mobileNav" aria-hidden="true">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="produce.html">Produce</a>
-    <a href="technology.html">Technology</a>
-    <a href="quality.html">Quality</a>
-    <a href="contact.html">Contact</a>
-    <a href="contact.html" class="mobile-nav-cta">Contact EcoGrow</a>
   </div>
+</nav>
+
+<div class="drawer" id="drawer">
+  <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
+  <a href="/farm.html">The Farm</a>
+  <a href="/products.html">Products</a>
+  <a href="/about.html">About</a>
+  <a href="/insights.html">Insights</a>
+  <a href="/contact.html">Get in touch</a>
+</div>
 
 
-  <!-- ═══════════════════════════════
-       PAGE HERO
-  ═══════════════════════════════ -->
-  <section id="page-hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-deco" aria-hidden="true">
-      <div class="hero-deco-col"></div>
-      <div class="hero-deco-col"></div>
-      <div class="hero-deco-col"></div>
-    </div>
-    <div class="hero-content">
-      <div class="breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb-sep">›</span>
-        <span>Terms of Use</span>
+<!-- ═══ LEGAL HEADER ═══ -->
+<section id="legal-hero">
+  <div class="legal-hero-inner">
+    <div class="s-label r">Legal</div>
+    <h1 class="legal-h1 r d1">Terms of Use</h1>
+    <div class="legal-date-chip r d2">Effective date: May 2025</div>
+    <div class="legal-meta r d2">Last updated May 2025</div>
+  </div>
+</section>
+
+
+<!-- ═══ TABLE OF CONTENTS ═══ -->
+<section id="legal-toc">
+  <ul class="legal-toc-list r">
+    <li><a href="#website-use"><span class="t-num">01</span> Website Use</a></li>
+    <li><a href="#information-accuracy"><span class="t-num">02</span> Information Accuracy</a></li>
+    <li><a href="#no-guarantee"><span class="t-num">03</span> No Guarantee of Availability</a></li>
+    <li><a href="#intellectual-property"><span class="t-num">04</span> Intellectual Property</a></li>
+    <li><a href="#external-links"><span class="t-num">05</span> External Links</a></li>
+    <li><a href="#limitation-of-liability"><span class="t-num">06</span> Limitation of Liability</a></li>
+    <li><a href="#contact-terms"><span class="t-num">07</span> Contact</a></li>
+    <li><a href="#company-info"><span class="t-num">08</span> Company Information</a></li>
+  </ul>
+</section>
+
+
+<!-- ═══ TERMS BODY ═══ -->
+<section id="legal-body">
+  <div class="legal-card r">
+
+    <!-- 1. Website Use -->
+    <div class="legal-section" id="website-use">
+      <div class="legal-section-header">
+        <span class="legal-section-num">01</span>
+        <h2 class="legal-section-title">Website Use</h2>
       </div>
-      <h1 class="hero-headline">Terms of Use</h1>
-      <p class="hero-sub">
-        Terms governing access to and use of the EcoGrow Farms Limited website.
-      </p>
+      <p>By accessing and using this website, you agree to the terms set out on this page. If you do not agree to these terms, please do not use this website.</p>
+      <p>Visitors may use this website to learn about EcoGrow Farms Limited, its agricultural activities, services, products, and partnership opportunities. The website is intended for informational purposes and to support business communication between EcoGrow and interested parties.</p>
+      <p>You agree to use this website only for lawful purposes and in a manner that does not infringe the rights of others or restrict or inhibit their use and enjoyment of the site.</p>
+
+      <ul class="legal-list">
+        <li>You may browse, read, and share content from this website for personal, research, or business-evaluation purposes</li>
+        <li>You may contact EcoGrow through the forms and contact details provided on this website</li>
+        <li>You may not reproduce, republish, or commercially exploit content from this website without express written permission from EcoGrow Farms Limited</li>
+        <li>You may not attempt to gain unauthorised access to any part of this website or its underlying systems</li>
+      </ul>
     </div>
-  </section>
+
+    <!-- 2. Information Accuracy -->
+    <div class="legal-section" id="information-accuracy">
+      <div class="legal-section-header">
+        <span class="legal-section-num">02</span>
+        <h2 class="legal-section-title">Information Accuracy</h2>
+      </div>
+      <p>EcoGrow Farms Limited aims to provide accurate, current, and professionally presented information on this website. We make reasonable efforts to ensure the content reflects the company's current activities, services, and direction.</p>
+      <p>However, website content may change as the company develops, as agricultural conditions evolve, and as business plans are updated. Information published here is provided in good faith but does not constitute a formal offer, contract, guarantee, or binding commitment on the part of EcoGrow Farms Limited unless explicitly confirmed in writing through a separate business agreement.</p>
+
+      <div class="legal-callout">
+        <p>If you require verified, current information about EcoGrow's products, services, supply capacity, or operational status for the purpose of making a business decision, please contact us directly to confirm the details.</p>
+      </div>
+
+      <p>EcoGrow reserves the right to update, revise, or remove content from this website at any time without prior notice.</p>
+    </div>
+
+    <!-- 3. No Guarantee of Availability -->
+    <div class="legal-section" id="no-guarantee">
+      <div class="legal-section-header">
+        <span class="legal-section-num">03</span>
+        <h2 class="legal-section-title">No Guarantee of Availability</h2>
+      </div>
+      <p>Information about products, services, supply capacity, partnerships, and operations described on this website reflects the general direction and intended scope of EcoGrow Farms Limited's activities. It does not constitute a guarantee that any specific product, service, supply volume, or partnership arrangement is immediately available.</p>
+      <p>Actual availability may be subject to a number of factors, including but not limited to:</p>
+
+      <ul class="legal-list">
+        <li>Seasonal growing patterns and agricultural cycles</li>
+        <li>Geographic location and logistics considerations</li>
+        <li>Current production capacity and harvest volumes</li>
+        <li>Business confirmation and formal contract agreement</li>
+        <li>Applicable regulations, permits, or phytosanitary requirements</li>
+      </ul>
+
+      <p>EcoGrow Farms Limited will not be held responsible for decisions made based solely on information published on this website without direct business confirmation from an authorised EcoGrow representative.</p>
+    </div>
+
+    <!-- 4. Intellectual Property -->
+    <div class="legal-section" id="intellectual-property">
+      <div class="legal-section-header">
+        <span class="legal-section-num">04</span>
+        <h2 class="legal-section-title">Intellectual Property</h2>
+      </div>
+      <p>The text, branding, design, logo, visual materials, layout, and other content on this website are the property of EcoGrow Farms Limited unless otherwise stated. All rights are reserved.</p>
+      <p>You may not copy, reproduce, distribute, modify, transmit, republish, or use the content of this website for commercial purposes without the prior written permission of EcoGrow Farms Limited. This includes, but is not limited to:</p>
+
+      <ul class="legal-list">
+        <li>The EcoGrow Farms Limited name, wordmark, and logo</li>
+        <li>Written content including page copy, article text, and descriptions</li>
+        <li>Visual design elements, layouts, and colour schemes</li>
+        <li>Photographs, illustrations, and graphic assets produced for or by EcoGrow</li>
+      </ul>
+
+      <div class="legal-callout">
+        <p>Requests to reproduce or use EcoGrow content should be directed to us through the Contact page. We are open to reasonable media, research, and editorial use where appropriate credit is given.</p>
+      </div>
+
+      <p>Where third-party content appears on this website, such content remains the property of its respective owners and is used with permission or under applicable terms.</p>
+    </div>
+
+    <!-- 5. External Links -->
+    <div class="legal-section" id="external-links">
+      <div class="legal-section-header">
+        <span class="legal-section-num">05</span>
+        <h2 class="legal-section-title">External Links</h2>
+      </div>
+      <p>This website may contain links to third-party websites, platforms, resources, or services. These links are provided for convenience and reference only.</p>
+      <p>EcoGrow Farms Limited does not endorse, control, or take responsibility for the content, accuracy, privacy practices, or availability of any third-party website linked from this site. Following a link to an external website is done at your own discretion and risk.</p>
+      <p>We recommend reviewing the terms of use and privacy policies of any third-party website you visit. EcoGrow is not liable for any loss or damage arising from your use of, or reliance on, any content or services found on external sites reached through links on this website.</p>
+    </div>
+
+    <!-- 6. Limitation of Liability -->
+    <div class="legal-section" id="limitation-of-liability">
+      <div class="legal-section-header">
+        <span class="legal-section-num">06</span>
+        <h2 class="legal-section-title">Limitation of Liability</h2>
+      </div>
+      <p>This website and its content are provided on an <strong>"as is"</strong> basis, without warranties of any kind, whether express or implied. EcoGrow Farms Limited makes no guarantee that the website will be free from errors, interruptions, or security vulnerabilities, although we take reasonable steps to maintain its quality and availability.</p>
+
+      <div class="legal-callout">
+        <p>EcoGrow Farms Limited is not liable for any loss, damage, cost, or expense arising from reliance on information published on this website where that reliance has not been supported by direct written confirmation from an authorised EcoGrow representative through a formal business communication.</p>
+      </div>
+
+      <p>This limitation applies to, without limitation:</p>
+
+      <ul class="legal-list">
+        <li>Business decisions made based on website content alone</li>
+        <li>Financial loss resulting from acting on unconfirmed supply or service information</li>
+        <li>Loss of data, contracts, or opportunities arising from reliance on this website</li>
+        <li>Temporary unavailability of the website or technical errors on the site</li>
+      </ul>
+
+      <p>Nothing in these terms limits EcoGrow's liability in circumstances where such limitation is not permitted by applicable law. If you are uncertain about any information on this website, please contact us before taking action based on it.</p>
+    </div>
+
+    <!-- 7. Contact -->
+    <div class="legal-section" id="contact-terms">
+      <div class="legal-section-header">
+        <span class="legal-section-num">07</span>
+        <h2 class="legal-section-title">Contact</h2>
+      </div>
+      <p>If you have questions, concerns, or feedback regarding these Terms of Use, or if you wish to seek permission for use of EcoGrow content, please contact us through our website's Contact page.</p>
+      <p>We will endeavour to respond to reasonable enquiries in a timely manner and to address any concerns about the application of these terms.</p>
+      <p>These terms may be updated from time to time to reflect changes to how the website is used or to applicable requirements. The most current version will always be available on this page, with the date it was last updated shown at the top. Continued use of this website after an update constitutes acceptance of the revised terms.</p>
+    </div>
+
+    <!-- 8. Company Information -->
+    <div class="legal-section" id="company-info">
+      <div class="legal-section-header">
+        <span class="legal-section-num">08</span>
+        <h2 class="legal-section-title">Company Information</h2>
+      </div>
+      <p>These Terms of Use are published by:</p>
+
+      <div class="legal-company">
+        <div class="legal-company-name">EcoGrow Farms Nigeria Limited</div>
+        <div class="legal-company-row">
+          <span class="legal-company-key">Country</span>
+          <span class="legal-company-val">Nigeria</span>
+        </div>
+        <div class="legal-company-row">
+          <span class="legal-company-key">Email</span>
+          <span class="legal-company-val">
+            <a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a>
+          </span>
+        </div>
+        <div class="legal-company-row">
+          <span class="legal-company-key">Contact page</span>
+          <span class="legal-company-val">
+            <a href="/contact.html">ecogrowfarms.com/contact</a>
+          </span>
+        </div>
+        <div class="legal-company-row">
+          <span class="legal-company-key">Privacy policy</span>
+          <span class="legal-company-val">
+            <a href="/privacy.html">ecogrowfarms.com/privacy</a>
+          </span>
+        </div>
+        <div class="legal-company-row">
+          <span class="legal-company-key">Terms updated</span>
+          <span class="legal-company-val">May 2025</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
-  <!-- ═══════════════════════════════
-       TERMS BODY
-  ═══════════════════════════════ -->
-  <main id="terms-body">
-    <div class="terms-layout">
-
-      <!-- SIDEBAR -->
-      <aside class="terms-sidebar" aria-label="Terms navigation">
-        <div class="sidebar-label">On this page</div>
-        <ul class="sidebar-nav">
-          <li><a href="#website-use"><span class="s-num">01</span> Website Use</a></li>
-          <li><a href="#information-accuracy"><span class="s-num">02</span> Information Accuracy</a></li>
-          <li><a href="#no-guarantee"><span class="s-num">03</span> No Guarantee of Availability</a></li>
-          <li><a href="#intellectual-property"><span class="s-num">04</span> Intellectual Property</a></li>
-          <li><a href="#external-links"><span class="s-num">05</span> External Links</a></li>
-          <li><a href="#limitation-of-liability"><span class="s-num">06</span> Limitation of Liability</a></li>
-          <li><a href="#contact-terms"><span class="s-num">07</span> Contact</a></li>
-          <li><a href="#company-info"><span class="s-num">08</span> Company Information</a></li>
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-brand-wrap">
+          <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms">
+          <strong>EcoGrow Farms Limited</strong>
+        </a>
+        <p class="footer-tagline">Nigerian agribusiness with its own intelligence layer. Growing food. Building software. Feeding better decisions.</p>
+      </div>
+      <div>
+        <div class="footer-col-head">Products</div>
+        <ul class="footer-links">
+          <li><a href="/products.html#cropsentinel">CropSentinel</a></li>
+          <li><a href="/products.html#soilpulse">SoilPulse</a></li>
+          <li><a href="/products.html#harvestiq">HarvestIQ</a></li>
+          <li><a href="/products.html#irrigateai">IrrigateAI</a></li>
         </ul>
-
-        <div class="sidebar-meta">
-          <div class="sidebar-meta-label">Last updated</div>
-          <div class="sidebar-meta-val">May 2025</div>
-          <div class="sidebar-meta-label" style="margin-top:1rem;">Company Details</div>
-          <div class="sidebar-meta-val"></div>
-        </div>
-      </aside>
-
-
-      <!-- CONTENT -->
-      <article class="terms-content">
-
-        <div class="terms-date-chip">Effective date: May 2025</div>
-
-        <!-- 1. Website Use -->
-        <section class="terms-section" id="website-use">
-          <div class="terms-section-header">
-            <span class="terms-section-num">01</span>
-            <h2 class="terms-section-title">Website Use</h2>
-          </div>
-          <p>By accessing and using this website, you agree to the terms set out on this page. If you do not agree to these terms, please do not use this website.</p>
-          <p>Visitors may use this website to learn about EcoGrow Farms Limited, its agricultural activities, services, products, and partnership opportunities. The website is intended for informational purposes and to support business communication between EcoGrow and interested parties.</p>
-          <p>You agree to use this website only for lawful purposes and in a manner that does not infringe the rights of others or restrict or inhibit their use and enjoyment of the site.</p>
-
-          <ul class="terms-list">
-            <li>You may browse, read, and share content from this website for personal, research, or business-evaluation purposes</li>
-            <li>You may contact EcoGrow through the forms and contact details provided on this website</li>
-            <li>You may not reproduce, republish, or commercially exploit content from this website without express written permission from EcoGrow Farms Limited</li>
-            <li>You may not attempt to gain unauthorised access to any part of this website or its underlying systems</li>
-          </ul>
-        </section>
-
-
-        <!-- 2. Information Accuracy -->
-        <section class="terms-section" id="information-accuracy">
-          <div class="terms-section-header">
-            <span class="terms-section-num">02</span>
-            <h2 class="terms-section-title">Information Accuracy</h2>
-          </div>
-          <p>EcoGrow Farms Limited aims to provide accurate, current, and professionally presented information on this website. We make reasonable efforts to ensure the content reflects the company's current activities, services, and direction.</p>
-          <p>However, website content may change as the company develops, as agricultural conditions evolve, and as business plans are updated. Information published here is provided in good faith but does not constitute a formal offer, contract, guarantee, or binding commitment on the part of EcoGrow Farms Limited unless explicitly confirmed in writing through a separate business agreement.</p>
-
-          <div class="terms-callout">
-            <p>If you require verified, current information about EcoGrow's products, services, supply capacity, or operational status for the purpose of making a business decision, please contact us directly to confirm the details.</p>
-          </div>
-
-          <p>EcoGrow reserves the right to update, revise, or remove content from this website at any time without prior notice.</p>
-        </section>
-
-
-        <!-- 3. No Guarantee of Availability -->
-        <section class="terms-section" id="no-guarantee">
-          <div class="terms-section-header">
-            <span class="terms-section-num">03</span>
-            <h2 class="terms-section-title">No Guarantee of Availability</h2>
-          </div>
-          <p>Information about products, services, supply capacity, partnerships, and operations described on this website reflects the general direction and intended scope of EcoGrow Farms Limited's activities. It does not constitute a guarantee that any specific product, service, supply volume, or partnership arrangement is immediately available.</p>
-          <p>Actual availability may be subject to a number of factors, including but not limited to:</p>
-
-          <ul class="terms-list">
-            <li>Seasonal growing patterns and agricultural cycles</li>
-            <li>Geographic location and logistics considerations</li>
-            <li>Current production capacity and harvest volumes</li>
-            <li>Business confirmation and formal contract agreement</li>
-            <li>Applicable regulations, permits, or phytosanitary requirements</li>
-          </ul>
-
-          <p>EcoGrow Farms Limited will not be held responsible for decisions made based solely on information published on this website without direct business confirmation from an authorised EcoGrow representative.</p>
-        </section>
-
-
-        <!-- 4. Intellectual Property -->
-        <section class="terms-section" id="intellectual-property">
-          <div class="terms-section-header">
-            <span class="terms-section-num">04</span>
-            <h2 class="terms-section-title">Intellectual Property</h2>
-          </div>
-          <p>The text, branding, design, logo, visual materials, layout, and other content on this website are the property of EcoGrow Farms Limited unless otherwise stated. All rights are reserved.</p>
-          <p>You may not copy, reproduce, distribute, modify, transmit, republish, or use the content of this website for commercial purposes without the prior written permission of EcoGrow Farms Limited. This includes, but is not limited to:</p>
-
-          <ul class="terms-list">
-            <li>The EcoGrow Farms Limited name, wordmark, and logo</li>
-            <li>Written content including page copy, article text, and descriptions</li>
-            <li>Visual design elements, layouts, and colour schemes</li>
-            <li>Photographs, illustrations, and graphic assets produced for or by EcoGrow</li>
-          </ul>
-
-          <div class="terms-callout">
-            <p>Requests to reproduce or use EcoGrow content should be directed to us through the Contact page. We are open to reasonable media, research, and editorial use where appropriate credit is given.</p>
-          </div>
-
-          <p>Where third-party content appears on this website, such content remains the property of its respective owners and is used with permission or under applicable terms.</p>
-        </section>
-
-
-        <!-- 5. External Links -->
-        <section class="terms-section" id="external-links">
-          <div class="terms-section-header">
-            <span class="terms-section-num">05</span>
-            <h2 class="terms-section-title">External Links</h2>
-          </div>
-          <p>This website may contain links to third-party websites, platforms, resources, or services. These links are provided for convenience and reference only.</p>
-          <p>EcoGrow Farms Limited does not endorse, control, or take responsibility for the content, accuracy, privacy practices, or availability of any third-party website linked from this site. Following a link to an external website is done at your own discretion and risk.</p>
-          <p>We recommend reviewing the terms of use and privacy policies of any third-party website you visit. EcoGrow is not liable for any loss or damage arising from your use of, or reliance on, any content or services found on external sites reached through links on this website.</p>
-        </section>
-
-
-        <!-- 6. Limitation of Liability -->
-        <section class="terms-section" id="limitation-of-liability">
-          <div class="terms-section-header">
-            <span class="terms-section-num">06</span>
-            <h2 class="terms-section-title">Limitation of Liability</h2>
-          </div>
-          <p>This website and its content are provided on an <strong>"as is"</strong> basis, without warranties of any kind, whether express or implied. EcoGrow Farms Limited makes no guarantee that the website will be free from errors, interruptions, or security vulnerabilities, although we take reasonable steps to maintain its quality and availability.</p>
-
-          <div class="terms-callout amber">
-            <p>EcoGrow Farms Limited is not liable for any loss, damage, cost, or expense arising from reliance on information published on this website where that reliance has not been supported by direct written confirmation from an authorised EcoGrow representative through a formal business communication.</p>
-          </div>
-
-          <p>This limitation applies to, without limitation:</p>
-
-          <ul class="terms-list">
-            <li>Business decisions made based on website content alone</li>
-            <li>Financial loss resulting from acting on unconfirmed supply or service information</li>
-            <li>Loss of data, contracts, or opportunities arising from reliance on this website</li>
-            <li>Temporary unavailability of the website or technical errors on the site</li>
-          </ul>
-
-          <p>Nothing in these terms limits EcoGrow's liability in circumstances where such limitation is not permitted by applicable law. If you are uncertain about any information on this website, please contact us before taking action based on it.</p>
-        </section>
-
-
-        <!-- 7. Contact -->
-        <section class="terms-section" id="contact-terms">
-          <div class="terms-section-header">
-            <span class="terms-section-num">07</span>
-            <h2 class="terms-section-title">Contact</h2>
-          </div>
-          <p>If you have questions, concerns, or feedback regarding these Terms of Use, or if you wish to seek permission for use of EcoGrow content, please contact us through our website's Contact page.</p>
-          <p>We will endeavour to respond to reasonable enquiries in a timely manner and to address any concerns about the application of these terms.</p>
-          <p>These terms may be updated from time to time to reflect changes to how the website is used or to applicable requirements. The most current version will always be available on this page, with the date it was last updated shown at the top. Continued use of this website after an update constitutes acceptance of the revised terms.</p>
-        </section>
-
-
-        <!-- 8. Company Information -->
-        <section class="terms-section" id="company-info">
-          <div class="terms-section-header">
-            <span class="terms-section-num">08</span>
-            <h2 class="terms-section-title">Company Information</h2>
-          </div>
-          <p>These Terms of Use are published by:</p>
-
-          <div class="company-block">
-            <div class="company-block-name">EcoGrow Farms Nigeria Limited</div>
-            <div class="company-detail-row">
-              <span class="company-detail-key">Company Details</span>
-              <span class="company-detail-val"></span>
-            </div>
-            <div class="company-detail-row">
-              <span class="company-detail-key">Country</span>
-              <span class="company-detail-val">Nigeria</span>
-            </div>
-            <div class="company-detail-row">
-              <span class="company-detail-key">Email</span>
-              <span class="company-detail-val">
-                <a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a>
-              </span>
-            </div>
-            <div class="company-detail-row">
-              <span class="company-detail-key">Contact page</span>
-              <span class="company-detail-val">
-                <a href="contact.html">ecogrowfarms.com/contact</a>
-              </span>
-            </div>
-            <div class="company-detail-row">
-              <span class="company-detail-key">Privacy policy</span>
-              <span class="company-detail-val">
-                <a href="privacy.html">ecogrowfarms.com/privacy</a>
-              </span>
-            </div>
-            <div class="company-detail-row">
-              <span class="company-detail-key">Terms updated</span>
-              <span class="company-detail-val">May 2025</span>
-            </div>
-          </div>
-        </section>
-
-      </article>
-    </div>
-  </main>
-
-
-  <!-- ═══════════════════════════════
-       FOOTER
-  ═══════════════════════════════ -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div>
-          <a href="index.html" class="footer-logo" aria-label="EcoGrow Farms Limited home">
-            <img src="/Images/ecogrow-farms-icon-logo.svg" alt="EcoGrow Farms Limited logo" class="footer-logo-img">
-            <span class="nav-logo-text">
-              <span>EcoGrow Farms</span>
-              <span>Limited</span>
-            </span>
-          </a>
-          <p class="footer-tagline">Technology-enabled Nigerian agribusiness focused on sustainable farming, quality produce, and smarter farm-to-market systems.</p>
-        </div>
-        <div>
-          <div class="footer-col-title">Company</div>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="produce.html">Produce</a></li>
-            <li><a href="technology.html">Technology</a></li>
-            <li><a href="quality.html">Quality</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Resources</div>
-          <ul class="footer-links">
-            <li><a href="partnerships.html">Partnerships</a></li>
-            <li><a href="procurement.html">Procurement</a></li>
-            <li><a href="insights.html">Insights</a></li>
-            <li><a href="compliance.html">Compliance</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Legal</div>
-          <ul class="footer-links">
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Use</a></li>
-          </ul>
-        </div>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 EcoGrow Farms Limited. All rights reserved.</p>
+      <div>
+        <div class="footer-col-head">Company</div>
+        <ul class="footer-links">
+          <li><a href="/farm.html">The Farm</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/insights.html">Insights</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Use</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 EcoGrow Farms Limited. All rights reserved.</p>
+      <a href="mailto:info@ecogrowfarms.com" class="footer-contact">info@ecogrowfarms.com</a>
+    </div>
+  </div>
+</footer>
 
 
-  <script>
-    /* Mobile nav */
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    const panel  = document.querySelector('.mobile-nav-panel');
-    if (toggle && panel) {
-      const close = () => {
-        toggle.classList.remove('is-open');
-        panel.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-      };
-      const open = () => {
-        toggle.classList.add('is-open');
-        panel.classList.add('is-open');
-        toggle.setAttribute('aria-expanded', 'true');
-        panel.setAttribute('aria-hidden', 'false');
-      };
-      toggle.addEventListener('click', () =>
-        toggle.classList.contains('is-open') ? close() : open()
-      );
-      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-      panel.addEventListener('click', e => { if (e.target === panel) close(); });
-      document.addEventListener('keydown', e => e.key === 'Escape' && close());
-      window.addEventListener('resize', () => window.innerWidth > 900 && close());
-    }
+<script>
+  // Mobile drawer
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  const drawerClose = document.getElementById('drawer-close');
+  if (hamburger && drawer) {
+    const closeDrawer = () => {
+      drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const openDrawer = () => {
+      drawer.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+    drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 860) closeDrawer(); });
+  }
 
-    /* Sidebar active state on scroll */
-    const sections = document.querySelectorAll('.terms-section');
-    const navLinks = document.querySelectorAll('.sidebar-nav li a');
-
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
-    }, { rootMargin: '-15% 0px -75% 0px' });
-
-    sections.forEach(s => obs.observe(s));
-  </script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.r');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>

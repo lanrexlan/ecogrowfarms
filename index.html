@@ -7,676 +7,585 @@
   <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     :root {
-      --soil:       #16100a;
-      --earth:      #1f1610;
-      --bark:       #2c1f12;
-      --clay:       #3d2c1a;
-      --copper:     #b87333;
-      --copper-lt:  #d4904a;
-      --copper-dim: rgba(184,115,51,0.14);
-      --steel:      #4a7fa5;
-      --steel-lt:   #6b9dc2;
-      --steel-dim:  rgba(74,127,165,0.12);
-      --cream:      #f0e8d8;
-      --parchment:  #e8dcc8;
-      --dust:       #9a8878;
-      --dust-lt:    #b5a494;
-      --white:      #f7f2ea;
+      --page:       #e9f0dd;   /* light sage page ground */
+      --page-deep:  #dfe9cf;
+      --card:       #ffffff;
+      --ink:        #121712;   /* near-black green text */
+      --ink-soft:   #3d463c;
+      --ink-mute:   #6b7566;
+      --forest:     #14231a;   /* dark hero panel */
+      --forest-2:   #1b2f22;
+      --forest-3:   #24402e;
+      --lime:       #a8e63c;   /* glow accent on dark */
+      --lime-soft:  rgba(168,230,60,0.16);
+      --green:      #3e7d32;   /* accent on light */
+      --green-deep: #2c5a24;
+      --line:       rgba(18,23,18,0.12);
+      --line-soft:  rgba(18,23,18,0.07);
+      --white:      #f4f8ee;
+      --mist:       rgba(244,248,238,0.62);
+      --mist-dim:   rgba(244,248,238,0.38);
 
       --font-display: 'Space Grotesk', sans-serif;
       --font-body:    'Space Grotesk', sans-serif;
-      --font-mono:    'Space Grotesk', sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
     }
 
     body {
       font-family: var(--font-body);
-      background: var(--soil);
-      color: var(--cream);
+      background: var(--page);
+      color: var(--ink);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
+    ::selection { background: var(--lime); color: var(--forest); }
+
+    /* ── NAV — floating pills ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 4rem;
-      transition: background 0.4s, border-color 0.4s;
-      border-bottom: 1px solid transparent;
+      padding: 1rem 2rem;
+      pointer-events: none;
     }
-    nav.stuck {
-      background: rgba(22,16,10,0.95);
-      backdrop-filter: blur(14px);
-      border-color: rgba(255,255,255,0.06);
-    }
-
+    nav > * { pointer-events: auto; }
     .nav-brand {
-      display: flex; align-items: center; gap: 0.8rem;
+      display: flex; align-items: center; gap: 0.65rem;
       text-decoration: none;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.5rem 1.1rem 0.5rem 0.7rem; border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
     }
-    .nav-brand-img { width: 38px; height: 38px; object-fit: contain; }
-    .nav-brand-wordmark {
-      display: flex; flex-direction: column; line-height: 1.1;
-    }
+    .nav-brand-img { width: 30px; height: 30px; object-fit: contain; }
+    .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.05; }
     .nav-brand-wordmark strong {
-      font-family: var(--font-body);
-      font-weight: 700; font-size: 1.1rem; color: var(--white);
-      letter-spacing: 0.01em;
+      font-weight: 700; font-size: 0.95rem; color: var(--ink); letter-spacing: -0.01em;
     }
     .nav-brand-wordmark span {
-      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--copper); font-family: var(--font-body); font-weight: 500;
+      font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green);
     }
 
     .nav-links {
-      display: flex; align-items: center; gap: 2.5rem; list-style: none;
+      display: flex; align-items: center; gap: 0.25rem; list-style: none;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.35rem; border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
     }
     .nav-links a {
-      font-size: 0.8rem; font-weight: 500; color: var(--dust-lt);
-      text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em;
+      font-size: 0.82rem; font-weight: 500; color: var(--ink-soft);
+      text-decoration: none; letter-spacing: 0.01em;
+      padding: 0.5rem 1.05rem; border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
     }
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover { background: var(--page-deep); color: var(--ink); }
 
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
     .nav-cta {
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
-      text-decoration: none; color: var(--soil);
-      background: var(--copper); padding: 0.55rem 1.4rem;
-      border-radius: 2px; transition: background 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; color: var(--ink);
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.6rem 1.3rem; border-radius: 999px;
+      border: 1.5px solid var(--green);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+      transition: background 0.2s, color 0.2s;
     }
-    .nav-cta:hover { background: var(--copper-lt); }
+    .nav-cta .arr {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--green);
+      display: grid; place-items: center;
+      font-size: 0.7rem; color: var(--green);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--forest); color: var(--white); border-color: var(--forest); }
+    .nav-cta:hover .arr { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateX(2px); }
 
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; background: none; border: none; padding: 4px;
+      cursor: pointer; border: 1px solid var(--line-soft); padding: 12px 11px;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
     }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--dust-lt); }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
 
     .drawer {
       display: none; position: fixed; inset: 0;
-      background: var(--earth); z-index: 190;
-      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      background: var(--forest); z-index: 290;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
     }
     .drawer.open { display: flex; }
     .drawer a {
-      font-family: var(--font-body); font-size: 2.2rem; font-weight: 700;
+      font-size: 2rem; font-weight: 700;
       color: var(--white); text-decoration: none; transition: color 0.2s;
+      letter-spacing: -0.02em;
     }
-    .drawer a:hover { color: var(--copper); }
+    .drawer a:hover { color: var(--lime); }
     .drawer-close {
-      position: absolute; top: 1.5rem; right: 2rem;
+      position: absolute; top: 1.5rem; right: 1.8rem;
       background: none; border: none; cursor: pointer;
-      font-size: 1.6rem; color: var(--dust);
+      font-size: 1.5rem; color: var(--mist);
     }
 
-    /* ── HERO — the split ── */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      padding-top: 80px;
-    }
-
-    /* Left — earth */
-    .hero-earth {
+    /* ── HERO — dark inset panel ── */
+    #hero { padding: 5.2rem 1.25rem 1.25rem; }
+    .hero-panel {
       position: relative;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 4.5rem 5rem 4rem;
-      background: var(--soil);
+      background: linear-gradient(150deg, var(--forest) 0%, #101c14 55%, var(--forest-2) 100%);
+      border-radius: var(--radius-lg);
+      min-height: calc(100vh - 6.5rem);
       overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: clamp(2.5rem, 5vw, 4.5rem);
     }
-    /* Grain texture overlay */
-    .hero-earth::before {
+    #hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .hero-panel::after {
       content: '';
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.045; pointer-events: none;
-    }
-    /* Warm glow bottom-right */
-    .hero-earth::after {
-      content: '';
-      position: absolute;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(184,115,51,0.12) 0%, transparent 65%);
-      bottom: -100px; right: -80px;
-      pointer-events: none;
+      position: absolute; width: 640px; height: 640px;
+      background: radial-gradient(circle, rgba(168,230,60,0.1) 0%, transparent 62%);
+      top: -180px; right: -140px; pointer-events: none;
     }
 
-    .hero-earth-inner { position: relative; z-index: 1; }
-
+    .hero-top { position: relative; z-index: 2; max-width: 780px; padding-top: 2rem; }
     .hero-kicker {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.14em;
-      color: var(--copper); text-transform: uppercase;
-      margin-bottom: 2.2rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em;
+      color: var(--lime); text-transform: uppercase;
+      border: 1px solid rgba(168,230,60,0.3);
+      padding: 0.4rem 0.9rem; border-radius: 999px;
+      margin-bottom: 2rem;
     }
-    .hero-kicker-line { width: 24px; height: 1px; background: var(--copper); opacity: 0.6; }
-
-    .hero-h1 {
-      font-family: var(--font-body);
-      font-size: clamp(3rem, 4.8vw, 5.2rem);
-      font-weight: 700; line-height: 1.0; letter-spacing: -0.02em;
-      color: var(--white); margin-bottom: 2rem;
-    }
-    .hero-h1 em {
-      font-style: italic; color: var(--copper-lt);
-      display: block;
-    }
-
-    .hero-p {
-      font-size: 0.98rem; line-height: 1.82; color: var(--dust-lt);
-      font-weight: 300; max-width: 380px; margin-bottom: 2.8rem;
-    }
-
-    .hero-actions { display: flex; flex-direction: column; gap: 0.8rem; max-width: 240px; }
-    .btn-copper {
-      display: block; text-align: center;
-      background: var(--copper); color: var(--soil);
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
-      text-decoration: none; padding: 0.9rem 1.6rem; border-radius: 2px;
-      transition: background 0.2s;
-    }
-    .btn-copper:hover { background: var(--copper-lt); }
-    .btn-outline-cream {
-      display: block; text-align: center;
-      border: 1px solid rgba(240,232,216,0.18); color: var(--dust-lt);
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
-      text-decoration: none; padding: 0.88rem 1.6rem; border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-outline-cream:hover { border-color: rgba(240,232,216,0.45); color: var(--white); }
-
-    /* Divider line */
-    .hero-divider {
-      background: rgba(255,255,255,0.07);
-      position: relative;
-    }
-    .hero-divider::after {
+    .hero-kicker::before {
       content: '';
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--copper); opacity: 0.6;
-    }
-
-    /* Right — data */
-    .hero-data {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 4rem 5rem 4.5rem;
-      background: var(--earth);
-      gap: 1.5rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-data::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-    }
-    .hero-data-inner { position: relative; z-index: 1; }
-    .hero-data-label {
-      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.14em;
-      color: var(--steel-lt); text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.5rem;
-      margin-bottom: 1.8rem;
-    }
-    .data-live-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--steel-lt);
+      background: var(--lime);
       animation: pulse 2.2s ease-in-out infinite;
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
 
-    /* Stat cards inside hero-data */
-    .data-cards {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px; overflow: hidden;
-      margin-bottom: 1.5rem;
+    .hero-h1 {
+      font-size: clamp(2.7rem, 5.6vw, 5.4rem);
+      font-weight: 700; line-height: 1.02; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 2.2rem;
     }
-    .data-card {
-      background: var(--earth); padding: 1.4rem 1.5rem;
-      transition: background 0.25s;
-    }
-    .data-card:hover { background: var(--bark); }
-    .data-card-val {
-      font-family: var(--font-body);
-      font-size: 2.2rem; font-weight: 700; line-height: 1;
-      color: var(--white); margin-bottom: 0.3rem;
-    }
-    .data-card-val.copper { color: var(--copper-lt); }
-    .data-card-val.steel  { color: var(--steel-lt); }
-    .data-card-label {
-      font-size: 0.72rem; color: var(--dust); line-height: 1.45; font-weight: 400;
-    }
+    .hero-h1 em { font-style: italic; color: var(--lime); }
 
-    /* CropSentinel mini-readout */
-    .cs-readout {
-      background: var(--bark);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 4px; overflow: hidden;
+    .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .btn-lime {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--lime); color: var(--forest);
+      font-size: 0.84rem; font-weight: 600; letter-spacing: 0.02em;
+      text-decoration: none; padding: 0.85rem 1.6rem; border-radius: 999px;
+      transition: filter 0.2s, transform 0.2s;
     }
-    .cs-readout-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.75rem 1.2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      background: var(--clay);
-    }
-    .cs-readout-name {
-      font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.1em;
-      color: var(--copper); text-transform: uppercase;
-    }
-    .cs-readout-badge {
-      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
-      background: rgba(74,127,165,0.15); color: var(--steel-lt);
-      padding: 0.15rem 0.5rem; border-radius: 2px;
-    }
-    .cs-rows { display: flex; flex-direction: column; }
-    .cs-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.65rem 1.2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      transition: background 0.2s;
-    }
-    .cs-row:last-child { border-bottom: none; }
-    .cs-row:hover { background: rgba(255,255,255,0.03); }
-    .cs-row-key {
-      font-size: 0.72rem; color: var(--dust); font-weight: 400;
-    }
-    .cs-row-val {
-      font-family: var(--font-body); font-size: 0.72rem; color: var(--cream);
-      font-weight: 500;
-    }
-    .cs-row-val.hi  { color: var(--copper-lt); }
-    .cs-row-val.ok  { color: #7ecba1; }
-    .cs-row-val.warn { color: #e8a44a; }
-
-    /* ── FARM SECTION ── */
-    #farm {
-      padding: 8rem 0;
-      background: var(--earth);
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .farm-inner {
-      max-width: 1240px; margin: 0 auto; padding: 0 4rem;
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center;
-    }
-    .farm-copy {}
-    .s-label {
-      font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--copper);
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-bottom: 1.4rem;
-    }
-    .s-label::before { content: '—'; opacity: 0.5; }
-    .s-h2 {
-      font-family: var(--font-body);
-      font-size: clamp(2rem, 3.2vw, 3rem);
-      font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
-      color: var(--white); margin-bottom: 1.4rem;
-    }
-    .s-h2 em { font-style: italic; color: var(--copper-lt); }
-    .farm-copy p {
-      font-size: 0.92rem; line-height: 1.88; color: var(--dust-lt);
-      font-weight: 300; margin-bottom: 1.1rem;
-    }
-    .farm-copy p:last-of-type { margin-bottom: 2rem; }
-
-    /* Produce tags */
-    .produce-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .produce-tag {
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em;
-      border: 1px solid rgba(240,232,216,0.14);
-      color: var(--dust-lt); padding: 0.3rem 0.8rem; border-radius: 2px;
+    .btn-lime:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn-lime .arr { font-size: 0.85rem; }
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(244,248,238,0.25); color: var(--mist);
+      font-size: 0.84rem; font-weight: 500;
+      text-decoration: none; padding: 0.85rem 1.6rem; border-radius: 999px;
       transition: border-color 0.2s, color 0.2s;
     }
-    .produce-tag:hover { border-color: var(--copper); color: var(--copper-lt); }
+    .btn-ghost:hover { border-color: rgba(244,248,238,0.6); color: var(--white); }
 
-    /* Farm visual — operation cards */
-    .farm-ops {
-      display: flex; flex-direction: column; gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px; overflow: hidden;
+    /* floating live readout — alethia-style annotation */
+    .hero-readout {
+      position: absolute; z-index: 2;
+      right: clamp(2.5rem, 5vw, 4.5rem); bottom: clamp(6.5rem, 14vh, 9rem);
+      font-family: var(--font-mono);
+      background: rgba(16,28,20,0.55); backdrop-filter: blur(6px);
+      border: 1px solid rgba(168,230,60,0.22);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem;
+      max-width: 320px;
     }
+    .hero-readout-tag {
+      display: inline-block;
+      font-size: 0.56rem; letter-spacing: 0.16em;
+      background: var(--lime); color: var(--forest);
+      padding: 0.2rem 0.55rem; border-radius: 3px;
+      margin-bottom: 0.75rem; font-weight: 600;
+    }
+    .hero-readout-line {
+      font-size: 0.62rem; letter-spacing: 0.06em; line-height: 1.9;
+      color: rgba(168,230,60,0.85); text-transform: uppercase;
+      display: flex; justify-content: space-between; gap: 1.5rem;
+    }
+    .hero-readout-line .dim { color: var(--mist-dim); }
+    .hero-readout-line .warn { color: #f0c060; }
+
+    .hero-bottom {
+      position: relative; z-index: 2;
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem;
+    }
+    .hero-bottom-copy {
+      font-size: 0.94rem; line-height: 1.75; color: var(--mist);
+      font-weight: 300; max-width: 460px;
+    }
+    .hero-bottom-copy strong { color: var(--white); font-weight: 600; }
+    .hero-scroll {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--mist-dim);
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      white-space: nowrap;
+    }
+    .hero-scroll .mouse {
+      width: 14px; height: 22px; border: 1.5px solid var(--mist-dim); border-radius: 8px;
+      position: relative;
+    }
+    .hero-scroll .mouse::after {
+      content: ''; position: absolute; left: 50%; top: 4px; transform: translateX(-50%);
+      width: 2px; height: 5px; border-radius: 2px; background: var(--lime);
+      animation: scrolldot 1.8s ease-in-out infinite;
+    }
+    @keyframes scrolldot { 0%,100%{top:4px;opacity:1} 60%{top:11px;opacity:0.2} 61%{opacity:0} }
+
+    /* ── STATS BAND — light, particles behind ── */
+    #stats { position: relative; padding: 7rem 0 6rem; overflow: hidden; }
+    #stats-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .stats-wrap {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    }
+    .stats-head { max-width: 620px; margin-bottom: 3.5rem; }
+    .s-label {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green);
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      margin-bottom: 1.3rem;
+    }
+    .s-label::before { content: ''; width: 22px; height: 1.5px; background: var(--green); opacity: 0.6; }
+    .s-h2 {
+      font-size: clamp(1.9rem, 3.4vw, 3rem);
+      font-weight: 700; line-height: 1.08; letter-spacing: -0.025em;
+      color: var(--ink); margin-bottom: 1.2rem;
+    }
+    .s-h2 em { font-style: italic; color: var(--green); }
+    .s-sub { font-size: 0.95rem; line-height: 1.85; color: var(--ink-mute); font-weight: 300; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 1.8rem 1.6rem;
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(18,23,18,0.08); }
+    .stat-val {
+      font-size: 2.4rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 0.55rem;
+    }
+    .stat-val span { color: var(--green); }
+    .stat-label { font-size: 0.78rem; color: var(--ink-mute); line-height: 1.55; }
+    .stat-tick {
+      font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green);
+      display: block; margin-bottom: 1rem;
+    }
+
+    /* ── FARM ── */
+    #farm { padding: 5.5rem 0 7rem; }
+    .farm-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: grid; grid-template-columns: 1fr 1.15fr; gap: 5rem; align-items: center;
+    }
+    .farm-copy p {
+      font-size: 0.94rem; line-height: 1.88; color: var(--ink-mute);
+      font-weight: 300; margin-bottom: 1.1rem;
+    }
+    .farm-copy p strong { color: var(--ink-soft); font-weight: 600; }
+    .farm-copy p:last-of-type { margin-bottom: 2rem; }
+
+    .produce-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .produce-tag {
+      font-size: 0.75rem; font-weight: 500;
+      border: 1px solid var(--line); background: var(--card);
+      color: var(--ink-soft); padding: 0.38rem 0.95rem; border-radius: 999px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .produce-tag:hover { border-color: var(--green); color: var(--green-deep); background: #f2f8e8; }
+
+    .farm-ops { display: flex; flex-direction: column; gap: 0.85rem; }
     .farm-op {
       display: flex; align-items: flex-start; gap: 1.2rem;
-      padding: 1.6rem 1.8rem; background: var(--earth);
-      transition: background 0.25s;
+      padding: 1.5rem 1.7rem;
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .farm-op:hover { background: var(--bark); }
+    .farm-op:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(18,23,18,0.08); }
     .farm-op-icon {
-      width: 40px; height: 40px; flex-shrink: 0; border-radius: 3px;
-      background: var(--copper-dim);
-      display: grid; place-items: center; font-size: 1.1rem;
+      width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
+      background: #edf6dd; border: 1px solid rgba(62,125,50,0.15);
+      display: grid; place-items: center; font-size: 1.15rem;
     }
-    .farm-op-title {
-      font-family: var(--font-body); font-size: 1rem; font-weight: 600;
-      color: var(--white); margin-bottom: 0.3rem;
-    }
-    .farm-op-desc {
-      font-size: 0.78rem; line-height: 1.65; color: var(--dust);
-    }
+    .farm-op-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .farm-op-desc { font-size: 0.8rem; line-height: 1.68; color: var(--ink-mute); }
     .farm-op-tag {
-      margin-top: 0.5rem; display: inline-block;
-      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em;
-      color: var(--steel-lt); background: var(--steel-dim);
-      padding: 0.15rem 0.5rem; border-radius: 2px;
+      margin-top: 0.6rem; display: inline-block;
+      font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green-deep);
+      background: var(--lime-soft); border: 1px solid rgba(62,125,50,0.18);
+      padding: 0.2rem 0.6rem; border-radius: 999px;
     }
 
     /* ── PRODUCTS ── */
-    #products {
-      padding: 8rem 0;
-      background: var(--soil);
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .products-wrap {
-      max-width: 1240px; margin: 0 auto; padding: 0 4rem;
-    }
+    #products { position: relative; padding: 7rem 0; background: var(--page-deep); overflow: hidden; }
+    #products-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .products-wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
     .products-head {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-      align-items: end; margin-bottom: 4rem;
-    }
-    .products-sub {
-      font-size: 0.92rem; line-height: 1.85; color: var(--dust-lt); font-weight: 300;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 3.2rem;
     }
 
-    .products-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px; overflow: hidden;
-      margin-bottom: 1px;
-    }
-    /* 4th card full-width below */
-    .products-grid-b {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-top: none;
-      border-radius: 0 0 4px 4px; overflow: hidden;
-    }
-
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem; }
     .product-card {
-      background: var(--soil); padding: 2.2rem 2rem;
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 2rem 1.9rem;
       display: flex; flex-direction: column;
-      transition: background 0.25s;
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
       position: relative; overflow: hidden;
     }
-    .product-card:hover { background: var(--bark); }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(18,23,18,0.1); }
     .product-card.wide {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
-      padding: 2.2rem 2.4rem;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: start;
+      padding: 2.2rem 2.2rem;
     }
-
-    /* large letter watermark */
     .product-card::after {
       content: attr(data-mark);
-      position: absolute; right: 1rem; bottom: -0.5rem;
-      font-family: var(--font-body); font-size: 7rem; font-weight: 700; line-height: 1;
-      color: rgba(255,255,255,0.03); pointer-events: none; user-select: none;
+      position: absolute; right: 0.8rem; bottom: -1.4rem;
+      font-size: 7.5rem; font-weight: 700; line-height: 1;
+      color: rgba(62,125,50,0.06); pointer-events: none; user-select: none;
     }
 
     .product-status {
-      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.12em;
-      text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 2px;
-      display: inline-block; margin-bottom: 1rem; width: fit-content;
+      font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 0.24rem 0.65rem; border-radius: 999px;
+      display: inline-block; margin-bottom: 1.1rem; width: fit-content; font-weight: 600;
     }
-    .product-status.active { background: rgba(126,203,161,0.1); color: #7ecba1; }
-    .product-status.beta   { background: var(--copper-dim); color: var(--copper-lt); }
-    .product-status.soon   { background: rgba(155,155,155,0.1); color: var(--dust-lt); }
+    .product-status.active { background: var(--forest); color: var(--lime); }
+    .product-status.beta   { background: var(--lime-soft); color: var(--green-deep); border: 1px solid rgba(62,125,50,0.2); }
+    .product-status.soon   { background: rgba(18,23,18,0.06); color: var(--ink-mute); }
 
     .product-name {
-      font-family: var(--font-body);
-      font-size: 1.45rem; font-weight: 700; letter-spacing: -0.01em;
-      color: var(--white); margin-bottom: 0.35rem; line-height: 1.1;
+      font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 0.35rem; line-height: 1.1;
     }
-    .product-tagline {
-      font-size: 0.75rem; color: var(--dust); line-height: 1.5; margin-bottom: 1.1rem;
-    }
-    .product-desc {
-      font-size: 0.8rem; line-height: 1.78; color: var(--dust-lt); flex: 1;
-    }
-    .product-specs {
-      list-style: none; margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.4rem;
-    }
+    .product-tagline { font-size: 0.76rem; color: var(--green-deep); line-height: 1.5; margin-bottom: 1rem; font-weight: 500; }
+    .product-desc { font-size: 0.82rem; line-height: 1.76; color: var(--ink-mute); flex: 1; }
+    .product-specs { list-style: none; margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.45rem; }
     .product-specs li {
-      font-size: 0.74rem; color: var(--dust);
-      display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5;
+      font-size: 0.76rem; color: var(--ink-mute);
+      display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.5;
     }
     .product-specs li::before {
-      content: '';
-      width: 3px; height: 3px; border-radius: 50%;
-      background: var(--copper); flex-shrink: 0; margin-top: 0.45rem;
+      content: ''; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0; margin-top: 0.42rem;
     }
 
-    /* ── HOW IT WORKS ── */
-    #how {
-      padding: 8rem 0;
-      background: var(--earth);
-      border-top: 1px solid rgba(255,255,255,0.05);
+    /* ── HOW — dark inset panel again ── */
+    #how { padding: 1.25rem; }
+    .how-panel {
+      position: relative;
+      background: linear-gradient(160deg, var(--forest) 0%, var(--forest-2) 100%);
+      border-radius: var(--radius-lg); overflow: hidden;
+      padding: clamp(3rem, 6vw, 5.5rem) clamp(1.8rem, 4vw, 4.5rem);
     }
-    .how-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
-    .how-head { margin-bottom: 5rem; max-width: 560px; }
-    .how-steps {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.05);
-    }
+    #how-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .how-wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .how-head { margin-bottom: 3.5rem; max-width: 620px; }
+    .how-head .s-label { color: var(--lime); }
+    .how-head .s-label::before { background: var(--lime); }
+    .how-head .s-h2 { color: var(--white); }
+    .how-head .s-h2 em { color: var(--lime); }
+
+    .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
     .how-step {
-      background: var(--earth); padding: 2.2rem 1.8rem;
-      position: relative; transition: background 0.25s;
-      border-right: 1px solid rgba(255,255,255,0.05);
+      background: rgba(244,248,238,0.04);
+      border: 1px solid rgba(244,248,238,0.09);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.7rem; position: relative;
+      transition: background 0.25s, border-color 0.25s;
     }
-    .how-step:last-child { border-right: none; }
-    .how-step:hover { background: var(--bark); }
+    .how-step:hover { background: rgba(168,230,60,0.06); border-color: rgba(168,230,60,0.25); }
     .how-n {
-      font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.12em;
-      color: var(--copper); margin-bottom: 1.4rem; display: block;
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em;
+      color: var(--lime); margin-bottom: 1.4rem; display: block;
     }
     .how-icon { font-size: 1.4rem; margin-bottom: 1rem; display: block; }
-    .how-title {
-      font-family: var(--font-body); font-size: 1.05rem; font-weight: 700;
-      color: var(--white); margin-bottom: 0.6rem;
-    }
-    .how-desc {
-      font-size: 0.78rem; line-height: 1.72; color: var(--dust);
-    }
-    /* Arrow connector */
-    .how-step::after {
-      content: '→';
-      position: absolute; right: -0.7rem; top: 2.2rem;
-      color: var(--copper); opacity: 0.4; font-size: 0.9rem;
-      z-index: 1;
-    }
-    .how-step:last-child::after { display: none; }
+    .how-title { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+    .how-desc { font-size: 0.78rem; line-height: 1.74; color: var(--mist-dim); }
 
     /* ── WHO WE SERVE ── */
-    #serve {
-      padding: 8rem 0;
-      background: var(--soil);
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .serve-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
-    .serve-layout {
-      display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start;
-    }
-    .serve-copy {}
+    #serve { padding: 7rem 0; }
+    .serve-wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .serve-layout { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start; }
     .serve-copy p {
-      font-size: 0.9rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300;
+      font-size: 0.92rem; line-height: 1.88; color: var(--ink-mute); font-weight: 300;
       margin-top: 1.2rem;
     }
-    .serve-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px; overflow: hidden;
-    }
+    .serve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .serve-cell {
-      background: var(--soil); padding: 2rem 1.8rem;
-      transition: background 0.25s;
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 1.9rem 1.8rem;
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .serve-cell:hover { background: var(--bark); }
-    .serve-cell-icon { font-size: 1.4rem; margin-bottom: 0.9rem; display: block; }
-    .serve-cell-title {
-      font-family: var(--font-body); font-size: 1rem; font-weight: 700;
-      color: var(--white); margin-bottom: 0.45rem;
+    .serve-cell:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(18,23,18,0.08); }
+    .serve-cell-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: #edf6dd; border: 1px solid rgba(62,125,50,0.15);
+      display: grid; place-items: center; font-size: 1.15rem; margin-bottom: 1rem;
     }
-    .serve-cell-desc {
-      font-size: 0.78rem; line-height: 1.72; color: var(--dust);
-    }
+    .serve-cell-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.45rem; }
+    .serve-cell-desc { font-size: 0.8rem; line-height: 1.72; color: var(--ink-mute); }
 
-    /* ── CTA ── */
-    #cta {
-      padding: 8rem 0;
-      background: var(--bark);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      position: relative; overflow: hidden;
+    /* ── CTA — dark inset panel ── */
+    #cta { padding: 0 1.25rem 1.25rem; }
+    .cta-panel {
+      position: relative;
+      background: linear-gradient(140deg, var(--forest-2) 0%, var(--forest) 60%);
+      border-radius: var(--radius-lg); overflow: hidden;
+      padding: clamp(3.5rem, 7vw, 6rem) clamp(1.8rem, 4vw, 4.5rem);
     }
-    /* large typographic watermark */
-    #cta::before {
+    #cta-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .cta-panel::before {
       content: 'EcoGrow';
-      position: absolute; bottom: -3rem; right: -1rem;
-      font-family: var(--font-body); font-weight: 700;
-      font-size: clamp(8rem, 18vw, 18rem); line-height: 1;
-      color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none;
+      position: absolute; bottom: -3.5rem; right: -1rem;
+      font-weight: 700;
+      font-size: clamp(8rem, 18vw, 17rem); line-height: 1;
+      color: rgba(168,230,60,0.045); white-space: nowrap; pointer-events: none;
     }
     .cta-wrap {
-      max-width: 1240px; margin: 0 auto; padding: 0 4rem;
-      display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
       position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
     }
     .cta-h2 {
-      font-family: var(--font-body);
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      font-weight: 700; letter-spacing: -0.02em; line-height: 1.08;
-      color: var(--white); margin-bottom: 1rem;
+      font-size: clamp(2.1rem, 4vw, 3.5rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.06;
+      color: var(--white); margin-bottom: 1.1rem;
     }
-    .cta-h2 em { font-style: italic; color: var(--copper-lt); }
+    .cta-h2 em { font-style: italic; color: var(--lime); }
     .cta-sub {
-      font-size: 0.9rem; line-height: 1.82; color: var(--dust-lt);
+      font-size: 0.92rem; line-height: 1.82; color: var(--mist);
       max-width: 480px; font-weight: 300;
     }
-    .cta-buttons {
-      display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; min-width: 200px;
+    .cta-buttons { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; min-width: 220px; }
+    .btn-lime-full {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      background: var(--lime); color: var(--forest);
+      font-size: 0.86rem; font-weight: 600;
+      text-decoration: none; padding: 0.95rem 2rem; border-radius: 999px;
+      transition: filter 0.2s, transform 0.2s;
     }
-    .btn-copper-full {
-      display: block; text-align: center;
-      background: var(--copper); color: var(--soil);
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
-      text-decoration: none; padding: 0.9rem 2rem; border-radius: 2px;
-      transition: background 0.2s;
-    }
-    .btn-copper-full:hover { background: var(--copper-lt); }
+    .btn-lime-full:hover { filter: brightness(1.08); transform: translateY(-1px); }
     .btn-outline-cta {
       display: block; text-align: center;
-      border: 1px solid rgba(240,232,216,0.2); color: var(--dust-lt);
-      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
-      text-decoration: none; padding: 0.88rem 2rem; border-radius: 2px;
+      border: 1px solid rgba(244,248,238,0.28); color: var(--mist);
+      font-size: 0.86rem; font-weight: 500;
+      text-decoration: none; padding: 0.92rem 2rem; border-radius: 999px;
       transition: border-color 0.2s, color 0.2s;
     }
-    .btn-outline-cta:hover { border-color: rgba(240,232,216,0.5); color: var(--white); }
+    .btn-outline-cta:hover { border-color: rgba(244,248,238,0.6); color: var(--white); }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--soil);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 4.5rem 0 2rem;
-    }
-    .footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+    footer { background: var(--page); padding: 4.5rem 0 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
       padding-bottom: 2.8rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid var(--line-soft);
       margin-bottom: 1.6rem;
     }
     .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
     .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
-    .footer-brand-wrap strong {
-      font-family: var(--font-body); font-weight: 700; font-size: 1rem; color: var(--white);
-    }
-    .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
+    .footer-brand-wrap strong { font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .footer-tagline { font-size: 0.8rem; line-height: 1.78; color: var(--ink-mute); max-width: 28ch; }
     .footer-col-head {
-      font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem;
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1.1rem;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-links a {
-      font-size: 0.8rem; color: var(--dust); text-decoration: none; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--cream); }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 0.5rem;
-    }
-    .footer-copy { font-size: 0.72rem; color: var(--dust); }
+    .footer-links a { font-size: 0.82rem; color: var(--ink-mute); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .footer-copy { font-size: 0.72rem; color: var(--ink-mute); }
     .footer-contact {
-      font-family: var(--font-body); font-size: 0.68rem; color: var(--dust);
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-mute);
       text-decoration: none; transition: color 0.2s;
     }
-    .footer-contact:hover { color: var(--copper-lt); }
+    .footer-contact:hover { color: var(--green); }
 
     /* ── SCROLL REVEAL ── */
-    .r {
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    .r { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .r.in { opacity: 1; transform: none; }
     .d1 { transition-delay: 0.1s; }
     .d2 { transition-delay: 0.2s; }
     .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.4s; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-divider { display: none; }
-      .hero-earth { padding: 6rem 2.5rem 3rem; }
-      .hero-data { padding: 3rem 2.5rem 4rem; }
-      .hero-actions { max-width: 100%; flex-direction: row; }
-      .btn-copper, .btn-outline-cream { flex: 1; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
       .farm-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .products-head { grid-template-columns: 1fr; gap: 1.5rem; }
+      .products-head { grid-template-columns: 1fr; gap: 1.2rem; }
       .products-grid { grid-template-columns: 1fr 1fr; }
-      .product-card.wide { grid-template-columns: 1fr; gap: 0; }
+      .product-card.wide { grid-template-columns: 1fr; gap: 0.5rem; }
       .how-steps { grid-template-columns: 1fr 1fr; }
-      .how-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .how-step:nth-child(2n)::after { display: none; }
-      .how-step:last-child { border-bottom: none; }
       .serve-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .cta-wrap { grid-template-columns: 1fr; }
+      .cta-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
       .cta-buttons { flex-direction: row; min-width: 0; }
       .footer-top { grid-template-columns: 1fr 1fr; }
+      .hero-readout { position: relative; right: auto; bottom: auto; margin-top: 2.5rem; }
     }
-    @media (max-width: 768px) {
-      nav { padding: 1.1rem 1.5rem; }
+    @media (max-width: 860px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.9rem 1rem; }
+      #hero { padding: 4.6rem 0.8rem 0.8rem; }
+      .hero-panel { min-height: auto; padding: 2.5rem 1.6rem; gap: 2.5rem; }
+      .hero-top { padding-top: 1rem; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      #stats { padding: 4.5rem 0 4rem; }
+      #farm { padding: 4rem 0 5rem; }
+      #products, #serve { padding: 5rem 0; }
+      #how, #cta { padding-left: 0.8rem; padding-right: 0.8rem; }
       .how-steps { grid-template-columns: 1fr; }
-      .how-step::after { display: none; }
       .products-grid { grid-template-columns: 1fr; }
       .serve-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .cta-buttons { flex-direction: column; }
-      .farm-inner, .products-wrap, .how-wrap, .serve-wrap, .cta-wrap, .footer-inner { padding: 0 1.5rem; }
-      #farm, #products, #how, #serve, #cta { padding: 5rem 0; }
-      .data-cards { grid-template-columns: 1fr 1fr; }
+      .stats-wrap, .farm-inner, .products-wrap, .serve-wrap, .footer-inner { padding: 0 1.4rem; }
     }
     @media (max-width: 480px) {
-      .hero-earth { padding: 5.5rem 1.5rem 2.5rem; }
-      .hero-data { padding: 2.5rem 1.5rem 3.5rem; }
-      .hero-actions { flex-direction: column; }
-      .data-cards { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-lime, .btn-ghost { justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .r { opacity: 1; transform: none; transition: none; }
+      .hero-kicker::before, .hero-scroll .mouse::after { animation: none; }
     }
   </style>
 </head>
@@ -697,14 +606,16 @@
     <li><a href="/about.html">About</a></li>
     <li><a href="/insights.html">Insights</a></li>
   </ul>
-  <a href="/contact.html" class="nav-cta">Get in touch</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <a href="/contact.html" class="nav-cta">Get in touch <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="drawer" id="drawer">
-  <button class="drawer-close" id="drawer-close">✕</button>
+  <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
   <a href="/farm.html">The Farm</a>
   <a href="/products.html">Products</a>
   <a href="/about.html">About</a>
@@ -715,89 +626,72 @@
 
 <!-- ═══ HERO ═══ -->
 <section id="hero">
+  <div class="hero-panel">
+    <canvas id="hero-dots"></canvas>
 
-  <!-- Left: earth -->
-  <div class="hero-earth">
-    <div class="hero-earth-inner">
-      <div class="hero-kicker">
-        <span class="hero-kicker-line"></span>
-        Nigeria · Agri-Intelligence
-      </div>
+    <div class="hero-top">
+      <div class="hero-kicker">Nigeria · Agri-Intelligence</div>
       <h1 class="hero-h1">
-        Grown from<br>the ground.<br>
+        Grown from the ground.<br>
         <em>Guided by data.</em>
       </h1>
-      <p class="hero-p">
-        EcoGrow Farms is a Nigerian agribusiness with its own intelligence layer. We farm. We also build the software that tells us — and the world — what is about to happen to crops before it does.
-      </p>
       <div class="hero-actions">
-        <a href="/farm.html" class="btn-copper">The farm →</a>
-        <a href="/products.html" class="btn-outline-cream">Our products</a>
+        <a href="/farm.html" class="btn-lime">Visit the farm <span class="arr">→</span></a>
+        <a href="/products.html" class="btn-ghost">Our products</a>
+      </div>
+    </div>
+
+    <div class="hero-readout" aria-label="Live CropSentinel field readout">
+      <span class="hero-readout-tag">CROPSENTINEL · LIVE</span>
+      <div class="hero-readout-line"><span class="dim">SAT SOURCE</span><span>SENTINEL-2 · MODIS</span></div>
+      <div class="hero-readout-line"><span class="dim">NDVI ANOMALY</span><span class="warn">ZONE 4-C · 4-D</span></div>
+      <div class="hero-readout-line"><span class="dim">SMS ALERTS</span><span>2,841 SENT</span></div>
+      <div class="hero-readout-line"><span class="dim">INSURANCE TRIGGER</span><span>FILED · VERIFIED</span></div>
+    </div>
+
+    <div class="hero-bottom">
+      <p class="hero-bottom-copy">
+        <strong>We farm. We also build the intelligence layer.</strong>
+        EcoGrow Farms is a Nigerian agribusiness whose software tells us — and the world — what is about to happen to crops before it does.
+      </p>
+      <span class="hero-scroll"><span class="mouse"></span> Scroll to discover</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ STATS ═══ -->
+<section id="stats">
+  <canvas id="stats-dots"></canvas>
+  <div class="stats-wrap">
+    <div class="stats-head">
+      <div class="s-label r">Field Intelligence</div>
+      <h2 class="s-h2 r d1">Crop failure, predicted<br><em>weeks before it happens.</em></h2>
+      <p class="s-sub r d2">Satellite imagery, IoT soil probes, and an LSTM model trained on African crop stress patterns — fused into one early-warning signal.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card r">
+        <span class="stat-tick">Advance warning</span>
+        <div class="stat-val">6–8<span> wks</span></div>
+        <div class="stat-label">before crop failure — enough time for every stakeholder to act</div>
+      </div>
+      <div class="stat-card r d1">
+        <span class="stat-tick">Model confidence</span>
+        <div class="stat-val">0.91</div>
+        <div class="stat-label">confidence score, LSTM ensemble validated against ground truth</div>
+      </div>
+      <div class="stat-card r d2">
+        <span class="stat-tick">Coverage</span>
+        <div class="stat-val">847</div>
+        <div class="stat-label">farm polygons monitored in the Southwest Nigeria pilot</div>
+      </div>
+      <div class="stat-card r d3">
+        <span class="stat-tick">Farmers reached</span>
+        <div class="stat-val">2,841</div>
+        <div class="stat-label">SMS alerts delivered in local language this season</div>
       </div>
     </div>
   </div>
-
-  <!-- Divider -->
-  <div class="hero-divider"></div>
-
-  <!-- Right: data -->
-  <div class="hero-data">
-    <div class="hero-data-inner">
-      <div class="hero-data-label">
-        <div class="data-live-dot"></div>
-        CropSentinel — Live Field Intelligence
-      </div>
-
-      <div class="data-cards">
-        <div class="data-card">
-          <div class="data-card-val copper">6–8 wks</div>
-          <div class="data-card-label">advance warning before crop failure</div>
-        </div>
-        <div class="data-card">
-          <div class="data-card-val steel">0.91</div>
-          <div class="data-card-label">model confidence score, LSTM ensemble</div>
-        </div>
-        <div class="data-card">
-          <div class="data-card-val">847</div>
-          <div class="data-card-label">farm polygons monitored, Southwest Nigeria pilot</div>
-        </div>
-        <div class="data-card">
-          <div class="data-card-val copper">67%</div>
-          <div class="data-card-label">yield loss probability flagged, Zone 4-C</div>
-        </div>
-      </div>
-
-      <div class="cs-readout">
-        <div class="cs-readout-head">
-          <span class="cs-readout-name">CropSentinel · Southwest Nigeria Scan</span>
-          <span class="cs-readout-badge">ACTIVE</span>
-        </div>
-        <div class="cs-rows">
-          <div class="cs-row">
-            <span class="cs-row-key">Satellite source</span>
-            <span class="cs-row-val">Sentinel-2 · MODIS</span>
-          </div>
-          <div class="cs-row">
-            <span class="cs-row-key">NDVI anomaly</span>
-            <span class="cs-row-val warn">Detected · Zone 4-C, 4-D</span>
-          </div>
-          <div class="cs-row">
-            <span class="cs-row-key">Farmers alerted via SMS</span>
-            <span class="cs-row-val ok">2,841 sent</span>
-          </div>
-          <div class="cs-row">
-            <span class="cs-row-key">Insurance trigger</span>
-            <span class="cs-row-val ok">Filed · AgroSafe API</span>
-          </div>
-          <div class="cs-row">
-            <span class="cs-row-key">Agency dashboard</span>
-            <span class="cs-row-val ok">Updated</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </section>
 
 
@@ -806,9 +700,9 @@
   <div class="farm-inner">
     <div class="farm-copy r">
       <div class="s-label">The Farm</div>
-      <h2 class="s-h2">Real land.<br><em>Real harvest.</em><br>Real stakes.</h2>
+      <h2 class="s-h2">Real land. <em>Real harvest.</em><br>Real stakes.</h2>
       <p>
-        EcoGrow is not a technology company that named itself after agriculture. We are a farm first — operating land in Nigeria, growing produce for local and institutional markets, and managing the daily reality of Nigerian agribusiness.
+        EcoGrow is not a technology company that named itself after agriculture. <strong>We are a farm first</strong> — operating land in Nigeria, growing produce for local and institutional markets, and managing the daily reality of Nigerian agribusiness.
       </p>
       <p>
         That reality is what drove us to build our own intelligence tools. No software on the market was built for African soil, African weather patterns, or the African smallholder. So we built it ourselves.
@@ -847,7 +741,7 @@
       <div class="farm-op">
         <div class="farm-op-icon">📦</div>
         <div>
-          <div class="farm-op-title">Post-Harvest & Distribution</div>
+          <div class="farm-op-title">Post-Harvest &amp; Distribution</div>
           <p class="farm-op-desc">Structured grading, documented cold-chain handling, and HarvestIQ price signals informing when and where to sell — reducing post-harvest loss and value leakage.</p>
           <span class="farm-op-tag">HarvestIQ-guided</span>
         </div>
@@ -855,7 +749,7 @@
       <div class="farm-op">
         <div class="farm-op-icon">📋</div>
         <div>
-          <div class="farm-op-title">Traceability & Compliance</div>
+          <div class="farm-op-title">Traceability &amp; Compliance</div>
           <p class="farm-op-desc">Digital production logs, batch identifiers, and SON/NAQS-aligned documentation — building the data infrastructure that serious buyers and regulators require.</p>
           <span class="farm-op-tag">Full traceability</span>
         </div>
@@ -867,13 +761,14 @@
 
 <!-- ═══ PRODUCTS ═══ -->
 <section id="products">
+  <canvas id="products-dots"></canvas>
   <div class="products-wrap">
     <div class="products-head">
       <div>
         <div class="s-label r">Intelligence Products</div>
         <h2 class="s-h2 r d1">Software born<br><em>from the field.</em></h2>
       </div>
-      <p class="products-sub r d2">
+      <p class="s-sub r d2">
         Every product we build started as a problem we faced on our own farm. We build tools we actually use — then open them to governments, agencies, cooperatives, and insurers who face the same problems at greater scale.
       </p>
     </div>
@@ -923,22 +818,20 @@
     </div>
 
     <!-- IrrigateAI — wide card -->
-    <div class="products-grid-b r d3">
-      <div class="product-card wide" data-mark="I">
-        <div>
-          <span class="product-status soon">Coming Soon</span>
-          <div class="product-name">IrrigateAI</div>
-          <div class="product-tagline">AI irrigation scheduling that cuts water waste by half</div>
-          <p class="product-desc">Combines satellite evapotranspiration data, local weather forecasts, and SoilPulse readings to generate daily irrigation schedules for farms and irrigation scheme operators — no agronomist visit required.</p>
-        </div>
-        <ul class="product-specs">
-          <li>Daily AI-generated irrigation schedules</li>
-          <li>Evapotranspiration and weather data fusion</li>
-          <li>Drip and centre-pivot controller API</li>
-          <li>Water use reduction reporting for compliance</li>
-          <li>Integrates with SoilPulse sensor network</li>
-        </ul>
+    <div class="product-card wide r d3" data-mark="I">
+      <div>
+        <span class="product-status soon">Coming Soon</span>
+        <div class="product-name">IrrigateAI</div>
+        <div class="product-tagline">AI irrigation scheduling that cuts water waste by half</div>
+        <p class="product-desc">Combines satellite evapotranspiration data, local weather forecasts, and SoilPulse readings to generate daily irrigation schedules for farms and irrigation scheme operators — no agronomist visit required.</p>
       </div>
+      <ul class="product-specs">
+        <li>Daily AI-generated irrigation schedules</li>
+        <li>Evapotranspiration and weather data fusion</li>
+        <li>Drip and centre-pivot controller API</li>
+        <li>Water use reduction reporting for compliance</li>
+        <li>Integrates with SoilPulse sensor network</li>
+      </ul>
     </div>
 
   </div>
@@ -947,35 +840,38 @@
 
 <!-- ═══ HOW IT WORKS ═══ -->
 <section id="how">
-  <div class="how-wrap">
-    <div class="how-head">
-      <div class="s-label r">How It Works</div>
-      <h2 class="s-h2 r d1">From the field<br>to a decision<br><em>in time to act.</em></h2>
-    </div>
-    <div class="how-steps">
-      <div class="how-step r">
-        <span class="how-n">01</span>
-        <span class="how-icon">🛰</span>
-        <div class="how-title">Sense</div>
-        <p class="how-desc">Satellites pass overhead daily. Our IoT probes measure what satellites can't see underground. Both streams feed continuously into one data pipeline.</p>
+  <div class="how-panel">
+    <canvas id="how-dots"></canvas>
+    <div class="how-wrap">
+      <div class="how-head">
+        <div class="s-label r">How It Works</div>
+        <h2 class="s-h2 r d1">From the field to a decision<br><em>in time to act.</em></h2>
       </div>
-      <div class="how-step r d1">
-        <span class="how-n">02</span>
-        <span class="how-icon">🧠</span>
-        <div class="how-title">Model</div>
-        <p class="how-desc">Our LSTM AI processes the combined stream, compares against historical African crop stress patterns, and outputs farm-level yield probabilities with confidence scores.</p>
-      </div>
-      <div class="how-step r d2">
-        <span class="how-n">03</span>
-        <span class="how-icon">📡</span>
-        <div class="how-title">Alert</div>
-        <p class="how-desc">Farmers receive an SMS. Agencies see a district risk map. Insurers receive a parametric trigger. Everyone gets the signal they need in the channel they actually use.</p>
-      </div>
-      <div class="how-step r d3">
-        <span class="how-n">04</span>
-        <span class="how-icon">🌍</span>
-        <div class="how-title">Respond</div>
-        <p class="how-desc">Aid is pre-positioned before roads flood. Irrigate before the crop fails. Sell before the price drops. Six to eight weeks is enough for every stakeholder to act.</p>
+      <div class="how-steps">
+        <div class="how-step r">
+          <span class="how-n">01 — SENSE</span>
+          <span class="how-icon">🛰</span>
+          <div class="how-title">Sense</div>
+          <p class="how-desc">Satellites pass overhead daily. Our IoT probes measure what satellites can't see underground. Both streams feed continuously into one data pipeline.</p>
+        </div>
+        <div class="how-step r d1">
+          <span class="how-n">02 — MODEL</span>
+          <span class="how-icon">🧠</span>
+          <div class="how-title">Model</div>
+          <p class="how-desc">Our LSTM AI processes the combined stream, compares against historical African crop stress patterns, and outputs farm-level yield probabilities with confidence scores.</p>
+        </div>
+        <div class="how-step r d2">
+          <span class="how-n">03 — ALERT</span>
+          <span class="how-icon">📡</span>
+          <div class="how-title">Alert</div>
+          <p class="how-desc">Farmers receive an SMS. Agencies see a district risk map. Insurers receive a parametric trigger. Everyone gets the signal they need in the channel they actually use.</p>
+        </div>
+        <div class="how-step r d3">
+          <span class="how-n">04 — RESPOND</span>
+          <span class="how-icon">🌍</span>
+          <div class="how-title">Respond</div>
+          <p class="how-desc">Aid is pre-positioned before roads flood. Irrigate before the crop fails. Sell before the price drops. Six to eight weeks is enough for every stakeholder to act.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -988,7 +884,7 @@
     <div class="serve-layout">
       <div class="serve-copy r">
         <div class="s-label">Who We Serve</div>
-        <h2 class="s-h2">The people whose<br>decisions feed<br><em>millions.</em></h2>
+        <h2 class="s-h2">The people whose decisions feed <em>millions.</em></h2>
         <p>Our intelligence products are built for institutions and individuals who carry the weight of food security — and who cannot afford to be surprised by what a season brings.</p>
       </div>
       <div class="serve-grid r d2">
@@ -1020,14 +916,17 @@
 
 <!-- ═══ CTA ═══ -->
 <section id="cta">
-  <div class="cta-wrap">
-    <div>
-      <h2 class="cta-h2 r">A farm that built<br>its own <em>intelligence.</em><br>Now yours to use.</h2>
-      <p class="cta-sub r d1">Whether you are a government ministry, a humanitarian agency, an agri-insurer, or a cooperative looking for better data — our products are built for you. Let's talk.</p>
-    </div>
-    <div class="cta-buttons r d2">
-      <a href="mailto:info@ecogrowfarms.com" class="btn-copper-full">Start a conversation</a>
-      <a href="/products.html" class="btn-outline-cta">Explore products</a>
+  <div class="cta-panel">
+    <canvas id="cta-dots"></canvas>
+    <div class="cta-wrap">
+      <div>
+        <h2 class="cta-h2 r">A farm that built its own <em>intelligence.</em><br>Now yours to use.</h2>
+        <p class="cta-sub r d1">Whether you are a government ministry, a humanitarian agency, an agri-insurer, or a cooperative looking for better data — our products are built for you. Let's talk.</p>
+      </div>
+      <div class="cta-buttons r d2">
+        <a href="mailto:info@ecogrowfarms.com" class="btn-lime-full">Start a conversation <span>→</span></a>
+        <a href="/products.html" class="btn-outline-cta">Explore products</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1079,10 +978,6 @@
 
 
 <script>
-  // Sticky nav
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
-
   // Mobile drawer
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
@@ -1090,12 +985,10 @@
   if (hamburger && drawer) {
     const closeDrawer = () => {
       drawer.classList.remove('open');
-      hamburger.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
     };
     const openDrawer = () => {
       drawer.classList.add('open');
-      hamburger.classList.add('is-open');
       hamburger.setAttribute('aria-expanded', 'true');
     };
     hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
@@ -1103,7 +996,7 @@
     drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
     drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 860) closeDrawer(); });
   }
 
   // Scroll reveal
@@ -1112,6 +1005,70 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   els.forEach(el => obs.observe(el));
+
+  // Particle scatter — gaussian dot clusters
+  function gauss() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  function scatter(canvasId, clusters, color, dotAlpha) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const draw = () => {
+      const parent = canvas.parentElement;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = parent.clientWidth, h = parent.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      clusters.forEach(c => {
+        const cx = c.x * w, cy = c.y * h;
+        const sx = c.spread * Math.min(w, 900), sy = c.spread * Math.min(h, 900);
+        for (let i = 0; i < c.n; i++) {
+          const x = cx + gauss() * sx;
+          const y = cy + gauss() * sy;
+          if (x < 0 || x > w || y < 0 || y > h) continue;
+          const r = 0.7 + Math.random() * 1.1;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.globalAlpha = dotAlpha * (0.35 + Math.random() * 0.65);
+          ctx.fill();
+        }
+      });
+      ctx.globalAlpha = 1;
+    };
+    draw();
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(draw, 150); });
+  }
+
+  // Dark panels — lime dots
+  scatter('hero-dots', [
+    { x: 0.78, y: 0.32, spread: 0.13, n: 900 },
+    { x: 0.55, y: 0.85, spread: 0.10, n: 450 },
+    { x: 0.15, y: 0.90, spread: 0.08, n: 250 }
+  ], '#a8e63c', 0.5);
+  scatter('how-dots', [
+    { x: 0.88, y: 0.2, spread: 0.10, n: 500 },
+    { x: 0.08, y: 0.85, spread: 0.08, n: 300 }
+  ], '#a8e63c', 0.35);
+  scatter('cta-dots', [
+    { x: 0.15, y: 0.25, spread: 0.10, n: 500 },
+    { x: 0.85, y: 0.75, spread: 0.09, n: 350 }
+  ], '#a8e63c', 0.35);
+
+  // Light sections — green dots
+  scatter('stats-dots', [
+    { x: 0.85, y: 0.25, spread: 0.11, n: 700 },
+    { x: 0.6, y: 0.75, spread: 0.09, n: 350 }
+  ], '#3e7d32', 0.35);
+  scatter('products-dots', [
+    { x: 0.12, y: 0.15, spread: 0.09, n: 450 },
+    { x: 0.9, y: 0.9, spread: 0.08, n: 300 }
+  ], '#3e7d32', 0.3);
 </script>
 </body>
 </html>

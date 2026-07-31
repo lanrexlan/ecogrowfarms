@@ -346,7 +346,7 @@
       box-shadow: 0 2px 16px rgba(18,23,18,0.04);
       overflow-x: auto;
     }
-    .compare-table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    .compare-table { width: 100%; border-collapse: collapse; min-width: 1000px; }
     .compare-table th {
       background: var(--page-deep); padding: 1rem 1.3rem; text-align: left;
       font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em;
@@ -567,7 +567,7 @@
       </div>
       <div class="page-hero-copy r d1">
         <p>Every product we build started as a problem on our own farm. We don't theorise about African agriculture — we operate in it. The tools we sell are the tools we depend on to make our own harvest decisions.</p>
-        <p>Four products. One integrated pipeline. Built for a continent that the rest of precision agriculture forgot to design for.</p>
+        <p>Seven products. One integrated pipeline. Most of them run on orbital data alone — no hardware on the ground, no site visit, deployable anywhere we can draw a plot boundary.</p>
       </div>
     </div>
   </div>
@@ -580,6 +580,9 @@
     <a href="#soilpulse" class="ptab">SoilPulse</a>
     <a href="#harvestiq" class="ptab">HarvestIQ</a>
     <a href="#irrigateai" class="ptab">IrrigateAI</a>
+    <a href="#floodsentinel" class="ptab">FloodSentinel</a>
+    <a href="#originproof" class="ptab">OriginProof</a>
+    <a href="#fieldmap" class="ptab">FieldMap</a>
   </div>
 </div>
 
@@ -593,7 +596,8 @@
       <h2 class="s-h2">Crop failure predicted<br><em>6–8 weeks</em><br>before it happens.</h2>
       <p class="pd-tagline">AI-powered early warning for farm-level yield failure — delivered to farmers, agencies, and insurers before the season is lost.</p>
       <div class="pd-body">
-        <p>CropSentinel fuses daily Sentinel-2 and MODIS satellite imagery with readings from our IoT soil sensor network. An LSTM ensemble model processes the combined stream against historical African crop stress patterns to output farm-level yield loss probabilities — with a confidence score — up to two months ahead of harvest.</p>
+        <p>CropSentinel reads daily Sentinel-2 and MODIS satellite imagery against historical African crop stress patterns. An LSTM ensemble model outputs farm-level yield loss probabilities — with a confidence score — up to two months ahead of harvest.</p>
+        <p>It deploys in two tiers. <strong>Satellite-only</strong> runs entirely on public orbital archives and needs nothing installed on the ground — no probes, no gateways, no site visit — which means a new state or country can be stood up from a plot boundary file alone. <strong>Sensor-fused</strong> adds SoilPulse ground readings where they already exist, trading physical deployment for higher model confidence. Most deployments start satellite-only and never need to change.</p>
         <p>Farmers receive an SMS alert in their local language. District risk maps update in real time for humanitarian agencies. Agri-insurers receive a parametric trigger via API — no loss adjuster in the field required. Everyone gets the signal they need in the channel they actually use.</p>
       </div>
       <div class="produce-tags">
@@ -616,6 +620,7 @@
           <span class="product-status active inline">Active</span>
         </div>
         <div class="readout-row"><span class="row-key">Satellite source</span><span class="row-val">Sentinel-2 · MODIS</span></div>
+        <div class="readout-row"><span class="row-key">Deployment tier</span><span class="row-val accent">Satellite-only · no hardware</span></div>
         <div class="readout-row"><span class="row-key">Scan frequency</span><span class="row-val">Daily pass</span></div>
         <div class="readout-row"><span class="row-key">NDVI anomaly</span><span class="row-val warn">Detected · Zone 4-C, 4-D</span></div>
         <div class="readout-row"><span class="row-key">Yield loss probability</span><span class="row-val warn">67% · Zone 4-C</span></div>
@@ -631,6 +636,13 @@
       </div>
 
       <div class="farm-ops">
+        <div class="farm-op">
+          <div class="farm-op-icon">🛰</div>
+          <div>
+            <div class="farm-op-title">Satellite-Only Deployment</div>
+            <p class="farm-op-desc">The base tier runs on public Sentinel-2 and MODIS archives alone — no probes to install, no gateways to maintain, no site visit. New geographies onboard from a plot boundary file.</p>
+          </div>
+        </div>
         <div class="farm-op">
           <div class="farm-op-icon">🌾</div>
           <div>
@@ -877,13 +889,235 @@
 </section>
 
 
+<!-- ═══ FLOODSENTINEL ═══ -->
+<section class="product-detail" id="floodsentinel">
+  <div class="product-detail-inner">
+    <div class="r">
+      <span class="product-status soon">In Development</span>
+      <div class="s-label">FloodSentinel</div>
+      <h2 class="s-h2">Flood risk mapped<br>before the water<br><em>arrives.</em></h2>
+      <p class="pd-tagline">Radar satellite flood forecasting and 48-hour post-event damage mapping — built for rainy-season Nigeria, where optical satellites see nothing but cloud.</p>
+      <div class="pd-body">
+        <p>Nigeria floods on a schedule everyone knows and nobody plans for. The Niger–Benue confluence backs up, Lagdo Dam releases upstream in Cameroon, and Kogi, Bayelsa, Anambra and Adamawa lose farmland every season. Optical satellites are useless in the middle of it because the cloud never breaks. FloodSentinel uses Sentinel-1 synthetic aperture radar, which passes through cloud entirely, combined with CHIRPS rainfall records, GFS forecast fields, and a Copernicus elevation model to predict where water will collect.</p>
+        <p>Two outputs, two moments. Ahead of the event, inundation risk by ward with lead time measured in days, pushed to agency dashboards and farmer SMS. After it, flood extent and cropland damage quantified within 48 hours of the next radar pass — the figure agencies need to allocate response and insurers need to settle claims. No river gauges, no field teams, nothing to install.</p>
+      </div>
+      <div class="produce-tags">
+        <span class="produce-tag">Disaster management agencies</span>
+        <span class="produce-tag">Humanitarian agencies</span>
+        <span class="produce-tag">Agri-insurers</span>
+        <span class="produce-tag">State ministries</span>
+        <span class="produce-tag">Development banks</span>
+      </div>
+      <div class="pd-cta">
+        <a href="/contact.html" class="btn-lime">Join the waitlist <span class="arr">→</span></a>
+        <a href="/contact.html" class="btn-line">Technical brief</a>
+      </div>
+    </div>
+
+    <div class="product-visual r d2">
+      <div class="readout-block">
+        <div class="readout-head">
+          <span class="readout-name">FloodSentinel · Lower Niger Basin Model</span>
+          <span class="product-status soon inline">In Development</span>
+        </div>
+        <div class="readout-row"><span class="row-key">Radar source</span><span class="row-val">Sentinel-1 SAR · C-band</span></div>
+        <div class="readout-row"><span class="row-key">Cloud penetration</span><span class="row-val ok">Yes · all-weather</span></div>
+        <div class="readout-row"><span class="row-key">Rainfall input</span><span class="row-val">CHIRPS · GFS 7-day</span></div>
+        <div class="readout-row"><span class="row-key">Terrain model</span><span class="row-val">Copernicus DEM · 30 m</span></div>
+        <div class="readout-row"><span class="row-key">Ward flood risk</span><span class="row-val warn">Elevated · Lokoja LGA</span></div>
+        <div class="readout-row"><span class="row-key">Forecast lead time</span><span class="row-val accent">5–9 days</span></div>
+        <div class="readout-row"><span class="row-key">Cropland at risk</span><span class="row-val warn">12,400 ha modelled</span></div>
+        <div class="readout-row"><span class="row-key">Damage map delivery</span><span class="row-val ok">≤48 hrs post-pass</span></div>
+        <div class="readout-stats">
+          <div class="readout-stat"><div class="stat-val accent">≤48h</div><div class="stat-label">damage map turnaround</div></div>
+          <div class="readout-stat"><div class="stat-val">0</div><div class="stat-label">sensors to install</div></div>
+          <div class="readout-stat"><div class="stat-val accent">SAR</div><div class="stat-label">cloud-proof imaging</div></div>
+        </div>
+      </div>
+
+      <div class="farm-ops">
+        <div class="farm-op">
+          <div class="farm-op-icon">📡</div>
+          <div>
+            <div class="farm-op-title">All-Weather Radar Imaging</div>
+            <p class="farm-op-desc">Sentinel-1 C-band radar penetrates cloud completely, so the model keeps working through the exact rainy-season conditions that blind every optical satellite.</p>
+          </div>
+        </div>
+        <div class="farm-op">
+          <div class="farm-op-icon">🗺</div>
+          <div>
+            <div class="farm-op-title">Ward-Level Inundation Maps</div>
+            <p class="farm-op-desc">Flow accumulation over a 30 m elevation model turns rainfall forecasts into ward-by-ward extent and depth predictions, with lead time in days rather than hours.</p>
+          </div>
+        </div>
+        <div class="farm-op">
+          <div class="farm-op-icon">📄</div>
+          <div>
+            <div class="farm-op-title">48-Hour Damage Assessment</div>
+            <p class="farm-op-desc">Post-event cropland loss quantified from the first radar pass — the number agencies need for response allocation and insurers need for parametric settlement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ORIGINPROOF ═══ -->
+<section class="product-detail alt" id="originproof">
+  <div class="product-detail-inner flip">
+    <div class="r">
+      <span class="product-status soon">In Development</span>
+      <div class="s-label">OriginProof</div>
+      <h2 class="s-h2">EUDR compliance<br>proven from<br><em>orbit.</em></h2>
+      <p class="pd-tagline">Automated deforestation-free compliance dossiers for commodity exporters — plot geolocation, forest-loss history, and an audit trail a regulator will accept.</p>
+      <div class="pd-body">
+        <p>Under the EU Deforestation Regulation, anyone placing cocoa, palm oil, rubber, soy, coffee, timber or cattle products on the EU market must supply the geolocation of every plot of production and prove no deforestation occurred there after 31 December 2020. Nigerian exporters of cocoa, sesame and palm are directly exposed, and most hold no plot-level data at all.</p>
+        <p>OriginProof takes a plot boundary — supplied by the exporter, or generated by FieldMap — and cross-references it against the Hansen Global Forest Change and JRC Tropical Moist Forest archives to produce a dated, per-plot compliance dossier: forest cover baseline, change detection since the cut-off, and a methodology statement due-diligence filings require. Because it runs on public satellite archives, it works retroactively, on any plot, without anyone ever visiting it.</p>
+      </div>
+      <div class="produce-tags">
+        <span class="produce-tag">Commodity exporters</span>
+        <span class="produce-tag">Aggregators &amp; offtakers</span>
+        <span class="produce-tag">EU importers</span>
+        <span class="produce-tag">Certification bodies</span>
+        <span class="produce-tag">Cooperatives</span>
+      </div>
+      <div class="pd-cta">
+        <a href="/contact.html" class="btn-lime">Request early access <span class="arr">→</span></a>
+        <a href="/insights.html" class="btn-line">Read the EUDR brief</a>
+      </div>
+    </div>
+
+    <div class="product-visual r d2">
+      <div class="readout-block">
+        <div class="readout-head">
+          <span class="readout-name">OriginProof · Plot Compliance Check</span>
+          <span class="product-status soon inline">In Development</span>
+        </div>
+        <div class="readout-row"><span class="row-key">Plot reference</span><span class="row-val">EGF-OSU-0231 · 4.2 ha</span></div>
+        <div class="readout-row"><span class="row-key">Geolocation</span><span class="row-val ok">Polygon · WGS84 verified</span></div>
+        <div class="readout-row"><span class="row-key">Commodity</span><span class="row-val">Cocoa · EUDR Annex I</span></div>
+        <div class="readout-row"><span class="row-key">Forest baseline</span><span class="row-val">31 Dec 2020</span></div>
+        <div class="readout-row"><span class="row-key">Change detection</span><span class="row-val ok">No canopy loss detected</span></div>
+        <div class="readout-row"><span class="row-key">Data source</span><span class="row-val">Hansen GFC · JRC TMF</span></div>
+        <div class="readout-row"><span class="row-key">Dossier output</span><span class="row-val accent">PDF + JSON</span></div>
+        <div class="readout-row"><span class="row-key">Audit trail</span><span class="row-val ok">Timestamped · immutable</span></div>
+        <div class="readout-stats">
+          <div class="readout-stat"><div class="stat-val accent">2020</div><div class="stat-label">deforestation cut-off baseline</div></div>
+          <div class="readout-stat"><div class="stat-val">Per plot</div><div class="stat-label">dossier generation</div></div>
+          <div class="readout-stat"><div class="stat-val accent">0</div><div class="stat-label">site visits required</div></div>
+        </div>
+      </div>
+
+      <div class="farm-ops">
+        <div class="farm-op">
+          <div class="farm-op-icon">🌳</div>
+          <div>
+            <div class="farm-op-title">Forest-Loss Change Detection</div>
+            <p class="farm-op-desc">Global forest change archives establish a dated baseline and detect any canopy loss on the plot since the cut-off — retroactively, for plots nobody surveyed at the time.</p>
+          </div>
+        </div>
+        <div class="farm-op">
+          <div class="farm-op-icon">📑</div>
+          <div>
+            <div class="farm-op-title">Regulator-Ready Dossiers</div>
+            <p class="farm-op-desc">Each plot returns a PDF and machine-readable JSON record: polygon geometry, baseline evidence, change-detection result, and the methodology statement filings require.</p>
+          </div>
+        </div>
+        <div class="farm-op">
+          <div class="farm-op-icon">🔗</div>
+          <div>
+            <div class="farm-op-title">Batch &amp; Shipment Roll-Up</div>
+            <p class="farm-op-desc">Aggregates plot-level results into a consignment-level compliance position, so an exporter can clear a shipment covering thousands of smallholder plots in one submission.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FIELDMAP ═══ -->
+<section class="product-detail" id="fieldmap">
+  <div class="product-detail-inner">
+    <div class="r">
+      <span class="product-status soon">In Development</span>
+      <div class="s-label">FieldMap</div>
+      <h2 class="s-h2">Every plot mapped,<br>measured and classified<br><em>from orbit.</em></h2>
+      <p class="pd-tagline">Automatic field boundary delineation, crop-type classification, and area measurement — the registry layer that subsidy programmes, insurers, and lenders are all missing.</p>
+      <div class="pd-body">
+        <p>Almost every agricultural intervention in Nigeria fails on the same question: who is farming what, where, and how much of it. Paper registries go stale, self-reported hectarage runs inflated, and input subsidy programmes leak into plots that do not exist. FieldMap builds the answer from Sentinel-1 and Sentinel-2 time series — boundaries delineated automatically, crop type classified by growth signature, area measured to the hectare.</p>
+        <p>Maize, cassava, rice, sorghum and soybean separate cleanly over a season because each writes a distinct phenological curve as seen from orbit. Run across a state, that produces a verified plot register: polygon, crop, area, season. Ministries use it to find the ghost farmers in a distribution list. Insurers use it to set sum insured. Lenders use it to confirm the collateral exists. It is also the layer CropSentinel and OriginProof both need before either can run somewhere new.</p>
+      </div>
+      <div class="produce-tags">
+        <span class="produce-tag">Government ministries</span>
+        <span class="produce-tag">Development programmes</span>
+        <span class="produce-tag">Agri-insurers</span>
+        <span class="produce-tag">Agri-lenders</span>
+        <span class="produce-tag">Monitoring &amp; evaluation teams</span>
+      </div>
+      <div class="pd-cta">
+        <a href="/contact.html" class="btn-lime">Request early access <span class="arr">→</span></a>
+        <a href="/contact.html" class="btn-line">Coverage enquiries</a>
+      </div>
+    </div>
+
+    <div class="product-visual r d2">
+      <div class="readout-block">
+        <div class="readout-head">
+          <span class="readout-name">FieldMap · Osun State Scan</span>
+          <span class="product-status soon inline">In Development</span>
+        </div>
+        <div class="readout-row"><span class="row-key">Imagery</span><span class="row-val">Sentinel-1 SAR · Sentinel-2</span></div>
+        <div class="readout-row"><span class="row-key">Plots delineated</span><span class="row-val">14,208</span></div>
+        <div class="readout-row"><span class="row-key">Crop classes</span><span class="row-val">Maize · Cassava · Rice · Sorghum</span></div>
+        <div class="readout-row"><span class="row-key">Classification score</span><span class="row-val ok">0.88 F1 · validated</span></div>
+        <div class="readout-row"><span class="row-key">Mean plot size</span><span class="row-val">1.4 ha</span></div>
+        <div class="readout-row"><span class="row-key">Area measured</span><span class="row-val">19,870 ha</span></div>
+        <div class="readout-row"><span class="row-key">Register output</span><span class="row-val accent">Polygon · crop · area</span></div>
+        <div class="readout-row"><span class="row-key">Unregistered plots</span><span class="row-val warn">2,140 flagged</span></div>
+        <div class="readout-stats">
+          <div class="readout-stat"><div class="stat-val accent">0.88</div><div class="stat-label">classification F1 score</div></div>
+          <div class="readout-stat"><div class="stat-val">1.4 ha</div><div class="stat-label">mean plot resolved</div></div>
+          <div class="readout-stat"><div class="stat-val accent">0</div><div class="stat-label">field survey days</div></div>
+        </div>
+      </div>
+
+      <div class="farm-ops">
+        <div class="farm-op">
+          <div class="farm-op-icon">🧩</div>
+          <div>
+            <div class="farm-op-title">Automatic Boundary Delineation</div>
+            <p class="farm-op-desc">Multi-temporal radar and optical composites separate individual smallholder plots — down to the sub-hectare fields that global cropland products smear into one polygon.</p>
+          </div>
+        </div>
+        <div class="farm-op">
+          <div class="farm-op-icon">🌾</div>
+          <div>
+            <div class="farm-op-title">Crop Type by Growth Signature</div>
+            <p class="farm-op-desc">Each crop writes a distinct phenological curve across a season. The classifier reads that curve to label maize, cassava, rice, sorghum and soybean without a single ground visit.</p>
+          </div>
+        </div>
+        <div class="farm-op">
+          <div class="farm-op-icon">🧾</div>
+          <div>
+            <div class="farm-op-title">Registry Reconciliation</div>
+            <p class="farm-op-desc">Cross-references the derived plot register against an existing subsidy or programme list to surface duplicates, inflated hectarage, and plots that are not there at all.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ═══ AT A GLANCE ═══ -->
 <section id="comparison">
   <div class="compare-wrap">
     <div class="compare-head r">
       <div class="s-label">At a Glance</div>
-      <h2 class="s-h2">Four products.<br><em>One pipeline.</em></h2>
-      <p class="s-sub">Each product works independently — but they are designed to share data with each other. SoilPulse feeds CropSentinel and IrrigateAI. HarvestIQ closes the loop with the market.</p>
+      <h2 class="s-h2">Seven products.<br><em>One pipeline.</em></h2>
+      <p class="s-sub">Each product works independently — but they are designed to share data with each other. FieldMap supplies the plot boundaries the orbital products run on. SoilPulse feeds CropSentinel and IrrigateAI. HarvestIQ closes the loop with the market. Five of the seven need nothing installed on a farm.</p>
     </div>
     <div class="compare-table-card r d1">
       <table class="compare-table">
@@ -894,19 +1128,23 @@
             <th>SoilPulse</th>
             <th>HarvestIQ</th>
             <th>IrrigateAI</th>
+            <th>FloodSentinel</th>
+            <th>OriginProof</th>
+            <th>FieldMap</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Satellite data integration</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>IoT sensor network</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>AI / ML model</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>SMS farmer alerts</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td></tr>
-          <tr><td>Web dashboard</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="soon-txt">Soon</span></td></tr>
-          <tr><td>API / data output</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="soon-txt">Soon</span></td></tr>
-          <tr><td>Insurance trigger</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
-          <tr><td>Works offline / no GSM</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="soon-txt">Soon</span></td></tr>
-          <tr><td>SON / NAQS compliance output</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="soon-txt">Soon</span></td></tr>
-          <tr><td>Current status</td><td>Active pilot</td><td>Beta</td><td>Beta</td><td>Coming soon</td></tr>
+          <tr><td>Runs with no farm visit</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Satellite / radar data</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>IoT sensor network</td><td><span class="soon-txt">Optional</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+          <tr><td>AI / ML model</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>SMS farmer alerts</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+          <tr><td>Web dashboard</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="soon-txt">Soon</span></td><td><span class="soon-txt">Soon</span></td><td><span class="soon-txt">Soon</span></td><td><span class="soon-txt">Soon</span></td></tr>
+          <tr><td>API / data output</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="soon-txt">Soon</span></td><td><span class="soon-txt">Soon</span></td><td><span class="soon-txt">Soon</span></td><td><span class="soon-txt">Soon</span></td></tr>
+          <tr><td>Insurance trigger</td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+          <tr><td>Works offline / no GSM</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="soon-txt">Soon</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+          <tr><td>Compliance &amp; audit output</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="dash">—</span></td><td><span class="soon-txt">Soon</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Current status</td><td>Active pilot</td><td>Beta</td><td>Beta</td><td>Coming soon</td><td>In development</td><td>In development</td><td>In development</td></tr>
         </tbody>
       </table>
     </div>
@@ -920,11 +1158,16 @@
     <div class="integration-copy r">
       <div class="s-label">How They Connect</div>
       <h2 class="s-h2">Each product is<br>standalone. Together<br><em>they share data.</em></h2>
-      <p>You can deploy any single product in isolation. But the four tools are designed around a shared data model — SoilPulse sensor readings flow into CropSentinel's risk model and IrrigateAI's scheduling engine. CropSentinel yield forecasts inform HarvestIQ's timing recommendations.</p>
-      <p>The more products you run, the more each one knows. A full deployment means one integrated pipeline: sense the soil, predict the season, schedule the water, time the sale.</p>
+      <p>You can deploy any single product in isolation. But all seven are designed around a shared data model — FieldMap polygons define the plots every orbital product scores, SoilPulse readings flow into CropSentinel's risk model and IrrigateAI's scheduling engine, and CropSentinel yield forecasts inform HarvestIQ's timing recommendations.</p>
+      <p>The more products you run, the more each one knows. A full deployment means one integrated pipeline: map the plot, predict the season, schedule the water, price the risk, prove the origin, time the sale.</p>
       <p>All products share a single API key and data namespace. Integration with your existing ERP, MIS, or government data system is supported via our REST API and webhook infrastructure.</p>
     </div>
     <div class="flow-rows r d2">
+      <div class="flow-row">
+        <span class="flow-product">FieldMap</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-desc">Plot boundaries and crop labels are the base layer <strong>CropSentinel</strong>, <strong>FloodSentinel</strong> and <strong>OriginProof</strong> all run on</span>
+      </div>
       <div class="flow-row">
         <span class="flow-product">SoilPulse</span>
         <span class="flow-arrow">→</span>
@@ -939,6 +1182,16 @@
         <span class="flow-product">IrrigateAI</span>
         <span class="flow-arrow">→</span>
         <span class="flow-desc">Irrigation event log feeds <strong>CropSentinel</strong> field-stress context and <strong>compliance</strong> reporting</span>
+      </div>
+      <div class="flow-row">
+        <span class="flow-product">FloodSentinel</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-desc">Inundation risk overrides <strong>CropSentinel</strong> yield forecasts and fires its own <strong>parametric flood</strong> triggers</span>
+      </div>
+      <div class="flow-row">
+        <span class="flow-product">OriginProof</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-desc">Plot compliance status attaches to <strong>HarvestIQ</strong> market records — so an offtaker sees price and EUDR position together</span>
       </div>
       <div class="flow-row">
         <span class="flow-product">HarvestIQ</span>
@@ -991,6 +1244,9 @@
           <li><a href="/products.html#soilpulse">SoilPulse</a></li>
           <li><a href="/products.html#harvestiq">HarvestIQ</a></li>
           <li><a href="/products.html#irrigateai">IrrigateAI</a></li>
+          <li><a href="/products.html#floodsentinel">FloodSentinel</a></li>
+          <li><a href="/products.html#originproof">OriginProof</a></li>
+          <li><a href="/products.html#fieldmap">FieldMap</a></li>
         </ul>
       </div>
       <div>

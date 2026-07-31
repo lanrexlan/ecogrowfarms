@@ -7,197 +7,370 @@
   <link rel="icon" type="image/svg+xml" href="/Images/ecogrow-farms-icon-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     :root {
-      --soil:       #16100a;
-      --earth:      #1f1610;
-      --bark:       #2c1f12;
-      --clay:       #3d2c1a;
-      --copper:     #b87333;
-      --copper-lt:  #d4904a;
-      --copper-dim: rgba(184,115,51,0.14);
-      --steel:      #4a7fa5;
-      --steel-lt:   #6b9dc2;
-      --steel-dim:  rgba(74,127,165,0.12);
-      --cream:      #f0e8d8;
-      --dust:       #9a8878;
-      --dust-lt:    #b5a494;
-      --white:      #f7f2ea;
-      --green-ok:   #7ecba1;
+      --page:       #e9f0dd;   /* light sage page ground */
+      --page-deep:  #dfe9cf;
+      --card:       #ffffff;
+      --ink:        #121712;   /* near-black green text */
+      --ink-soft:   #3d463c;
+      --ink-mute:   #6b7566;
+      --forest:     #14231a;   /* dark hero panel */
+      --forest-2:   #1b2f22;
+      --forest-3:   #24402e;
+      --lime:       #a8e63c;   /* glow accent on dark */
+      --lime-soft:  rgba(168,230,60,0.16);
+      --green:      #3e7d32;   /* accent on light */
+      --green-deep: #2c5a24;
+      --line:       rgba(18,23,18,0.12);
+      --line-soft:  rgba(18,23,18,0.07);
+      --white:      #f4f8ee;
+      --mist:       rgba(244,248,238,0.62);
+      --mist-dim:   rgba(244,248,238,0.38);
 
       --font-display: 'Space Grotesk', sans-serif;
       --font-body:    'Space Grotesk', sans-serif;
-      --font-mono:    'Space Grotesk', sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
     }
 
-    body { font-family: var(--font-body); background: var(--soil); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body);
+      background: var(--page);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* ── NAV ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: background 0.4s, border-color 0.4s; border-bottom: 1px solid transparent; }
-    nav.stuck { background: rgba(22,16,10,0.95); backdrop-filter: blur(14px); border-color: rgba(255,255,255,0.06); }
-    .nav-brand { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
-    .nav-brand-img { width: 38px; height: 38px; object-fit: contain; }
-    .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-brand-wordmark strong { font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: 0.01em; }
-    .nav-brand-wordmark span { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); font-weight: 500; }
-    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--dust-lt); text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em; }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; color: var(--soil); background: var(--copper); padding: 0.55rem 1.4rem; border-radius: 2px; transition: background 0.2s; }
-    .nav-cta:hover { background: var(--copper-lt); }
-    .nav-cta.active-page { background: var(--copper-lt); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--dust-lt); }
-    .drawer { display: none; position: fixed; inset: 0; background: var(--earth); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    ::selection { background: var(--lime); color: var(--forest); }
+
+    /* ── NAV — floating pills ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      pointer-events: none;
+    }
+    nav > * { pointer-events: auto; }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.65rem;
+      text-decoration: none;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.5rem 1.1rem 0.5rem 0.7rem; border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+    }
+    .nav-brand-img { width: 30px; height: 30px; object-fit: contain; }
+    .nav-brand-wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+    .nav-brand-wordmark strong {
+      font-weight: 700; font-size: 0.95rem; color: var(--ink); letter-spacing: -0.01em;
+    }
+    .nav-brand-wordmark span {
+      font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green);
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 0.25rem; list-style: none;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.35rem; border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+    }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--ink-soft);
+      text-decoration: none; letter-spacing: 0.01em;
+      padding: 0.5rem 1.05rem; border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--page-deep); color: var(--ink); }
+
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; color: var(--ink);
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      padding: 0.6rem 1.3rem; border-radius: 999px;
+      border: 1.5px solid var(--green);
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta .arr {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--green);
+      display: grid; place-items: center;
+      font-size: 0.7rem; color: var(--green);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--forest); color: var(--white); border-color: var(--forest); }
+    .nav-cta:hover .arr { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateX(2px); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; border: 1px solid var(--line-soft); padding: 12px 11px;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: 0 2px 14px rgba(18,23,18,0.06);
+    }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    .drawer {
+      display: none; position: fixed; inset: 0;
+      background: var(--forest); z-index: 290;
+      flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
+    }
     .drawer.open { display: flex; }
-    .drawer a { font-family: var(--font-body); font-size: 2.2rem; font-weight: 700; color: var(--white); text-decoration: none; transition: color 0.2s; }
-    .drawer a:hover { color: var(--copper); }
-    .drawer-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; cursor: pointer; font-size: 1.6rem; color: var(--dust); }
+    .drawer a {
+      font-size: 2rem; font-weight: 700;
+      color: var(--white); text-decoration: none; transition: color 0.2s;
+      letter-spacing: -0.02em;
+    }
+    .drawer a:hover { color: var(--lime); }
+    .drawer-close {
+      position: absolute; top: 1.5rem; right: 1.8rem;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; color: var(--mist);
+    }
 
-    /* ── PAGE HERO ── */
-    #page-hero { padding: 10rem 4rem 6rem; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end; }
-    .page-kicker { font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem; }
-    .page-kicker::before { content: '\2014'; opacity: 0.5; }
-    .page-h1 { font-family: var(--font-body); font-size: clamp(3rem, 5vw, 5rem); font-weight: 700; line-height: 1.0; letter-spacing: -0.02em; color: var(--white); }
-    .page-h1 em { font-style: italic; color: var(--copper-lt); display: block; }
-    .page-hero-right p { font-size: 1.02rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; margin-bottom: 1.2rem; }
-    .hero-rule { height: 1px; background: rgba(255,255,255,0.06); }
+    /* ── PAGE HERO — dark inset panel (how-panel pattern) ── */
+    #hero { padding: 5.2rem 1.25rem 1.25rem; }
+    .how-panel {
+      position: relative;
+      background: linear-gradient(160deg, var(--forest) 0%, var(--forest-2) 100%);
+      border-radius: var(--radius-lg); overflow: hidden;
+      padding: clamp(3rem, 6vw, 5.5rem) clamp(1.8rem, 4vw, 4.5rem);
+    }
+    #hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .how-wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .how-head { max-width: 680px; }
+    .how-head .s-label { color: var(--lime); margin-bottom: 1.3rem; }
+    .how-head .s-label::before { background: var(--lime); }
+    .how-head .s-h2 { color: var(--white); margin-bottom: 0; }
+    .how-head .s-h2 em { color: var(--lime); }
+    .hero-copy-block { margin-top: 2.2rem; max-width: 620px; display: flex; flex-direction: column; gap: 1rem; }
+    .hero-bottom-copy {
+      font-size: 0.94rem; line-height: 1.75; color: var(--mist);
+      font-weight: 300;
+    }
 
-    /* ── SHARED ── */
-    .s-label { font-family: var(--font-body); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem; }
-    .s-label::before { content: '\2014'; opacity: 0.5; }
-    .s-h2 { font-family: var(--font-body); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1.4rem; }
-    .s-h2 em { font-style: italic; color: var(--copper-lt); }
-    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
+    /* ── SHARED SECTION HEADER ── */
+    .s-label {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--green);
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      margin-bottom: 1.3rem;
+    }
+    .s-label::before { content: ''; width: 22px; height: 1.5px; background: var(--green); opacity: 0.6; }
+    .s-h2 {
+      font-size: clamp(1.9rem, 3.4vw, 3rem);
+      font-weight: 700; line-height: 1.08; letter-spacing: -0.025em;
+      color: var(--ink); margin-bottom: 1.2rem;
+    }
+    .s-h2 em { font-style: italic; color: var(--green); }
+    .s-sub { font-size: 0.95rem; line-height: 1.85; color: var(--ink-mute); font-weight: 300; }
 
-    /* ── CONTACT LAYOUT ── */
-    #contact-main { padding: 6rem 0 8rem; background: var(--earth); border-top: 1px solid rgba(255,255,255,0.05); }
-    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 7rem; align-items: start; }
+    /* ── CONTACT MAIN ── */
+    #contact-main { padding: 6rem 0 7rem; }
+    .contact-wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .contact-head { max-width: 620px; margin-bottom: 3.5rem; }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4.5rem; align-items: start; }
 
-    /* ── SIDEBAR ── */
-    .contact-sidebar {}
-    .contact-sidebar p { font-size: 0.9rem; line-height: 1.88; color: var(--dust-lt); font-weight: 300; margin-bottom: 2rem; }
+    .contact-sidebar p { font-size: 0.92rem; line-height: 1.88; color: var(--ink-mute); font-weight: 300; margin-bottom: 1.8rem; }
 
-    .contact-channels { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; margin-bottom: 2.5rem; }
-    .contact-channel { background: var(--earth); padding: 1.2rem 1.4rem; display: flex; align-items: flex-start; gap: 1rem; transition: background 0.25s; }
-    .contact-channel:hover { background: var(--bark); }
-    .ch-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 0.1rem; }
-    .ch-label { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); margin-bottom: 0.25rem; }
-    .ch-value { font-size: 0.82rem; color: var(--cream); }
-    .ch-value a { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .ch-value a:hover { color: var(--copper-lt); }
-    .ch-note { font-size: 0.72rem; color: var(--dust); margin-top: 0.2rem; }
+    .farm-ops { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1.8rem; }
+    .farm-op {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      padding: 1.3rem 1.5rem;
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .farm-op:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(18,23,18,0.08); }
+    .farm-op-icon {
+      width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
+      background: #edf6dd; border: 1px solid rgba(62,125,50,0.15);
+      display: grid; place-items: center; font-size: 1.15rem;
+    }
+    .farm-op-title { font-size: 0.7rem; font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--green); margin-bottom: 0.4rem; }
+    .farm-op-desc { font-size: 0.86rem; line-height: 1.6; color: var(--ink); }
+    .farm-op-desc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: color 0.2s, border-color 0.2s; }
+    .farm-op-desc a:hover { color: var(--green); border-color: var(--green); }
+    .ch-note { display: block; margin-top: 0.3rem; font-size: 0.76rem; color: var(--ink-mute); }
 
-    .who-block { border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
-    .who-block-head { background: var(--clay); padding: 0.8rem 1.2rem; font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); }
-    .who-list { list-style: none; }
-    .who-list li { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.75rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; color: var(--dust-lt); line-height: 1.5; }
-    .who-list li:last-child { border-bottom: none; }
-    .who-list li::before { content: '\2192'; color: var(--copper); flex-shrink: 0; font-size: 0.75rem; margin-top: 0.08rem; }
+    .who-card {
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      overflow: hidden;
+    }
+    .who-card-head {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green);
+      padding: 1.1rem 1.6rem; border-bottom: 1px solid var(--line-soft);
+    }
+    .who-list { list-style: none; padding: 0.4rem 0; }
+    .product-specs.who-list li {
+      font-size: 0.82rem; color: var(--ink-mute);
+      display: flex; align-items: flex-start; gap: 0.65rem; line-height: 1.6;
+      padding: 0.65rem 1.6rem;
+    }
+    .product-specs.who-list li::before {
+      content: ''; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0; margin-top: 0.55rem;
+    }
 
     /* ── FORM ── */
-    .contact-form-wrap {}
+    .contact-form-card {
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      padding: 2.2rem;
+    }
     .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
-
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.45rem; }
+    .form-label {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-mute);
+    }
+    .form-label span { color: var(--green); margin-left: 0.2rem; }
 
-    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); }
-    .form-label span { color: var(--copper); margin-left: 0.2rem; }
-
-    .form-input,
-    .form-select,
-    .form-textarea {
-      background: var(--bark); border: 1px solid rgba(255,255,255,0.1);
-      color: var(--cream); font-family: var(--font-body); font-size: 0.85rem;
-      padding: 0.85rem 1.1rem; border-radius: 2px; outline: none;
+    .form-input, .form-select, .form-textarea {
+      background: var(--card); border: 1px solid var(--line);
+      color: var(--ink); font-family: var(--font-body); font-size: 0.85rem;
+      padding: 0.8rem 1rem; border-radius: var(--radius-sm); outline: none;
       transition: border-color 0.2s, background 0.2s;
       width: 100%;
     }
-    .form-input::placeholder, .form-textarea::placeholder { color: var(--dust); }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(184,115,51,0.45); background: var(--clay); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--ink-mute); opacity: 0.7; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--green); background: var(--page); }
 
-    .form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a8878' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
-    .form-select option { background: var(--bark); }
+    .form-select {
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7566' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+    }
+    .form-select option { background: var(--card); }
 
     .form-textarea { resize: vertical; min-height: 140px; line-height: 1.7; }
 
     .form-check-wrap { display: flex; align-items: flex-start; gap: 0.75rem; }
-    .form-check { width: 16px; height: 16px; flex-shrink: 0; margin-top: 0.1rem; accent-color: var(--copper); cursor: pointer; }
-    .form-check-label { font-size: 0.78rem; color: var(--dust); line-height: 1.6; cursor: pointer; }
-    .form-check-label a { color: var(--dust-lt); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.2); }
-    .form-check-label a:hover { color: var(--cream); }
+    .form-check { width: 16px; height: 16px; flex-shrink: 0; margin-top: 0.15rem; accent-color: var(--green); cursor: pointer; }
+    .form-check-label { font-size: 0.78rem; color: var(--ink-mute); line-height: 1.6; cursor: pointer; }
+    .form-check-label a { color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); }
+    .form-check-label a:hover { color: var(--green); }
 
     .form-submit {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--copper); color: var(--soil);
-      font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
-      padding: 1rem 2.2rem; border: none; border-radius: 2px;
-      cursor: pointer; transition: background 0.2s; align-self: flex-start;
+      background: var(--lime); color: var(--forest);
+      font-family: var(--font-body); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.02em;
+      padding: 0.85rem 1.8rem; border: none; border-radius: 999px;
+      cursor: pointer; transition: filter 0.2s, transform 0.2s; align-self: flex-start;
     }
-    .form-submit:hover { background: var(--copper-lt); }
-    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .form-submit:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     .form-success {
-      display: none; padding: 1.4rem 1.6rem;
-      background: rgba(126,203,161,0.08); border: 1px solid rgba(126,203,161,0.2);
-      border-radius: 4px;
+      display: none; padding: 1.3rem 1.5rem;
+      background: var(--lime-soft); border: 1px solid rgba(62,125,50,0.2);
+      border-radius: var(--radius-sm);
     }
-    .form-success p { font-size: 0.88rem; line-height: 1.7; color: var(--green-ok); }
-    .form-success strong { font-weight: 600; }
+    .form-success p { font-size: 0.86rem; line-height: 1.7; color: var(--green-deep); }
+    .form-success p a { color: var(--green-deep); font-weight: 600; }
+    .form-success strong { font-weight: 700; }
 
     /* ── WHAT TO EXPECT ── */
-    #expect { padding: 6rem 0; background: var(--soil); border-top: 1px solid rgba(255,255,255,0.05); }
-    .expect-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
-    .expect-card { background: var(--soil); padding: 2rem 1.8rem; transition: background 0.25s; }
-    .expect-card:hover { background: var(--bark); }
-    .expect-num { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.14em; color: var(--copper); margin-bottom: 0.8rem; }
-    .expect-title { font-family: var(--font-body); font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
-    .expect-desc { font-size: 0.78rem; line-height: 1.72; color: var(--dust); }
+    #expect { padding: 6rem 0 7rem; background: var(--page-deep); }
+    .expect-head { max-width: 620px; margin-bottom: 3rem; }
+    .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .expect-card {
+      background: var(--card); border: 1px solid var(--line-soft);
+      border-radius: var(--radius-md); padding: 1.9rem 1.8rem;
+      box-shadow: 0 2px 16px rgba(18,23,18,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .expect-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(18,23,18,0.08); }
+    .expect-num {
+      font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green);
+      display: block; margin-bottom: 1rem;
+    }
+    .expect-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.45rem; }
+    .expect-desc { font-size: 0.8rem; line-height: 1.72; color: var(--ink-mute); }
 
     /* ── FOOTER ── */
-    footer { background: var(--soil); border-top: 1px solid rgba(255,255,255,0.05); padding: 4.5rem 0 2rem; }
-    .footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 4rem; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.6rem; }
+    footer { background: var(--page); padding: 4.5rem 0 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: 1.6rem;
+    }
     .footer-brand-wrap { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; text-decoration: none; }
     .footer-brand-wrap img { width: 34px; height: 34px; object-fit: contain; }
-    .footer-brand-wrap strong { font-family: var(--font-body); font-weight: 700; font-size: 1rem; color: var(--white); }
-    .footer-tagline { font-size: 0.78rem; line-height: 1.78; color: var(--dust); max-width: 26ch; }
-    .footer-col-head { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.1rem; }
+    .footer-brand-wrap strong { font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .footer-tagline { font-size: 0.8rem; line-height: 1.78; color: var(--ink-mute); max-width: 28ch; }
+    .footer-col-head {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1.1rem;
+    }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-links a { font-size: 0.8rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--cream); }
+    .footer-links a { font-size: 0.82rem; color: var(--ink-mute); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ink); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
-    .footer-copy { font-size: 0.72rem; color: var(--dust); }
-    .footer-contact { font-family: var(--font-body); font-size: 0.68rem; color: var(--dust); text-decoration: none; transition: color 0.2s; }
-    .footer-contact:hover { color: var(--copper-lt); }
+    .footer-copy { font-size: 0.72rem; color: var(--ink-mute); }
+    .footer-contact {
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-mute);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-contact:hover { color: var(--green); }
 
     /* ── SCROLL REVEAL ── */
     .r { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .r.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      #page-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 8rem 2.5rem 4rem; }
-      .contact-layout { grid-template-columns: 1fr; gap: 4rem; }
-      .expect-layout { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .expect-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 768px) {
-      nav { padding: 1.1rem 1.5rem; }
+    @media (max-width: 860px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
-      #page-hero { padding: 7rem 1.5rem 3rem; }
-      .section-wrap { padding: 0 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.9rem 1rem; }
+      #hero { padding: 4.6rem 0.8rem 0.8rem; }
+      .how-panel { padding: 2.5rem 1.6rem; }
+      #contact-main, #expect { padding: 4rem 0 5rem; }
       .form-row { grid-template-columns: 1fr; }
+      .expect-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
-      #contact-main, #expect { padding: 4rem 0; }
+      .contact-wrap, .footer-inner { padding: 0 1.4rem; }
+      .contact-form-card { padding: 1.6rem; }
+    }
+    @media (max-width: 480px) {
+      .form-submit { width: 100%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .r { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -218,12 +391,16 @@
     <li><a href="/about.html">About</a></li>
     <li><a href="/insights.html">Insights</a></li>
   </ul>
-  <a href="/contact.html" class="nav-cta active-page">Get in touch</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav-right">
+    <a href="/contact.html" class="nav-cta">Get in touch <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="drawer" id="drawer">
-  <button class="drawer-close" id="drawer-close">&#x2715;</button>
+  <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
   <a href="/farm.html">The Farm</a>
   <a href="/products.html">Products</a>
   <a href="/about.html">About</a>
@@ -233,68 +410,76 @@
 
 
 <!-- ═══ PAGE HERO ═══ -->
-<div id="page-hero">
-  <div class="r">
-    <div class="page-kicker">Get in touch</div>
-    <h1 class="page-h1">Tell us<br>the<br><em>problem.</em></h1>
+<section id="hero">
+  <div class="how-panel">
+    <canvas id="hero-dots"></canvas>
+    <div class="how-wrap">
+      <div class="how-head">
+        <div class="s-label r">Get in Touch</div>
+        <h2 class="s-h2 r d1">Tell us<br><em>the problem.</em></h2>
+      </div>
+      <div class="hero-copy-block">
+        <p class="hero-bottom-copy r d2">We don&#8217;t start with a product pitch. We start with the problem you are trying to solve &#8212; whether that&#8217;s early warning for a farming cooperative, parametric triggers for an insurer, or procurement traceability for an institutional buyer.</p>
+        <p class="hero-bottom-copy r d3">If our tools are the right fit, we&#8217;ll say so. If they&#8217;re not, we&#8217;ll say that too.</p>
+      </div>
+    </div>
   </div>
-  <div class="r d1">
-    <p>We don&#8217;t start with a product pitch. We start with the problem you are trying to solve &#8212; whether that&#8217;s early warning for a farming cooperative, parametric triggers for an insurer, or procurement traceability for an institutional buyer.</p>
-    <p>If our tools are the right fit, we&#8217;ll say so. If they&#8217;re not, we&#8217;ll say that too.</p>
-  </div>
-</div>
-<div class="hero-rule"></div>
+</section>
 
 
 <!-- ═══ CONTACT MAIN ═══ -->
 <section id="contact-main">
-  <div class="section-wrap">
+  <div class="contact-wrap">
     <div class="contact-layout">
 
       <!-- Sidebar -->
-      <div class="r">
+      <div class="contact-sidebar r">
         <div class="s-label">Contact</div>
         <h2 class="s-h2">We respond to<br>every message<br><em>personally.</em></h2>
         <p>No auto-responder. No sales funnel. A member of the EcoGrow team will read your message and reply within two working days.</p>
 
-        <div class="contact-channels">
-          <div class="contact-channel">
-            <span class="ch-icon">&#9993;</span>
+        <div class="farm-ops">
+          <div class="farm-op">
+            <div class="farm-op-icon">&#9993;</div>
             <div>
-              <div class="ch-label">Email</div>
-              <div class="ch-value"><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a></div>
-              <div class="ch-note">General enquiries and partnerships</div>
+              <div class="farm-op-title">Email</div>
+              <div class="farm-op-desc"><a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a>
+                <span class="ch-note">General enquiries and partnerships</span>
+              </div>
             </div>
           </div>
-          <div class="contact-channel">
-            <span class="ch-icon">&#127807;</span>
+          <div class="farm-op">
+            <div class="farm-op-icon">&#127807;</div>
             <div>
-              <div class="ch-label">Farm &amp; produce</div>
-              <div class="ch-value"><a href="mailto:farm@ecogrowfarms.com">farm@ecogrowfarms.com</a></div>
-              <div class="ch-note">Procurement and supply chain enquiries</div>
+              <div class="farm-op-title">Farm &amp; produce</div>
+              <div class="farm-op-desc"><a href="mailto:farm@ecogrowfarms.com">farm@ecogrowfarms.com</a>
+                <span class="ch-note">Procurement and supply chain enquiries</span>
+              </div>
             </div>
           </div>
-          <div class="contact-channel">
-            <span class="ch-icon">&#128187;</span>
+          <div class="farm-op">
+            <div class="farm-op-icon">&#128187;</div>
             <div>
-              <div class="ch-label">Product &amp; API</div>
-              <div class="ch-value"><a href="mailto:products@ecogrowfarms.com">products@ecogrowfarms.com</a></div>
-              <div class="ch-note">Technical integrations and pilot programmes</div>
+              <div class="farm-op-title">Product &amp; API</div>
+              <div class="farm-op-desc"><a href="mailto:products@ecogrowfarms.com">products@ecogrowfarms.com</a>
+                <span class="ch-note">Technical integrations and pilot programmes</span>
+              </div>
             </div>
           </div>
-          <div class="contact-channel">
-            <span class="ch-icon">&#128205;</span>
+          <div class="farm-op">
+            <div class="farm-op-icon">&#128205;</div>
             <div>
-              <div class="ch-label">Location</div>
-              <div class="ch-value">Ede, Osun State, Nigeria</div>
-              <div class="ch-note">Primary farm &amp; operations base</div>
+              <div class="farm-op-title">Location</div>
+              <div class="farm-op-desc">Ede, Osun State, Nigeria
+                <span class="ch-note">Primary farm &amp; operations base</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="who-block">
-          <div class="who-block-head">Who we hear from most</div>
-          <ul class="who-list">
+        <div class="who-card">
+          <div class="who-card-head">Who we hear from most</div>
+          <ul class="product-specs who-list">
             <li>Humanitarian agencies seeking crop failure early warning</li>
             <li>Agri-insurers exploring parametric trigger infrastructure</li>
             <li>Government ministries and extension services</li>
@@ -306,68 +491,70 @@
       </div>
 
       <!-- Form -->
-      <div class="contact-form-wrap r d1">
-        <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)" novalidate>
+      <div class="r d1">
+        <div class="contact-form-card">
+          <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)" novalidate>
 
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-label" for="cf-name">Full name <span>*</span></label>
-              <input type="text" id="cf-name" class="form-input" placeholder="Your name" required>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="cf-name">Full name <span>*</span></label>
+                <input type="text" id="cf-name" class="form-input" placeholder="Your name" required>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="cf-org">Organisation</label>
+                <input type="text" id="cf-org" class="form-input" placeholder="Agency, company, or cooperative">
+              </div>
             </div>
-            <div class="form-field">
-              <label class="form-label" for="cf-org">Organisation</label>
-              <input type="text" id="cf-org" class="form-input" placeholder="Agency, company, or cooperative">
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="cf-email">Email address <span>*</span></label>
+                <input type="email" id="cf-email" class="form-input" placeholder="you@organisation.com" required>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="cf-country">Country</label>
+                <input type="text" id="cf-country" class="form-input" placeholder="e.g. Nigeria, Kenya, Ghana">
+              </div>
             </div>
-          </div>
 
-          <div class="form-row">
             <div class="form-field">
-              <label class="form-label" for="cf-email">Email address <span>*</span></label>
-              <input type="email" id="cf-email" class="form-input" placeholder="you@organisation.com" required>
+              <label class="form-label" for="cf-topic">What are you reaching out about? <span>*</span></label>
+              <select id="cf-topic" class="form-select" required>
+                <option value="" disabled selected>Select a topic</option>
+                <option value="cropsentinel">CropSentinel &#8212; crop failure early warning</option>
+                <option value="soilpulse">SoilPulse &#8212; soil intelligence &amp; IoT sensors</option>
+                <option value="harvestiq">HarvestIQ &#8212; market price intelligence</option>
+                <option value="irrigateai">IrrigateAI &#8212; irrigation scheduling</option>
+                <option value="multi-product">Multiple products / full pipeline</option>
+                <option value="produce">Farm produce &amp; procurement</option>
+                <option value="partnership">Institutional partnership or programme</option>
+                <option value="research">Research or data collaboration</option>
+                <option value="other">Something else</option>
+              </select>
             </div>
+
             <div class="form-field">
-              <label class="form-label" for="cf-country">Country</label>
-              <input type="text" id="cf-country" class="form-input" placeholder="e.g. Nigeria, Kenya, Ghana">
+              <label class="form-label" for="cf-message">Tell us about the problem you&#8217;re trying to solve <span>*</span></label>
+              <textarea id="cf-message" class="form-textarea" placeholder="The more context you can give us &#8212; geography, scale, what you&#8217;ve already tried &#8212; the more useful our first reply will be." required></textarea>
             </div>
-          </div>
 
-          <div class="form-field">
-            <label class="form-label" for="cf-topic">What are you reaching out about? <span>*</span></label>
-            <select id="cf-topic" class="form-select" required>
-              <option value="" disabled selected>Select a topic</option>
-              <option value="cropsentinel">CropSentinel &#8212; crop failure early warning</option>
-              <option value="soilpulse">SoilPulse &#8212; soil intelligence &amp; IoT sensors</option>
-              <option value="harvestiq">HarvestIQ &#8212; market price intelligence</option>
-              <option value="irrigateai">IrrigateAI &#8212; irrigation scheduling</option>
-              <option value="multi-product">Multiple products / full pipeline</option>
-              <option value="produce">Farm produce &amp; procurement</option>
-              <option value="partnership">Institutional partnership or programme</option>
-              <option value="research">Research or data collaboration</option>
-              <option value="other">Something else</option>
-            </select>
-          </div>
+            <div class="form-check-wrap">
+              <input type="checkbox" id="cf-consent" class="form-check" required>
+              <label for="cf-consent" class="form-check-label">
+                I agree to EcoGrow Farms storing my details to respond to this enquiry, in line with the <a href="/privacy.html">Privacy Policy</a>.
+              </label>
+            </div>
 
-          <div class="form-field">
-            <label class="form-label" for="cf-message">Tell us about the problem you&#8217;re trying to solve <span>*</span></label>
-            <textarea id="cf-message" class="form-textarea" placeholder="The more context you can give us &#8212; geography, scale, what you&#8217;ve already tried &#8212; the more useful our first reply will be." required></textarea>
-          </div>
+            <button type="submit" class="form-submit" id="cf-submit">
+              Send message &#8594;
+            </button>
 
-          <div class="form-check-wrap">
-            <input type="checkbox" id="cf-consent" class="form-check" required>
-            <label for="cf-consent" class="form-check-label">
-              I agree to EcoGrow Farms storing my details to respond to this enquiry, in line with the <a href="/privacy.html">Privacy Policy</a>.
-            </label>
-          </div>
+            <div class="form-success" id="cf-success">
+              <p><strong>Message received.</strong> A member of the EcoGrow team will review it and reply within two working days. If your enquiry is urgent, email us directly at <a href="mailto:info@ecogrowfarms.com">info@ecogrowfarms.com</a>.</p>
+            </div>
 
-          <button type="submit" class="form-submit" id="cf-submit">
-            Send message &#8594;
-          </button>
-
-          <div class="form-success" id="cf-success">
-            <p><strong>Message received.</strong> A member of the EcoGrow team will review it and reply within two working days. If your enquiry is urgent, email us directly at <a href="mailto:info@ecogrowfarms.com" style="color:var(--green-ok)">info@ecogrowfarms.com</a>.</p>
-          </div>
-
-        </form>
+          </form>
+        </div>
       </div>
 
     </div>
@@ -377,21 +564,24 @@
 
 <!-- ═══ WHAT TO EXPECT ═══ -->
 <section id="expect">
-  <div class="section-wrap">
-    <div class="s-label r">What happens next</div>
-    <div class="expect-layout">
+  <div class="contact-wrap">
+    <div class="expect-head">
+      <div class="s-label r">What happens next</div>
+      <h2 class="s-h2 r d1">Three steps, <em>no funnel.</em></h2>
+    </div>
+    <div class="expect-grid">
       <div class="expect-card r">
-        <div class="expect-num">01</div>
+        <span class="expect-num">01</span>
         <div class="expect-title">We read it ourselves</div>
         <p class="expect-desc">Your message goes to a person, not a CRM queue. The founder or a senior team member reads every initial enquiry before we reply.</p>
       </div>
       <div class="expect-card r d1">
-        <div class="expect-num">02</div>
+        <span class="expect-num">02</span>
         <div class="expect-title">We reply within two working days</div>
         <p class="expect-desc">Usually faster. Our reply will either ask a clarifying question, propose a call, or tell you directly whether we think our tools are the right fit for your situation.</p>
       </div>
       <div class="expect-card r d2">
-        <div class="expect-num">03</div>
+        <span class="expect-num">03</span>
         <div class="expect-title">We start with the problem, not the product</div>
         <p class="expect-desc">If you&#8217;re a good fit, we&#8217;ll propose a pilot structure. If you&#8217;re not, we&#8217;ll tell you honestly &#8212; and often point you toward who might be a better fit.</p>
       </div>
@@ -446,21 +636,17 @@
 
 
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40));
-
+  // Mobile drawer
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   const drawerClose = document.getElementById('drawer-close');
   if (hamburger && drawer) {
     const closeDrawer = () => {
       drawer.classList.remove('open');
-      hamburger.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
     };
     const openDrawer = () => {
       drawer.classList.add('open');
-      hamburger.classList.add('is-open');
       hamburger.setAttribute('aria-expanded', 'true');
     };
     hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
@@ -468,9 +654,10 @@
     drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
     drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeDrawer(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 860) closeDrawer(); });
   }
 
+  // Contact form submit (behavior unchanged from original)
   function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('contact-form');
@@ -486,11 +673,57 @@
     }, 800);
   }
 
+  // Scroll reveal
   const els = document.querySelectorAll('.r');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   els.forEach(el => obs.observe(el));
+
+  // Particle scatter — gaussian dot clusters
+  function gauss() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  function scatter(canvasId, clusters, color, dotAlpha) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const draw = () => {
+      const parent = canvas.parentElement;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = parent.clientWidth, h = parent.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      clusters.forEach(c => {
+        const cx = c.x * w, cy = c.y * h;
+        const sx = c.spread * Math.min(w, 900), sy = c.spread * Math.min(h, 900);
+        for (let i = 0; i < c.n; i++) {
+          const x = cx + gauss() * sx;
+          const y = cy + gauss() * sy;
+          if (x < 0 || x > w || y < 0 || y > h) continue;
+          const r = 0.7 + Math.random() * 1.1;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.globalAlpha = dotAlpha * (0.35 + Math.random() * 0.65);
+          ctx.fill();
+        }
+      });
+      ctx.globalAlpha = 1;
+    };
+    draw();
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(draw, 150); });
+  }
+
+  // Dark panel — lime dots
+  scatter('hero-dots', [
+    { x: 0.88, y: 0.2, spread: 0.10, n: 500 },
+    { x: 0.08, y: 0.85, spread: 0.08, n: 300 }
+  ], '#a8e63c', 0.35);
 </script>
 </body>
 </html>
